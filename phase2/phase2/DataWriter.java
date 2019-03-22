@@ -24,9 +24,9 @@ public class DataWriter {
 
             out.close();
             fileOut.close();
-            System.out.printf("Serialized data is saved in data.ser");
+            System.out.println("Serialized data is saved in data.ser");
         } catch (Exception e) {
-            System.out.println("Unable to serialize data from ATM.");
+            e.printStackTrace();
         }
     }
 
@@ -34,7 +34,16 @@ public class DataWriter {
      * Read the data from the data.ser and enters it into the ATM.
      */
     public static void readData() {
+        try {
+            FileInputStream fileIn = new FileInputStream(data);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            Object e = in.readObject();
 
+            in.close();
+            fileIn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

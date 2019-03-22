@@ -1,9 +1,10 @@
 package phase2;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class ATMTime {
+public class ATMTime implements Serializable {
 
     private int yearFactor;
     private int monthFactor;

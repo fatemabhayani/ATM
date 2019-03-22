@@ -12,17 +12,17 @@ public class ATM {
     /**
      * The collection of user accounts.
      */
-    public static final ArrayList<User> bankUsers = new ArrayList<>();
+    public static ArrayList<User> bankUsers;
 
     /**
      * The cash machine associated with the ATM.
      */
-    public static final CashMachine c = new CashMachine();
+    public static CashMachine c;
 
     /**
      * The time recorded by the ATM.
      */
-    public static final ATMTime clock = new ATMTime(2019, 0, 1, 0, 0, 0);
+    public static ATMTime clock;
 
     public static String username;
     public static BankManager b = new BankManager();
