@@ -27,8 +27,10 @@ public class DataWriter {
             out.writeObject(ATM.c);
 
             // Save the bankUsers
+            out.writeObject(ATM.bankUsers);
 
             // Save the bankEmployees
+            out.writeObject(ATM.bankEmployees);
 
             out.close();
             fileOut.close();

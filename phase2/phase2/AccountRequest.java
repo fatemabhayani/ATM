@@ -48,7 +48,6 @@ public class AccountRequest implements Request {
 
     /**
      * Resolves the request by creating the account.
-     *
      */
     public void resolveRequest() {
         Calendar time = ATM.clock.getCurrentTime();
