@@ -20,7 +20,15 @@ public class DataWriter {
         try {
             FileOutputStream fileOut = new FileOutputStream(data);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(ATM.b);
+            // Save the ATMTime
+            out.writeObject(ATM.clock);
+
+            // Save the CashMachine
+            out.writeObject(ATM.c);
+
+            // Save the bankUsers
+
+            // Save the bankEmployees
 
             out.close();
             fileOut.close();

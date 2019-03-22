@@ -15,6 +15,11 @@ public class ATM {
     public static ArrayList<User> bankUsers;
 
     /**
+     * The collection of bank employees.
+     */
+    public static ArrayList<BankEmployee> bankEmployees;
+
+    /**
      * The cash machine associated with the ATM.
      */
     public static CashMachine c;

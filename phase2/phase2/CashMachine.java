@@ -1,11 +1,12 @@
 package phase2;
 
 import java.io.FileWriter;
+import java.io.Serializable;
 
 /**
  * A cash handling machine in the ATM.
  */
-public class CashMachine {
+public class CashMachine implements Serializable {
 
     /**
      * A list of the number of bills in the cash machine.
