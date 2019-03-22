@@ -1,14 +1,12 @@
 package phase2;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.*;
 
 public class DataWriter {
     /**
      * The file that stores the ATM data.
      */
-    private static String data = "phase2/phase2/data.txt";
+    private static String data = "phase2/phase2/data.ser";
 
     /**
      * Initializes an instance of DataWriter.
@@ -16,28 +14,27 @@ public class DataWriter {
     private DataWriter() {}
 
     /**
-     * Writes the data from the ATM into data.txt.
+     * Writes the data from the ATM into data.ser.
      */
     public static void writeData() {
-        try (FileWriter writer = new FileWriter(data)) {
+        try {
+            FileOutputStream fileOut = new FileOutputStream(data);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(ATM.b);
 
+            out.close();
+            fileOut.close();
+            System.out.printf("Serialized data is saved in data.ser");
         } catch (Exception e) {
-            System.out.println("Error writing data.");
+            System.out.println("Unable to serialize data from ATM.");
         }
     }
 
     /**
-     * Read the data from the data.txt and enters it into the ATM.
+     * Read the data from the data.ser and enters it into the ATM.
      */
     public static void readData() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(data))){
-            String s = reader.readLine();
-            while (s != null) {
 
-            }
-        } catch (Exception e) {
-            System.out.println("Error reading data.");
-        }
     }
 
 }
