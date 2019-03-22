@@ -33,7 +33,7 @@ public class BankManager extends BankEmployee {
     public void restockCashMachine() {
         int index;
         String s;
-        try (BufferedReader reader = new BufferedReader(new FileReader("phase1/phase1/alerts.txt"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("phase2/phase2/alerts.txt"))) {
             s = reader.readLine();
             while (s != null) {
                 System.out.println(s);
