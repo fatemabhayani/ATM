@@ -73,7 +73,7 @@ public class CashMachine {
      * falls below 20.
      */
     private void writeAlerts() {
-        try (FileWriter writer = new FileWriter("phase1/phase1/alerts.txt", true)) {
+        try (FileWriter writer = new FileWriter("phase2/phase2/alerts.txt", true)) {
             for (int i = 0; i < 4; i++) {
                 if (getNumBills(i) < 20) {
                     writer.write("The number of " + getDenomination(i) + " dollar bills in the ATM is less than 20.");
