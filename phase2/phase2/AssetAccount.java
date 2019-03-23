@@ -7,7 +7,7 @@ import java.util.Calendar;
 /**
  * Represents an asset account.
  */
-public abstract class AssetAccount implements Account {
+public abstract class AssetAccount implements Account, Serializable {
 
     /**
      * The account balance.

@@ -1,8 +1,9 @@
 package phase2;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class BankEmployee {
+public abstract class BankEmployee implements Serializable {
 
     /**
      * The username for this employee.

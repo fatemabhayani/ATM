@@ -1,11 +1,12 @@
 package phase2;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * A user of the ATM.
  */
-public class User {
+public class User implements Serializable {
 
     /**
      * The username for this user.

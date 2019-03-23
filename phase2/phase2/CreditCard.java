@@ -1,16 +1,13 @@
 package phase2;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
  * The Credit card, type of Account
  */
-public class CreditCard implements Account {
+public class CreditCard implements Account, Serializable {
     private User owner1;
     private User owner2;
     private double balance = 0;

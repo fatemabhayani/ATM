@@ -1,6 +1,7 @@
 package phase2;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class DataWriter {
     /**
@@ -32,6 +33,9 @@ public class DataWriter {
             // Save the bankEmployees
             out.writeObject(ATM.bankEmployees);
 
+            // Save the BankManager
+            out.writeObject(ATM.b);
+
             out.close();
             fileOut.close();
             System.out.println("Serialized data is saved in data.ser");
@@ -47,7 +51,16 @@ public class DataWriter {
         try {
             FileInputStream fileIn = new FileInputStream(data);
             ObjectInputStream in = new ObjectInputStream(fileIn);
-            Object e = in.readObject();
+
+            ATM.clock = (ATMTime) in.readObject();
+
+            ATM.c = (CashMachine) in.readObject();
+
+            ATM.bankUsers = (ArrayList<User>) in.readObject();
+
+            ATM.bankEmployees = (ArrayList<BankEmployee>) in.readObject();
+
+            ATM.b = (BankManager) in.readObject();
 
             in.close();
             fileIn.close();

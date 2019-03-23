@@ -12,22 +12,22 @@ public class ATM {
     /**
      * The collection of user accounts.
      */
-    public static ArrayList<User> bankUsers;
+    public static ArrayList<User> bankUsers = new ArrayList<>();
 
     /**
      * The collection of bank employees.
      */
-    public static ArrayList<BankEmployee> bankEmployees;
+    public static ArrayList<BankEmployee> bankEmployees = new ArrayList<>();
 
     /**
      * The cash machine associated with the ATM.
      */
-    public static CashMachine c;
+    public static CashMachine c = new CashMachine();
 
     /**
      * The time recorded by the ATM.
      */
-    public static ATMTime clock;
+    public static ATMTime clock = new ATMTime(2019, 0, 1, 0, 0, 0);
 
     public static String username;
     public static BankManager b = new BankManager();
@@ -40,6 +40,7 @@ public class ATM {
      */
     public static void main(String args[]){
         String command;
+        DataWriter.readData();
 
         System.out.println("Welcome to the ATM, I am an incredibly well known superhero, my name is " + generateRandomSuperhero() +
                 " and I will be helping you today.");
@@ -108,6 +109,8 @@ public class ATM {
         if (clock.isFirstOfMonth()) {
             UserManager.updateSavings();
         }
+
+        DataWriter.writeData();
 
     }
 

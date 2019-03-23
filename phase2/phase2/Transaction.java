@@ -3,12 +3,13 @@ package phase2;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.Calendar;
 
 /**
  * The Transaction.
  */
-public abstract class Transaction {
+public abstract class Transaction implements Serializable {
 
     /**
      * The Amount of the transaction.
