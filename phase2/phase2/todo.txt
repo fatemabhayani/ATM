@@ -26,5 +26,4 @@ Note
    check that these methods don't need to be used before deleting (i.e. if
    the method should be called in the main method but isn't yet, don't delete it!)
 
-
-NOTE TO FATEMA: UPDATE INTEREST AND CASHBACK ON CASHBACK CARD
+charitable donations, currency exchange,

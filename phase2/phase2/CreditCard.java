@@ -13,11 +13,13 @@ public class CreditCard implements Account, Serializable {
     private double balance = 0;
     protected ArrayList<Transaction> transactions;
     private Calendar date;
+    private double creditLimit = 5000;
+
 
     /**
      * Instantiates a previous Credit card.
      *
-     * @param transactions
+     * @param transactions transactions
      * @param date the date of creation
      */
     protected CreditCard(Calendar date, ArrayList<Transaction> transactions) {
@@ -75,27 +77,38 @@ public class CreditCard implements Account, Serializable {
     }
 
     public void subtract(Transaction transaction) {
-        balance += transaction.getAmount();
-        transactions.add(transaction);
-        System.out.println("Transaction successful!");
-
+        if (creditLimit > transaction.getAmount()){
+            balance += transaction.getAmount();
+            transactions.add(transaction);
+            decreaseCreditLimit(transaction.getAmount());
+            System.out.println("Transaction successful!");
+        } else{
+            System.out.println("There isn't enough credit limit on your account to complete this transaction");
+        }
     }
 
     public void subtract(double amount) {
-        balance += amount;
-        helpWrite(amount);
-        System.out.println("Transaction successful!");
+        if (creditLimit > amount) {
+            balance += amount;
+            helpWrite(amount);
+            decreaseCreditLimit(amount);
+            System.out.println("Transaction successful!");
+        } else {
+            System.out.println("There isn't enough credit limit on your account to complete this transaction");
+        }
     }
 
     public void add(Transaction transaction) {
         balance -= transaction.getAmount();
         transactions.add(transaction);
+        increaseCreditLimit(transaction.getAmount());
         System.out.println("Transaction successful!");
     }
 
     public void add(String file) {
         int amount = helpRead(file);
         balance -= amount;
+        increaseCreditLimit(amount);
         System.out.println("Transaction successful!");
     }
 
@@ -110,7 +123,18 @@ public class CreditCard implements Account, Serializable {
 
     public String getSummary() {
         return "Debt account created on" + getCreationDate() + "with transactions to date " +
-                transactions.toString();
+                transactions.toString() + "with credit limit " + creditLimit;
     }
 
+    public void decreaseCreditLimit(double creditLimit) {
+        this.creditLimit -= creditLimit;
+    }
+
+    public void increaseCreditLimit(double creditLimit) {
+        this.creditLimit += creditLimit;
+    }
+
+    public double getCreditLimit() {
+        return creditLimit;
+    }
 }

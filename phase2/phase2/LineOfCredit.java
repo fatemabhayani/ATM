@@ -23,9 +23,13 @@ public class LineOfCredit extends CreditCard {
 
     @Override
     public void subtract(Transaction transaction) {
-        setBalance(getBalance() + transaction.getAmount());
-        transactions.add(transaction);
-        System.out.println("Transaction successful!");
+        if (getCreditLimit() > transaction.getAmount()){
+            setBalance(getBalance() + transaction.getAmount());
+            transactions.add(transaction);
+            decreaseCreditLimit(transaction.getAmount());
+            System.out.println("Transaction successful!");
+        } else {
+            System.out.println("There isn't enough credit limit on your account to complete this transaction");
+        }
     }
-
 }
