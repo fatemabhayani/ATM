@@ -26,10 +26,25 @@ public class UserManager {
                 authenticated = true;
             }
         }
+        for (BankTeller t: ATM.bankEmployees) {
+            if (username.equals(t.getUsername())) {
+                authenticated = true;
+            }
+        }
         if (username.equals(ATM.b.getUsername())) {
             authenticated = true;
         }
         return authenticated;
+    }
+
+    /**
+     * Checks whether username belongs to the BankManager.
+     *
+     * @param username the username
+     * @return true if and only if username belongs to a user or employee.
+     */
+    static boolean isBankManager(String username) {
+        return username.equals(ATM.b.getUsername());
     }
 
     /**

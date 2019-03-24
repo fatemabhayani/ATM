@@ -18,7 +18,7 @@ public class ATM {
     /**
      * The collection of bank employees.
      */
-    public static ArrayList<BankEmployee> bankEmployees = new ArrayList<>();
+    public static ArrayList<BankTeller> bankEmployees = new ArrayList<>();
 
     /**
      * The cash machine associated with the ATM.

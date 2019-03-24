@@ -1,6 +1,10 @@
 package phase2;
 
 public class BankTeller extends BankEmployee {
+    // Start with fixed number (10?) of BankTellers?
+    // username: teller1, ..., teller10
+    // password: bestemployee1, ..., bestemployee10
+
 
     /**
      * The user account of this teller.
