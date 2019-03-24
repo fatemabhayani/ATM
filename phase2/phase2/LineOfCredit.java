@@ -13,10 +13,6 @@ public class LineOfCredit extends CreditCard {
      *
      * @param date the date of creation
      */
-    LineOfCredit(Calendar date, ArrayList<Transaction> transactions) {
-        super(date, transactions);
-    }
-
     LineOfCredit(Calendar date) {
         super(date);
     }

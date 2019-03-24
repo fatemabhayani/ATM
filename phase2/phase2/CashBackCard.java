@@ -5,10 +5,6 @@ import java.util.Calendar;
 
 public class CashBackCard extends CreditCard {
 
-    protected CashBackCard(Calendar date, ArrayList<Transaction> transactions) {
-        super(date, transactions);
-    }
-
     public CashBackCard(Calendar date) {
         super(date);
     }

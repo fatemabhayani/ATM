@@ -18,15 +18,8 @@ public class CreditCard implements Account, Serializable {
 
     /**
      * Instantiates a previous Credit card.
-     *
-     * @param transactions transactions
      * @param date the date of creation
      */
-    protected CreditCard(Calendar date, ArrayList<Transaction> transactions) {
-        this.transactions = transactions;
-        this.date = date;
-    }
-
     public CreditCard(Calendar date) {
         this.date = date;
         transactions = new ArrayList<>();
