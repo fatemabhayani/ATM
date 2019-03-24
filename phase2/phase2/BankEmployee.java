@@ -77,6 +77,15 @@ public abstract class BankEmployee implements Serializable {
         requests.remove(i);
     }
 
+    void completeRequest(int i, String password) {
+        if (requests.get(i) instanceof UserRequest){
+            UserRequest req = (UserRequest) requests.get(i);
+            req.resolveRequest(password);
+            requests.remove(i);
+        }
+    }
+
+
     /**
      * Adds a request to the list of requests.
      *

@@ -3,10 +3,10 @@ package phase2;
 /**
  * The Request.
  */
-public interface Request {
+class Request {
 
     /**
      * Resolve request.
      */
-    void resolveRequest();
+    void resolveRequest(){};
 }

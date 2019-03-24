@@ -34,14 +34,20 @@ public class ManagerDisplay {
             command = sc.nextLine();
             command = command.replaceAll("//s", "");
             int number = Integer.valueOf(command);
-
-            System.out.println(b.getRequest(number).toString());
+            Request request = b.getRequest(number);
+            System.out.println(request.toString());
             System.out.println("Do you want to accept this request");
             command = sc.nextLine();
             command = command.replaceAll("//s", "");
             if (command.equals("yes")) {
-                b.completeRequest(number);
+                if (request instanceof UserRequest){
+                    System.out.println("What password would you like to set for this user");
+                    command = sc.nextLine();
+                    command = command.replaceAll("//s", "");
+                    b.completeRequest(number, command);
 
+                }
+                b.completeRequest(number);
             } else {
                 b.ignoreRequest(number);
             }
