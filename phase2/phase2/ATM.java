@@ -1,5 +1,6 @@
 package phase2;
 
+import javax.xml.crypto.Data;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.*;
@@ -40,6 +41,7 @@ public class ATM {
      */
     public static void main(String args[]){
         String command;
+
         DataWriter.readData();
 
         System.out.println("Welcome to the ATM, I am an incredibly well known superhero, my name is " + generateRandomSuperhero() +
@@ -110,7 +112,9 @@ public class ATM {
             UserManager.updateSavings();
         }
 
-        DataWriter.writeData();
+        //TODO: write data only once per run (before program resets at midnight)
+
+        // DataWriter.writeData();
 
     }
 
