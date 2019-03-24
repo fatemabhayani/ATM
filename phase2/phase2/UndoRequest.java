@@ -3,7 +3,7 @@ package phase2;
 /**
  * The Undo Transaction request, type of Request
  */
-public class UndoRequest implements Request {
+public class UndoRequest extends Request {
     private User requester;
     private Account account;
     private int num;

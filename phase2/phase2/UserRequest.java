@@ -3,7 +3,7 @@ package phase2;
 /**
  * The User creation request, type of request
  */
-public class UserRequest implements Request {
+public class UserRequest extends Request {
     private String username;
 
     /**

@@ -5,7 +5,7 @@ import java.util.Calendar;
 /**
  * A request for a new bank account.
  */
-public class AccountRequest implements Request {
+public class AccountRequest extends Request {
 
     /**
      * The user making the request.

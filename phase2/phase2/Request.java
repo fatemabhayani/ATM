@@ -1,12 +1,14 @@
 package phase2;
 
+import java.io.Serializable;
+
 /**
  * The Request.
  */
-public interface Request {
+public abstract class Request implements Serializable {
 
     /**
      * Resolve request.
      */
-    void resolveRequest();
+    public void resolveRequest() {}
 }
