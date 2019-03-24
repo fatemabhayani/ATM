@@ -1,5 +1,7 @@
 package phase2;
 
+import java.io.Serializable;
+
 /**
  * The User creation request, type of request
  */
