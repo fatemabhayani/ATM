@@ -27,3 +27,58 @@ Note
    the method should be called in the main method but isn't yet, don't delete it!)
 
 charitable donations, currency exchange,
+
+
+Phase 1 Markus comments
+
+Dear Group_0308 Members,
+
+Thanks for your submission, please pay attention to the following notes in
+order to improve your project for phase 2:
+
++ Your README file is not sufficient for a new user to understand how your
+program works, please try to write more informative notes in that file.
+
++ I get an exception when I try to put in a username that does not exist.
+
++ There's no manager account (nor I could find a way to create the manager
+account), so for now, it's impossible for me to further check the
+functionality of your code just by reading your README file and not
+digging into your code, please provide information on how the manager
+account works.
+
++ There are some good programming practices that you could follow, naming
+packaging the classes that you created in meaningful packages.
+
++ Some of your classes could use more comments, though I can see
+sufficient comments in some classes.
+
+Based on your instructions, I couldn't make sense of alerts.txt and why it
+already has some lines of text in it. Please explain more about the
+input/output files in your refined README file.
+
++ When a user types in inputs other than the type that the system requires
+them (e.g. instead of yes/no user types in a random string), your program
+exits with an exception.
+
++ Please revisit your UML file. Some of the decisions on inheritance does
+not make sense. For example, Withdrawdisplay and Depositdisplay could
+inherit from Account Display but there's no arrow between them.
+
++ Please pay more attention to naming conventions and try to be consistent
+with them. For example in Transferdisplay class, one variable is named U,
+and another is named command. Please note that the first letter of each
+internal word capitalized when naming a class.
+
++ Your coding style seems consistent, good job on that!
+
++ Based on a quick look in your look, I can see that there are some unused
+methods such as requestAccount and requestUndo. They could be indicators
+of bad smells, or missing actual functionality from your program.
+
++ Generally, the size of your classes are reasonable, but the User class
+can be considered as a Large Class. Please do the appropriate treatments
+to get rid of these code smells.
+
+Looking forward to your next submission!
+All the best
