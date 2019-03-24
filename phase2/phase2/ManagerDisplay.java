@@ -46,8 +46,8 @@ public class ManagerDisplay {
                     command = command.replaceAll("//s", "");
                     b.completeRequest(number, command);
 
-                }
-                b.completeRequest(number);
+                } else {
+                b.completeRequest(number); }
             } else {
                 b.ignoreRequest(number);
             }
