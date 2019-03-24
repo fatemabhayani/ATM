@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * The User creation request, type of request
  */
-public class UserRequest extends Request {
+public class UserRequest implements Request, Serializable {
     private String username;
 
     /**

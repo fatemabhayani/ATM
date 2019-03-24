@@ -1,9 +1,11 @@
 package phase2;
 
+import java.io.Serializable;
+
 /**
  * The Undo Transaction request, type of Request
  */
-public class UndoRequest extends Request {
+public class UndoRequest implements Request, Serializable {
     private User requester;
     private Account account;
     private int num;

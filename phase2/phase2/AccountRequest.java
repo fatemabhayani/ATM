@@ -1,11 +1,12 @@
 package phase2;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
 /**
  * A request for a new bank account.
  */
-public class AccountRequest extends Request {
+public class AccountRequest implements Request, Serializable {
 
     /**
      * The user making the request.
