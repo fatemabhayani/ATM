@@ -58,7 +58,7 @@ public class DataWriter {
 
             ATM.bankUsers = (ArrayList<User>) in.readObject();
 
-            ATM.bankEmployees = (ArrayList<BankEmployee>) in.readObject();
+            ATM.bankEmployees = (ArrayList<BankTeller>) in.readObject();
 
             ATM.b = (BankManager) in.readObject();
 
