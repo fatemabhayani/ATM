@@ -22,6 +22,11 @@ public class AccountInterface extends JFrame {
         comboBox1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String choice = String.valueOf(comboBox1.getSelectedItem());
+                if (choice == "Bill") { switchToBill(); }
+                else if (choice == "Transfer") {switchToTransfer();}
+                else if (choice == "Withdraw") {switchToWithdraw();}
+                else if (choice == "Deposit") {switchToDeposit();}
 
             }
         });
@@ -38,4 +43,8 @@ public class AccountInterface extends JFrame {
             }
         });
     }
+    public void switchToBill(){}
+    public void switchToTransfer(){}
+    public void switchToWithdraw(){}
+    public void switchToDeposit(){}
 }
