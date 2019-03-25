@@ -2,33 +2,52 @@ ATM CLOCK
 2019/3/24 23:9:0
 ATM CASH MACHINE
 30/30/30/30
-
-ATM BANK MANAGER
-- BankManager has constant u/n and pw, so don't need to include (empty constructor)
-- list of requests (String versions)
-- add a constructor that takes a list of requests as a parameter
-
 ATM BANK USERS
-username1
-- password
-- lists of accounts
-    - account info
-    - account type
-    - credit limit if applicable
-    - whether account is primary if applicable
-    - balance
-    - owners!! make sure code can add both owners
-    - date of creation
-    - list of transactions? (move only to accounts, have user method to generate list of transactions?)
-- list of transactions
+USER: username
+password
+SAVINGS
+- balance
+- second owner
+- date of creation
+CHEQUING
+- isPrimary
+- balance
+- second owner
+- date of creation
+CREDIT CARD
+- credit limit
+- balance
+- second owner
+- date of creation
+LINE OF CREDIT
+- credit limit
+- balance
+- second owner
+- date of creation
+CASH BACK CARD
+- credit limit
+- balance
+- second owner
+- date of creation
+
+- list of transactions (move only to accounts, have user method to generate list of transactions?)
     - amount
     - account to/from
-    - whether transaction is approved? unnecessary?
     - time of transaction
 
 etc.
 
+ATM BANK MANAGER
+REQUESTS
+User / username / password
+Account / account type / account owner(s)
+Undo / transaction
+
 ATM BANK TELLERS
-10 bank tellers (for loop iterating 10 times)
-- teller info (similar to BankManager)
-- username of teller's account (User will have already been added to bankUsers list by previous section)
+TELLER1
+USER: username
+REQUESTS?
+
+etc.
+
+put each field in separate text file?

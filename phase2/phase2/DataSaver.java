@@ -50,6 +50,9 @@ public class DataSaver {
                 ATM.c.increaseBills(i, Integer.valueOf(b[i]));
             }
 
+            reader.readLine();
+
+
 
         } catch (Exception e) {
             e.printStackTrace();
