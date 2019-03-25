@@ -55,5 +55,39 @@ public class AccountManager {
         this.cb = cb;
     }
 
+    private double getAssetBalance() {
+        double assetBalance = 0;
+        for (Chequing a : cq) {
+            assetBalance += a.getBalance();
+        }
+        for (Savings a : sv) {
+            assetBalance += a.getBalance();
+        }
+        return assetBalance;
+    }
+
+    private double getDebtBalance() {
+        double debtBalance = 0;
+        for (Account a : cc) {
+            debtBalance += a.getBalance();
+        }
+        for (Account a : lc) {
+            debtBalance += a.getBalance();
+        }
+        for (Account a : cb){
+            debtBalance += a.getBalance();
+        }
+        return debtBalance;
+    }
+
+    /**
+     * Gets net balance of all accounts of a user.
+     *
+     * @return the net balance
+     */
+    public double getTotalBalance() {
+        return getAssetBalance() - getDebtBalance();
+    }
+
 
 }

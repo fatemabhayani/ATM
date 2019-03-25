@@ -39,6 +39,8 @@ public class User implements Serializable {
 
     private ArrayList<Transaction> transactions;
 
+    public AccountManager accounts;
+
 
     /**
      * Creates a new User.
