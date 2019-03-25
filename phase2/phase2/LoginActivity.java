@@ -18,8 +18,10 @@ public class LoginActivity extends JFrame{
     private JTextField textField1 = new JTextField();
     private JPasswordField passwordField1;
     private User user;
-    private boolean nameExists;
-    private boolean passMatch;
+    private boolean nameExists = false;
+    private boolean passMatch = false;
+    private String manager;
+    private boolean managerlogin = false;
 
     public LoginActivity() {
         setVisible(true);
@@ -32,7 +34,11 @@ public class LoginActivity extends JFrame{
                 if (ATM.bankUsers.contains(input)) {
                     user = UserManager.getUser(input);
                     nameExists = true;
-                }else {System.out.println("This is an invalid Username");}
+                } else if (input=="manager"){
+                    manager = input;
+                } else {nameExists = false;}
+
+
 
 
             }
@@ -45,13 +51,16 @@ public class LoginActivity extends JFrame{
         passwordField1.addInputMethodListener(new InputMethodListener() {
             @Override
             public void inputMethodTextChanged(InputMethodEvent event) {
-                while(nameExists) {
-                    String password  = String.valueOf(passwordField1.getPassword());
+                String password  = String.valueOf(passwordField1.getPassword());
+                if (nameExists) {
                     if(user.getPassword() == password) {
                         System.out.println("Login Successful");
                         passMatch =  true;
-                        panel.setVisible(false);
-                    }else{System.out.println("The password does not math the username");}
+                    }else{passMatch = false;}
+                }else if (manager == "manager"){
+                    if (password == "bestboss") {
+                        managerlogin = true;
+                    }else {managerlogin = false;}
                 }
             }
 
@@ -71,8 +80,10 @@ public class LoginActivity extends JFrame{
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                while (nameExists&&passMatch) {
-                    switchToAccount();
+                if (nameExists&&passMatch) {
+                    switchToUser();
+                }else if (managerlogin) {
+                    switchToManager();
                 }
             }
         });
@@ -87,7 +98,21 @@ public class LoginActivity extends JFrame{
         RUI.pack();
         RUI.setLocationRelativeTo(null);
         this.dispose();
+    }
 
+    public void switchToManager(){
+        ManagerInterface MI = new ManagerInterface();
+        MI.setVisible(true);
+        MI.pack();
+        MI.setLocationRelativeTo(null);
+        this .dispose();
+    }
+    public void switchToUser(){
+        UserInterface UI = new UserInterface();
+        UI.setVisible(true);
+        UI.pack();
+        UI.setLocationRelativeTo(null);
+        this.dispose();
     }
     public void switchToAccount() {
         AccountInterface acc = new AccountInterface();
