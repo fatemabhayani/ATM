@@ -6,7 +6,7 @@ public class Bill extends Transaction {
 
     private Account moneyFrom;
 
-    Bill(double amount, Account moneyFrom, Calendar date) {
+    Bill(ForeignCurrency amount, Account moneyFrom, Calendar date) {
         super(amount, date);
         this.moneyFrom = moneyFrom;
     }
@@ -17,9 +17,10 @@ public class Bill extends Transaction {
         } else if (moneyFrom.getClass().isInstance(LineOfCredit.class)) {
             return true;
         } else if (moneyFrom.getClass().isInstance(Savings.class)) {
-            return moneyFrom.getBalance() >= getAmount();
+            return moneyFrom.getBalance().compareTo(getAmount()) == 1 || moneyFrom.getBalance().compareTo(getAmount()) == 0;
         } else {
-            return (moneyFrom.getBalance() >= 0 && moneyFrom.getBalance() - getAmount() >= -100);
+            // (moneyFrom.getBalance() >= 0 && moneyFrom.getBalance() - getAmount() >= -100);
+            return true;
         }
     }
 
