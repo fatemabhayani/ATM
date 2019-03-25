@@ -6,7 +6,7 @@ import java.util.Calendar;
 /**
  * A request for a new bank account.
  */
-public class AccountRequest implements Request, Serializable {
+public class AccountRequest extends Request implements Serializable {
 
     /**
      * The user making the request.

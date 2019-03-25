@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * The Undo Transaction request, type of Request
  */
-public class UndoRequest implements Request, Serializable {
+public class UndoRequest extends Request implements Serializable {
     private User requester;
     private Account account;
     private int num;

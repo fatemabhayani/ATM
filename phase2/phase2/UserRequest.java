@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * The User creation request, type of request
  */
-public class UserRequest implements Request, Serializable {
+public class UserRequest extends Request implements Serializable {
     private String username;
 
     /**
@@ -17,8 +17,8 @@ public class UserRequest implements Request, Serializable {
         this.username = username;
     }
 
-    public void resolveRequest() {
-        UserManager.addUser(this.username);
+    public void resolveRequest(String password) {
+        UserManager.addUser(this.username, password);
     }
 
     @Override

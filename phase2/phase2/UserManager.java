@@ -79,8 +79,8 @@ public class UserManager {
      *
      * @param username the user's username
      */
-    static void addUser(String username){
-        User u = new User(username, "password");
+    static void addUser(String username, String password){
+        User u = new User(username, password);
         ATM.bankUsers.add(u);
     }
 
