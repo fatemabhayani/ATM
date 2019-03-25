@@ -19,8 +19,8 @@ public class CashMachine implements Serializable {
     /**
      * Instantiates a new Cash machine.
      */
-    public CashMachine() {
-        bills = new int[4];
+    public CashMachine(int[] bills) {
+        this.bills = bills;
     }
 
     /**
@@ -135,4 +135,8 @@ public class CashMachine implements Serializable {
         return Math.min(count, getNumBills(i));
     }
 
+    @Override
+    public String toString() {
+        return bills[0] + "/" + bills[1] + "/" + bills[2] + "/" + bills[3];
+    }
 }

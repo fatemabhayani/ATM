@@ -22,7 +22,7 @@ public class ATM {
     /**
      * The cash machine associated with the ATM.
      */
-    public static CashMachine c = new CashMachine();
+    public static CashMachine c = new CashMachine(new int[4]);
 
     /**
      * The time recorded by the ATM.

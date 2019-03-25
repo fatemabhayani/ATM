@@ -1,0 +1,34 @@
+ATM CLOCK
+2019/3/24 23:9:0
+ATM CASH MACHINE
+30/30/30/30
+
+ATM BANK MANAGER
+- BankManager has constant u/n and pw, so don't need to include (empty constructor)
+- list of requests (String versions)
+- add a constructor that takes a list of requests as a parameter
+
+ATM BANK USERS
+username1
+- password
+- lists of accounts
+    - account info
+    - account type
+    - credit limit if applicable
+    - whether account is primary if applicable
+    - balance
+    - owners!! make sure code can add both owners
+    - date of creation
+    - list of transactions? (move only to accounts, have user method to generate list of transactions?)
+- list of transactions
+    - amount
+    - account to/from
+    - whether transaction is approved? unnecessary?
+    - time of transaction
+
+etc.
+
+ATM BANK TELLERS
+10 bank tellers (for loop iterating 10 times)
+- teller info (similar to BankManager)
+- username of teller's account (User will have already been added to bankUsers list by previous section)
