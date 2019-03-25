@@ -82,15 +82,15 @@ public class LoginActivity extends JFrame{
         // TODO: place custom component creation code here
     }
     public void switchToRegister(){
-        ManagerInterface man = new ManagerInterface();
-        man.setVisible(true);
-        man.pack();
-        man.setLocationRelativeTo(null);
+        RegisterUserInterface RUI = new RegisterUserInterface();
+        RUI.setVisible(true);
+        RUI.pack();
+        RUI.setLocationRelativeTo(null);
         this.dispose();
 
     }
     public void switchToAccount() {
-        AccoutInterface acc = new AccoutInterface();
+        AccountInterface acc = new AccountInterface();
         acc.setVisible(true);
         acc.pack();
         acc.setLocationRelativeTo(null);
