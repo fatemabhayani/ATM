@@ -1,9 +1,9 @@
 package phase2.People;
 
-import java.util.ArrayList;
+import phase2.Accounts.CashBackCard;
+import phase2.Accounts.Savings;
 import phase2.Display.ATM;
-import phase2.People.*;
-import phase2.Accounts.*;
+import java.util.ArrayList;
 
 /**
  * Manages the collection of bank users for the ATM.

@@ -1,1 +1,0 @@
-Deposit [amount] dollars into [User.username]'s account [account ID].
