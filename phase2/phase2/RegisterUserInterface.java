@@ -1,7 +1,5 @@
 package phase2;
 
-import sun.rmi.runtime.Log;
-
 import javax.swing.*;
 import java.awt.event.InputMethodEvent;
 import java.awt.event.InputMethodListener;

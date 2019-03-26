@@ -48,7 +48,7 @@ public class ManagerInterface extends JFrame {
             }
         });
     }
-    public static void main(String arg[]){
+    public static void main(String[] arg){
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {

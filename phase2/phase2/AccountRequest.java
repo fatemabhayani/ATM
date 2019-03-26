@@ -2,7 +2,6 @@ package phase2;
 
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Locale;
 
 /**
  * A request for a new bank account.

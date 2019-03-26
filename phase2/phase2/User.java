@@ -2,7 +2,6 @@ package phase2;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Locale;
 
 /**
  * A user of the ATM.
