@@ -122,7 +122,7 @@ public class ATM {
         Random random = new Random();
         String name = "Random Superhero";
         int number = random.nextInt(46);
-        try(BufferedReader reader = new BufferedReader(new FileReader("phase2/phase2/superhero.txt"))){
+        try(BufferedReader reader = new BufferedReader(new FileReader("phase2/phase2/Data/superhero.txt"))){
             for(int i = 0; i < number; i++){
                 name = reader.readLine();
 

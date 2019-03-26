@@ -1,11 +1,10 @@
 package phase2.Data;
 
-import phase2.Display.ATM;
-
 import java.io.*;
 import phase2.Display.ATM;
+import phase2.People.*;
 
-class DataSaver {
+public class DataSaver {
 
     /**
      * The files that stores the ATM data.
@@ -53,6 +52,19 @@ class DataSaver {
     private static void writeUserData() {
         try (FileWriter writer = new FileWriter(userdata)) {
              writer.write("ATM BANK USERS");
+             for (User u: ATM.bankUsers) {
+                 writer.write("USER");
+                 writer.write(u.toString());
+                 writer.write("SAVINGS");
+
+                 writer.write("CHEQUING");
+
+                 writer.write("CASH BACK");
+
+                 writer.write("CREDIT CARD");
+
+                 writer.write("LINE OF CREDIT");
+             }
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -155,7 +155,7 @@ public abstract class AssetAccount implements Account, Serializable {
      * @param amount the amount
      */
     public void helpWrite(ForeignCurrency amount) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("phase2/phase2/outgoing.txt"))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("phase2/phase2/Data/outgoing.txt"))) {
             writer.write(Double.toString(amount.convert("CAD").getAmount()));
         } catch(Exception e) {
             System.out.println("There was an error!");

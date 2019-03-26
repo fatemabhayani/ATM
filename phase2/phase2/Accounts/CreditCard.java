@@ -75,7 +75,7 @@ public class CreditCard implements Account, Serializable {
     }
 
     public void helpWrite(ForeignCurrency amount){
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("outgoing.txt"))){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("phase2/phase2/Data/outgoing.txt"))){
             writer.write(Double.toString(amount.getAmount()));
         } catch(Exception e){
             System.out.println("there was an error");
