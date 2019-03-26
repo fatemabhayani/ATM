@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+/**
+ * ATM Time
+ */
 public class ATMTime implements Serializable {
 
     private int yearFactor;
@@ -81,7 +84,7 @@ public class ATMTime implements Serializable {
     /**
      * Returns whether or not the time is midnight.
      */
-    public boolean isMidnight() {
+    private boolean isMidnight() {
         return (getCurrentHour() == 0 && getCurrentMinute() == 0 && getCurrentSecond() == 0);
     }
 

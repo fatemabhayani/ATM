@@ -14,7 +14,7 @@ public class LineOfCredit extends CreditCard {
      *
      * @param date the date of creation
      */
-    LineOfCredit(Calendar date, String currencyCode) {
+    public LineOfCredit(Calendar date, String currencyCode) {
         super(date, currencyCode);
     }
 
