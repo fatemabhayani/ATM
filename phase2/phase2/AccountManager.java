@@ -56,6 +56,11 @@ public class AccountManager {
         this.cb = cb;
     }
 
+    /**
+     * Gets net balance of all asset accounts of a user in CAD.
+     *
+     * @return the net balance
+     */
     private double getAssetBalance() {
         double assetBalance = 0;
         for (Chequing a : cq) {
@@ -67,6 +72,11 @@ public class AccountManager {
         return assetBalance;
     }
 
+    /**
+     * Gets net balance of all debt accounts of a user in CAD.
+     *
+     * @return the net balance
+     */
     private double getDebtBalance() {
         double debtBalance = 0;
         for (Account a : cc) {

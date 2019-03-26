@@ -85,7 +85,7 @@ public class ForeignCurrency implements Comparable<ForeignCurrency>{
             String line = reader.readLine();
             if (line.length() > 0) {
                 double newAmount = Double.parseDouble(line) * getAmount();
-                ForeignCurrency f = new ForeignCurrency(locale, newAmount);
+                ForeignCurrency f = new ForeignCurrency(location, newAmount);
                 return f;
             }
             reader.close();
