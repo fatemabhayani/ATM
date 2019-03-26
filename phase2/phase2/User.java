@@ -106,30 +106,7 @@ public class User implements Serializable {
         password = newPass;
     }
 
-    private double getAssetTotalBalance() {
-        double assetTotalBalance = 0;
-        for (Account account: chequingAccounts) {
-            assetTotalBalance += account.getBalance();
-        }
-        for (Account account: savingsAccounts) {
-            assetTotalBalance += account.getBalance();
-        }
-        return assetTotalBalance;
-    }
 
-    private double getDebtTotalBalance() {
-        double debtTotalBalance = 0;
-        for (Account account: creditCardAccounts) {
-            debtTotalBalance += account.getBalance();
-        }
-        for (Account account: lineCreditAccounts) {
-            debtTotalBalance += account.getBalance();
-        }
-        for (Account account: cashbackCardAccounts){
-            debtTotalBalance += account.getBalance();
-        }
-        return debtTotalBalance;
-    }
 
     /**
      * Gets net balance of all accounts of a user.
@@ -137,7 +114,7 @@ public class User implements Serializable {
      * @return the net balance
      */
     public double getTotalBalance() {
-        return getAssetTotalBalance() - getDebtTotalBalance();
+        return 1;
     }
 
     /**
