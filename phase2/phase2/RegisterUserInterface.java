@@ -1,5 +1,7 @@
 package phase2;
 
+import sun.rmi.runtime.Log;
+
 import javax.swing.*;
 import java.awt.event.InputMethodEvent;
 import java.awt.event.InputMethodListener;
@@ -34,5 +36,11 @@ public class RegisterUserInterface extends JFrame {
             }
         });
     }
-    public void switchToLogin(){}
+    public void switchToLogin(){
+        LoginActivity LA = new LoginActivity();
+        LA.setVisible(true);
+        LA.pack();
+        LA.setLocationRelativeTo(null);
+        this.dispose();
+    }
 }

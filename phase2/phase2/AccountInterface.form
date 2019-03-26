@@ -24,7 +24,7 @@
           <model>
             <item value="Transfer"/>
             <item value="Deposit"/>
-            <item value="Withdraw "/>
+            <item value="Withdraw"/>
             <item value="Bill"/>
           </model>
         </properties>

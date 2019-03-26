@@ -21,7 +21,6 @@ public class ManagerInterface extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 option = comboBox1.getSelectedItem().toString();
-
             }
         });
         textField1.addInputMethodListener(new InputMethodListener() {
@@ -45,10 +44,11 @@ public class ManagerInterface extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+
             }
         });
     }
-    public void main(String arg[]){
+    public static void main(String arg[]){
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {

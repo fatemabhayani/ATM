@@ -15,7 +15,7 @@ public class LoginActivity extends JFrame{
     private JLabel loginPageLabel = new JLabel();
     private JTextField textField1 = new JTextField();
     private JPasswordField passwordField1;
-    private User user;
+    public User user;
     private boolean nameExists = false;
     private boolean passMatch = false;
     private String manager;
@@ -32,13 +32,9 @@ public class LoginActivity extends JFrame{
                 if (ATM.bankUsers.contains(input)) {
                     user = UserManager.getUser(input);
                     nameExists = true;
-                } else if (input=="manager"){
+                } else if (input.equals("manager")){
                     manager = input;
                 } else {nameExists = false;}
-
-
-
-
             }
 
             @Override
@@ -104,7 +100,7 @@ public class LoginActivity extends JFrame{
         this .dispose();
     }
     public void switchToUser(){
-        UserInterface UI = new UserInterface();
+        UserInterface UI = new UserInterface(user);
         UI.setVisible(true);
         UI.pack();
         UI.setLocationRelativeTo(null);
