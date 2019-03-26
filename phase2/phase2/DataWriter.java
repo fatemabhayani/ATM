@@ -2,6 +2,8 @@ package phase2;
 
 import java.io.*;
 import java.util.ArrayList;
+import phase2.Display.ATM;
+import phase2.People.*;
 
 public class DataWriter {
     /**

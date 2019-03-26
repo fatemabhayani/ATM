@@ -109,7 +109,7 @@ public class CashMachine implements Serializable {
      *
      * @return the total value of the money in the cash machine
      */
-    protected int totalBalance() {
+    public int totalBalance() {
         return (5*bills[0] + 10*bills[1] + 20*bills[2] + 50*bills[3]);
     }
 
