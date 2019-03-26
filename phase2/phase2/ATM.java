@@ -38,7 +38,7 @@ public class ATM {
      * to create an account. Date and Time are also set.
      * If the user does not have an account, a new User will be created
      */
-    public static void main(String args[]){
+    public static void main(String[] args){
         String command;
 
         DataWriter.readData();

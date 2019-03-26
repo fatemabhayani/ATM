@@ -6,8 +6,6 @@ import java.awt.event.InputMethodEvent;
 import java.awt.event.InputMethodListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.Connection;
-import java.sql.DriverManager;
 
 
 public class LoginActivity extends JFrame{
@@ -58,9 +56,7 @@ public class LoginActivity extends JFrame{
                         passMatch =  true;
                     }else{passMatch = false;}
                 }else if (manager == "manager"){
-                    if (password == "bestboss") {
-                        managerlogin = true;
-                    }else {managerlogin = false;}
+                    managerlogin = password == "bestboss";
                 }
             }
 
@@ -122,7 +118,7 @@ public class LoginActivity extends JFrame{
         this.dispose();
 
     }
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
