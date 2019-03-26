@@ -20,11 +20,6 @@ public class User implements Serializable {
     private String password;
 
     /**
-     * The transactions for this user.
-     */
-    private ArrayList<Transaction> transactions;
-
-    /**
      * The account manager for this user's accounts.
      */
     private AccountManager accounts;
@@ -40,7 +35,6 @@ public class User implements Serializable {
         username = user;
         this.password = password;
         accounts = new AccountManager();
-        transactions = new ArrayList<>();
     }
 
     /**
@@ -106,12 +100,11 @@ public class User implements Serializable {
      */
     public void makeTransfer(Transaction t){
         if (t.getIsApproved()) {
-            transactions.add(0, t);
             System.out.println("Transaction made.");
+            t.makeTransaction();
         } else {
             System.out.println("Transaction failed.");
         }
-        t.makeTransaction();
     }
 
     /**
@@ -121,12 +114,11 @@ public class User implements Serializable {
      */
     public void makeDeposit(Transaction t){
         if (t.getIsApproved()) {
-            transactions.add(0, t);
             System.out.println("Transaction made.");
+            t.makeTransaction();
         } else {
             System.out.println("Transaction failed.");
         }
-        t.makeTransaction();
     }
 
     /**
@@ -136,12 +128,11 @@ public class User implements Serializable {
      */
     public void makeWithdrawal(Transaction t){
         if (t.getIsApproved()) {
-            transactions.add(0, t);
             System.out.println("Transaction made.");
+            t.makeTransaction();
         } else {
             System.out.println("Transaction failed.");
         }
-        t.makeTransaction();
     }
 
     /**
@@ -151,12 +142,11 @@ public class User implements Serializable {
      */
     public void makeBillPayment(Transaction t) {
         if (t.getIsApproved()) {
-            transactions.add(0, t);
             System.out.println("Transaction made.");
+            t.makeTransaction();
         } else {
             System.out.println("Transaction failed.");
         }
-        t.makeTransaction();
     }
 
     public ArrayList<Transaction> getTransactions() {

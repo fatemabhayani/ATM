@@ -126,9 +126,25 @@ public class AccountManager {
      * @return an ordered list of past transactions
      */
     public ArrayList<Transaction> getTransactions() {
+        ArrayList<Transaction> t = new ArrayList<>();
+        for (LineOfCredit a : lc) {
+            t.addAll(a.getTransactions());
+        }
+        for (CreditCard a : cc) {
+            t.addAll(a.getTransactions());
+        }
+        for (Chequing a : cq) {
+            t.addAll(a.getTransactions());
+        }
+        for (Savings a : sv) {
+            t.addAll(a.getTransactions());
+        }
+        for (CashBackCard a : cb) {
+            t.addAll(a.getTransactions());
+        }
 
-
-        return new ArrayList<>();
+        t.sort(new TransactionComparator());
+        return t;
     }
 
     /**
