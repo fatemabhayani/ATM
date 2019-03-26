@@ -7,10 +7,6 @@ Phase 2
 
 Refactor (and add Phase 2 functionality)
 
-1. AssetAccount (Dani)
-2. CreditCard (Dani)
-    - access modifiers
-6. Deposit (Fatema)
 10. Display classes (Arjun)
 11. Account (Shourya)
     - joint accounts
@@ -27,7 +23,6 @@ Note
    the method should be called in the main method but isn't yet, don't delete it!)
 
 charitable donations, currency exchange,
-
 
 Phase 1 Markus comments
 
