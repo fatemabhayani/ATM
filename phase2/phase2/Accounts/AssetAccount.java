@@ -25,17 +25,18 @@ public abstract class AssetAccount implements Account, Serializable {
     /**
      * The account's recent transactions.
      */
-    ArrayList<Transaction> transactions;
+    final ArrayList<Transaction> transactions;
 
     /**
      * The date the account was created.
      */
-    private Calendar dateOfCreation;
+    private final Calendar dateOfCreation;
 
     /**
      * Instantiates a new asset account.
      *
-     * @param date the date of creation
+     * @param date         the date of creation
+     * @param currencyCode the currency code
      */
     AssetAccount(Calendar date, String currencyCode) {
         dateOfCreation = date;
@@ -46,7 +47,9 @@ public abstract class AssetAccount implements Account, Serializable {
     /**
      * Instantiates a new asset account.
      *
-     * @param date the date of creation
+     * @param date         the date of creation
+     * @param owner1       the owner 1
+     * @param currencyCode the currency code
      */
     public AssetAccount(Calendar date, User owner1, String currencyCode) {
         dateOfCreation = date;
@@ -59,7 +62,9 @@ public abstract class AssetAccount implements Account, Serializable {
     /**
      * Instantiates a new asset account.
      *
-     * @param date the date of creation
+     * @param date   the date of creation
+     * @param owner1 the owner 1
+     * @param owner2 the owner 2
      */
     public AssetAccount(Calendar date, User owner1, User owner2) {
         dateOfCreation = date;
@@ -142,7 +147,6 @@ public abstract class AssetAccount implements Account, Serializable {
             int denomination = Character.getNumericValue(s.charAt(0));
             int volume = Character.getNumericValue(s.charAt(2));
             return new ForeignCurrency("CAD", volume * denomination);
-            // TODO: what does volume represent in this method? what is it reading?
         } catch (Exception e) {
             System.out.println("There was an error!");
             return new ForeignCurrency("CAD", -1);

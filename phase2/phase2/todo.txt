@@ -24,7 +24,7 @@ Note
 
 ATM Time: get current year, get current month
 Account Manager: 1 constructor isnt used
-
+Asset Account: some Constructors arent used
 
 Phase 1 Markus comments
 
