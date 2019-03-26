@@ -5,6 +5,9 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 
+/**
+ * The type Foreign currency.
+ */
 public class ForeignCurrency implements Comparable<ForeignCurrency>{
 
     private String currencyCode;
@@ -12,20 +15,41 @@ public class ForeignCurrency implements Comparable<ForeignCurrency>{
     private Currency currency;
 
 
+    /**
+     * Instantiates a new Foreign currency.
+     *
+     * @param currencyCode Capital three digit currency code
+     * @param amount       the amount
+     */
     public ForeignCurrency(String currencyCode, double amount){
         this.currencyCode = currencyCode;
         this.amount = amount;
         this.currency = Currency.getInstance(currencyCode);
     }
 
+    /**
+     * Get amount double.
+     *
+     * @return the amount
+     */
     public double getAmount(){
         return amount;
     }
 
+    /**
+     * Get currency code string.
+     *
+     * @return the three letter string currency code
+     */
     public String getCurrencyCode(){
         return currencyCode;
     }
 
+    /**
+     * Add two instances for foreign currencies.
+     *
+     * @param f the second ForeignCurrency
+     */
     public void add(ForeignCurrency f){
         if (f.getCurrencyCode().equals(getCurrencyCode())){
             amount += f.getAmount();
@@ -35,6 +59,11 @@ public class ForeignCurrency implements Comparable<ForeignCurrency>{
         }
     }
 
+    /**
+     * Subtract two instances for foreign currencies.
+     *
+     * @param f the second ForeignCurrency
+     */
     public void subtract(ForeignCurrency f){
         if (f.getCurrencyCode().equals(getCurrencyCode())){
             amount -= f.getAmount();
@@ -45,6 +74,12 @@ public class ForeignCurrency implements Comparable<ForeignCurrency>{
     }
 
 
+    /**
+     * Multiply foreign currency.
+     *
+     * @param constant the constant
+     * @return the foreign currency
+     */
     public ForeignCurrency multiply(double constant){
         amount = amount * constant;
         return this;
@@ -55,6 +90,12 @@ public class ForeignCurrency implements Comparable<ForeignCurrency>{
         return Double.compare(amount, this.convert(f.getCurrencyCode()).amount);
     }
 
+    /**
+     * Convert foreign currency.
+     *
+     * @param cur the currency code
+     * @return the foreign currency
+     */
     public ForeignCurrency convert(String cur){
         Currency curr = Currency.getInstance(cur);
         try {
