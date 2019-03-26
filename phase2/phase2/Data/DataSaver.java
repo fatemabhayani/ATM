@@ -1,4 +1,4 @@
-package phase2;
+package phase2.Data;
 
 import java.io.*;
 import phase2.Display.ATM;
