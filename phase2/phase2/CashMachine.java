@@ -74,7 +74,7 @@ public class CashMachine implements Serializable {
      * falls below 20.
      */
     private void writeAlerts() {
-        try (FileWriter writer = new FileWriter("phase2/phase2/alerts.txt", true)) {
+        try (FileWriter writer = new FileWriter("phase2/phase2/Data/alerts.txt", true)) {
             for (int i = 0; i < 4; i++) {
                 if (getNumBills(i) < 20) {
                     writer.write("The number of " + getDenomination(i) + " dollar bills in the ATM is less than 20.");

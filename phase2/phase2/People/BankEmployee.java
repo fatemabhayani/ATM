@@ -68,7 +68,7 @@ public abstract class BankEmployee implements Serializable {
     public void restockCashMachine() {
         int index;
         String s;
-        try (BufferedReader reader = new BufferedReader(new FileReader("phase2/phase2/alerts.txt"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("phase2/phase2/Data/alerts.txt"))) {
             s = reader.readLine();
             while (s != null) {
                 System.out.println(s);
@@ -88,7 +88,7 @@ public abstract class BankEmployee implements Serializable {
      * Deletes the contents of alerts.txt.
      */
     private void deleteAlerts() {
-        try (PrintWriter writer = new PrintWriter("phase1/phase1/alerts.txt")) {
+        try (PrintWriter writer = new PrintWriter("phase2/phase2/Data/alerts.txt")) {
             writer.print("");
         } catch (Exception ignored) {}
     }
