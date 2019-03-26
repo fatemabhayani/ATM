@@ -13,7 +13,7 @@ public class DataSaver {
     private static String employeedata = "phase2/phase2/employeedata.txt";
 
     /**
-     * Initializes an instance of DataWriter.
+     * Initializes an instance of DataSaver.
      */
     private DataSaver() {}
 
