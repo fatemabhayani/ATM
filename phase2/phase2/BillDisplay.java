@@ -13,7 +13,10 @@ public class BillDisplay {
         System.out.println("Enter the sum of money you wish to pay:");
         command = tmp.nextLine();
         double amt = Double.valueOf(command.replaceAll("//s", ""));
-        Bill t = new Bill(amt, a, ATM.clock.getCurrentTime());
+        System.out.println("Enter the three digit currency code of the currency you wish to pay the bill in");
+        command = tmp.nextLine();
+        command = command.replaceAll("//s", "");
+        Bill t = new Bill(new ForeignCurrency(command, amt), a, ATM.clock.getCurrentTime());
         U.makeBillPayment(t);
 
         AccountDisplay.main(null);

@@ -13,8 +13,8 @@ public class LineOfCredit extends CreditCard {
      *
      * @param date the date of creation
      */
-    LineOfCredit(Calendar date, Locale locale) {
-        super(date, locale);
+    LineOfCredit(Calendar date, String currencyCode) {
+        super(date, currencyCode);
     }
 
     @Override

@@ -21,32 +21,32 @@ public class CreditCard implements Account, Serializable {
      * Instantiates a previous Credit card.
      * @param date the date of creation
      */
-    public CreditCard(Calendar date, Locale locale) {
+    public CreditCard(Calendar date, String currencyCode) {
         this.date = date;
         transactions = new ArrayList<>();
-        balance = new ForeignCurrency(locale, 0);
-        double limit = new ForeignCurrency(Locale.CANADA, 5000).convert(locale).getAmount();
-        creditLimit = new ForeignCurrency(locale, limit);
+        balance = new ForeignCurrency(currencyCode, 0);
+        double limit = new ForeignCurrency("CAD", 5000).convert(currencyCode).getAmount();
+        creditLimit = new ForeignCurrency(currencyCode, limit);
     }
 
-    public CreditCard(Calendar date, User owner1, Locale locale) {
+    public CreditCard(Calendar date, User owner1, String currencyCode) {
         this.date = date;
         transactions = new ArrayList<>();
         this.owner1 = owner1;
         owner2 = null;
-        balance = new ForeignCurrency(locale, 0);
-        double limit = new ForeignCurrency(Locale.CANADA, 5000).convert(locale).getAmount();
-        creditLimit = new ForeignCurrency(locale, limit);
+        balance = new ForeignCurrency(currencyCode, 0);
+        double limit = new ForeignCurrency("CAD", 5000).convert(currencyCode).getAmount();
+        creditLimit = new ForeignCurrency(currencyCode, limit);
     }
 
-    public CreditCard(Calendar date, User owner1, User owner2, Locale locale) {
+    public CreditCard(Calendar date, User owner1, User owner2, String currencyCode) {
         this.date = date;
         transactions = new ArrayList<>();
         this.owner1 = owner1;
         this.owner2 = owner2;
-        balance = new ForeignCurrency(locale, 0);
-        double limit = new ForeignCurrency(Locale.CANADA, 5000).convert(locale).getAmount();
-        creditLimit = new ForeignCurrency(locale, limit);
+        balance = new ForeignCurrency(currencyCode, 0);
+        double limit = new ForeignCurrency("CAD", 5000).convert(currencyCode).getAmount();
+        creditLimit = new ForeignCurrency(currencyCode, limit);
     }
 
     public ForeignCurrency getBalance() { return this.balance; }
@@ -63,11 +63,11 @@ public class CreditCard implements Account, Serializable {
             char number = info.charAt(2);
             int denomination = Character.getNumericValue(value);
             int volume = Character.getNumericValue(number);
-            return new ForeignCurrency(Locale.CANADA, volume * denomination);
+            return new ForeignCurrency("CAD", volume * denomination);
 
         } catch (Exception e){
             System.out.println("There was an error");
-            return new ForeignCurrency(Locale.CANADA, -1);
+            return new ForeignCurrency("CAD", -1);
         }
     }
 

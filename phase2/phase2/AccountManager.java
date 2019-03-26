@@ -65,10 +65,10 @@ public class AccountManager {
     private double getAssetBalance() {
         double assetBalance = 0;
         for (Chequing a : cq) {
-            assetBalance += a.getBalance().convert(Locale.CANADA).getAmount();
+            assetBalance += a.getBalance().convert("CAD").getAmount();
         }
         for (Savings a : sv) {
-            assetBalance += a.getBalance().convert(Locale.CANADA).getAmount();
+            assetBalance += a.getBalance().convert("CAD").getAmount();
         }
         return assetBalance;
     }
@@ -81,13 +81,13 @@ public class AccountManager {
     private double getDebtBalance() {
         double debtBalance = 0;
         for (Account a : cc) {
-            debtBalance += a.getBalance().convert(Locale.CANADA).getAmount();
+            debtBalance += a.getBalance().convert("CAD").getAmount();
         }
         for (Account a : lc) {
-            debtBalance += a.getBalance().convert(Locale.CANADA).getAmount();
+            debtBalance += a.getBalance().convert("CAD").getAmount();
         }
         for (Account a : cb){
-            debtBalance += a.getBalance().convert(Locale.CANADA).getAmount();
+            debtBalance += a.getBalance().convert("CAD").getAmount();
         }
         return debtBalance;
     }
@@ -177,18 +177,18 @@ public class AccountManager {
      * Adds a new account.
      *
      * @param accountType the account type
-     * @param locale the country associated with the account
+     * @param curr the country associated with the account
      * @param time the time of creation
      */
-    public void add(String accountType, Locale locale, Calendar time) {
+    public void add(String accountType, String curr, Calendar time) {
         switch (accountType) {
-            case ("lc"): lc.add(new LineOfCredit(time, locale)); break;
-            case ("cc"): cc.add(new CreditCard(time, locale)); break;
-            case ("sv"): sv.add(new Savings(time, locale)); break;
+            case ("lc"): lc.add(new LineOfCredit(time, curr)); break;
+            case ("cc"): cc.add(new CreditCard(time, curr)); break;
+            case ("sv"): sv.add(new Savings(time, curr)); break;
             case ("cq"):
-                if (cq.size() == 0) { cq.add(new Chequing(true, time, locale));
-                } else { cq.add(new Chequing(false, time, locale)); } break;
-            case ("cb"): cb.add(new CashBackCard(time, locale)); break;
+                if (cq.size() == 0) { cq.add(new Chequing(true, time, curr));
+                } else { cq.add(new Chequing(false, time, curr)); } break;
+            case ("cb"): cb.add(new CashBackCard(time, curr)); break;
         }
     }
 }

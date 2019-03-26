@@ -38,8 +38,11 @@ public class TransferDisplay {
             System.out.println("Enter the sum of money you wish to transfer");
             command = tmp.nextLine();
             int amount = Integer.valueOf(command.replaceAll("//s", ""));
+            System.out.println("Enter the three digit currency code of the currency you wish to transfer");
+            command = tmp.nextLine();
+            command = command.replaceAll("//s", "");
             Calendar time = ATM.clock.getCurrentTime();
-            Transfer t = new Transfer(amount, da, a, time);
+            Transfer t = new Transfer(new ForeignCurrency(command, amount), da, a, time);
             U.makeTransfer(t);
 
         } else {
@@ -67,11 +70,14 @@ public class TransferDisplay {
                 da = account.get(0);
             }
 
-            System.out.println("Enter the sum of money you wih to transfer");
+            System.out.println("Enter the sum of money you wish to transfer");
             command = tmp.nextLine();
             int amt = Integer.valueOf(command.replaceAll("//s", ""));
+            System.out.println("Enter the three digit currency code of the currency you wish to transfer");
+            command = tmp.nextLine();
+            command = command.replaceAll("//s", "");
             Calendar time = ATM.clock.getCurrentTime();
-            Transfer t = new Transfer(amt, da, a, time);
+            Transfer t = new Transfer(new ForeignCurrency(command, amt), da, a, time);
             U.makeTransfer(t);
         }
         AccountDisplay.main(null);

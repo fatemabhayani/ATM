@@ -117,7 +117,7 @@ public abstract class Transaction implements Serializable {
         }catch (IOException io) {
             System.out.println("Error:" + io);
         }
-        return new ForeignCurrency(Locale.CANADA, totalDeposit);
+        return new ForeignCurrency("CAD", totalDeposit);
     }
 
     /**

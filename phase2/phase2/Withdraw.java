@@ -23,15 +23,15 @@ public class Withdraw extends Transaction {
     }
 
     public boolean transactionApproved() {
-        boolean isEnoughBills = (getAmount().convert(Locale.CANADA).getAmount() > ATM.c.totalBalance());
-        boolean isValidAmount = (getAmount().convert(Locale.CANADA).getAmount() % 5 == 0);
+        boolean isEnoughBills = (getAmount().convert("CAD").getAmount() > ATM.c.totalBalance());
+        boolean isValidAmount = (getAmount().convert("CAD").getAmount() % 5 == 0);
 
         boolean isEnoughFunds = true;
         if (moneyFrom.getClass().isInstance(Savings.class)) {
             isEnoughFunds = (moneyFrom.getBalance().compareTo(getAmount()) >= 0);
         } else if (moneyFrom.getClass().isInstance(Chequing.class)) {
             isEnoughFunds = (moneyFrom.getBalance().getAmount() >= 0 && moneyFrom.getBalance().compareTo
-                    (new ForeignCurrency(Locale.CANADA, getAmount().convert(Locale.CANADA).getAmount() -100))
+                    (new ForeignCurrency("CAD", getAmount().convert("CAD").getAmount() -100))
                     < 0);
         }
         return (isEnoughBills && isValidAmount && isEnoughFunds);
@@ -39,7 +39,7 @@ public class Withdraw extends Transaction {
 
     public void makeTransaction() {
         moneyFrom.subtract(this);
-        ATM.c.withdrawBills(getAmount().convert(Locale.CANADA).getAmount());
+        ATM.c.withdrawBills(getAmount().convert("CAD").getAmount());
     }
 
     public void undoTransaction() {

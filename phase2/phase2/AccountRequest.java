@@ -19,7 +19,7 @@ public class AccountRequest extends Request implements Serializable {
      */
     private String accountType;
 
-    private Locale locale;
+    private String currencyCode;
 
     /**
      * Instantiates a new account request.
@@ -27,10 +27,10 @@ public class AccountRequest extends Request implements Serializable {
      * @param requester the user that requests account creation
      * @param accountType the account type
      */
-    public AccountRequest(User requester, String accountType, Locale locale) {
+    public AccountRequest(User requester, String accountType, String currencyCode) {
         this.requester = requester;
         this.accountType = accountType;
-        this.locale = locale;
+        this.currencyCode = currencyCode;
     }
 
     /**
@@ -56,7 +56,7 @@ public class AccountRequest extends Request implements Serializable {
      */
     public void resolveRequest() {
         Calendar time = ATM.clock.getCurrentTime();
-        requester.getAccountManager().add(accountType, locale, time);
+        requester.getAccountManager().add(accountType, currencyCode, time);
     }
 
     @Override

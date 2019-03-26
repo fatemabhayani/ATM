@@ -34,10 +34,10 @@ public abstract class AssetAccount implements Account, Serializable {
      *
      * @param date the date of creation
      */
-    public AssetAccount(Calendar date, Locale locale) {
+    public AssetAccount(Calendar date, String currencyCode) {
         dateOfCreation = date;
         transactions = new ArrayList<>();
-        balance = new ForeignCurrency(locale, 0);
+        balance = new ForeignCurrency(currencyCode, 0);
     }
 
     /**
@@ -45,11 +45,12 @@ public abstract class AssetAccount implements Account, Serializable {
      *
      * @param date the date of creation
      */
-    public AssetAccount(Calendar date, User owner1) {
+    public AssetAccount(Calendar date, User owner1, String currencyCode) {
         dateOfCreation = date;
         transactions = new ArrayList<>();
         this.owner1 = owner1;
         this.owner2 = null;
+        balance = new ForeignCurrency(currencyCode, 0);
     }
 
     /**
@@ -137,11 +138,11 @@ public abstract class AssetAccount implements Account, Serializable {
             String s = reader.readLine();
             int denomination = Character.getNumericValue(s.charAt(0));
             int volume = Character.getNumericValue(s.charAt(2));
-            return new ForeignCurrency(Locale.CANADA, volume * denomination);
+            return new ForeignCurrency("CAD", volume * denomination);
             // TODO: what does volume represent in this method? what is it reading?
         } catch (Exception e) {
             System.out.println("There was an error!");
-            return new ForeignCurrency(Locale.CANADA, -1);
+            return new ForeignCurrency("CAD", -1);
         }
     }
 
@@ -152,7 +153,7 @@ public abstract class AssetAccount implements Account, Serializable {
      */
     public void helpWrite(ForeignCurrency amount) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("phase2/phase2/outgoing.txt"))) {
-            writer.write(Double.toString(amount.convert(Locale.CANADA).getAmount()));
+            writer.write(Double.toString(amount.convert("CAD").getAmount()));
         } catch(Exception e) {
             System.out.println("There was an error!");
         }

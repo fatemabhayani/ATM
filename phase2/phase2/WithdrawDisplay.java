@@ -1,6 +1,7 @@
 package phase2;
 
 import java.util.Calendar;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class WithdrawDisplay {
@@ -15,7 +16,7 @@ public class WithdrawDisplay {
         command = tmp.nextLine();
         int amt = Integer.valueOf(command.replaceAll("//s", ""));
         Calendar time = ATM.clock.getCurrentTime();
-        Withdraw t = new Withdraw(amt, a, time);
+        Withdraw t = new Withdraw(new ForeignCurrency("CAD", amt), a, time);
         U.makeWithdrawal(t);
 
         AccountDisplay.main(null);
