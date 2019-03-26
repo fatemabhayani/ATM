@@ -1,6 +1,7 @@
 package phase2;
 
 import java.util.Calendar;
+import java.util.Locale;
 
 /**
  * The Savings account, type of Asset Account
@@ -12,34 +13,34 @@ public class Savings extends AssetAccount {
      *
      * @param date the date of creation
      */
-    public Savings(Calendar date) {
-        super(date);
+    public Savings(Calendar date, Locale locale) {
+        super(date, locale);
     }
 
     /**
      * Increase balance by the interest rate of 1%.
      */
     public void increase() {
-        balance = balance * 1.001;
+        balance.multiply(1.001);
     }
 
     @Override
     public void subtract(Transaction transaction) {
-        double amount = transaction.getAmount();
-        if (balance - amount < 0) {
+        ForeignCurrency amount = transaction.getAmount();
+        if (balance.compareTo(amount) == -1) {
             System.out.println("Cannot have a balance below 0!");
         } else {
-            balance -= amount;
+            balance.subtract(amount);
             System.out.println("Transaction successful!");
         }
         transactions.add(0, transaction);
     }
 
-    public void subtract(double amount) {
-        if (balance - amount < 0) {
+    public void subtract(ForeignCurrency amount) {
+        if (balance.compareTo(amount) == -1) {
             System.out.println("Cannot have a balance below 0!");
         } else {
-            balance -= amount;
+            balance.subtract(amount);
             helpWrite(amount);
             System.out.println("Transaction successful!");
         }

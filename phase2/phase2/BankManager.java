@@ -55,7 +55,7 @@ public class BankManager extends BankEmployee {
     private void deleteAlerts() {
         try (PrintWriter writer = new PrintWriter("phase1/phase1/alerts.txt")) {
             writer.print("");
-        } catch (Exception e) {}
+        } catch (Exception ignored) {}
     }
 
     /**

@@ -8,5 +8,5 @@ class Request {
     /**
      * Resolve request.
      */
-    void resolveRequest(){};
+    void resolveRequest(){}
 }

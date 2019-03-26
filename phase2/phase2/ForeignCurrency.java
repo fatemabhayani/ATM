@@ -45,14 +45,36 @@ public class ForeignCurrency implements Comparable<ForeignCurrency>{
         }
     }
 
-    public int compareTo(ForeignCurrency f){
-        if (this.convert(f.getLocale()).amount == amount){
-            return 0;
-        } else if (this.convert(f.getLocale()).amount > amount){
-            return -1;
-        } else{
-            return 1;
+    public void multiply(ForeignCurrency f){
+        if (f.getLocale() == getLocale()){
+            amount = amount * f.getAmount();
+        } else {
+            ForeignCurrency d = f.convert(getLocale());
+            amount = amount * d.getAmount();
         }
+    }
+
+    public ForeignCurrency multiply(double constant){
+        amount = amount * constant;
+        return this;
+    }
+
+    public ForeignCurrency divide(double constant){
+        amount = amount / constant;
+        return this;
+    }
+
+    public void divide(ForeignCurrency f){
+        if (f.getLocale() == getLocale()){
+            amount = amount / f.getAmount();
+        } else {
+            ForeignCurrency d = f.convert(getLocale());
+            amount = amount / d.getAmount();
+        }
+    }
+
+    public int compareTo(ForeignCurrency f){
+        return Double.compare(amount, this.convert(f.getLocale()).amount);
     }
 
     public ForeignCurrency convert(Locale location){

@@ -34,9 +34,10 @@ public abstract class AssetAccount implements Account, Serializable {
      *
      * @param date the date of creation
      */
-    public AssetAccount(Calendar date) {
+    public AssetAccount(Calendar date, Locale locale) {
         dateOfCreation = date;
         transactions = new ArrayList<>();
+        balance = new ForeignCurrency(locale, 0);
     }
 
     /**

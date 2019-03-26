@@ -9,7 +9,7 @@ public class AccountDisplay {
     public static Account a = UserDisplay.a;
     public static String accountType = UserDisplay.accountType;
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         System.out.println(a.toString());
         System.out.println("Do you want to request an account (1), make a transaction (2), or exit (3)?");
         Scanner tmp = new Scanner(System.in);
