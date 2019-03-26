@@ -1,4 +1,4 @@
-package phase2;
+package phase2.Interfaces;
 
 public class DepositInterface {
 }
