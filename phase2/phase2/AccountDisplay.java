@@ -16,7 +16,10 @@ public class AccountDisplay {
         command = tmp.nextLine();
         command = command.replaceAll("//s","");
         if (command.equals("1")) {
-            AccountRequest r = new AccountRequest(U, accountType);
+            System.out.println("Enter the currency code for the account?");
+            command = tmp.nextLine();
+            command = command.replaceAll("//s","");
+            AccountRequest r = new AccountRequest(U, accountType, command.toUpperCase());
             ATM.b.addRequest(r);
             System.out.println("Your request has been made!");
             AccountDisplay.main(null);

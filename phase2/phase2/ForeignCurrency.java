@@ -8,84 +8,63 @@ import java.net.URL;
 
 public class ForeignCurrency implements Comparable<ForeignCurrency>{
 
-    private Locale locale;
+    private String currencyCode;
     private double amount;
     private Currency currency;
 
 
-    public ForeignCurrency(Locale locale, double amount){
-        this.locale = locale;
+    public ForeignCurrency(String currencyCode, double amount){
+        this.currencyCode = currencyCode;
         this.amount = amount;
-        this.currency = Currency.getInstance(locale);
+        this.currency = Currency.getInstance(currencyCode);
     }
 
     public double getAmount(){
         return amount;
     }
 
-    public Locale getLocale(){
-        return locale;
+    public String getCurrencyCode(){
+        return currencyCode;
     }
 
     public void add(ForeignCurrency f){
-        if (f.getLocale() == getLocale()){
+        if (f.getCurrencyCode() == getCurrencyCode()){
             amount += f.getAmount();
         } else {
-            ForeignCurrency d = f.convert(getLocale());
+            ForeignCurrency d = f.convert(getCurrencyCode());
             amount += d.getAmount();
         }
     }
 
     public void subtract(ForeignCurrency f){
-        if (f.getLocale() == getLocale()){
+        if (f.getCurrencyCode() == getCurrencyCode()){
             amount -= f.getAmount();
         } else {
-            ForeignCurrency d = f.convert(getLocale());
+            ForeignCurrency d = f.convert(getCurrencyCode());
             amount -= d.getAmount();
         }
     }
 
-    public void multiply(ForeignCurrency f){
-        if (f.getLocale() == getLocale()){
-            amount = amount * f.getAmount();
-        } else {
-            ForeignCurrency d = f.convert(getLocale());
-            amount = amount * d.getAmount();
-        }
-    }
 
     public ForeignCurrency multiply(double constant){
         amount = amount * constant;
         return this;
     }
 
-    public ForeignCurrency divide(double constant){
-        amount = amount / constant;
-        return this;
-    }
-
-    public void divide(ForeignCurrency f){
-        if (f.getLocale() == getLocale()){
-            amount = amount / f.getAmount();
-        } else {
-            ForeignCurrency d = f.convert(getLocale());
-            amount = amount / d.getAmount();
-        }
-    }
 
     public int compareTo(ForeignCurrency f){
-        return Double.compare(amount, this.convert(f.getLocale()).amount);
+        return Double.compare(amount, this.convert(f.getCurrencyCode()).amount);
     }
 
-    public ForeignCurrency convert(Locale location){
-        Currency curr = Currency.getInstance(location);
+    public ForeignCurrency convert(String cur){
+        Currency curr = Currency.getInstance(cur);
         try {
             URL url = new URL("https://www.xe.com/currencyconverter/convert/?Amount=1&From=" + currency.getCurrencyCode() + "&To=" + curr.getCurrencyCode());
             BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
             String line = reader.readLine();
             if (line.length() > 0) {
                 double newAmount = Double.parseDouble(line) * getAmount();
-                ForeignCurrency f = new ForeignCurrency(location, newAmount);
+                ForeignCurrency f = new ForeignCurrency(cur, newAmount);
                 return f;
             }
             reader.close();
@@ -97,7 +76,7 @@ public class ForeignCurrency implements Comparable<ForeignCurrency>{
 
     @Override
     public String toString() {
-        return getAmount() + ", " + locale.getISO3Country();
+        return getAmount() + ", " + currency.getCurrencyCode();
     }
 }
 
