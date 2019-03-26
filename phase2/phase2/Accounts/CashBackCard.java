@@ -29,7 +29,7 @@ public class CashBackCard extends CreditCard {
 
     @Override
     public void subtract(Transaction transaction) {
-        if (getCreditLimit().compareTo(transaction.getAmount().multiply(0.95)) == 1) {
+        if (getCreditLimit().compareTo(transaction.getAmount().multiply(0.95)) > 0) {
             getBalance().add(transaction.getAmount().multiply(0.95));
             setBalance(getBalance());
             decreaseCreditLimit(transaction.getAmount().multiply(0.95));
@@ -42,7 +42,7 @@ public class CashBackCard extends CreditCard {
 
     @Override
     public void subtract(ForeignCurrency amount) {
-        if (getCreditLimit().compareTo(amount.multiply(0.95)) == 1) {
+        if (getCreditLimit().compareTo(amount.multiply(0.95)) > 0) {
             getBalance().add(amount.multiply(0.95));
             setBalance(getBalance());
             decreaseCreditLimit(amount.multiply(0.95));

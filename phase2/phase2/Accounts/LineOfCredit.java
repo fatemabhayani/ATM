@@ -20,7 +20,7 @@ public class LineOfCredit extends CreditCard {
 
     @Override
     public void subtract(Transaction transaction) {
-        if (getCreditLimit().compareTo(transaction.getAmount()) == 1){
+        if (getCreditLimit().compareTo(transaction.getAmount()) > 0){
             getBalance().add(transaction.getAmount());
             setBalance(getBalance());
             transactions.add(transaction);

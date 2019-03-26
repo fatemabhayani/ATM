@@ -94,7 +94,7 @@ public class CreditCard implements Account, Serializable {
     }
 
     public void subtract(ForeignCurrency amount) {
-        if (creditLimit.compareTo(amount) == 1) {
+        if (creditLimit.compareTo(amount) > 0) {
             balance.add(amount);
             helpWrite(amount);
             decreaseCreditLimit(amount);
