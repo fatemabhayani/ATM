@@ -1,6 +1,7 @@
 package phase2;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class AccountManager {
     /**
@@ -58,10 +59,10 @@ public class AccountManager {
     private double getAssetBalance() {
         double assetBalance = 0;
         for (Chequing a : cq) {
-            assetBalance += a.getBalance();
+            assetBalance += a.getBalance().convert(Locale.CANADA).getAmount();
         }
         for (Savings a : sv) {
-            assetBalance += a.getBalance();
+            assetBalance += a.getBalance().convert(Locale.CANADA).getAmount();
         }
         return assetBalance;
     }
@@ -69,13 +70,13 @@ public class AccountManager {
     private double getDebtBalance() {
         double debtBalance = 0;
         for (Account a : cc) {
-            debtBalance += a.getBalance();
+            debtBalance += a.getBalance().convert(Locale.CANADA).getAmount();
         }
         for (Account a : lc) {
-            debtBalance += a.getBalance();
+            debtBalance += a.getBalance().convert(Locale.CANADA).getAmount();
         }
         for (Account a : cb){
-            debtBalance += a.getBalance();
+            debtBalance += a.getBalance().convert(Locale.CANADA).getAmount();
         }
         return debtBalance;
     }
