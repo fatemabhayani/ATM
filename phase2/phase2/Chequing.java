@@ -16,8 +16,8 @@ public class Chequing extends AssetAccount {
      * @param isPrimary true if it is a primary account, false otherwise
      * @param date the date of creation
      */
-    public Chequing(boolean isPrimary, Calendar date) {
-        super(date);
+    public Chequing(boolean isPrimary, Calendar date, Locale locale) {
+        super(date, locale);
         this.isPrimary = isPrimary;
     }
 

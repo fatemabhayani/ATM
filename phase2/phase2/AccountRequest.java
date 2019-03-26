@@ -2,6 +2,7 @@ package phase2;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Locale;
 
 /**
  * A request for a new bank account.
@@ -18,15 +19,18 @@ public class AccountRequest extends Request implements Serializable {
      */
     private String accountType;
 
+    private Locale locale;
+
     /**
      * Instantiates a new account request.
      *
      * @param requester the user that requests account creation
      * @param accountType the account type
      */
-    public AccountRequest(User requester, String accountType) {
+    public AccountRequest(User requester, String accountType, Locale locale) {
         this.requester = requester;
         this.accountType = accountType;
+        this.locale = locale;
     }
 
     /**
@@ -54,20 +58,20 @@ public class AccountRequest extends Request implements Serializable {
         Calendar time = ATM.clock.getCurrentTime();
         User u = requester;
         switch (getAccountType()) {
-            case ("lc"): u.lineCreditAccounts.add(new LineOfCredit(time));
+            case ("lc"): u.lineCreditAccounts.add(new LineOfCredit(time, locale));
                 break;
-            case ("cc"): u.creditCardAccounts.add(new CreditCard(time));
+            case ("cc"): u.creditCardAccounts.add(new CreditCard(time, locale));
                 break;
-            case ("s"): u.savingsAccounts.add(new Savings(time));
+            case ("s"): u.savingsAccounts.add(new Savings(time, locale));
                 break;
             case ("c"):
                 if (u.chequingAccounts.size() == 0) {
-                    u.chequingAccounts.add(new Chequing(true, time));
+                    u.chequingAccounts.add(new Chequing(true, time, locale));
                 } else {
-                    u.chequingAccounts.add(new Chequing(false, time));
+                    u.chequingAccounts.add(new Chequing(false, time, locale));
                 }
                 break;
-            case ("cb"): u.cashbackCardAccounts.add(new CashBackCard(time));
+            case ("cb"): u.cashbackCardAccounts.add(new CashBackCard(time, locale));
                 break;
         }
     }

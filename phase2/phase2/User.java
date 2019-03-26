@@ -2,6 +2,7 @@ package phase2;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * A user of the ATM.
@@ -64,8 +65,8 @@ public class User implements Serializable {
      *
      * @param accountType the account type
      */
-    public void requestAccount(String accountType) {
-        Request req = new AccountRequest(this, accountType);
+    public void requestAccount(String accountType, Locale locale) {
+        Request req = new AccountRequest(this, accountType, locale);
         ATM.b.addRequest(req);
     }
 
@@ -106,39 +107,12 @@ public class User implements Serializable {
         password = newPass;
     }
 
-    private double getAssetTotalBalance() {
-        double assetTotalBalance = 0;
-        for (Account account: chequingAccounts) {
-            assetTotalBalance += account.getBalance();
-        }
-        for (Account account: savingsAccounts) {
-            assetTotalBalance += account.getBalance();
-        }
-        return assetTotalBalance;
-    }
-
-    private double getDebtTotalBalance() {
-        double debtTotalBalance = 0;
-        for (Account account: creditCardAccounts) {
-            debtTotalBalance += account.getBalance();
-        }
-        for (Account account: lineCreditAccounts) {
-            debtTotalBalance += account.getBalance();
-        }
-        for (Account account: cashbackCardAccounts){
-            debtTotalBalance += account.getBalance();
-        }
-        return debtTotalBalance;
-    }
 
     /**
      * Gets net balance of all accounts of a user.
      *
      * @return the net balance
      */
-    public double getTotalBalance() {
-        return getAssetTotalBalance() - getDebtTotalBalance();
-    }
 
     /**
      * Make transfer.
@@ -231,7 +205,7 @@ public class User implements Serializable {
         for (Account account : cashbackCardAccounts)
             sBuilder4.append("Cash Back Card account: ").append(account.getBalance()).append("\n");
         String s = sBuilder4.toString();
-        s = s + ("Total balance: " + getTotalBalance());
+        s = s + ("Total balance in Canadian dollars: " + getTotalBalance());
         return s;
     }
 

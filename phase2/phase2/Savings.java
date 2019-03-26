@@ -1,6 +1,7 @@
 package phase2;
 
 import java.util.Calendar;
+import java.util.Locale;
 
 /**
  * The Savings account, type of Asset Account
@@ -12,8 +13,8 @@ public class Savings extends AssetAccount {
      *
      * @param date the date of creation
      */
-    public Savings(Calendar date) {
-        super(date);
+    public Savings(Calendar date, Locale locale) {
+        super(date, locale);
     }
 
     /**
