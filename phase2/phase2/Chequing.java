@@ -1,6 +1,7 @@
 package phase2;
 
 import java.util.Calendar;
+import java.util.Locale;
 
 /**
  * The Chequing Account, type of AssetAccount.
@@ -29,14 +30,16 @@ public class Chequing extends AssetAccount {
 
     @Override
     public void subtract(Transaction transaction) {
-        double amount = transaction.getAmount();
-        if (balance < 0) {
+        ForeignCurrency amount = transaction.getAmount();
+        if (balance.getAmount() < 0) {
             System.out.println("Cannot transfer out of an account with a negative balance!");
         } else {
-            if (balance - amount < -100) {
+            if (balance.compareTo
+                    (new ForeignCurrency(Locale.CANADA, amount.convert(Locale.CANADA).getAmount() -100))
+                    < 0) {
                 System.out.println("Cannot have a balance below -100!");
             } else {
-                balance -= amount;
+                balance.subtract(amount);
                 System.out.println("Transaction successful!");
             }
         }
@@ -44,14 +47,16 @@ public class Chequing extends AssetAccount {
     }
 
     @Override
-    public void subtract(double amount) {
-        if (balance < 0) {
+    public void subtract(ForeignCurrency amount) {
+        if (balance.getAmount() < 0) {
             System.out.println("Cannot transfer out of an account with a negative balance!");
         } else {
-            if (balance - amount < -100) {
+            if (balance.compareTo
+                    (new ForeignCurrency(Locale.CANADA, amount.convert(Locale.CANADA).getAmount() -100))
+                    < 0) {
                 System.out.println("Cannot have a balance below -100!");
             } else {
-                balance -= amount;
+                balance.subtract(amount);
                 helpWrite(amount);
                 System.out.println("Transaction successful!");
             }
