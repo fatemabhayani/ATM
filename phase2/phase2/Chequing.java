@@ -16,8 +16,8 @@ public class Chequing extends AssetAccount {
      * @param isPrimary true if it is a primary account, false otherwise
      * @param date the date of creation
      */
-    public Chequing(boolean isPrimary, Calendar date, Locale locale) {
-        super(date, locale);
+    public Chequing(boolean isPrimary, Calendar date, String currencyCode) {
+        super(date, currencyCode);
         this.isPrimary = isPrimary;
     }
 
@@ -35,7 +35,7 @@ public class Chequing extends AssetAccount {
             System.out.println("Cannot transfer out of an account with a negative balance!");
         } else {
             if (balance.compareTo
-                    (new ForeignCurrency(Locale.CANADA, amount.convert(Locale.CANADA).getAmount() -100))
+                    (new ForeignCurrency("CAD", amount.convert("CAD").getAmount() -100))
                     < 0) {
                 System.out.println("Cannot have a balance below -100!");
             } else {
@@ -52,7 +52,7 @@ public class Chequing extends AssetAccount {
             System.out.println("Cannot transfer out of an account with a negative balance!");
         } else {
             if (balance.compareTo
-                    (new ForeignCurrency(Locale.CANADA, amount.convert(Locale.CANADA).getAmount() -100))
+                    (new ForeignCurrency("CAD", amount.convert("CAD").getAmount() -100))
                     < 0) {
                 System.out.println("Cannot have a balance below -100!");
             } else {

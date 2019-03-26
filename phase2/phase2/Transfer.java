@@ -34,7 +34,7 @@ public class Transfer extends Transaction {
             return moneyFrom.getBalance().compareTo(getAmount()) >= 0;
         } else {
             return (moneyFrom.getBalance().getAmount() >= 0 && moneyFrom.getBalance().compareTo(
-            new ForeignCurrency(Locale.CANADA, getAmount().convert(Locale.CANADA).getAmount() - 100)
+            new ForeignCurrency("CAD", getAmount().convert("CAD").getAmount() - 100)
             ) >= 0);
         }
     }

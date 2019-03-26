@@ -13,8 +13,8 @@ public class Savings extends AssetAccount {
      *
      * @param date the date of creation
      */
-    public Savings(Calendar date, Locale locale) {
-        super(date, locale);
+    public Savings(Calendar date, String currencyCode) {
+        super(date, currencyCode);
     }
 
     /**

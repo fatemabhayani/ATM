@@ -5,21 +5,21 @@ import java.util.Locale;
 
 public class CashBackCard extends CreditCard {
 
-    public CashBackCard(Calendar date, Locale locale) {
-        super(date, locale);
+    public CashBackCard(Calendar date, String currencyCode) {
+        super(date, currencyCode);
     }
 
-    public CashBackCard(Calendar date, User owner1, Locale locale) {
-        super(date, owner1, locale);
+    public CashBackCard(Calendar date, User owner1, String currencyCode) {
+        super(date, owner1, currencyCode);
     }
 
-    public CashBackCard(Calendar date, User owner1, User owner2, Locale locale) {
-        super(date, owner1, owner2, locale);
+    public CashBackCard(Calendar date, User owner1, User owner2, String currencyCode) {
+        super(date, owner1, owner2, currencyCode);
     }
 
     public void increase(){
         ForeignCurrency balance = getBalance();
-        if (balance.compareTo(new ForeignCurrency(balance.getLocale(),0)) >= 1){
+        if (balance.compareTo(new ForeignCurrency(balance.getCurrencyCode(),0)) >= 1){
             setBalance(balance.multiply(1.25));
         }
     }

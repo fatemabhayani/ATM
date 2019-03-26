@@ -42,8 +42,8 @@ public class User implements Serializable {
      *
      * @param accountType the account type
      */
-    public void requestAccount(String accountType, Locale locale) {
-        Request req = new AccountRequest(this, accountType, locale);
+    public void requestAccount(String accountType, String currencyCode) {
+        Request req = new AccountRequest(this, accountType, currencyCode);
         ATM.b.addRequest(req);
     }
 
