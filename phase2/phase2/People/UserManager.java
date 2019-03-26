@@ -1,6 +1,9 @@
-package phase2;
+package phase2.People;
 
 import java.util.ArrayList;
+import phase2.Display.ATM;
+import phase2.People.*;
+import phase2.Accounts.*;
 
 /**
  * Manages the collection of bank users for the ATM.
@@ -19,7 +22,7 @@ public class UserManager {
      * @param username the username
      * @return true if and only if username belongs to a user or employee.
      */
-    static boolean authenticateUsername(String username) {
+    public static boolean authenticateUsername(String username) {
         boolean authenticated = false;
         for (User u: ATM.bankUsers) {
             if (username.equals(u.getUsername())) {
@@ -54,7 +57,7 @@ public class UserManager {
      * @param user the user
      * @return true if and only if password is correct.
      */
-    static boolean authenticatePassword(String password, User user) {
+    public static boolean authenticatePassword(String password, User user) {
         return password.equals(user.getPassword());
     }
 
@@ -64,7 +67,7 @@ public class UserManager {
      * @param username the username
      * @return the user
      */
-    static User getUser(String username) {
+    public static User getUser(String username) {
         for (User u: ATM.bankUsers) {
             if (username.equals(u.getUsername())) {
                 return u;
@@ -79,7 +82,7 @@ public class UserManager {
      *
      * @param username the user's username
      */
-    static void addUser(String username, String password){
+    public static void addUser(String username, String password){
         User u = new User(username, password);
         ATM.bankUsers.add(u);
     }
@@ -87,7 +90,7 @@ public class UserManager {
     /**
      * Updates the savings accounts of every user.
      */
-    static void updateSavings() {
+    public static void updateSavings() {
         for (User u: ATM.bankUsers) {
             ArrayList<Savings> s = u.getAccount("s");
             for (Savings a : s) {

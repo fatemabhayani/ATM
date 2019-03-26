@@ -3,10 +3,10 @@ package phase2.Request;
 /**
  * The Request.
  */
-class Request {
+public class Request {
 
     /**
      * Resolve request.
      */
-    void resolveRequest(){}
+    public void resolveRequest(){}
 }

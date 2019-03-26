@@ -1,6 +1,5 @@
 package phase2.Request;
 
-import phase2.Request;
 import phase2.People.UserManager;
 
 import java.io.Serializable;

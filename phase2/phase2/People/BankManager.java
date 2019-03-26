@@ -1,8 +1,7 @@
 package phase2.People;
 
 import phase2.Display.ATM;
-import phase2.People.BankEmployee;
-import phase2.Request.Request;
+import phase2.Request.*;
 
 import java.util.ArrayList;
 
@@ -41,7 +40,7 @@ public class BankManager extends BankEmployee {
      * @param i the index of requests
      * @return the request at index i
      */
-    protected Request getRequest(int i) {
+    public Request getRequest(int i) {
         return requests.get(i);
     }
 
@@ -81,7 +80,7 @@ public class BankManager extends BankEmployee {
      *
      * @param i the index of requests
      */
-    void ignoreRequest(int i) {
+    public void ignoreRequest(int i) {
         requests.remove(i);
     }
 
@@ -90,12 +89,12 @@ public class BankManager extends BankEmployee {
      *
      * @param i the index of requests
      */
-    void completeRequest(int i) {
+    public void completeRequest(int i) {
         requests.get(i).resolveRequest();
         requests.remove(i);
     }
 
-    void completeRequest(int i, String password) {
+    public void completeRequest(int i, String password) {
         if (requests.get(i) instanceof UserRequest){
             UserRequest req = (UserRequest) requests.get(i);
             req.resolveRequest(password);

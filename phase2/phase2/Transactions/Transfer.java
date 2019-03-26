@@ -24,7 +24,7 @@ public class Transfer extends Transaction {
      * @param moneyFrom the account where the money is from
      * @param date      the date of creation
      */
-    Transfer(ForeignCurrency amount, Account moneyTo, Account moneyFrom, Calendar date){
+    public Transfer(ForeignCurrency amount, Account moneyTo, Account moneyFrom, Calendar date){
         super(amount, date);
         this.moneyTo = moneyTo;
         this.moneyFrom = moneyFrom;

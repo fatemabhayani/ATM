@@ -3,7 +3,7 @@ package phase2.People;
 import phase2.Display.ATM;
 import phase2.People.BankEmployee;
 import phase2.People.User;
-import phase2.Request.Request;
+import phase2.Request.*;
 
 import java.util.ArrayList;
 

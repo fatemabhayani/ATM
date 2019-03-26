@@ -22,7 +22,7 @@ public class Withdraw extends Transaction {
      * @param moneyFrom the account where the withdrawal is from
      * @param date      the date of creation
      */
-    Withdraw(ForeignCurrency amount, Account moneyFrom, Calendar date){
+    public Withdraw(ForeignCurrency amount, Account moneyFrom, Calendar date){
         super(amount, date);
         this.moneyFrom = moneyFrom;
     }

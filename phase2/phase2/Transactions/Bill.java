@@ -13,7 +13,7 @@ public class Bill extends Transaction {
 
     private Account moneyFrom;
 
-    Bill(ForeignCurrency amount, Account moneyFrom, Calendar date) {
+    public Bill(ForeignCurrency amount, Account moneyFrom, Calendar date) {
         super(amount, date);
         this.moneyFrom = moneyFrom;
     }

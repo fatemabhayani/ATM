@@ -1,7 +1,10 @@
-package phase2;
+package phase2.Accounts;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import phase2.Accounts.*;
+import phase2.Transactions.*;
+import phase2.Transactions.TransactionComparator;
 
 public class AccountManager {
     /**

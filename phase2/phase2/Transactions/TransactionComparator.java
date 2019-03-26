@@ -1,4 +1,4 @@
-package phase2;
+package phase2.Transactions;
 
 import java.util.Calendar;
 import java.util.Comparator;

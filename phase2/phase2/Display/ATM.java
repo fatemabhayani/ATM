@@ -1,11 +1,8 @@
 package phase2.Display;
 
 import phase2.*;
-import phase2.Data.DataWriter;
-import phase2.People.BankManager;
-import phase2.People.BankTeller;
-import phase2.People.User;
-import phase2.People.UserManager;
+import phase2.People.*;
+import phase2.Request.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

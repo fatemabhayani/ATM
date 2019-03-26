@@ -1,8 +1,7 @@
 package phase2.Display;
 
 import phase2.People.BankManager;
-import phase2.Request;
-import phase2.Request.UserRequest;
+import phase2.Request.*;
 
 import java.util.Scanner;
 

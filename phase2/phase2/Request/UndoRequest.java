@@ -1,7 +1,6 @@
 package phase2.Request;
 
 import phase2.Accounts.Account;
-import phase2.Request;
 import phase2.Transactions.Transaction;
 import phase2.People.User;
 
@@ -10,7 +9,7 @@ import java.io.Serializable;
 /**
  * The Undo Transaction request, type of Request
  */
-class UndoRequest extends Request implements Serializable {
+public class UndoRequest extends Request implements Serializable {
     private User requester;
     private Account account;
     private int num;
@@ -21,7 +20,7 @@ class UndoRequest extends Request implements Serializable {
      * @param requester the user that requested the request
      * @param account   the account
      */
-    UndoRequest(User requester, Account account, int num){
+    public UndoRequest(User requester, Account account, int num){
         this.requester = requester;
         this.account = account;
         this.num = num;
