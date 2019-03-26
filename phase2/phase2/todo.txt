@@ -23,6 +23,7 @@ Note
    the method should be called in the main method but isn't yet, don't delete it!)
 
 ATM Time: get current year, get current month
+Account Manager: 1 constructor isnt used
 
 
 Phase 1 Markus comments
