@@ -1,6 +1,7 @@
 package phase2;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 
 public class ManagerInterface extends JFrame {
@@ -9,11 +10,17 @@ public class ManagerInterface extends JFrame {
     private JButton acceptRequestButton;
     private JButton declineUserButton;
     private JTextField welcomeMrManagerTextField;
+    private String option;
 
     public ManagerInterface() {
+        for (int i = 0; i <  ATM.b.getNumberOfRequests();i++) {
+            comboBox1.addItem(ATM.b.getRequest(i).toString()+"\n");
+        }
+
         comboBox1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                option = comboBox1.getSelectedItem().toString();
 
             }
         });
@@ -40,5 +47,14 @@ public class ManagerInterface extends JFrame {
                 super.mouseClicked(e);
             }
         });
+    }
+    public void main(String arg[]){
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new ManagerInterface().setVisible(true);
+            }
+        });
+
     }
 }

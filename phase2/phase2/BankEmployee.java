@@ -39,6 +39,8 @@ public abstract class BankEmployee implements Serializable {
         return requests.get(i);
     }
 
+    public int getNumberOfRequests(){return requests.size();}
+
     /**
      * Returns a summary of the bank manager's requests.
      *
