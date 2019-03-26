@@ -94,4 +94,10 @@ public class ForeignCurrency implements Comparable<ForeignCurrency>{
         }
         return null;
     }
+
+    @Override
+    public String toString() {
+        return getAmount() + ", " + locale.getISO3Country();
+    }
 }
+

@@ -20,44 +20,27 @@ public class User implements Serializable {
     private String password;
 
     /**
-     * The Line credit accounts.
+     * The transactions for this user.
      */
-    ArrayList<LineOfCredit> lineCreditAccounts;
-    /**
-     * The Credit card accounts.
-     */
-    ArrayList<CreditCard> creditCardAccounts;
-    /**
-     * The Chequing accounts.
-     */
-    ArrayList<Chequing> chequingAccounts;
-    /**
-     * The Savings accounts.
-     */
-    ArrayList<Savings> savingsAccounts;
-
-    ArrayList<CashBackCard> cashbackCardAccounts;
-
     private ArrayList<Transaction> transactions;
 
-    public AccountManager accounts;
+    /**
+     * The account manager for this user's accounts.
+     */
+    private AccountManager accounts;
 
 
     /**
      * Creates a new User.
      *
      * @param user the username
-     * @param pass the password
+     * @param password the password
      */
-    public User(String user, String pass) {
+    public User(String user, String password) {
         username = user;
-        password = pass;
-        chequingAccounts = new ArrayList<>();
-        creditCardAccounts = new ArrayList<>();
-        lineCreditAccounts = new ArrayList<>();
-        savingsAccounts = new ArrayList<>();
+        this.password = password;
+        accounts = new AccountManager();
         transactions = new ArrayList<>();
-        cashbackCardAccounts = new ArrayList<>();
     }
 
     /**
@@ -78,6 +61,15 @@ public class User implements Serializable {
     public void requestUndo(Account account, int num) {
         Request req = new UndoRequest(this, account, num);
         ATM.b.addRequest(req);
+    }
+
+    /**
+     * Gets the account manager.
+     *
+     * @return the account manager
+     */
+    public AccountManager getAccountManager() {
+        return accounts;
     }
 
     /**
@@ -167,9 +159,12 @@ public class User implements Serializable {
         t.makeTransaction();
     }
 
+    public ArrayList<Transaction> getTransactions() {
+        return accounts.getTransactions();
+    }
 
     public Transaction getTransaction(int i) {
-        return transactions.get(i);
+        return getTransactions().get(i);
     }
 
     /**
@@ -178,53 +173,22 @@ public class User implements Serializable {
      * @return the string that summarizes the balance in each account of user
      */
     public String balanceSummary() {
-        StringBuilder sBuilder = new StringBuilder();
-        for (Account account : lineCreditAccounts) {
-            sBuilder.append("Line of Credit account: ").append(account.getBalance()).append("\n");
-        }
-        StringBuilder sBuilder1 = new StringBuilder(sBuilder.toString());
-        for (Account account : creditCardAccounts) {
-            sBuilder1.append("Credit Card account: ").append(account.getBalance()).append("\n");
-        }
-        StringBuilder sBuilder2 = new StringBuilder(sBuilder1.toString());
-        for (Account account : savingsAccounts) {
-            sBuilder2.append("Savings account: ").append(account.getBalance()).append("\n");
-        }
-        StringBuilder sBuilder3 = new StringBuilder(sBuilder2.toString());
-        for (Account account : chequingAccounts) {
-            sBuilder3.append("Chequing account: ").append(account.getBalance()).append("\n");
-        }
-        StringBuilder sBuilder4 = new StringBuilder(sBuilder3.toString());
-        for (Account account : cashbackCardAccounts)
-            sBuilder4.append("Cash Back Card account: ").append(account.getBalance()).append("\n");
-        String s = sBuilder4.toString();
-        s = s + ("Total balance in Canadian dollars: ");
-        return s;
+        return accounts.balanceSummary();
     }
 
     /**
      * Gets all the accounts of a user of a particular type
      *
-     * @param s lc if the user want to get Line of Credit Accounts,
-     *          cc if user wants credit card accounts,
-     *          c if the user wants the chequing accounts
-     *          s if the user wants the savings accounts
-     * @return the account specified by user, if not specified, return empty array list
+     * @param s the type of accounts
+     * @return the list of accounts specified by user, returns the empty list if an invalid input is made
      */
     public ArrayList getAccount(String s) {
-        switch (s) {
-            case ("lc"):return lineCreditAccounts;
-            case ("cc"):return creditCardAccounts;
-            case ("c"):return chequingAccounts;
-            case ("s"):return savingsAccounts;
-            case ("cb"):return cashbackCardAccounts;
-            default: return new ArrayList<>();
-        }
+        return accounts.getAccount(s);
     }
 
     @Override
     public String toString() {
-        return "ATM user " + username;
+        return "USER: " + username;
     }
 
 }

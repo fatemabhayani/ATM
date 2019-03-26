@@ -56,24 +56,7 @@ public class AccountRequest extends Request implements Serializable {
      */
     public void resolveRequest() {
         Calendar time = ATM.clock.getCurrentTime();
-        User u = requester;
-        switch (getAccountType()) {
-            case ("lc"): u.lineCreditAccounts.add(new LineOfCredit(time, locale));
-                break;
-            case ("cc"): u.creditCardAccounts.add(new CreditCard(time, locale));
-                break;
-            case ("s"): u.savingsAccounts.add(new Savings(time, locale));
-                break;
-            case ("c"):
-                if (u.chequingAccounts.size() == 0) {
-                    u.chequingAccounts.add(new Chequing(true, time, locale));
-                } else {
-                    u.chequingAccounts.add(new Chequing(false, time, locale));
-                }
-                break;
-            case ("cb"): u.cashbackCardAccounts.add(new CashBackCard(time, locale));
-                break;
-        }
+        requester.getAccountManager().add(accountType, locale, time);
     }
 
     @Override
