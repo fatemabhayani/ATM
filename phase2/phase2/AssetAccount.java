@@ -3,6 +3,7 @@ package phase2;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
 
 /**
  * Represents an asset account.
@@ -12,7 +13,7 @@ public abstract class AssetAccount implements Account, Serializable {
     /**
      * The account balance.
      */
-    protected double balance;
+    protected ForeignCurrency balance;
 
     private User owner1;
 
@@ -67,7 +68,7 @@ public abstract class AssetAccount implements Account, Serializable {
      *
      * @return the balance
      */
-    public double getBalance() {
+    public ForeignCurrency getBalance() {
         return balance;
     }
 
@@ -76,7 +77,7 @@ public abstract class AssetAccount implements Account, Serializable {
      *
      * @param newBalance the new balance
      */
-    public void setBalance(double newBalance){
+    public void setBalance(ForeignCurrency newBalance){
         balance = newBalance;
     }
 
@@ -101,7 +102,7 @@ public abstract class AssetAccount implements Account, Serializable {
      */
     public void add(Transaction transaction) {
         transactions.add(0, transaction);
-        balance += transaction.getAmount();
+        balance.add(transaction.getAmount());
         System.out.println("Transaction successful!");
     }
 
@@ -111,8 +112,8 @@ public abstract class AssetAccount implements Account, Serializable {
      * @param file name of the file that contains the amount
      */
     public void add(String file) {
-        int amount = helpRead(file);
-        this.balance += amount;
+        ForeignCurrency amount = helpRead(file);
+        this.balance.add(amount);
     }
 
     /**
@@ -130,16 +131,16 @@ public abstract class AssetAccount implements Account, Serializable {
      * @param file the file
      * @return the int value of amount
      */
-    public int helpRead(String file) {
+    public ForeignCurrency helpRead(String file) {
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String s = reader.readLine();
             int denomination = Character.getNumericValue(s.charAt(0));
             int volume = Character.getNumericValue(s.charAt(2));
-            return volume * denomination;
+            return new ForeignCurrency(Locale.CANADA, volume * denomination);
             // TODO: what does volume represent in this method? what is it reading?
         } catch (Exception e) {
             System.out.println("There was an error!");
-            return -1;
+            return new ForeignCurrency(Locale.CANADA, -1);
         }
     }
 
@@ -148,9 +149,9 @@ public abstract class AssetAccount implements Account, Serializable {
      *
      * @param amount the amount
      */
-    public void helpWrite(double amount) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("phase1/phase1/outgoing.txt"))) {
-            writer.write(Double.toString(amount));
+    public void helpWrite(ForeignCurrency amount) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("phase2/phase2/outgoing.txt"))) {
+            writer.write(Double.toString(amount.convert(Locale.CANADA).getAmount()));
         } catch(Exception e) {
             System.out.println("There was an error!");
         }

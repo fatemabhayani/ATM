@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Locale;
 
 /**
  * The Transaction.
@@ -14,7 +15,7 @@ public abstract class Transaction implements Serializable {
     /**
      * The Amount of the transaction.
      */
-    protected double amount;
+    protected ForeignCurrency amount;
     private Calendar timeOfTransaction;
     // Records whether transaction was valid or not
     private boolean approved;
@@ -26,7 +27,7 @@ public abstract class Transaction implements Serializable {
      * @param timeOfTransaction the time of transaction
      */
 // pass in AtM time
-    public Transaction(double amount, Calendar timeOfTransaction) {
+    public Transaction(ForeignCurrency amount, Calendar timeOfTransaction) {
         setAmount(amount);
         setTimeOfTransaction(timeOfTransaction);
         setIsApproved();
@@ -42,7 +43,7 @@ public abstract class Transaction implements Serializable {
      * @param timeOfTransaction the time of transaction
      */
     public Transaction(String depositFile, Calendar timeOfTransaction) {
-        double deposit = readFile(depositFile);
+        ForeignCurrency deposit = readFile(depositFile);
         setAmount(deposit);
         setTimeOfTransaction(timeOfTransaction);
         setIsApproved();
@@ -63,7 +64,7 @@ public abstract class Transaction implements Serializable {
      */
     public boolean getIsApproved() { return approved; }
 
-    private void setAmount(double amount){
+    private void setAmount(ForeignCurrency amount){
         this.amount = amount;
     }
 
@@ -72,7 +73,7 @@ public abstract class Transaction implements Serializable {
      *
      * @return the amount
      */
-    public double getAmount() {
+    public ForeignCurrency getAmount() {
         return amount;
     }
 
@@ -93,7 +94,7 @@ public abstract class Transaction implements Serializable {
      *
      * @return the accumulated amount recorded in the file.
      */
-    private double readFile(String textFile) {
+    private ForeignCurrency readFile(String textFile) {
         // Rep invariant:
         //      .txt file must record amounts in double format without other characters
         //      for example: 20.00
@@ -115,7 +116,7 @@ public abstract class Transaction implements Serializable {
         }catch (IOException io) {
             System.out.println("Error:" + io);
         }
-        return totalDeposit;
+        return new ForeignCurrency(Locale.CANADA, totalDeposit);
     }
 
     /**

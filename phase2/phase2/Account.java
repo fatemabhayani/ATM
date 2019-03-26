@@ -12,14 +12,14 @@ public interface Account {
      *
      * @return the balance
      */
-    double getBalance();
+    ForeignCurrency getBalance();
 
     /**
      * Sets the account balance.
      *
      * @param balance the new balance
      */
-    void setBalance(double balance);
+    void setBalance(ForeignCurrency balance);
 
     /**
      * Decreases the balance by the amount in transaction.
@@ -34,7 +34,7 @@ public interface Account {
      *
      * @param amount the amount
      */
-    void subtract(double amount);
+    void subtract(ForeignCurrency amount);
 
     /**
      * Increases the balance by the amount in transaction.
@@ -70,12 +70,12 @@ public interface Account {
      * @param file the file
      * @return the int value of amount
      */
-    int helpRead(String file);
+    ForeignCurrency helpRead(String file);
 
     /**
      * Writes an amount into the file.
      *
      * @param amount the amount
      */
-    void helpWrite(double amount);
+    void helpWrite(ForeignCurrency amount);
 }

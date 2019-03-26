@@ -6,7 +6,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 
-public class ForeignCurrency {
+public class ForeignCurrency implements Comparable<ForeignCurrency>{
 
     private Locale locale;
     private double amount;
@@ -27,20 +27,31 @@ public class ForeignCurrency {
         return locale;
     }
 
-    public void add(Locale location, double money){
-        if (location == getLocale()){
-            amount += money;
+    public void add(ForeignCurrency f){
+        if (f.getLocale() == getLocale()){
+            amount += f.getAmount();
         } else {
+            ForeignCurrency d = f.convert(getLocale());
+            amount += d.getAmount();
         }
     }
 
-    public String compare(Locale location, double money){
-        if (this.convert(location).amount == money){
-            return "=";
-        } else if (this.convert(location).amount > money){
-            return ">";
+    public void subtract(ForeignCurrency f){
+        if (f.getLocale() == getLocale()){
+            amount -= f.getAmount();
+        } else {
+            ForeignCurrency d = f.convert(getLocale());
+            amount -= d.getAmount();
+        }
+    }
+
+    public int compareTo(ForeignCurrency f){
+        if (this.convert(f.getLocale()).amount == amount){
+            return 0;
+        } else if (this.convert(f.getLocale()).amount > amount){
+            return -1;
         } else{
-            return "<";
+            return 1;
         }
     }
 

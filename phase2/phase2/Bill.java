@@ -1,6 +1,7 @@
 package phase2;
 
 import java.util.Calendar;
+import java.util.Locale;
 
 public class Bill extends Transaction {
 
@@ -17,10 +18,12 @@ public class Bill extends Transaction {
         } else if (moneyFrom.getClass().isInstance(LineOfCredit.class)) {
             return true;
         } else if (moneyFrom.getClass().isInstance(Savings.class)) {
-            return moneyFrom.getBalance().compareTo(getAmount()) == 1 || moneyFrom.getBalance().compareTo(getAmount()) == 0;
+            return moneyFrom.getBalance().compareTo(getAmount()) > 0;
         } else {
-            // (moneyFrom.getBalance() >= 0 && moneyFrom.getBalance() - getAmount() >= -100);
-            return true;
+            return moneyFrom.getBalance().compareTo(getAmount()) >= 0 &&
+                    moneyFrom.getBalance().compareTo
+                            (new ForeignCurrency(Locale.CANADA, getAmount().
+                                    convert(Locale.CANADA).getAmount() - 100)) >= 0;
         }
     }
 
