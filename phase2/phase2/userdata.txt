@@ -1,6 +1,6 @@
 ATM BANK USERS
-USER: username
-password
+USER
+username.password
 SAVINGS
 - locale
 - balance
