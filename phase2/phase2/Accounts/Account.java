@@ -63,6 +63,7 @@ public interface Account {
     /**
      * Returns the ith most recent transaction.
      *
+     * @param i the index of past transaction
      * @return transaction at index i
      */
     Transaction getPastTransaction(int i);
