@@ -23,10 +23,10 @@ public class AccountInterface extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String choice = String.valueOf(comboBox1.getSelectedItem());
-                if (choice == "Bill") { switchToBill(); }
-                else if (choice == "Transfer") {switchToTransfer();}
-                else if (choice == "Withdraw") {switchToWithdraw();}
-                else if (choice == "Deposit") {switchToDeposit();}
+                if (choice.equals("Bill")) { switchToBill(); }
+                else if (choice.equals("Transfer")) {switchToTransfer();}
+                else if (choice.equals("Withdraw")) {switchToWithdraw();}
+                else if (choice.equals("Deposit")) {switchToDeposit();}
 
             }
         });

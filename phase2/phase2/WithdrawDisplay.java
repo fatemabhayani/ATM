@@ -1,7 +1,6 @@
 package phase2;
 
 import java.util.Calendar;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class WithdrawDisplay {

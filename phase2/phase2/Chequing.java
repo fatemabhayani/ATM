@@ -1,7 +1,6 @@
 package phase2;
 
 import java.util.Calendar;
-import java.util.Locale;
 
 /**
  * The Chequing Account, type of AssetAccount.

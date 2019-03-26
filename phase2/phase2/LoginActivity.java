@@ -47,12 +47,12 @@ public class LoginActivity extends JFrame{
             public void inputMethodTextChanged(InputMethodEvent event) {
                 String password  = String.valueOf(passwordField1.getPassword());
                 if (nameExists) {
-                    if(user.getPassword() == password) {
+                    if(user.getPassword().equals(password)) {
                         System.out.println("Login Successful");
                         passMatch =  true;
                     }else{passMatch = false;}
-                }else if (manager == "manager"){
-                    managerlogin = password == "bestboss";
+                }else if (manager.equals("manager")){
+                    managerlogin = password.equals("bestboss");
                 }
             }
 

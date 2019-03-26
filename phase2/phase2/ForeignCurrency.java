@@ -1,7 +1,6 @@
 package phase2;
 
 import java.util.Currency;
-import java.util.Locale;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -28,7 +27,7 @@ public class ForeignCurrency implements Comparable<ForeignCurrency>{
     }
 
     public void add(ForeignCurrency f){
-        if (f.getCurrencyCode() == getCurrencyCode()){
+        if (f.getCurrencyCode().equals(getCurrencyCode())){
             amount += f.getAmount();
         } else {
             ForeignCurrency d = f.convert(getCurrencyCode());
@@ -37,7 +36,7 @@ public class ForeignCurrency implements Comparable<ForeignCurrency>{
     }
 
     public void subtract(ForeignCurrency f){
-        if (f.getCurrencyCode() == getCurrencyCode()){
+        if (f.getCurrencyCode().equals(getCurrencyCode())){
             amount -= f.getAmount();
         } else {
             ForeignCurrency d = f.convert(getCurrencyCode());
@@ -64,8 +63,7 @@ public class ForeignCurrency implements Comparable<ForeignCurrency>{
             String line = reader.readLine();
             if (line.length() > 0) {
                 double newAmount = Double.parseDouble(line) * getAmount();
-                ForeignCurrency f = new ForeignCurrency(cur, newAmount);
-                return f;
+                return new ForeignCurrency(cur, newAmount);
             }
             reader.close();
         } catch (Exception e) {

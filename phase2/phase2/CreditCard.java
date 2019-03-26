@@ -3,7 +3,6 @@ package phase2;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Locale;
 
 /**
  * The Credit card, type of Account

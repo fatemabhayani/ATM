@@ -27,14 +27,19 @@ public class AccountDisplay {
             System.out.println("Do you want to make a transfer (1), deposit (2), withdrawal (3), or bill payment (4)?");
             command = tmp.nextLine();
             command = command.replaceAll("//s","");
-            if (command.equals("1")) {
-                TransferDisplay.main(null);
-            } else if (command.equals("2")) {
-                DepositDisplay.main(null);
-            } else if (command.equals("3")) {
-                WithdrawDisplay.main(null);
-            } else {
-                BillDisplay.main(null);
+            switch (command) {
+                case "1":
+                    TransferDisplay.main(null);
+                    break;
+                case "2":
+                    DepositDisplay.main(null);
+                    break;
+                case "3":
+                    WithdrawDisplay.main(null);
+                    break;
+                default:
+                    BillDisplay.main(null);
+                    break;
             }
         } else {
             UserDisplay.main(null);

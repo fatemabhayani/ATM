@@ -1,7 +1,6 @@
 package phase2;
 
 import java.util.Calendar;
-import java.util.Locale;
 
 /**
  * The Withdraw, type of transaction
