@@ -52,7 +52,10 @@ public class UserDisplay {
                     command = tmp.nextLine();
                     command = command.replaceAll("//s", "");
                     if (command.equals("yes")) {
-                        AccountRequest r = new AccountRequest(U, accountType);
+                        System.out.println("Enter the three digit currency code of the currency you want");
+                        command = tmp.nextLine();
+                        command = command.replaceAll("//s", "");
+                        AccountRequest r = new AccountRequest(U, accountType, command);
                         ATM.b.addRequest(r);
                         System.out.println("Your request has been made!");
                     }
