@@ -6,47 +6,71 @@ ATM BANK USERS
 USER: username
 password
 SAVINGS
+- locale
 - balance
 - second owner
 - date of creation
+- list of transactions
+   - amount
+   - account to/from
+   - time of transaction
+   - locale
 CHEQUING
+- locale
 - isPrimary
 - balance
 - second owner
 - date of creation
+- list of transactions
+   - amount
+   - account to/from
+   - time of transaction
+   - locale
 CREDIT CARD
+- locale
 - credit limit
 - balance
 - second owner
 - date of creation
+- list of transactions
+   - amount
+   - account to/from
+   - time of transaction
+   - locale
 LINE OF CREDIT
+- locale
 - credit limit
 - balance
 - second owner
 - date of creation
+- list of transactions
+   - amount
+   - account to/from
+   - time of transaction
+   - locale
 CASH BACK CARD
+- locale
 - credit limit
 - balance
 - second owner
 - date of creation
+- list of transactions
+   - amount
+   - account to/from
+   - time of transaction
+   - locale
 
-- list of transactions (move only to accounts, have user method to generate list of transactions?)
-    - amount
-    - account to/from
-    - time of transaction
-
-etc.
 
 ATM BANK MANAGER
-REQUESTS
+REQUEST: request type
 User / username / password
 Account / account type / account owner(s)
-Undo / transaction
+Undo / requester / account / transaction number
 
 ATM BANK TELLERS
 TELLER1
 USER: username
-REQUESTS?
+REQUESTS (only undo transaction requests and can restock cash machine)
 
 etc.
 

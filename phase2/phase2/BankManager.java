@@ -3,6 +3,7 @@ package phase2;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 /**
  * A bank manager for the ATM.
@@ -10,10 +11,16 @@ import java.io.PrintWriter;
 public class BankManager extends BankEmployee {
 
     /**
+     * The list of requests for this employee.
+     */
+    private ArrayList<Request> requests;
+
+    /**
      * Creates a new bank manager.
      */
     public BankManager() {
         super("bankmanager", "bestboss");
+        requests = new ArrayList<>();
     }
 
     /**
@@ -28,52 +35,70 @@ public class BankManager extends BankEmployee {
     }
 
     /**
-     * Restocks the cash machine based on the contents of alerts.txt.
-     */
-    public void restockCashMachine() {
-        int index;
-        String s;
-        try (BufferedReader reader = new BufferedReader(new FileReader("phase2/phase2/alerts.txt"))) {
-            s = reader.readLine();
-            while (s != null) {
-                System.out.println(s);
-                index = getIndex(s);
-                ATM.c.increaseBills(index, 20);
-                s = reader.readLine();
-            }
-            System.out.println("No more alerts!");
-        } catch (Exception e) {
-            System.out.println("File handling error.");
-        }
-        deleteAlerts();
-        System.out.println("The cash machine has been restocked!");
-    }
-
-    /**
-     * Deletes the contents of alerts.txt.
-     */
-    private void deleteAlerts() {
-        try (PrintWriter writer = new PrintWriter("phase1/phase1/alerts.txt")) {
-            writer.print("");
-        } catch (Exception ignored) {}
-    }
-
-    /**
-     * Returns the index of the denomination that needs to be restocked
-     * in the cash machine.
+     * Returns the request at a specified index in requests.
      *
-     * @param s the line from alerts.txt
+     * @param i the index of requests
+     * @return the request at index i
      */
-    private int getIndex(String s) {
-        String number = s.substring(14, 16).replaceAll("//s", "");
-        int denom = Integer.valueOf(number);
-        switch (denom) {
-            case 50: return 0;
-            case 20: return 1;
-            case 10: return 2;
-            case 5: return 3;
-            default: System.out.println("Not a valid denomination!");
-                return -1;
+    protected Request getRequest(int i) {
+        return requests.get(i);
+    }
+
+    public int getNumberOfRequests(){return requests.size();}
+
+    /**
+     * Returns a summary of the bank manager's requests.
+     *
+     * @return the summary of requests
+     */
+    public String getRequestSummary() {
+        if (requests.size() == 0) {
+            return "You have no requests.";
+        }
+
+        StringBuilder summary = new StringBuilder("You have " + getNumberOfRequests() + " requests.");
+        int i = 0;
+        for (Request req : requests) {
+            String line = i + req.toString() + "\n";
+            summary.append(line);
+            i++;
+        }
+        return summary.toString();
+    }
+
+    /**
+     * Adds a request to the list of requests.
+     *
+     * @param request the request to add
+     */
+    public void addRequest(Request request) {
+        requests.add(request);
+    }
+
+    /**
+     * Ignores a request at a specified index by deleting it from requests.
+     *
+     * @param i the index of requests
+     */
+    void ignoreRequest(int i) {
+        requests.remove(i);
+    }
+
+    /**
+     * Completes a request at a specified index and deletes it from requests.
+     *
+     * @param i the index of requests
+     */
+    void completeRequest(int i) {
+        requests.get(i).resolveRequest();
+        requests.remove(i);
+    }
+
+    void completeRequest(int i, String password) {
+        if (requests.get(i) instanceof UserRequest){
+            UserRequest req = (UserRequest) requests.get(i);
+            req.resolveRequest(password);
+            requests.remove(i);
         }
     }
 
