@@ -1,0 +1,57 @@
+ATM BANK USERS
+USER: username
+password
+SAVINGS
+- locale
+- balance
+- second owner
+- date of creation
+- list of transactions
+   - amount
+   - account to/from
+   - time of transaction
+   - locale
+CHEQUING
+- locale
+- isPrimary
+- balance
+- second owner
+- date of creation
+- list of transactions
+   - amount
+   - account to/from
+   - time of transaction
+   - locale
+CREDIT CARD
+- locale
+- credit limit
+- balance
+- second owner
+- date of creation
+- list of transactions
+   - amount
+   - account to/from
+   - time of transaction
+   - locale
+LINE OF CREDIT
+- locale
+- credit limit
+- balance
+- second owner
+- date of creation
+- list of transactions
+   - amount
+   - account to/from
+   - time of transaction
+   - locale
+CASH BACK CARD
+- locale
+- credit limit
+- balance
+- second owner
+- date of creation
+- list of transactions
+   - amount
+   - account to/from
+   - time of transaction
+   - locale
