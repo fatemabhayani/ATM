@@ -1,6 +1,7 @@
 package phase2;
 
 import java.util.Calendar;
+import java.util.Locale;
 
 /**
  * The Transfer, type of Transaction.
@@ -18,7 +19,7 @@ public class Transfer extends Transaction {
      * @param moneyFrom the account where the money is from
      * @param date      the date of creation
      */
-    Transfer(double amount, Account moneyTo, Account moneyFrom, Calendar date){
+    Transfer(ForeignCurrency amount, Account moneyTo, Account moneyFrom, Calendar date){
         super(amount, date);
         this.moneyTo = moneyTo;
         this.moneyFrom = moneyFrom;
@@ -30,9 +31,11 @@ public class Transfer extends Transaction {
         } else if (moneyFrom.getClass().isInstance(LineOfCredit.class)) {
             return true;
         } else if (moneyFrom.getClass().isInstance(Savings.class)) {
-            return moneyFrom.getBalance() >= getAmount();
+            return moneyFrom.getBalance().compareTo(getAmount()) >= 0;
         } else {
-            return (moneyFrom.getBalance() >= 0 && moneyFrom.getBalance() - getAmount() >= -100);
+            return (moneyFrom.getBalance().getAmount() >= 0 && moneyFrom.getBalance().compareTo(
+            new ForeignCurrency(Locale.CANADA, getAmount().convert(Locale.CANADA).getAmount() - 100)
+            ) >= 0);
         }
     }
 
