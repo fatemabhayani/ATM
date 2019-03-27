@@ -177,8 +177,18 @@ public class User implements Serializable {
      * @param s the type of accounts
      * @return the list of accounts specified by user, returns the empty list if an invalid input is made
      */
-    public ArrayList getAccount(String s) {
-        return accounts.getAccount(s);
+    public ArrayList getAccountList(String s) {
+        return accounts.getAccountList(s);
+    }
+
+    /**
+     * Gets the accounts of a user given the account number.
+     *
+     * @param num the account number
+     * @return the account
+     */
+    public Account getAccount(int num) {
+        return accounts.getAccount(num);
     }
 
     @Override

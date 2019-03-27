@@ -1,6 +1,7 @@
 package phase2.Accounts;
 
 import phase2.ForeignCurrency;
+import phase2.People.User;
 import phase2.Transactions.Transaction;
 
 import java.util.Calendar;
@@ -11,12 +12,24 @@ import java.util.Calendar;
 public class Savings extends AssetAccount {
 
     /**
-     * Instantiates a new Savings account.
+     * Instantiates a new chequing account.
      *
      * @param date the date of creation
+     * @param owner1 the owner 1
      */
-    public Savings(Calendar date, String currencyCode) {
-        super(date, currencyCode);
+    public Savings(Calendar date, User owner1, String currencyCode, int num) {
+        super(date, owner1, currencyCode, num);
+    }
+
+    /**
+     * Instantiates a new asset account.
+     *
+     * @param date   the date of creation
+     * @param owner1 the owner 1
+     * @param owner2 the owner 2
+     */
+    public Savings(Calendar date, User owner1, User owner2, String currencyCode, int num) {
+        super(date, owner1, owner2, currencyCode, num);
     }
 
     /**

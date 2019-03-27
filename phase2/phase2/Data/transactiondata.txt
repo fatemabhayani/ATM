@@ -1,0 +1,16 @@
+ATM TRANSACTIONS
+USER
+SAVINGS
+ACCOUNT
+- list of transactions
+   - amount
+   - account to/from
+   - time of transaction
+
+CHEQUING
+
+CREDIT CARD
+
+LINE OF CREDIT
+
+CASH BACK CARD

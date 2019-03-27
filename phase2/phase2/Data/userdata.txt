@@ -2,56 +2,42 @@ ATM BANK USERS
 USER
 username.password
 SAVINGS
+ACCOUNT
+- account number
 - locale
 - balance
 - second owner
 - date of creation
-- list of transactions
-   - amount
-   - account to/from
-   - time of transaction
-   - locale
+
 CHEQUING
+ACCOUNT
+- account number
 - locale
 - isPrimary
 - balance
 - second owner
 - date of creation
-- list of transactions
-   - amount
-   - account to/from
-   - time of transaction
-   - locale
+
 CREDIT CARD
+- account number
 - locale
 - credit limit
 - balance
 - second owner
 - date of creation
-- list of transactions
-   - amount
-   - account to/from
-   - time of transaction
-   - locale
+
 LINE OF CREDIT
+- account number
 - locale
 - credit limit
 - balance
 - second owner
 - date of creation
-- list of transactions
-   - amount
-   - account to/from
-   - time of transaction
-   - locale
+
 CASH BACK CARD
+- account number
 - locale
 - credit limit
 - balance
 - second owner
 - date of creation
-- list of transactions
-   - amount
-   - account to/from
-   - time of transaction
-   - locale

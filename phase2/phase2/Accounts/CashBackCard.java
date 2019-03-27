@@ -8,16 +8,12 @@ import java.util.Calendar;
 
 public class CashBackCard extends CreditCard {
 
-    public CashBackCard(Calendar date, String currencyCode) {
-        super(date, currencyCode);
+    public CashBackCard(Calendar date, User owner1, String currencyCode, int num) {
+        super(date, owner1, currencyCode, num);
     }
 
-    public CashBackCard(Calendar date, User owner1, String currencyCode) {
-        super(date, owner1, currencyCode);
-    }
-
-    public CashBackCard(Calendar date, User owner1, User owner2, String currencyCode) {
-        super(date, owner1, owner2, currencyCode);
+    public CashBackCard(Calendar date, User owner1, User owner2, String currencyCode, int num) {
+        super(date, owner1, owner2, currencyCode, num);
     }
 
     public void increase(){

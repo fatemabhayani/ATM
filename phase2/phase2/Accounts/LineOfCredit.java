@@ -1,5 +1,6 @@
 package phase2.Accounts;
 
+import phase2.People.User;
 import phase2.Transactions.Transaction;
 
 import java.util.Calendar;
@@ -14,8 +15,17 @@ public class LineOfCredit extends CreditCard {
      *
      * @param date the date of creation
      */
-    public LineOfCredit(Calendar date, String currencyCode) {
-        super(date, currencyCode);
+    public LineOfCredit(Calendar date, User owner1, User owner2, String currencyCode, int num) {
+        super(date, owner1, owner2, currencyCode, num);
+    }
+
+    /**
+     * Instantiates a new Line of credit account.
+     *
+     * @param date the date of creation
+     */
+    public LineOfCredit(Calendar date, User owner1, String currencyCode, int num) {
+        super(date, owner1, currencyCode, num);
     }
 
     @Override
