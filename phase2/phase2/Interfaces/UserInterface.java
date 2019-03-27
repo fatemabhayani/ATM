@@ -29,7 +29,7 @@ class UserInterface extends JFrame {
     private String verify;
     private ArrayList<Account> account;
     private Account a;
-    private int i;
+    public int i;
 
     public UserInterface(User U) {
         add(root);
@@ -82,7 +82,7 @@ class UserInterface extends JFrame {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 a = account.get(i);
-                switchToAccount();
+                switchToAccount(a,U);
             }
         });
         comboBox1.addActionListener(new ActionListener() {
@@ -104,7 +104,10 @@ class UserInterface extends JFrame {
                         break;
                 }
                 for (int i = 0; i < account.size(); i++) {
-                    comboBox2.addItem(String.valueOf(i));
+                    if (String.valueOf(i)!=null){
+                        comboBox2.addItem(String.valueOf(i));
+                    }
+
                 }
             }
         });
@@ -115,8 +118,8 @@ class UserInterface extends JFrame {
             }
         });
     }
-    private void switchToAccount(){
-        AccountInterface AI = new AccountInterface();
+    private void switchToAccount(Account A,User user){
+        AccountInterface AI = new AccountInterface(A,user);
         AI.setVisible(true);
         AI.pack();
         AI.setLocationRelativeTo(null);

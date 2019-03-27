@@ -111,10 +111,10 @@ class LoginActivity extends JFrame{
         this.dispose();
     }
     public void switchToAccount() {
-        AccountInterface acc = new AccountInterface();
-        acc.setVisible(true);
-        acc.pack();
-        acc.setLocationRelativeTo(null);
+      //  AccountInterface acc = new AccountInterface();
+        //acc.setVisible(true);
+        //acc.pack();
+        //acc.setLocationRelativeTo(null);
         this.dispose();
 
     }
