@@ -1,14 +1,12 @@
 package phase2.People;
 
 import phase2.Display.ATM;
-import phase2.People.BankEmployee;
-import phase2.People.User;
 import phase2.Request.*;
 
 import java.util.ArrayList;
 
 public class BankTeller extends BankEmployee {
-    // Start with fixed number (10?) of BankTellers?
+    // Start with fixed number (10) of BankTellers
     // username: teller1, ..., teller10
     // password: bestemployee1, ..., bestemployee10
 
@@ -24,6 +22,9 @@ public class BankTeller extends BankEmployee {
 
     /**
      * Creates a new bank teller.
+     *
+     * @param username the teller's username
+     * @param password the teller's password
      */
     public BankTeller(String username, String password) {
         super(username, password);
@@ -31,13 +32,19 @@ public class BankTeller extends BankEmployee {
         requests = new ArrayList<>();
     }
 
+    /**
+     * Adds a user account for this bank teller.
+     *
+     * @param username the user's username
+     * @param password the user's password
+     */
     public void createUserAccount(String username, String password) {
         u = new User(username, password);
         ATM.bankUsers.add(u);
     }
 
     /**
-     * Returns the request at a specified index in requests.
+     * Returns the undo request at a specified index in requests.
      *
      * @param i the index of requests
      * @return the request at index i
@@ -46,7 +53,12 @@ public class BankTeller extends BankEmployee {
         return requests.get(i);
     }
 
-    private int getNumberOfRequests(){return requests.size();}
+    /**
+     * Returns number of requests in the manager's notifications.
+     *
+     * @return the number of requests
+     */
+    private int getNumberOfRequests() { return requests.size(); }
 
     /**
      * Returns a summary of the bank manager's requests.
@@ -87,7 +99,7 @@ public class BankTeller extends BankEmployee {
     }
 
     /**
-     * Completes a request at a specified index and deletes it from requests.
+     * Completes an undo request at a specified index and deletes it from requests.
      *
      * @param i the index of requests
      */
