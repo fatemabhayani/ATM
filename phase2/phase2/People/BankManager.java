@@ -59,7 +59,7 @@ public class BankManager extends BankEmployee {
         StringBuilder summary = new StringBuilder("You have " + getNumberOfRequests() + " requests. \n");
         int i = 0;
         for (Request req : requests) {
-            String line = i + req.toString() + "\n";
+            String line = i + ". " + req.toString() + "\n";
             summary.append(line);
             i++;
         }
