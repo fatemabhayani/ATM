@@ -32,6 +32,8 @@ Unused Methods
 ATM Time: get current year, get current month
 Account Manager: 1 constructor isnt used
 Chequing getisPrimary
+Datasaver class is not used
+Write File
 
 Phase 1 Markus comments
 
