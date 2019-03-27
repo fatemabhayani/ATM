@@ -106,7 +106,7 @@ public abstract class Transaction implements Serializable {
             while ((inputAmount = re.readLine()) != null) {
                 String[] amountArray = inputAmount.split(" ");
                 // removes all other characters except numbers
-                inputAmount = amountArray[1].replaceAll("[^\\d]","");
+                inputAmount = amountArray[1].replaceAll("[^\\d\\. ]","");
                 // add amount into total amount
                 try {
                     double value = Double.parseDouble(inputAmount);
