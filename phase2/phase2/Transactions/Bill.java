@@ -4,6 +4,9 @@ import phase2.Accounts.*;
 import phase2.ForeignCurrency;
 import java.util.Calendar;
 
+/**
+ * A bill transaction.
+ */
 public class Bill extends Transaction {
 
     /**

@@ -1,32 +1,37 @@
 package phase2.Transactions;
 
 import phase2.Display.ATM;
-import phase2.Accounts.Account;
-import phase2.Accounts.Chequing;
-import phase2.Accounts.Savings;
+import phase2.Accounts.*;
 import phase2.ForeignCurrency;
-
 import java.util.Calendar;
 
 /**
- * The Withdraw, type of transaction
+ * A withdrawal transaction.
  */
 public class Withdraw extends Transaction {
 
+    /**
+     * The account making the withdrawal.
+     */
     private Account moneyFrom;
 
     /**
-     * Instantiates a new Withdraw.
+     * Instantiates a new withdrawal.
      *
      * @param amount    the amount of withdrawal
      * @param moneyFrom the account where the withdrawal is from
      * @param date      the date of creation
      */
-    public Withdraw(ForeignCurrency amount, Account moneyFrom, Calendar date){
+    public Withdraw(ForeignCurrency amount, Account moneyFrom, Calendar date) {
         super(amount, date);
         this.moneyFrom = moneyFrom;
     }
 
+    /**
+     * Gets whether the transaction is approved.
+     *
+     * @return true unless account is credit card account.
+     */
     public boolean transactionApproved() {
         boolean isEnoughBills = (getAmount().convert("CAD").getAmount() > ATM.c.totalBalance());
         boolean isValidAmount = (getAmount().convert("CAD").getAmount() % 5 == 0);
@@ -42,11 +47,17 @@ public class Withdraw extends Transaction {
         return (isEnoughBills && isValidAmount && isEnoughFunds);
     }
 
+    /**
+     * Makes a withdraw transaction.
+     */
     public void makeTransaction() {
         moneyFrom.subtract(this);
         ATM.c.withdrawBills(getAmount().convert("CAD").getAmount());
     }
 
+    /**
+     * Undoes a withdraw transaction.
+     */
     public void undoTransaction() {
         moneyFrom.add(this);
     }

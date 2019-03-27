@@ -1,19 +1,22 @@
 package phase2.Transactions;
 
-import phase2.Accounts.Account;
-import phase2.Accounts.CreditCard;
-import phase2.Accounts.LineOfCredit;
-import phase2.Accounts.Savings;
+import phase2.Accounts.*;
 import phase2.ForeignCurrency;
-
 import java.util.Calendar;
 
 /**
- * The Transfer, type of Transaction.
+ * A transfer transaction.
  */
 public class Transfer extends Transaction {
 
+    /**
+     * The account receiving the transfer.
+     */
     private Account moneyTo;
+
+    /**
+     * The account transferring money.
+     */
     private Account moneyFrom;
 
     /**
@@ -24,12 +27,17 @@ public class Transfer extends Transaction {
      * @param moneyFrom the account where the money is from
      * @param date      the date of creation
      */
-    public Transfer(ForeignCurrency amount, Account moneyTo, Account moneyFrom, Calendar date){
+    public Transfer(ForeignCurrency amount, Account moneyTo, Account moneyFrom, Calendar date) {
         super(amount, date);
         this.moneyTo = moneyTo;
         this.moneyFrom = moneyFrom;
     }
 
+    /**
+     * Gets whether the transaction is approved.
+     *
+     * @return true unless account is credit card account.
+     */
     public boolean transactionApproved() {
         if (moneyFrom.getClass().isInstance(CreditCard.class)) {
             return false;
@@ -44,11 +52,17 @@ public class Transfer extends Transaction {
         }
     }
 
+    /**
+     * Makes a transfer transaction.
+     */
     public void makeTransaction() {
         moneyFrom.subtract(this);
         moneyTo.add(this);
     }
 
+    /**
+     * Undoes a transfer transaction.
+     */
     public void undoTransaction() {
         moneyFrom.add(this);
         moneyTo.subtract(this);

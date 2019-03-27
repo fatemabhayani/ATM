@@ -5,91 +5,84 @@ import phase2.ForeignCurrency;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.Calendar;
 
 /**
- * The Transaction.
+ * An abstract transaction.
  */
-public abstract class Transaction implements Serializable {
+public abstract class Transaction {
 
     /**
-     * The Amount of the transaction.
+     * The amount of the transaction.
      */
     ForeignCurrency amount;
+
+    /**
+     * The date of the transaction.
+     */
     private Calendar timeOfTransaction;
-    // Records whether transaction was valid or not
+
+    /**
+     * Records whether or not the transaction is valid.
+     */
     private boolean approved;
 
     /**
-     * Instantiates a new Transaction.
+     * Instantiates a new transaction.
      *
      * @param amount            the amount
      * @param timeOfTransaction the time of transaction
      */
-// pass in AtM time
     Transaction(ForeignCurrency amount, Calendar timeOfTransaction) {
-        setAmount(amount);
-        setTimeOfTransaction(timeOfTransaction);
-        setIsApproved();
-        // transaction is made upon creation (if viable)
+        this.amount = amount;
+        this.timeOfTransaction = timeOfTransaction;
+        this.approved = transactionApproved();
+        // The transaction is made upon creation (if viable)
         if (this.approved) {
             makeTransaction();
+        } else {
+            System.out.println("This transaction is not approved.");
         }
     }
+
     /**
-     * Instantiates a new Transaction. Second constructor for deposit transactions.
+     * Instantiates a new Transaction.
+     * This is a second constructor for deposit transactions.
      *
      * @param depositFile       the amount recorded in a .txt file
      * @param timeOfTransaction the time of transaction
      */
     Transaction(String depositFile, Calendar timeOfTransaction) {
-        ForeignCurrency deposit = readFile(depositFile);
-        setAmount(deposit);
-        setTimeOfTransaction(timeOfTransaction);
-        setIsApproved();
-        // transaction is made upon creation (if viable)
+        amount = readFile(depositFile);
+        this.timeOfTransaction = timeOfTransaction;
+        this.approved = transactionApproved();
+        // The transaction is made upon creation (if viable)
         if (this.approved) {
             makeTransaction();
         }
     }
 
-    private void setIsApproved() {
-        this.approved = transactionApproved();
-    }
-
     /**
-     * Get whether the transaction is approved.
+     * Gets whether the transaction is approved.
      *
      * @return true if approved, false otherwise
      */
     public boolean getIsApproved() { return approved; }
 
-    private void setAmount(ForeignCurrency amount){
-        this.amount = amount;
-    }
-
     /**
-     * Gets amount of transaction
+     * Gets amount of transaction.
      *
      * @return the amount
      */
-    public ForeignCurrency getAmount() {
-        return amount;
-    }
-
-    private void setTimeOfTransaction(Calendar time){
-        this.timeOfTransaction = time;
-    }
+    public ForeignCurrency getAmount() { return amount; }
 
     /**
-     * Get time of transaction time.
+     * Gets time of transaction.
      *
      * @return the time
      */
-    public Calendar getTimeOfTransaction(){
-        return timeOfTransaction;
-    }
+    public Calendar getTimeOfTransaction() { return timeOfTransaction; }
+
     /**
      * Reads .txt file and accumulates amounts deposited
      *
@@ -115,7 +108,7 @@ public abstract class Transaction implements Serializable {
                     System.out.println("Error: Invalid deposit request");
                 }
             }
-        }catch (IOException io) {
+        } catch (IOException io) {
             System.out.println("Error:" + io);
         }
         return new ForeignCurrency("CAD", totalDeposit);

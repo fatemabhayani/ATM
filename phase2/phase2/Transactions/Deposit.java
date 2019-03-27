@@ -1,44 +1,48 @@
 package phase2.Transactions;
 
-import phase2.Accounts.Account;
-import phase2.Accounts.CreditCard;
-import phase2.Transactions.Transaction;
-
+import phase2.Accounts.*;
 import java.util.Calendar;
 
 /**
- * The Deposit, type of Transaction
+ * A deposit transaction.
  */
 public class Deposit extends Transaction {
+
+    /**
+     * The account making the deposit.
+     */
     private Account moneyTo;
 
     /**
      * Instantiates a new Deposit.
      *
      * @param deposit  file containing information regarding the amount of deposit(s)
-     * @param moneyTo Account to deposit the money to
-     * @param date    the date of creation
+     * @param moneyTo  account to deposit the money to
+     * @param date     the date of creation
      */
     public Deposit(String deposit, Account moneyTo, Calendar date) {
         super(deposit, date);
         this.moneyTo = moneyTo;
     }
+
     /**
-     * Get whether the transaction is approved.
+     * Gets whether the transaction is approved.
      *
-     * @return true unless account is Credit account.
+     * @return true unless account is credit card account.
      */
     public boolean transactionApproved() {
         return !(moneyTo instanceof CreditCard);
     }
+
     /**
-     * Make a deposit transaction.
+     * Makes a deposit transaction.
      */
     public void makeTransaction() {
         moneyTo.add(this);
     }
+
     /**
-     * Undo a transaction.
+     * Undoes a deposit transaction.
      */
     public void undoTransaction() {
         moneyTo.subtract(this);
