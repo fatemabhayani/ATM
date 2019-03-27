@@ -12,9 +12,13 @@ class ManagerInterface extends JFrame {
     private JButton acceptRequestButton;
     private JButton declineUserButton;
     private JTextField welcomeMrManagerTextField;
+    private JPanel root;
     private String option;
 
     public ManagerInterface() {
+        add(root);
+        setSize(500,500);
+
         for (int i = 0; i <  ATM.b.getNumberOfRequests(); i++) {
             comboBox1.addItem(ATM.b.getRequest(i).toString()+"\n");
         }

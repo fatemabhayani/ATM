@@ -13,12 +13,14 @@ import java.awt.event.MouseEvent;
 
 
 class LoginActivity extends JFrame{
-    private JPanel panel = new JPanel();
-    private JButton clickHereIfYouButton = new JButton();
-    private JButton loginButton = new JButton();
-    private JLabel loginPageLabel = new JLabel();
-    private JTextField textField1 = new JTextField();
+    private JPanel root;
+    private JButton clickHereIfYouButton;
+    private JButton loginButton;
+    private JTextField textField1;
     private JPasswordField passwordField1;
+    private JLabel loginPageLabel;
+    private JLabel usernameLabel;
+    private JLabel passwordLabel;
     private User user;
     private boolean nameExists = false;
     private boolean passMatch = false;
@@ -26,10 +28,8 @@ class LoginActivity extends JFrame{
     private boolean managerlogin = false;
 
     public LoginActivity() {
-        setVisible(true);
-        setSize(600,300);
+        add(root);
         textField1.addInputMethodListener(new InputMethodListener() {
-
             @Override
             public void inputMethodTextChanged(InputMethodEvent event) {
                 String input = textField1.getText();

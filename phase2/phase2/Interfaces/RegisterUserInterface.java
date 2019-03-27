@@ -3,6 +3,7 @@ package phase2.Interfaces;
 import phase2.People.UserManager;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.InputMethodEvent;
 import java.awt.event.InputMethodListener;
 import java.awt.event.MouseAdapter;
@@ -11,8 +12,11 @@ import java.awt.event.MouseEvent;
 class RegisterUserInterface extends JFrame {
     private JTextField textField1;
     private JButton requestUserButton;
+    private JPanel root;
 
     public RegisterUserInterface() {
+        add(root);
+        setSize(500,500);
         requestUserButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -42,5 +46,13 @@ class RegisterUserInterface extends JFrame {
         LA.pack();
         LA.setLocationRelativeTo(null);
         this.dispose();
+    }
+    public static void main (String args[]) {
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new RegisterUserInterface().setVisible(true);
+            }
+        });
     }
 }
