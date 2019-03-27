@@ -1,16 +1,12 @@
 package phase2.People;
 
 import phase2.Display.ATM;
-import phase2.People.User;
-import phase2.Transactions.Bill;
-import phase2.Transactions.Transaction;
-
+import phase2.Transactions.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.PrintWriter;
-import java.io.Serializable;
 
-public abstract class BankEmployee implements Serializable {
+public abstract class BankEmployee {
 
     /**
      * The username for this employee.
@@ -49,10 +45,11 @@ public abstract class BankEmployee implements Serializable {
     }
 
     /**
-     * Undoes the nth recent transaction by a user, where 0 represents
-     * most recent.
+     * Undoes the ith most recent transaction by a user, where 0 represents
+     * the most recent.
      *
      * @param user the user
+     * @param i the index of the most recent transaction
      */
     public void undoTransaction(User user, int i) {
         Transaction t = user.getTransaction(i);
