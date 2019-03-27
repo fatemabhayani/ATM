@@ -12,7 +12,6 @@ import java.util.Scanner;
 
 class TransferDisplay {
 
-    private static String command;
     private static User U = AccountDisplay.U;
     private static Account a = AccountDisplay.a;
 
@@ -20,7 +19,7 @@ class TransferDisplay {
         System.out.println("Is this an internal transaction?");
         Scanner tmp = new Scanner(System.in);
 
-        command = tmp.nextLine();
+        String command = tmp.nextLine();
         command = command.replaceAll("//s", "");
 
         if (command.equals("yes")) {
@@ -28,7 +27,7 @@ class TransferDisplay {
             System.out.println("Select the account you want to transfer money to");
             command = tmp.nextLine();
             command = command.replaceAll("//s", "");
-            ArrayList<Account> d = U.getAccount(command);
+            ArrayList<Account> d = U.getAccountList(command);
             if (d.size() == 0) {
                 System.out.println("There are no accounts to choose from here! Please try again.");
                 AccountDisplay.main(null);
@@ -64,10 +63,10 @@ class TransferDisplay {
                     + "Type 'c' for chequing" +"\n"+"Type 's' for savings");
             command = tmp.nextLine();
             switch(command) {
-                case ("lc"): account = r.getAccount("lc"); break;
-                case ("cc"): account = r.getAccount("cc"); break;
-                case ("s"): account = r.getAccount("s"); break;
-                case ("c"): account = r.getAccount("c"); break;
+                case ("lc"): account = r.getAccountList("lc"); break;
+                case ("cc"): account = r.getAccountList("cc"); break;
+                case ("s"): account = r.getAccountList("s"); break;
+                case ("c"): account = r.getAccountList("c"); break;
             }
             if (account.size() == 0) {
                 System.out.println("There are no such accounts. Try again");

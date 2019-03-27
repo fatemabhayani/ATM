@@ -8,9 +8,9 @@ import phase2.Request.AccountRequest;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-class UserDisplay {
+public class UserDisplay {
 
-    private static String command;
+
     public static User U = UserManager.getUser(ATM.username);
     public static Account a;
     public static String accountType;
@@ -20,7 +20,7 @@ class UserDisplay {
                 + "Type '1' if you would like to interact with your accounts" + "\n"
                 + "Type '2' if you would like to log out");
         Scanner tmp = new Scanner(System.in);
-        command = tmp.nextLine();
+        String command = tmp.nextLine();
         command = command.replaceAll("//s","");
         switch (command) {
             case "0":
@@ -28,6 +28,7 @@ class UserDisplay {
                 command = tmp.nextLine();
                 command = command.replaceAll("//s", "");
                 U.setPassword(command);
+                UserDisplay.main(null);
                 break;
             case "1":
                 System.out.println(U.balanceSummary());
@@ -38,16 +39,19 @@ class UserDisplay {
                 command = tmp.nextLine();
                 switch (command) {
                     case ("lc"):
-                        account = U.getAccount("lc");
+                        account = U.getAccountList("lc");
                         break;
                     case ("cc"):
-                        account = U.getAccount("cc");
+                        account = U.getAccountList("cc");
                         break;
-                    case ("s"):
-                        account = U.getAccount("s");
+                    case ("sv"):
+                        account = U.getAccountList("sv");
                         break;
-                    case ("c"):
-                        account = U.getAccount("c");
+                    case ("cq"):
+                        account = U.getAccountList("cq");
+                        break;
+                    case ("cb"):
+                        account = U.getAccountList("cb");
                         break;
                 }
                 accountType = command;

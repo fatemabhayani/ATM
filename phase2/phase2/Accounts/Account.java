@@ -2,7 +2,7 @@ package phase2.Accounts;
 
 import phase2.ForeignCurrency;
 import phase2.Transactions.Transaction;
-
+import phase2.People.User;
 import java.util.ArrayList;
 
 /**
@@ -31,7 +31,6 @@ public interface Account {
      */
     void subtract(Transaction transaction);
 
-
     /**
      * Subtracts the amount from the balance.
      *
@@ -47,14 +46,14 @@ public interface Account {
     void add(Transaction transaction);
 
     /**
-     * Adds amount from file to the balance.
+     * Adds the amount from file to the balance.
      *
      * @param file name of the file that contains the amount
      */
     void add(String file);
 
     /**
-     * Returns this accounts list of transactions.
+     * Returns this account's list of transactions.
      *
      * @return the list of transactions
      */
@@ -72,7 +71,7 @@ public interface Account {
      * Reads from file to extract the amount.
      *
      * @param file the file
-     * @return the int value of amount
+     * @return the amount
      */
     ForeignCurrency helpRead(String file);
 
@@ -82,4 +81,11 @@ public interface Account {
      * @param amount the amount
      */
     void helpWrite(ForeignCurrency amount);
+
+    /**
+     * Adds a second owner to the account.
+     *
+     * @param owner the second owner
+     */
+    void setNewOwner(User owner);
 }

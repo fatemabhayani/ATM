@@ -2,7 +2,7 @@ package phase2.Accounts;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import phase2.Accounts.*;
+import phase2.People.*;
 import phase2.Transactions.*;
 
 /**
@@ -35,6 +35,11 @@ public class AccountManager {
     private final ArrayList<CashBackCard> cb;
 
     /**
+     * AccountManager owner.
+     */
+    private User owner;
+
+    /**
      * Instantiates a new account manager.
      */
     public AccountManager() {
@@ -43,24 +48,6 @@ public class AccountManager {
         cq = new ArrayList<>();
         sv = new ArrayList<>();
         cb = new ArrayList<>();
-    }
-
-    /**
-     * Instantiates a new account manager.
-     *
-     * @param lc line of credit accounts
-     * @param cc credit card accounts
-     * @param cq line of credit accounts
-     * @param sv the sv
-     * @param cb the cb
-     */
-    public AccountManager(ArrayList<LineOfCredit> lc, ArrayList<CreditCard> cc, ArrayList<Chequing> cq,
-                          ArrayList<Savings> sv, ArrayList<CashBackCard> cb) {
-        this.lc = lc;
-        this.cc = cc;
-        this.cq = cq;
-        this.sv = sv;
-        this.cb = cb;
     }
 
     /**
@@ -113,7 +100,7 @@ public class AccountManager {
      * @param s the type of account
      * @return the list of accounts
      */
-    public ArrayList getAccount(String s) {
+    public ArrayList getAccountList(String s) {
         switch (s) {
             case "lc": return lc;
             case "cc": return cc;
@@ -187,14 +174,62 @@ public class AccountManager {
      * @param time        the time of creation
      */
     public void add(String accountType, String curr, Calendar time) {
+        int num = lc.size() + cc.size() + cq.size() + sv.size() + cb.size() + 1;
         switch (accountType) {
-            case ("lc"): lc.add(new LineOfCredit(time, curr)); break;
-            case ("cc"): cc.add(new CreditCard(time, curr)); break;
-            case ("sv"): sv.add(new Savings(time, curr)); break;
+            case ("lc"): lc.add(new LineOfCredit(time, owner, curr, num)); break;
+            case ("cc"): cc.add(new CreditCard(time, owner, curr, num)); break;
+            case ("sv"): sv.add(new Savings(time, owner, curr, num)); break;
             case ("cq"):
-                if (cq.size() == 0) { cq.add(new Chequing(true, time, curr));
-                } else { cq.add(new Chequing(false, time, curr)); } break;
-            case ("cb"): cb.add(new CashBackCard(time, curr)); break;
+                if (cq.size() == 0) { cq.add(new Chequing(true, time, owner, curr, num));
+                } else { cq.add(new Chequing(false, time, owner, curr, num)); } break;
+            case ("cb"): cb.add(new CashBackCard(time, owner, curr, num)); break;
         }
+    }
+
+    /**
+     * Adds a previously made account.
+     *
+     * @param account the account
+     */
+    public void add(Account account) {
+        if (account.getClass() == LineOfCredit.class) {
+            lc.add((LineOfCredit) account);
+        } else if (account.getClass() == CreditCard.class) {
+            cc.add((CreditCard) account);
+        } else if (account.getClass() == Savings.class) {
+            sv.add((Savings) account);
+        } else if (account.getClass() == Chequing.class) {
+            cq.add((Chequing) account);
+        } else {
+            cb.add((CashBackCard) account);
+        }
+    }
+
+    /**
+     * Gets the account given its unique number.
+     *
+     * @param num the account number
+     * @return the account
+     */
+    public Account getAccount(int num) {
+        if (num > lc.size() + cc.size() + cq.size() + sv.size() + cb.size()) {
+            System.out.println("That is not a valid account number!");
+        } else {
+            for (LineOfCredit a : lc) {
+                if (a.accountNum == num) { return a; }
+            }
+            for (CreditCard a : cc) {
+                if (a.accountNum == num) { return a; }
+            }
+            for (Savings a : sv) {
+                if (a.accountNum == num) { return a; }
+            }
+            for (Chequing a : cq) {
+                if (a.accountNum == num) { return a; }
+            }
+            for (CashBackCard a : cb)
+                if (a.accountNum == num) { return a; }
+        }
+        return null;
     }
 }

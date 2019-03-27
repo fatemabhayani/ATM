@@ -22,6 +22,8 @@ public abstract class AssetAccount implements Account, Serializable {
 
     private User owner2;
 
+    public int accountNum;
+
     /**
      * The account's recent transactions.
      */
@@ -32,17 +34,6 @@ public abstract class AssetAccount implements Account, Serializable {
      */
     private final Calendar dateOfCreation;
 
-    /**
-     * Instantiates a new asset account.
-     *
-     * @param date         the date of creation
-     * @param currencyCode the currency code
-     */
-    AssetAccount(Calendar date, String currencyCode) {
-        dateOfCreation = date;
-        transactions = new ArrayList<>();
-        balance = new ForeignCurrency(currencyCode, 0);
-    }
 
     /**
      * Instantiates a new asset account.
@@ -51,26 +42,13 @@ public abstract class AssetAccount implements Account, Serializable {
      * @param owner1       the owner 1
      * @param currencyCode the currency code
      */
-    public AssetAccount(Calendar date, User owner1, String currencyCode) {
+    public AssetAccount(Calendar date, User owner1, String currencyCode, int num) {
         dateOfCreation = date;
         transactions = new ArrayList<>();
         this.owner1 = owner1;
         this.owner2 = null;
         balance = new ForeignCurrency(currencyCode, 0);
-    }
-
-    /**
-     * Instantiates a new asset account.
-     *
-     * @param date   the date of creation
-     * @param owner1 the owner 1
-     * @param owner2 the owner 2
-     */
-    public AssetAccount(Calendar date, User owner1, User owner2) {
-        dateOfCreation = date;
-        transactions = new ArrayList<>();
-        this.owner1 = owner1;
-        this.owner2 = owner2;
+        accountNum = num;
     }
 
     /**
@@ -89,6 +67,15 @@ public abstract class AssetAccount implements Account, Serializable {
      */
     public void setBalance(ForeignCurrency newBalance){
         balance = newBalance;
+    }
+
+    /**
+     * Sets a new owner.
+     *
+     * @param owner2 the new owner
+     */
+    public void setNewOwner(User owner2){
+        this.owner2 = owner2;
     }
 
     /**
