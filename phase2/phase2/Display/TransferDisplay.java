@@ -12,7 +12,6 @@ import java.util.Scanner;
 
 class TransferDisplay {
 
-    private static String command;
     private static User U = AccountDisplay.U;
     private static Account a = AccountDisplay.a;
 
@@ -20,7 +19,7 @@ class TransferDisplay {
         System.out.println("Is this an internal transaction?");
         Scanner tmp = new Scanner(System.in);
 
-        command = tmp.nextLine();
+        String command = tmp.nextLine();
         command = command.replaceAll("//s", "");
 
         if (command.equals("yes")) {
