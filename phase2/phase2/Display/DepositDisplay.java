@@ -14,7 +14,7 @@ class DepositDisplay {
     public static void main(String[] args) {
         Calendar time = ATM.clock.getCurrentTime();
         Deposit t = new Deposit("deposits.txt", a, time);
-        U.makeDeposit(t);
+        U.makeTransaction(t);
         AccountDisplay.main(null);
     }
 

@@ -48,7 +48,7 @@ class TransferDisplay {
             command = command.replaceAll("//s", "");
             Calendar time = ATM.clock.getCurrentTime();
             Transfer t = new Transfer(new ForeignCurrency(command, amount), da, a, time);
-            U.makeTransfer(t);
+            U.makeTransaction(t);
 
         } else {
             System.out.println("Type the username of the user who will receive this transaction.");
@@ -83,7 +83,7 @@ class TransferDisplay {
             command = command.replaceAll("//s", "");
             Calendar time = ATM.clock.getCurrentTime();
             Transfer t = new Transfer(new ForeignCurrency(command, amt), da, a, time);
-            U.makeTransfer(t);
+            U.makeTransaction(t);
         }
         AccountDisplay.main(null);
     }
