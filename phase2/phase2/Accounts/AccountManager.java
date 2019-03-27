@@ -212,24 +212,23 @@ public class AccountManager {
      * @return the account
      */
     public Account getAccount(int num) {
-        if (num > lc.size() + cc.size() + cq.size() + sv.size() + cb.size()) {
-            System.out.println("That is not a valid account number!");
-        } else {
-            for (LineOfCredit a : lc) {
-                if (a.accountNum == num) { return a; }
-            }
-            for (CreditCard a : cc) {
-                if (a.accountNum == num) { return a; }
-            }
-            for (Savings a : sv) {
-                if (a.accountNum == num) { return a; }
-            }
-            for (Chequing a : cq) {
-                if (a.accountNum == num) { return a; }
-            }
-            for (CashBackCard a : cb)
-                if (a.accountNum == num) { return a; }
+        for (LineOfCredit a : lc) {
+            if (a.accountNum == num) { return a; }
         }
+        for (CreditCard a : cc) {
+            if (a.accountNum == num) { return a; }
+        }
+        for (Savings a : sv) {
+            if (a.accountNum == num) { return a; }
+        }
+        for (Chequing a : cq) {
+            if (a.accountNum == num) { return a; }
+        }
+        for (CashBackCard a : cb) {
+            if (a.accountNum == num) { return a; }
+        }
+
+        System.out.println("That is not a valid account number!");
         return null;
     }
 }
