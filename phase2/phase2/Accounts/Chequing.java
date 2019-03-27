@@ -25,18 +25,6 @@ public class Chequing extends AssetAccount {
     }
 
     /**
-     * Instantiates a new asset account.
-     *
-     * @param date   the date of creation
-     * @param owner1 the owner 1
-     * @param owner2 the owner 2
-     */
-    public Chequing(boolean isPrimary, Calendar date, User owner1, User owner2, String currencyCode, int num) {
-        super(date, owner1, owner2, currencyCode, num);
-        this.isPrimary = isPrimary;
-    }
-
-    /**
      * Gets whether the account is primary.
      *
      * @return true if primary account, false otherwise

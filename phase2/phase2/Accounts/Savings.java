@@ -22,17 +22,6 @@ public class Savings extends AssetAccount {
     }
 
     /**
-     * Instantiates a new asset account.
-     *
-     * @param date   the date of creation
-     * @param owner1 the owner 1
-     * @param owner2 the owner 2
-     */
-    public Savings(Calendar date, User owner1, User owner2, String currencyCode, int num) {
-        super(date, owner1, owner2, currencyCode, num);
-    }
-
-    /**
      * Increase balance by the interest rate of 1%.
      */
     public void increase() {

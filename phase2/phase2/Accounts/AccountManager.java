@@ -187,6 +187,25 @@ public class AccountManager {
     }
 
     /**
+     * Adds a previously made account.
+     *
+     * @param account the account
+     */
+    public void add(Account account) {
+        if (account.getClass() == LineOfCredit.class) {
+            lc.add((LineOfCredit) account);
+        } else if (account.getClass() == CreditCard.class) {
+            cc.add((CreditCard) account);
+        } else if (account.getClass() == Savings.class) {
+            sv.add((Savings) account);
+        } else if (account.getClass() == Chequing.class) {
+            cq.add((Chequing) account);
+        } else {
+            cb.add((CashBackCard) account);
+        }
+    }
+
+    /**
      * Gets the account given its unique number.
      *
      * @param num the account number

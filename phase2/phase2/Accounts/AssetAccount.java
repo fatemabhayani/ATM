@@ -52,22 +52,6 @@ public abstract class AssetAccount implements Account, Serializable {
     }
 
     /**
-     * Instantiates a new asset account.
-     *
-     * @param date   the date of creation
-     * @param owner1 the owner 1
-     * @param owner2 the owner 2
-     */
-    public AssetAccount(Calendar date, User owner1, User owner2, String currencyCode, int num) {
-        dateOfCreation = date;
-        transactions = new ArrayList<>();
-        this.owner1 = owner1;
-        this.owner2 = owner2;
-        balance = new ForeignCurrency(currencyCode, 0);
-        accountNum = num;
-    }
-
-    /**
      * Returns the account balance.
      *
      * @return the balance
@@ -83,6 +67,15 @@ public abstract class AssetAccount implements Account, Serializable {
      */
     public void setBalance(ForeignCurrency newBalance){
         balance = newBalance;
+    }
+
+    /**
+     * Sets a new owner.
+     *
+     * @param owner2 the new owner
+     */
+    public void setNewOwner(User owner2){
+        this.owner2 = owner2;
     }
 
     /**

@@ -31,17 +31,6 @@ public class CreditCard implements Account, Serializable {
         accountNum = num;
     }
 
-    public CreditCard(Calendar date, User owner1, User owner2, String currencyCode, int num) {
-        this.date = date;
-        transactions = new ArrayList<>();
-        this.owner1 = owner1;
-        this.owner2 = owner2;
-        balance = new ForeignCurrency(currencyCode, 0);
-        double limit = new ForeignCurrency("CAD", 5000).convert(currencyCode).getAmount();
-        creditLimit = new ForeignCurrency(currencyCode, limit);
-        accountNum = num;
-    }
-
     public ForeignCurrency getBalance() { return this.balance; }
 
     public void setBalance(ForeignCurrency balance) { this.balance = balance; }
@@ -71,6 +60,15 @@ public class CreditCard implements Account, Serializable {
         } catch(Exception e){
             System.out.println("there was an error");
         }
+    }
+
+    /**
+     * Sets a new owner.
+     *
+     * @param owner2 the new owner
+     */
+    public void setNewOwner(User owner2){
+        this.owner2 = owner2;
     }
 
     public void subtract(Transaction transaction) {
