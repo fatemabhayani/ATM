@@ -2,12 +2,10 @@ package phase2.Request;
 
 import phase2.People.UserManager;
 
-import java.io.Serializable;
-
 /**
  * The User creation request, type of request
  */
-public class UserRequest extends Request implements Serializable {
+public class UserRequest extends Request {
     private String username;
 
     /**

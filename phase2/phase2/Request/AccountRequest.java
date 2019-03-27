@@ -2,14 +2,12 @@ package phase2.Request;
 
 import phase2.Display.ATM;
 import phase2.People.User;
-
-import java.io.Serializable;
 import java.util.Calendar;
 
 /**
  * A request for a new bank account.
  */
-public class AccountRequest extends Request implements Serializable {
+public class AccountRequest extends Request {
 
     /**
      * The user making the request.
