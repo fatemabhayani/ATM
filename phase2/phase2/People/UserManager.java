@@ -1,7 +1,6 @@
 package phase2.People;
 
-import phase2.Accounts.CashBackCard;
-import phase2.Accounts.Savings;
+import phase2.Accounts.*;
 import phase2.Display.ATM;
 import java.util.ArrayList;
 
@@ -78,6 +77,21 @@ public class UserManager {
     }
 
     /**
+     * Returns the account of a given ATM user, given the account number.
+     *
+     * @param username the username
+     * @param num the account number
+     * @return the account
+     */
+    public static Account getUserAccount(String username, int num) {
+        if (getUser(username) == null) {
+            return null;
+        } else {
+            return getUser(username).getAccount(num);
+        }
+    }
+
+    /**
      * Adds a user to the list of ATM bank users, with username and password.
      *
      * @param username the user's username
@@ -92,11 +106,11 @@ public class UserManager {
      */
     public static void updateSavings() {
         for (User u: ATM.bankUsers) {
-            ArrayList s = u.getAccount("sv");
+            ArrayList s = u.getAccountList("sv");
             for (Object a : s) {
                 ((Savings) a).increase();
             }
-            ArrayList cb = u.getAccount("cb");
+            ArrayList cb = u.getAccountList("cb");
             for (Object c : cb){
                 ((CashBackCard) c).increase();
             }

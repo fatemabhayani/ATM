@@ -1,6 +1,7 @@
 package phase2.Accounts;
 
 import phase2.ForeignCurrency;
+import phase2.People.User;
 import phase2.Transactions.Transaction;
 
 import java.util.Calendar;
@@ -18,8 +19,20 @@ public class Chequing extends AssetAccount {
      * @param isPrimary true if it is a primary account, false otherwise
      * @param date the date of creation
      */
-    public Chequing(boolean isPrimary, Calendar date, String currencyCode) {
-        super(date, currencyCode);
+    public Chequing(boolean isPrimary, Calendar date, User owner1, String currencyCode, int num) {
+        super(date, owner1, currencyCode, num);
+        this.isPrimary = isPrimary;
+    }
+
+    /**
+     * Instantiates a new asset account.
+     *
+     * @param date   the date of creation
+     * @param owner1 the owner 1
+     * @param owner2 the owner 2
+     */
+    public Chequing(boolean isPrimary, Calendar date, User owner1, User owner2, String currencyCode, int num) {
+        super(date, owner1, owner2, currencyCode, num);
         this.isPrimary = isPrimary;
     }
 

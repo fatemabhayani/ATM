@@ -39,16 +39,19 @@ public class UserDisplay {
                 command = tmp.nextLine();
                 switch (command) {
                     case ("lc"):
-                        account = U.getAccount("lc");
+                        account = U.getAccountList("lc");
                         break;
                     case ("cc"):
-                        account = U.getAccount("cc");
+                        account = U.getAccountList("cc");
                         break;
-                    case ("s"):
-                        account = U.getAccount("s");
+                    case ("sv"):
+                        account = U.getAccountList("sv");
                         break;
-                    case ("c"):
-                        account = U.getAccount("c");
+                    case ("cq"):
+                        account = U.getAccountList("cq");
+                        break;
+                    case ("cb"):
+                        account = U.getAccountList("cb");
                         break;
                 }
                 accountType = command;

@@ -18,21 +18,9 @@ public class CreditCard implements Account, Serializable {
     ArrayList<Transaction> transactions;
     private Calendar date;
     private ForeignCurrency creditLimit;
+    public int accountNum;
 
-
-    /**
-     * Instantiates a previous Credit card.
-     * @param date the date of creation
-     */
-    public CreditCard(Calendar date, String currencyCode) {
-        this.date = date;
-        transactions = new ArrayList<>();
-        balance = new ForeignCurrency(currencyCode, 0);
-        double limit = new ForeignCurrency("CAD", 5000).convert(currencyCode).getAmount();
-        creditLimit = new ForeignCurrency(currencyCode, limit);
-    }
-
-    public CreditCard(Calendar date, User owner1, String currencyCode) {
+    public CreditCard(Calendar date, User owner1, String currencyCode, int num) {
         this.date = date;
         transactions = new ArrayList<>();
         this.owner1 = owner1;
@@ -40,9 +28,10 @@ public class CreditCard implements Account, Serializable {
         balance = new ForeignCurrency(currencyCode, 0);
         double limit = new ForeignCurrency("CAD", 5000).convert(currencyCode).getAmount();
         creditLimit = new ForeignCurrency(currencyCode, limit);
+        accountNum = num;
     }
 
-    public CreditCard(Calendar date, User owner1, User owner2, String currencyCode) {
+    public CreditCard(Calendar date, User owner1, User owner2, String currencyCode, int num) {
         this.date = date;
         transactions = new ArrayList<>();
         this.owner1 = owner1;
@@ -50,9 +39,11 @@ public class CreditCard implements Account, Serializable {
         balance = new ForeignCurrency(currencyCode, 0);
         double limit = new ForeignCurrency("CAD", 5000).convert(currencyCode).getAmount();
         creditLimit = new ForeignCurrency(currencyCode, limit);
+        accountNum = num;
     }
 
     public ForeignCurrency getBalance() { return this.balance; }
+
     public void setBalance(ForeignCurrency balance) { this.balance = balance; }
 
     public ArrayList<Transaction> getTransactions() {
@@ -83,7 +74,7 @@ public class CreditCard implements Account, Serializable {
     }
 
     public void subtract(Transaction transaction) {
-        if (creditLimit.compareTo(transaction.getAmount()) == 1){
+        if (creditLimit.compareTo(transaction.getAmount()) > 0){
             balance.add(transaction.getAmount());
             transactions.add(transaction);
             decreaseCreditLimit(transaction.getAmount());
