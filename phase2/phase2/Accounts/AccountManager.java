@@ -94,6 +94,10 @@ public class AccountManager {
         return getAssetBalance() - getDebtBalance();
     }
 
+    public void setOwner(User user){
+        this.owner = user;
+    }
+
     /**
      * Gets the list of accounts of type s.
      *

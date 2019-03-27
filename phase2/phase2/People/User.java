@@ -36,6 +36,7 @@ public class User {
         username = user;
         this.password = password;
         accounts = new AccountManager();
+        accounts.setOwner(this);
     }
 
     /**
