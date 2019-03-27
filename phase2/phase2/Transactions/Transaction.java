@@ -105,7 +105,8 @@ public abstract class Transaction implements Serializable {
             BufferedReader re = new BufferedReader(new FileReader(textFile));
             while ((inputAmount = re.readLine()) != null) {
                 String[] amountArray = inputAmount.split(" ");
-                inputAmount = amountArray[1];
+                // removes all other characters except numbers
+                inputAmount = amountArray[1].replaceAll("[^\\d]","");
                 // add amount into total amount
                 try {
                     double value = Double.parseDouble(inputAmount);
