@@ -15,10 +15,13 @@ public class AccountRequest extends Request {
     private User requester;
 
     /**
-     * The type of account being requested
+     * The type of account being requested.
      */
     private String accountType;
 
+    /**
+     * The currency code for the account.
+     */
     private String currencyCode;
 
     /**
@@ -26,6 +29,7 @@ public class AccountRequest extends Request {
      *
      * @param requester the user that requests account creation
      * @param accountType the account type
+     * @param currencyCode the country code
      */
     public AccountRequest(User requester, String accountType, String currencyCode) {
         this.requester = requester;

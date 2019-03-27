@@ -1,12 +1,12 @@
 package phase2.Request;
 
 /**
- * The Request.
+ * An abstract request.
  */
-public class Request {
+public abstract class Request {
 
     /**
-     * Resolve request.
+     * Resolves the request.
      */
-    public void resolveRequest(){}
+    public void resolveRequest() {}
 }
