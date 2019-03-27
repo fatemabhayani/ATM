@@ -2,14 +2,14 @@ package phase2.Interfaces;
 
 import phase2.Accounts.Account;
 import phase2.People.User;
-import phase2.Transactions.Withdraw;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * The type Account interface.
+ */
 class AccountInterface extends JFrame {
     private JButton clickHereToAddButton;
     private JComboBox comboBox1;
@@ -19,7 +19,13 @@ class AccountInterface extends JFrame {
     private String choice;
     private Account inUse;
 
-    public AccountInterface(Account A, User U) {
+    /**
+     * Instantiates a new Account interface.
+     *
+     * @param A the account
+     * @param U the user
+     */
+    AccountInterface(Account A, User U) {
         inUse = A;
         add(root);
         setSize(500,500);
@@ -29,20 +35,25 @@ class AccountInterface extends JFrame {
                 super.mouseClicked(e);
             }
         });
-        comboBox1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                choice = String.valueOf(comboBox1.getSelectedItem());
-            }
-        });
+        comboBox1.addActionListener(e -> choice = String.valueOf(comboBox1.getSelectedItem()));
         makeTransactionButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                if (choice.equals("Bill")) {switchToBill(A, U);}
-                else if (choice.equals("Transfer")) {switchToTransfer(A, U);}
-                else if (choice.equals("Withdraw")) {switchToWithdraw(A, U);}
-                else if (choice.equals("Deposit")) {switchToDeposit(A, U);}
+                switch (choice) {
+                    case "Bill":
+                        switchToBill(A, U);
+                        break;
+                    case "Transfer":
+                        switchToTransfer(A, U);
+                        break;
+                    case "Withdraw":
+                        switchToWithdraw(A, U);
+                        break;
+                    case "Deposit":
+                        switchToDeposit(A, U);
+                        break;
+                }
             }
         });
         exitButton.addMouseListener(new MouseAdapter() {

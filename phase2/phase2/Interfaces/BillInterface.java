@@ -13,6 +13,9 @@ import java.awt.event.InputMethodListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * The type Bill interface.
+ */
 public class BillInterface extends JFrame {
     private JPanel root;
     private JTextField textField1;
@@ -22,11 +25,17 @@ public class BillInterface extends JFrame {
     private static Account account1;
     private static User user1;
 
-    public BillInterface(Account account, User user) {
+    /**
+     * Instantiates a new Bill interface.
+     *
+     * @param account the account
+     * @param user    the user
+     */
+    BillInterface(Account account, User user) {
         add(root);
         setSize(500,500);
-        this.account1 = account;
-        this.user1 = user;
+        account1 = account;
+        user1 = user;
         textField1.addInputMethodListener(new InputMethodListener() {
             @Override
             public void inputMethodTextChanged(InputMethodEvent event) {
@@ -58,13 +67,13 @@ public class BillInterface extends JFrame {
         this.dispose();
     }
 
-    public static void main(String args[]) {
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new BillInterface(account1,user1).setVisible(true);
-            }
-        });
+    /**
+     * Main.
+     *
+     * @param args the args
+     */
+    public static void main(String[] args) {
+        EventQueue.invokeLater(() -> new BillInterface(account1,user1).setVisible(true));
     }
 
 }
