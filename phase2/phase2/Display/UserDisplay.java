@@ -8,7 +8,7 @@ import phase2.Request.AccountRequest;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-class UserDisplay {
+public class UserDisplay {
 
     private static String command;
     public static User U = UserManager.getUser(ATM.username);
