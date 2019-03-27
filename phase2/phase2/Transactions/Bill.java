@@ -5,8 +5,8 @@ import phase2.Accounts.CreditCard;
 import phase2.Accounts.LineOfCredit;
 import phase2.Accounts.Savings;
 import phase2.ForeignCurrency;
+import phase2.Transactions.Transaction;
 import phase2.WriteFile;
-
 
 import java.io.File;
 import java.io.IOException;
