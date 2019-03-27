@@ -12,10 +12,6 @@ public class CashBackCard extends CreditCard {
         super(date, owner1, currencyCode, num);
     }
 
-    public CashBackCard(Calendar date, User owner1, User owner2, String currencyCode, int num) {
-        super(date, owner1, owner2, currencyCode, num);
-    }
-
     public void increase(){
         ForeignCurrency balance = getBalance();
         if (balance.compareTo(new ForeignCurrency(balance.getCurrencyCode(),0)) >= 1){

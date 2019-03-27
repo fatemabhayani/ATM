@@ -10,14 +10,7 @@ import java.util.Calendar;
  */
 public class LineOfCredit extends CreditCard {
 
-    /**
-     * Instantiates a new Line of credit account.
-     *
-     * @param date the date of creation
-     */
-    public LineOfCredit(Calendar date, User owner1, User owner2, String currencyCode, int num) {
-        super(date, owner1, owner2, currencyCode, num);
-    }
+
 
     /**
      * Instantiates a new Line of credit account.

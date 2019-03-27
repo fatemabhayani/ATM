@@ -2,6 +2,7 @@ package phase2.Accounts;
 
 import phase2.ForeignCurrency;
 import phase2.Transactions.Transaction;
+import phase2.People.User;
 
 import java.util.ArrayList;
 
@@ -82,4 +83,6 @@ public interface Account {
      * @param amount the amount
      */
     void helpWrite(ForeignCurrency amount);
+
+    void setNewOwner(User owner);
 }

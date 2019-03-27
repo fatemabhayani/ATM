@@ -191,6 +191,21 @@ public class User implements Serializable {
         return accounts.getAccount(num);
     }
 
+    /**
+     * Adds the user with username to the specified account.
+     *
+     * @param num the account number
+     * @return the account
+     */
+    public void addAccountOwner(String username, int num) {
+        Account a = getAccount(num);
+        User u = UserManager.getUser(username);
+        if (u != null) {
+            u.getAccountManager().add(a);
+            a.setNewOwner(u);
+        }
+    }
+
     @Override
     public String toString() {
         return username + "." + password;
