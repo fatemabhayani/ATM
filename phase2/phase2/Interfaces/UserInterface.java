@@ -1,11 +1,16 @@
 package phase2.Interfaces;
 
 import phase2.Accounts.Account;
+import phase2.Display.ATM;
+import phase2.Display.UserDisplay;
 import phase2.People.User;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+
+import static phase2.Display.UserDisplay.*;
 
 class UserInterface extends JFrame {
     private JCheckBox changePasswordCheckBox;
@@ -18,6 +23,7 @@ class UserInterface extends JFrame {
     private JButton selectAccountTypeButton;
     private JComboBox comboBox2;
     private JButton addAccountButton;
+    private JPanel root;
     private boolean change;
     private String newPassword;
     private String verify;
@@ -26,6 +32,8 @@ class UserInterface extends JFrame {
     private int i;
 
     public UserInterface(User U) {
+        add(root);
+        setSize(500,500);
 
         changePasswordCheckBox.addActionListener(new ActionListener() {
             @Override
@@ -61,13 +69,6 @@ class UserInterface extends JFrame {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 if (verify.equals( newPassword)&&change) { U.setPassword(newPassword); }
-            }
-        });
-        makeTransactionButton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-
             }
         });
         logOutButton.addMouseListener(new MouseAdapter() {
@@ -114,5 +115,20 @@ class UserInterface extends JFrame {
             }
         });
     }
-    private void switchToAccount(){ }
+    private void switchToAccount(){
+        AccountInterface AI = new AccountInterface();
+        AI.setVisible(true);
+        AI.pack();
+        AI.setLocationRelativeTo(null);
+        this.dispose();
+
+    }
+    public static void main(String args[]) {
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new UserInterface(U).setVisible(true);
+            }
+        });
+    }
 }
