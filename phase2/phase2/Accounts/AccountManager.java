@@ -192,6 +192,7 @@ public class AccountManager {
      * @param account the account
      */
     public void add(Account account) {
+        //TODO: make sure accountNum isn't taken
         if (account.getClass() == LineOfCredit.class) {
             lc.add((LineOfCredit) account);
         } else if (account.getClass() == CreditCard.class) {

@@ -3,16 +3,29 @@ package phase2.Accounts;
 import phase2.ForeignCurrency;
 import phase2.Transactions.Transaction;
 import phase2.People.User;
-
 import java.util.Calendar;
 
+/**
+ * Represents a cash back card account.
+ */
 public class CashBackCard extends CreditCard {
 
+    /**
+     * Initializes a new cash back card.
+     *
+     * @param date         the date of creation
+     * @param owner1       the first owner
+     * @param currencyCode the currency code
+     * @param num          the account number
+     */
     public CashBackCard(Calendar date, User owner1, String currencyCode, int num) {
         super(date, owner1, currencyCode, num);
     }
 
-    public void increase(){
+    /**
+     * Increases the account balance based on the amount of cash back.
+     */
+    public void increase() {
         ForeignCurrency balance = getBalance();
         if (balance.compareTo(new ForeignCurrency(balance.getCurrencyCode(),0)) >= 1){
             setBalance(balance.multiply(1.25));
@@ -28,7 +41,7 @@ public class CashBackCard extends CreditCard {
             transactions.add(transaction);
             System.out.println("Transaction successful!");
         } else {
-            System.out.println("There isn't enough credit limit on your account to complete this transaction");
+            System.out.println("There isn't enough credit on your account to complete this transaction.");
         }
     }
 
@@ -41,7 +54,7 @@ public class CashBackCard extends CreditCard {
             helpWrite(amount.multiply(0.95));
             System.out.println("Transaction successful!");
         } else {
-            System.out.println("There isn't enough credit limit on your account to complete this transaction");
+            System.out.println("There isn't enough credit on your account to complete this transaction.");
         }
     }
 }

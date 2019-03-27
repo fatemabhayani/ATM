@@ -3,7 +3,6 @@ package phase2.Accounts;
 import phase2.ForeignCurrency;
 import phase2.Transactions.Transaction;
 import phase2.People.User;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -11,21 +10,30 @@ import java.util.Calendar;
 /**
  * Represents an asset account.
  */
-public abstract class AssetAccount implements Account, Serializable {
+public abstract class AssetAccount implements Account {
 
     /**
      * The account balance.
      */
     ForeignCurrency balance;
 
+    /**
+     * The first account owner.
+     */
     private User owner1;
 
+    /**
+     * The second account owner.
+     */
     private User owner2;
 
+    /**
+     * The account number.
+     */
     public int accountNum;
 
     /**
-     * The account's recent transactions.
+     * The account manager.
      */
     final ArrayList<Transaction> transactions;
 
@@ -34,13 +42,13 @@ public abstract class AssetAccount implements Account, Serializable {
      */
     private final Calendar dateOfCreation;
 
-
     /**
      * Instantiates a new asset account.
      *
      * @param date         the date of creation
-     * @param owner1       the owner 1
+     * @param owner1       the first owner
      * @param currencyCode the currency code
+     * @param num          the account number
      */
     public AssetAccount(Calendar date, User owner1, String currencyCode, int num) {
         dateOfCreation = date;
@@ -63,16 +71,16 @@ public abstract class AssetAccount implements Account, Serializable {
     /**
      * Sets the account balance.
      *
-     * @param newBalance the new balance
+     * @param balance the new balance
      */
-    public void setBalance(ForeignCurrency newBalance){
-        balance = newBalance;
+    public void setBalance(ForeignCurrency balance){
+        this.balance = balance;
     }
 
     /**
      * Sets a new owner.
      *
-     * @param owner2 the new owner
+     * @param owner2 the second owner
      */
     public void setNewOwner(User owner2){
         this.owner2 = owner2;
@@ -126,7 +134,7 @@ public abstract class AssetAccount implements Account, Serializable {
      * Reads from file to extract the amount.
      *
      * @param file the file
-     * @return the int value of amount
+     * @return the amount value
      */
     public ForeignCurrency helpRead(String file) {
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {

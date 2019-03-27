@@ -3,25 +3,60 @@ package phase2.Accounts;
 import phase2.ForeignCurrency;
 import phase2.Transactions.Transaction;
 import phase2.People.User;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
- * The Credit card, type of Account
+ * Represents a credit card account.
  */
-public class CreditCard implements Account, Serializable {
+public class CreditCard implements Account {
+
+    /**
+     * The account balance.
+     */
+    ForeignCurrency balance;
+
+    /**
+     * The first account owner.
+     */
     private User owner1;
+
+    /**
+     * The second account owner.
+     */
     private User owner2;
-    private ForeignCurrency balance;
-    ArrayList<Transaction> transactions;
-    private Calendar date;
-    private ForeignCurrency creditLimit;
+
+    /**
+     * The account number.
+     */
     public int accountNum;
 
+    /**
+     * The account manager.
+     */
+    final ArrayList<Transaction> transactions;
+
+    /**
+     * The date the account was created.
+     */
+    private final Calendar dateOfCreation;
+
+    /**
+     * The credit limit for this account.
+     */
+    private ForeignCurrency creditLimit;
+
+    /**
+     * Instantiates a new credit card account.
+     *
+     * @param date         the date of creation
+     * @param owner1       the first owner
+     * @param currencyCode the currency code
+     * @param num          the account number
+     */
     public CreditCard(Calendar date, User owner1, String currencyCode, int num) {
-        this.date = date;
+        this.dateOfCreation = date;
         transactions = new ArrayList<>();
         this.owner1 = owner1;
         owner2 = null;
@@ -31,16 +66,37 @@ public class CreditCard implements Account, Serializable {
         accountNum = num;
     }
 
+    /**
+     * Returns this account's balance.
+     *
+     * @return the balance
+     */
     public ForeignCurrency getBalance() { return this.balance; }
 
+    /**
+     * Sets this account's balance.
+     *
+     * @param balance the new balance
+     */
     public void setBalance(ForeignCurrency balance) { this.balance = balance; }
 
+    /**
+     * Returns the list of this account's transactions.
+     *
+     * @return the list of transactions
+     */
     public ArrayList<Transaction> getTransactions() {
         return transactions;
     }
 
-    public ForeignCurrency helpRead(String file){
-        try(BufferedReader reader = new BufferedReader(new FileReader(file))){
+    /**
+     * Reads from file to extract the amount.
+     *
+     * @param file the file
+     * @return the amount value
+     */
+    public ForeignCurrency helpRead(String file) {
+        try(BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String info = reader.readLine();
             char value = info.charAt(0);
             char number = info.charAt(2);
@@ -48,17 +104,22 @@ public class CreditCard implements Account, Serializable {
             int volume = Character.getNumericValue(number);
             return new ForeignCurrency("CAD", volume * denomination);
 
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("There was an error");
             return new ForeignCurrency("CAD", -1);
         }
     }
 
-    public void helpWrite(ForeignCurrency amount){
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("phase2/phase2/Data/outgoing.txt"))){
+    /**
+     * Writes an amount into the file.
+     *
+     * @param amount the amount
+     */
+    public void helpWrite(ForeignCurrency amount) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("phase2/phase2/Data/outgoing.txt"))) {
             writer.write(Double.toString(amount.getAmount()));
         } catch(Exception e){
-            System.out.println("there was an error");
+            System.out.println("There was an error");
         }
     }
 
@@ -71,17 +132,27 @@ public class CreditCard implements Account, Serializable {
         this.owner2 = owner2;
     }
 
+    /**
+     * Decreases the account balance by the amount in the transaction.
+     *
+     * @param transaction the transaction being made
+     */
     public void subtract(Transaction transaction) {
-        if (creditLimit.compareTo(transaction.getAmount()) > 0){
+        if (creditLimit.compareTo(transaction.getAmount()) > 0) {
             balance.add(transaction.getAmount());
             transactions.add(transaction);
             decreaseCreditLimit(transaction.getAmount());
             System.out.println("Transaction successful!");
-        } else{
+        } else {
             System.out.println("There isn't enough credit limit on your account to complete this transaction");
         }
     }
 
+    /**
+     * Subtracts the amount from the balance.
+     *
+     * @param amount the amount
+     */
     public void subtract(ForeignCurrency amount) {
         if (creditLimit.compareTo(amount) > 0) {
             balance.add(amount);
@@ -93,6 +164,11 @@ public class CreditCard implements Account, Serializable {
         }
     }
 
+    /**
+     * Increases the balance by the amount in transaction.
+     *
+     * @param transaction the transaction
+     */
     public void add(Transaction transaction) {
         balance.subtract(transaction.getAmount());
         transactions.add(transaction);
@@ -100,6 +176,11 @@ public class CreditCard implements Account, Serializable {
         System.out.println("Transaction successful!");
     }
 
+    /**
+     * Adds amount from file to the balance.
+     *
+     * @param file name of the file that contains the amount
+     */
     public void add(String file) {
         ForeignCurrency amount = helpRead(file);
         balance.subtract(amount);
@@ -107,7 +188,12 @@ public class CreditCard implements Account, Serializable {
         System.out.println("Transaction successful!");
     }
 
-    private String getCreationDate() {return this.date.toString();}
+    /**
+     * Returns the date of creation for this account.
+     *
+     * @return the date of creation
+     */
+    private String getCreationDate() {return dateOfCreation.toString();}
 
     /**
      * Returns the ith most recent transaction.
@@ -116,20 +202,36 @@ public class CreditCard implements Account, Serializable {
      */
     public Transaction getPastTransaction(int i) { return transactions.get(i); }
 
-    public String getSummary() {
-        return "Debt account created on" + getCreationDate() + "with transactions to date " +
-                transactions.toString() + "with credit limit " + creditLimit;
-    }
-
+    /**
+     * Decreases the credit limit.
+     *
+     * @param creditLimit the new credit limit
+     */
     void decreaseCreditLimit(ForeignCurrency creditLimit) {
         this.creditLimit.subtract(creditLimit);
     }
 
+    /**
+     * Increases the credit limit.
+     *
+     * @param creditLimit the new credit limit
+     */
     private void increaseCreditLimit(ForeignCurrency creditLimit) {
         this.creditLimit.add(creditLimit);
     }
 
+    /**
+     * Returns the credit limit.
+     *
+     * @return the new credit limit
+     */
     ForeignCurrency getCreditLimit() {
         return creditLimit;
+    }
+
+    @Override
+    public String toString() {
+        return "Debt account created on" + getCreationDate() + "with transactions to date " +
+                transactions.toString() + "with credit limit " + creditLimit;
     }
 }

@@ -3,21 +3,26 @@ package phase2.Accounts;
 import phase2.ForeignCurrency;
 import phase2.People.User;
 import phase2.Transactions.Transaction;
-
 import java.util.Calendar;
 
 /**
- * The Chequing Account, type of AssetAccount.
+ * Represents a chequing account.
  */
 public class Chequing extends AssetAccount {
 
+    /**
+     * Whether the account is primary.
+     */
     private boolean isPrimary;
 
     /**
      * Instantiates a new chequing account.
      *
-     * @param isPrimary true if it is a primary account, false otherwise
-     * @param date the date of creation
+     * @param isPrimary    true if it is a primary account, false otherwise
+     * @param date         the date of creation
+     * @param owner1       the first owner
+     * @param currencyCode the currency code
+     * @param num          the account number
      */
     public Chequing(boolean isPrimary, Calendar date, User owner1, String currencyCode, int num) {
         super(date, owner1, currencyCode, num);
@@ -63,7 +68,6 @@ public class Chequing extends AssetAccount {
                 helpWrite(amount);
                 System.out.println("Transaction successful!");
             }
-
         }
     }
 
