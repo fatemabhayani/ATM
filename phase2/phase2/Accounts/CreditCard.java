@@ -74,7 +74,7 @@ public class CreditCard implements Account, Serializable {
     }
 
     public void subtract(Transaction transaction) {
-        if (creditLimit.compareTo(transaction.getAmount()) == 1){
+        if (creditLimit.compareTo(transaction.getAmount()) > 0){
             balance.add(transaction.getAmount());
             transactions.add(transaction);
             decreaseCreditLimit(transaction.getAmount());

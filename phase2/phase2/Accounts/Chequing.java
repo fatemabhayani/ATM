@@ -4,7 +4,6 @@ import phase2.ForeignCurrency;
 import phase2.People.User;
 import phase2.Transactions.Transaction;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
