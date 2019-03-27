@@ -4,12 +4,10 @@ import phase2.Accounts.Account;
 import phase2.Transactions.Transaction;
 import phase2.People.User;
 
-import java.io.Serializable;
-
 /**
  * The Undo Transaction request, type of Request
  */
-public class UndoRequest extends Request implements Serializable {
+public class UndoRequest extends Request {
     private User requester;
     private Account account;
     private int num;
