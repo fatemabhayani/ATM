@@ -13,8 +13,10 @@ public class Savings extends AssetAccount {
     /**
      * Instantiates a new chequing account.
      *
-     * @param date the date of creation
-     * @param owner1 the owner 1
+     * @param date         the date of creation
+     * @param owner1       the owner 1
+     * @param currencyCode the currency code
+     * @param num          the account number
      */
     public Savings(Calendar date, User owner1, String currencyCode, int num) {
         super(date, owner1, currencyCode, num);
