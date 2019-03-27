@@ -8,11 +8,19 @@ import phase2.People.User;
 import java.util.Calendar;
 import java.util.Scanner;
 
+/**
+ * The type Withdraw display.
+ */
 class WithdrawDisplay {
 
     private static User U = AccountDisplay.U;
     private static Account a = AccountDisplay.a;
 
+    /**
+     * The entry point of Withdraw Display, access through ATM
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         Scanner tmp = new Scanner(System.in);
         System.out.println("Enter the sum of money you wish to withdraw.");

@@ -8,13 +8,30 @@ import phase2.Request.AccountRequest;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * The type User display.
+ */
 public class UserDisplay {
 
 
+    /**
+     * The User.
+     */
     public static User U = UserManager.getUser(ATM.username);
+    /**
+     * The Account.
+     */
     public static Account a;
-    public static String accountType;
+    /**
+     * The accountType.
+     */
+    static String accountType;
 
+    /**
+     * The entry point of User Display, access through ATM.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         System.out.println("Type '0' if you would like to change your password" + "\n"
                 + "Type '1' if you would like to interact with your accounts" + "\n"
