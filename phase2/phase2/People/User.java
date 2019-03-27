@@ -145,7 +145,7 @@ public class User {
      * @param s the type of accounts
      * @return the list of accounts specified by user, returns the empty list if an invalid input is made
      */
-    public ArrayList getAccountList(String s) {
+    public ArrayList<Account> getAccountList(String s) {
         return accounts.getAccountList(s);
     }
 

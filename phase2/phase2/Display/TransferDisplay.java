@@ -10,11 +10,19 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Scanner;
 
+/**
+ * The type Transfer display.
+ */
 class TransferDisplay {
 
     private static User U = AccountDisplay.U;
     private static Account a = AccountDisplay.a;
 
+    /**
+     * The entry point of Transfer display, access from ATM
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         System.out.println("Is this an internal transaction?");
         Scanner tmp = new Scanner(System.in);
@@ -63,10 +71,26 @@ class TransferDisplay {
                     + "Type 'c' for chequing" +"\n"+"Type 's' for savings");
             command = tmp.nextLine();
             switch(command) {
-                case ("lc"): account = r.getAccountList("lc"); break;
-                case ("cc"): account = r.getAccountList("cc"); break;
-                case ("s"): account = r.getAccountList("s"); break;
-                case ("c"): account = r.getAccountList("c"); break;
+                case ("lc"):
+                    if (r != null) {
+                        account = r.getAccountList("lc");
+                    }
+                    break;
+                case ("cc"):
+                    if (r != null) {
+                        account = r.getAccountList("cc");
+                    }
+                    break;
+                case ("s"):
+                    if (r != null) {
+                        account = r.getAccountList("s");
+                    }
+                    break;
+                case ("c"):
+                    if (r != null) {
+                        account = r.getAccountList("c");
+                    }
+                    break;
             }
             if (account.size() == 0) {
                 System.out.println("There are no such accounts. Try again");
