@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class AccountInterface extends JFrame {
+class AccountInterface extends JFrame {
     private JButton clickHereToAddButton;
     private JComboBox comboBox1;
     private JButton exitButton;
@@ -43,8 +43,8 @@ public class AccountInterface extends JFrame {
             }
         });
     }
-    public void switchToBill(){}
-    public void switchToTransfer(){}
-    public void switchToWithdraw(){}
-    public void switchToDeposit(){}
+    private void switchToBill(){}
+    private void switchToTransfer(){}
+    private void switchToWithdraw(){}
+    private void switchToDeposit(){}
 }

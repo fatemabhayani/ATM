@@ -1,0 +1,46 @@
+ATM BANK MANAGER
+REQUEST: request type
+User / username / password
+Account / account type / account owner(s)
+Undo / requester / account / transaction number
+
+ATM BANK TELLERS
+TELLER1
+USER: username
+REQUESTS (only undo transaction requests and can restock cash machine)
+
+TELLER2
+USER: username
+REQUESTS (only undo transaction requests and can restock cash machine)
+
+TELLER3
+USER: username
+REQUESTS (only undo transaction requests and can restock cash machine)
+
+TELLER4
+USER: username
+REQUESTS (only undo transaction requests and can restock cash machine)
+
+TELLER5
+USER: username
+REQUESTS (only undo transaction requests and can restock cash machine)
+
+TELLER6
+USER: username
+REQUESTS (only undo transaction requests and can restock cash machine)
+
+TELLER7
+USER: username
+REQUESTS (only undo transaction requests and can restock cash machine)
+
+TELLER8
+USER: username
+REQUESTS (only undo transaction requests and can restock cash machine)
+
+TELLER9
+USER: username
+REQUESTS (only undo transaction requests and can restock cash machine)
+
+TELLER10
+USER: username
+REQUESTS (only undo transaction requests and can restock cash machine)

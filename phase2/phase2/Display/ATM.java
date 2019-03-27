@@ -45,8 +45,6 @@ public class ATM {
     public static void main(String[] args){
         String command;
 
-        DataWriter.readData();
-
         System.out.println("Welcome to the ATM, I am an incredibly well known superhero, my name is " + generateRandomSuperhero() +
                 " and I will be helping you today.");
         System.out.println("Do you have an account?");
@@ -117,7 +115,6 @@ public class ATM {
 
         //TODO: write data only once per run (before program resets at midnight)
 
-        // DataWriter.writeData();
 
     }
 
@@ -125,7 +122,7 @@ public class ATM {
         Random random = new Random();
         String name = "Random Superhero";
         int number = random.nextInt(46);
-        try(BufferedReader reader = new BufferedReader(new FileReader("phase2/phase2/superhero.txt"))){
+        try(BufferedReader reader = new BufferedReader(new FileReader("phase2/phase2/Data/superhero.txt"))){
             for(int i = 0; i < number; i++){
                 name = reader.readLine();
 

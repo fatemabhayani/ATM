@@ -1,9 +1,9 @@
 package phase2.People;
 
-import java.util.ArrayList;
+import phase2.Accounts.CashBackCard;
+import phase2.Accounts.Savings;
 import phase2.Display.ATM;
-import phase2.People.*;
-import phase2.Accounts.*;
+import java.util.ArrayList;
 
 /**
  * Manages the collection of bank users for the ATM.
@@ -44,7 +44,7 @@ public class UserManager {
      * Checks whether username belongs to the BankManager.
      *
      * @param username the username
-     * @return true if and only if username belongs to a user or employee.
+     * @return true if and only if username belongs to the bank manager.
      */
     static boolean isBankManager(String username) {
         return username.equals(ATM.b.getUsername());
@@ -92,13 +92,13 @@ public class UserManager {
      */
     public static void updateSavings() {
         for (User u: ATM.bankUsers) {
-            ArrayList<Savings> s = u.getAccount("s");
-            for (Savings a : s) {
-                a.increase();
+            ArrayList s = u.getAccount("sv");
+            for (Object a : s) {
+                ((Savings) a).increase();
             }
-            ArrayList<CashBackCard> cb = u.getAccount("cb");
-            for (CashBackCard c : cb){
-                c.increase();
+            ArrayList cb = u.getAccount("cb");
+            for (Object c : cb){
+                ((CashBackCard) c).increase();
             }
         }
     }

@@ -1,10 +1,6 @@
-ATM CLOCK
-2019/3/24 23:9:0
-ATM CASH MACHINE
-30/30/30/30
 ATM BANK USERS
-USER: username
-password
+USER
+username.password
 SAVINGS
 - locale
 - balance
@@ -59,19 +55,3 @@ CASH BACK CARD
    - account to/from
    - time of transaction
    - locale
-
-
-ATM BANK MANAGER
-REQUEST: request type
-User / username / password
-Account / account type / account owner(s)
-Undo / requester / account / transaction number
-
-ATM BANK TELLERS
-TELLER1
-USER: username
-REQUESTS (only undo transaction requests and can restock cash machine)
-
-etc.
-
-put each field in separate text file?

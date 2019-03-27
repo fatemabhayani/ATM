@@ -1,38 +1,37 @@
-package phase2.Accounts;
+package phase2.People;
+
+import phase2.Accounts.*;
+import phase2.Transactions.TransactionComparator;
+import phase2.Transactions.Transaction;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import phase2.Accounts.*;
-import phase2.Transactions.*;
 
-/**
- * The type Account manager.
- */
 public class AccountManager {
     /**
      * Line of credit accounts.
      */
-    private final ArrayList<LineOfCredit> lc;
+    private ArrayList<LineOfCredit> lc;
 
     /**
      * Credit card accounts.
      */
-    private final ArrayList<CreditCard> cc;
+    private ArrayList<CreditCard> cc;
 
     /**
      * Chequing accounts.
      */
-    private final ArrayList<Chequing> cq;
+    private ArrayList<Chequing> cq;
 
     /**
      * Savings accounts.
      */
-    private final ArrayList<Savings> sv;
+    private ArrayList<Savings> sv;
 
     /**
      * Cash back card accounts.
      */
-    private final ArrayList<CashBackCard> cb;
+    private ArrayList<CashBackCard> cb;
 
     /**
      * Instantiates a new account manager.
@@ -51,8 +50,6 @@ public class AccountManager {
      * @param lc line of credit accounts
      * @param cc credit card accounts
      * @param cq line of credit accounts
-     * @param sv the sv
-     * @param cb the cb
      */
     public AccountManager(ArrayList<LineOfCredit> lc, ArrayList<CreditCard> cc, ArrayList<Chequing> cq,
                           ArrayList<Savings> sv, ArrayList<CashBackCard> cb) {
@@ -183,8 +180,8 @@ public class AccountManager {
      * Adds a new account.
      *
      * @param accountType the account type
-     * @param curr        the country associated with the account
-     * @param time        the time of creation
+     * @param curr the country associated with the account
+     * @param time the time of creation
      */
     public void add(String accountType, String curr, Calendar time) {
         switch (accountType) {
