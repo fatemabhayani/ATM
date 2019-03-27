@@ -97,15 +97,15 @@ public abstract class Transaction implements Serializable {
      */
     private ForeignCurrency readFile(String textFile) {
         // Rep invariant:
-        //      .txt file must record amounts in double format without other characters
-        //      for example: 20.00
-        //                   450.80 would be accepted while:
-        //                   "forty dollars" || $450 is not.
+        //      .txt file must be formatted as follows:
+        //      Deposit [amount] dollars into [User.username]'s account [account ID].
         String inputAmount;
         double totalDeposit = 0.00;
         try {
             BufferedReader re = new BufferedReader(new FileReader(textFile));
             while ((inputAmount = re.readLine()) != null) {
+                String[] amountArray = inputAmount.split(" ");
+                inputAmount = amountArray[1];
                 // add amount into total amount
                 try {
                     double value = Double.parseDouble(inputAmount);
