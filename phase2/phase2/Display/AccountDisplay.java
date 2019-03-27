@@ -6,13 +6,27 @@ import phase2.People.User;
 
 import java.util.Scanner;
 
+/**
+ * The type Account display.
+ */
 class AccountDisplay {
 
 
+    /**
+     * The User.
+     */
     public static User U = UserDisplay.U;
+    /**
+     * The Account.
+     */
     public static Account a = UserDisplay.a;
     private static String accountType = UserDisplay.accountType;
 
+    /**
+     * The entry point of Account Display.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         System.out.println(a.toString());
         System.out.println("Do you want to request an account (1), make a transaction (2), or exit (3)?");

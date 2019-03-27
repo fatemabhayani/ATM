@@ -33,7 +33,13 @@ public class ATM {
      */
     public static ATMTime clock = new ATMTime(2019, 0, 1, 0, 0, 0);
 
+    /**
+     * The username.
+     */
     public static String username;
+    /**
+     * The bank manager
+     */
     public static BankManager b = new BankManager();
 
     /**
@@ -41,6 +47,8 @@ public class ATM {
      * User or BankManager can login, User can request
      * to create an account. Date and Time are also set.
      * If the user does not have an account, a new User will be created
+     *
+     * @param args the args
      */
     public static void main(String[] args){
         String command;
