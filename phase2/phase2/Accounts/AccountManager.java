@@ -6,7 +6,7 @@ import phase2.People.*;
 import phase2.Transactions.*;
 
 /**
- * The type Account manager.
+ * Manages a user's list of accounts.
  */
 public class AccountManager {
     /**

@@ -21,6 +21,12 @@ Note
    check that these methods don't need to be used before deleting (i.e. if
    the method should be called in the main method but isn't yet, don't delete it!)
 
+
+Presentation Classes
+- Brittany (Data & People)
+- Anna (Transactions)
+- Shourya (Interfaces)
+
 ATM Time: get current year, get current month
 Account Manager: 1 constructor isnt used
 
