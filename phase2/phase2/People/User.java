@@ -110,10 +110,21 @@ public class User {
         }
     }
 
+    /**
+     * Gets the list of transactions for this user.
+     *
+     * @return list of transactions
+     */
     private ArrayList<Transaction> getTransactions() {
         return accounts.getTransactions();
     }
 
+    /**
+     * Gets the ith most recent transactions for this user.
+     *
+     * @param i the transaction number
+     * @return the transaction
+     */
     public Transaction getTransaction(int i) {
         return getTransactions().get(i);
     }
@@ -138,7 +149,7 @@ public class User {
     }
 
     /**
-     * Gets the accounts of a user given the account number.
+     * Gets the account of a user given the account number.
      *
      * @param num the account number
      * @return the account
@@ -151,7 +162,6 @@ public class User {
      * Adds the user with username to the specified account.
      *
      * @param num the account number
-     * @return the account
      */
     public void addAccountOwner(String username, int num) {
         Account a = getAccount(num);
