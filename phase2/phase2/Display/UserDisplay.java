@@ -28,6 +28,7 @@ public class UserDisplay {
                 command = tmp.nextLine();
                 command = command.replaceAll("//s", "");
                 U.setPassword(command);
+                UserDisplay.main(null);
                 break;
             case "1":
                 System.out.println(U.balanceSummary());
