@@ -101,17 +101,4 @@ public class BankManager extends BankEmployee {
         requests.remove(i);
     }
 
-    /**
-     * Completes a user request at a specified index and deletes it from requests.
-     *
-     * @param i the index of requests
-     */
-    public void completeRequest(int i, String password) {
-        if (requests.get(i) instanceof UserRequest){
-            UserRequest req = (UserRequest) requests.get(i);
-            req.resolveRequest(password);
-            requests.remove(i);
-        }
-    }
-
 }

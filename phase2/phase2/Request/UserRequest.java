@@ -3,22 +3,34 @@ package phase2.Request;
 import phase2.People.UserManager;
 
 /**
- * The User creation request, type of request
+ * A request for a new user account.
  */
 public class UserRequest extends Request {
+    /**
+     * The username for the new user.
+     */
     private String username;
 
     /**
-     * Instantiates a new User request.
+     * The username for the new user.
+     */
+    private String password;
+
+    /**
+     * Instantiates a new ser request.
      *
      * @param username the username
      */
-    public UserRequest(String username) {
+    public UserRequest(String username, String password) {
+        this.password = password;
         this.username = username;
     }
 
-    public void resolveRequest(String password) {
-        UserManager.addUser(this.username, password);
+    /**
+     * Resolves the request by making the user.
+     */
+    public void resolveRequest() {
+        UserManager.addUser(username, password);
     }
 
     @Override

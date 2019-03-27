@@ -107,8 +107,12 @@ public class ATM {
                 command = sc.nextLine();
                 command = command.replaceAll("//s", "");
             }
-            System.out.println("You have chosen a valid username, your request to create an account has been sent to the bank manager");
-            UserRequest r = new UserRequest(command);
+            System.out.println("You have chosen a valid username");
+            String username = command;
+            System.out.println("Now choose your initial password.");
+            command = sc.nextLine().replaceAll("//s", "");
+            System.out.println("Your request to create an account has been sent to the bank manager");
+            UserRequest r = new UserRequest(username, command);
             ATM.b.addRequest(r);
             ATM.main(null);
         }

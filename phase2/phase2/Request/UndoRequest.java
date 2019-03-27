@@ -13,19 +13,20 @@ public class UndoRequest extends Request {
     private int num;
 
     /**
-     * Instantiates a new Undo request.
+     * Instantiates a new undo request.
      *
      * @param requester the user that requested the request
      * @param account   the account
+     * @param num       the transaction number
      */
-    public UndoRequest(User requester, Account account, int num){
+    public UndoRequest(User requester, Account account, int num) {
         this.requester = requester;
         this.account = account;
         this.num = num;
     }
 
     /**
-     * Gets requester.
+     * Gets the requester.
      *
      * @return the user that requested the request
      */
@@ -34,23 +35,25 @@ public class UndoRequest extends Request {
     }
 
     /**
-     * Gets account type.
+     * Gets the account.
      *
-     * @return the account type
+     * @return the account
      */
     public Account getAccountType() {
         return account;
     }
 
-    @Override
-    public String toString() {
-        return requester.getUsername() + " wants to undo their last transaction on " + account.toString();
-    }
-
-    @Override
+    /**
+     * Resolves the request by undoing the transaction.
+     */
     public void resolveRequest() {
         Transaction transaction = account.getTransactions().get(num);
         transaction.undoTransaction();
+    }
+
+    @Override
+    public String toString() {
+        return requester.getUsername() + " wants to undo their last transaction on " + account.toString();
     }
 }
 
