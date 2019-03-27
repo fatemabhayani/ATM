@@ -48,7 +48,7 @@ class ManagerDisplay {
                     command = sc.nextLine();
                     command = command.replaceAll("//s", "");
                     b.completeRequest(number, command);
-
+                    //TODO: fix null pointer error with lc (and possibly other) account creation
                 } else {
                 b.completeRequest(number); }
             } else {
