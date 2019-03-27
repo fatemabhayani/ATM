@@ -79,7 +79,11 @@ public class ATM {
                     System.out.println("You did not give a valid username, try again, if you would like to go to the start screen type exit");
                     command = sc.nextLine();
                     user = UserManager.getUser(command);
+                    if(command.toLowerCase().equals("exit")){
+                        ATM.main(null);
+                    }
                 }
+                username = command;
                 System.out.println("Enter your password.");
                 command = sc.nextLine();
                 command = command.replaceAll("//s", "");

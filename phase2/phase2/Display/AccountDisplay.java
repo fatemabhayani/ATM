@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 class AccountDisplay {
 
-    private static String command;
+
     public static User U = UserDisplay.U;
     public static Account a = UserDisplay.a;
     private static String accountType = UserDisplay.accountType;
@@ -17,7 +17,7 @@ class AccountDisplay {
         System.out.println(a.toString());
         System.out.println("Do you want to request an account (1), make a transaction (2), or exit (3)?");
         Scanner tmp = new Scanner(System.in);
-        command = tmp.nextLine();
+        String command = tmp.nextLine();
         command = command.replaceAll("//s","");
         if (command.equals("1")) {
             System.out.println("Enter the currency code for the account?");

@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class UserDisplay {
 
-    private static String command;
+
     public static User U = UserManager.getUser(ATM.username);
     public static Account a;
     public static String accountType;
@@ -20,7 +20,7 @@ public class UserDisplay {
                 + "Type '1' if you would like to interact with your accounts" + "\n"
                 + "Type '2' if you would like to log out");
         Scanner tmp = new Scanner(System.in);
-        command = tmp.nextLine();
+        String command = tmp.nextLine();
         command = command.replaceAll("//s","");
         switch (command) {
             case "0":
@@ -28,6 +28,7 @@ public class UserDisplay {
                 command = tmp.nextLine();
                 command = command.replaceAll("//s", "");
                 U.setPassword(command);
+                UserDisplay.main(null);
                 break;
             case "1":
                 System.out.println(U.balanceSummary());
