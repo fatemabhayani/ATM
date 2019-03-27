@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class BankManager extends BankEmployee {
 
     /**
-     * The list of requests for this employee.
+     * The list of requests for the manager.
      */
     private ArrayList<Request> requests;
 
@@ -29,6 +29,9 @@ public class BankManager extends BankEmployee {
      * @param year the year
      * @param month the month
      * @param date the date
+     * @param hour the hour
+     * @param minute the minute
+     * @param second the second
      */
     public void setDate(int year, int month, int date, int hour, int minute, int second) {
         ATM.clock.setDate(year, month, date, hour, minute, second);
@@ -44,7 +47,12 @@ public class BankManager extends BankEmployee {
         return requests.get(i);
     }
 
-    public int getNumberOfRequests(){return requests.size();}
+    /**
+     * Returns number of requests in the manager's notifications.
+     *
+     * @return the number of requests
+     */
+    public int getNumberOfRequests() { return requests.size(); }
 
     /**
      * Returns a summary of the bank manager's requests.
@@ -94,6 +102,11 @@ public class BankManager extends BankEmployee {
         requests.remove(i);
     }
 
+    /**
+     * Completes a user request at a specified index and deletes it from requests.
+     *
+     * @param i the index of requests
+     */
     public void completeRequest(int i, String password) {
         if (requests.get(i) instanceof UserRequest){
             UserRequest req = (UserRequest) requests.get(i);

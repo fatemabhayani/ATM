@@ -20,7 +20,7 @@ class WithdrawDisplay {
         int amt = Integer.valueOf(command.replaceAll("//s", ""));
         Calendar time = ATM.clock.getCurrentTime();
         Withdraw t = new Withdraw(new ForeignCurrency("CAD", amt), a, time);
-        U.makeWithdrawal(t);
+        U.makeTransaction(t);
 
         AccountDisplay.main(null);
     }

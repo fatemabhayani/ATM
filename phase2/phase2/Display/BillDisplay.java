@@ -21,7 +21,7 @@ class BillDisplay {
         command = tmp.nextLine();
         command = command.replaceAll("//s", "");
         Bill t = new Bill(new ForeignCurrency(command, amt), a, ATM.clock.getCurrentTime());
-        U.makeBillPayment(t);
+        U.makeTransaction(t);
 
         AccountDisplay.main(null);
     }

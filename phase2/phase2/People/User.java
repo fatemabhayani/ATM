@@ -1,18 +1,15 @@
 package phase2.People;
 
-import phase2.Accounts.Account;
+import phase2.Accounts.*;
 import phase2.Display.ATM;
 import phase2.Request.*;
 import phase2.Transactions.Transaction;
-import phase2.Accounts.AccountManager;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * A user of the ATM.
  */
-public class User implements Serializable {
+public class User {
 
     /**
      * The username for this user.
@@ -28,7 +25,6 @@ public class User implements Serializable {
      * The account manager for this user's accounts.
      */
     private AccountManager accounts;
-
 
     /**
      * Creates a new User.
@@ -46,6 +42,7 @@ public class User implements Serializable {
      * Request creation of account.
      *
      * @param accountType the account type
+     * @param currencyCode the country code for the account
      */
     public void requestAccount(String accountType, String currencyCode) {
         Request req = new AccountRequest(this, accountType, currencyCode);
@@ -56,6 +53,7 @@ public class User implements Serializable {
      * Request to undo transaction
      *
      * @param account the account
+     * @param num the transaction number to undo
      */
     public void requestUndo(Account account, int num) {
         Request req = new UndoRequest(this, account, num);
@@ -72,7 +70,7 @@ public class User implements Serializable {
     }
 
     /**
-     * Gets user name.
+     * Gets username.
      *
      * @return the user name
      */
@@ -99,11 +97,11 @@ public class User implements Serializable {
     }
 
     /**
-     * Make transfer.
+     * Make a transaction.
      *
      * @param t the transaction
      */
-    public void makeTransfer(Transaction t){
+    public void makeTransaction(Transaction t) {
         if (t.getIsApproved()) {
             System.out.println("Transaction made.");
             t.makeTransaction();
@@ -113,51 +111,20 @@ public class User implements Serializable {
     }
 
     /**
-     * Make deposit.
+     * Gets the list of transactions for this user.
      *
-     * @param t the transaction
+     * @return list of transactions
      */
-    public void makeDeposit(Transaction t){
-        if (t.getIsApproved()) {
-            System.out.println("Transaction made.");
-            t.makeTransaction();
-        } else {
-            System.out.println("Transaction failed.");
-        }
-    }
-
-    /**
-     * Make withdrawal.
-     *
-     * @param t the transaction
-     */
-    public void makeWithdrawal(Transaction t){
-        if (t.getIsApproved()) {
-            System.out.println("Transaction made.");
-            t.makeTransaction();
-        } else {
-            System.out.println("Transaction failed.");
-        }
-    }
-
-    /**
-     * Make bill payment.
-     *
-     * @param t the transaction
-     */
-    public void makeBillPayment(Transaction t) {
-        if (t.getIsApproved()) {
-            System.out.println("Transaction made.");
-            t.makeTransaction();
-        } else {
-            System.out.println("Transaction failed.");
-        }
-    }
-
     private ArrayList<Transaction> getTransactions() {
         return accounts.getTransactions();
     }
 
+    /**
+     * Gets the ith most recent transactions for this user.
+     *
+     * @param i the transaction number
+     * @return the transaction
+     */
     public Transaction getTransaction(int i) {
         return getTransactions().get(i);
     }
@@ -182,7 +149,7 @@ public class User implements Serializable {
     }
 
     /**
-     * Gets the accounts of a user given the account number.
+     * Gets the account of a user given the account number.
      *
      * @param num the account number
      * @return the account
@@ -195,7 +162,6 @@ public class User implements Serializable {
      * Adds the user with username to the specified account.
      *
      * @param num the account number
-     * @return the account
      */
     public void addAccountOwner(String username, int num) {
         Account a = getAccount(num);
