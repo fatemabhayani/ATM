@@ -7,8 +7,6 @@ import phase2.Accounts.Savings;
 import phase2.ForeignCurrency;
 import phase2.Transactions.Transaction;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Calendar;
 
 public class Bill extends Transaction {
