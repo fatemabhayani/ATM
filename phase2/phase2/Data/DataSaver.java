@@ -39,7 +39,6 @@ public class DataSaver {
         try (FileWriter writer = new FileWriter(atmdata)) {
             writer.write("ATM CLOCK");
             writer.write(ATM.clock.toString());
-            writer.write("\n");
             writer.write("ATM CASH MACHINE");
             writer.write(ATM.c.toString());
         } catch (Exception e) {
@@ -129,7 +128,6 @@ public class DataSaver {
             ATM.clock.setDate(Integer.valueOf(time[0]), Integer.valueOf(time[1]) - 1, Integer.valueOf(time[2]),
                     Integer.valueOf(time[3]), Integer.valueOf(time[4]), Integer.valueOf(time[5]));
 
-            reader.readLine();
             reader.readLine();
             s = reader.readLine();
             String[] b = s.split("/");
