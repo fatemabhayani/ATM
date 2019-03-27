@@ -5,8 +5,16 @@ import phase2.Request.*;
 
 import java.util.Scanner;
 
+/**
+ * The type Manager display.
+ */
 class ManagerDisplay {
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
 
         BankManager b = ATM.b;
