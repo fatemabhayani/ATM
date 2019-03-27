@@ -26,6 +26,7 @@ Presentation Classes
 - Brittany (Data & People)
 - Anna (Transactions)
 - Shourya (Interfaces)
+- Fatema (Requests, ForeignCurrency)
 
 ATM Time: get current year, get current month
 Account Manager: 1 constructor isnt used
