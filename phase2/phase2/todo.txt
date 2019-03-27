@@ -13,7 +13,6 @@ Refactor (and add Phase 2 functionality)
 ERRORS - ARJUN
 - Bank Manager is not asked to set a default password for the user
 - When user tries to change their password, the code crashes
-- Need to store account data on text files, instead of RAM
 - After creating an account, the program crashes when the user tries accessing their new account
 
 Note
@@ -24,7 +23,6 @@ Note
 
 ATM Time: get current year, get current month
 Account Manager: 1 constructor isnt used
-Asset Account: some Constructors arent used
 
 Phase 1 Markus comments
 
