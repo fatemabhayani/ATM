@@ -6,7 +6,6 @@ import phase2.Accounts.LineOfCredit;
 import phase2.Accounts.Savings;
 import phase2.ForeignCurrency;
 import phase2.Transactions.Transaction;
-import phase2.WriteFile;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,6 +14,14 @@ import java.util.Calendar;
 public class Bill extends Transaction {
 
     private Account moneyFrom;
+
+    /**
+     * Instantiates a new Bill.
+     *
+     * @param amount    the amount payed
+     * @param moneyFrom the account the money originates from
+     * @param date      date of transaction
+     */
 
     public Bill(ForeignCurrency amount, Account moneyFrom, Calendar date) {
         super(amount, date);
@@ -39,19 +46,6 @@ public class Bill extends Transaction {
     public void makeTransaction() {
         moneyFrom.subtract(amount);
         // writes to outgoing.txt
-        recordTransaction();
-    }
-
-    private void recordTransaction(){
-        try {
-            File outoingFile = new File("outgoing.txt"); // outgoing file created
-            WriteFile data = new WriteFile(outoingFile, true);
-
-            String record = Double.toString(amount.getAmount()) + " was payed on " + getTimeOfTransaction();
-            data.writeToFile(record);
-        }catch (IOException e){
-            System.out.println(e.getMessage());
-        }
     }
 
     public void undoTransaction() {}
