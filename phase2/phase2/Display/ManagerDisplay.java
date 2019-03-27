@@ -43,14 +43,7 @@ class ManagerDisplay {
             command = sc.nextLine();
             command = command.replaceAll("//s", "");
             if (command.equals("yes")) {
-                if (request instanceof UserRequest){
-                    System.out.println("What password would you like to set for this user");
-                    command = sc.nextLine();
-                    command = command.replaceAll("//s", "");
-                    b.completeRequest(number, command);
-                    //TODO: fix null pointer error with lc (and possibly other) account creation
-                } else {
-                b.completeRequest(number); }
+                b.completeRequest(number);
             } else {
                 b.ignoreRequest(number);
             }
