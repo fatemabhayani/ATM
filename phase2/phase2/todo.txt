@@ -28,8 +28,10 @@ Presentation Classes
 - Shourya (Interfaces)
 - Fatema (Requests, ForeignCurrency)
 
+Unused Methods
 ATM Time: get current year, get current month
 Account Manager: 1 constructor isnt used
+Chequing getisPrimary
 
 Phase 1 Markus comments
 

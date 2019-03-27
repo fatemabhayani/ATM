@@ -15,7 +15,7 @@ public class CreditCard implements Account {
     /**
      * The account balance.
      */
-    ForeignCurrency balance;
+    private ForeignCurrency balance;
 
     /**
      * The first account owner.
@@ -30,7 +30,7 @@ public class CreditCard implements Account {
     /**
      * The account number.
      */
-    public int accountNum;
+    int accountNum;
 
     /**
      * The account manager.
