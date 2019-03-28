@@ -53,7 +53,7 @@ public class UserManager {
      * Checks whether password matches that of the ATM user or employee.
      *
      * @param password the username
-     * @param user the user
+     * @param user     the user
      * @return true if and only if password is correct.
      */
     public static boolean authenticatePassword(String password, User user) {
@@ -80,7 +80,7 @@ public class UserManager {
      * Returns the account of a given ATM user, given the account number.
      *
      * @param username the username
-     * @param num the account number
+     * @param num      the account number
      * @return the account
      */
     public static Account getUserAccount(String username, int num) {
@@ -95,6 +95,7 @@ public class UserManager {
      * Adds a user to the list of ATM bank users, with username and password.
      *
      * @param username the user's username
+     * @param password the password
      */
     public static void addUser(String username, String password){
         User u = new User(username, password);

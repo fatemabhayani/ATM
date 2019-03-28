@@ -29,7 +29,7 @@ public class User {
     /**
      * Creates a new User.
      *
-     * @param user the username
+     * @param user     the username
      * @param password the password
      */
     public User(String user, String password) {
@@ -42,7 +42,7 @@ public class User {
     /**
      * Request creation of account.
      *
-     * @param accountType the account type
+     * @param accountType  the account type
      * @param currencyCode the country code for the account
      */
     public void requestAccount(String accountType, String currencyCode) {
@@ -54,7 +54,7 @@ public class User {
      * Request to undo transaction
      *
      * @param account the account
-     * @param num the transaction number to undo
+     * @param num     the transaction number to undo
      */
     public void requestUndo(Account account, int num) {
         Request req = new UndoRequest(this, account, num);
@@ -126,7 +126,7 @@ public class User {
      * @param i the transaction number
      * @return the transaction
      */
-    public Transaction getTransaction(int i) {
+     Transaction getTransaction(int i) {
         return getTransactions().get(i);
     }
 
@@ -155,14 +155,15 @@ public class User {
      * @param num the account number
      * @return the account
      */
-    public Account getAccount(int num) {
+    Account getAccount(int num) {
         return accounts.getAccount(num);
     }
 
     /**
      * Adds the user with username to the specified account.
      *
-     * @param num the account number
+     * @param username the username
+     * @param num      the account number
      */
     public void addAccountOwner(String username, int num) {
         Account a = getAccount(num);
