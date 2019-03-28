@@ -7,9 +7,7 @@ Phase 2
 
 Refactor (and add Phase 2 functionality)
 
-10. Display classes (Arjun)
-11. Account (Shourya)
-    - joint accounts
+10. Display classes
 ERRORS - ARJUN
 - Bank Manager is not asked to set a default password for the user
 - When user tries to change their password, the code crashes
