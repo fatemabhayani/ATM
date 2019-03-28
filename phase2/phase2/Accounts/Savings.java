@@ -50,10 +50,5 @@ public class Savings extends AssetAccount {
             System.out.println("Transaction successful!");
         }
     }
-
-    @Override
-    public String toString() {
-        return super.toString();
-    }
 }
 

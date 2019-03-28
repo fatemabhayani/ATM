@@ -34,9 +34,4 @@ public class LineOfCredit extends CreditCard {
             System.out.println("There isn't enough credit limit on your account to complete this transaction");
         }
     }
-
-    @Override
-    public String toString() {
-        return super.toString();
-    }
 }

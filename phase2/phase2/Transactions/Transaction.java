@@ -37,12 +37,6 @@ public abstract class Transaction {
         this.amount = amount;
         this.timeOfTransaction = timeOfTransaction;
         this.approved = transactionApproved();
-        // The transaction is made upon creation (if viable)
-        if (this.approved) {
-            makeTransaction();
-        } else {
-            System.out.println("This transaction is not approved.");
-        }
     }
 
     /**
@@ -56,10 +50,6 @@ public abstract class Transaction {
         amount = readFile(depositFile);
         this.timeOfTransaction = timeOfTransaction;
         this.approved = transactionApproved();
-        // The transaction is made upon creation (if viable)
-        if (this.approved) {
-            makeTransaction();
-        }
     }
 
     /**

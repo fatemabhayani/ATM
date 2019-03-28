@@ -55,6 +55,10 @@ public class DataReader {
             for (int i = 0; i < 4; i++) {
                 ATM.c.increaseBills(i, Integer.valueOf(b[i]));
             }
+
+            reader.readLine();
+            s = reader.readLine();
+            UserManager.accountNum = Integer.valueOf(s);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -66,8 +70,16 @@ public class DataReader {
     private static void readUserData() {
         String s;
         try (BufferedReader reader = new BufferedReader(new FileReader(userdata))) {
-            reader.readLine();
-            s = reader.readLine();
+            reader.readLine(); // ATM BANK USERS
+            s = reader.readLine(); // USER
+            while (s != null) {
+                s = reader.readLine(); // username.password
+                while (!s.equals("USER")) {
+                    String[] userInfo = s.split(".");
+                    User u = new User(userInfo[0], userInfo[1]);
+                    s = reader.readLine();
+                }
+            }
 
         } catch (Exception e) {
             e.printStackTrace();

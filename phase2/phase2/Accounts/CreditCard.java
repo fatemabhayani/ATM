@@ -240,6 +240,6 @@ public class CreditCard implements Account {
 
     @Override
     public String toString() {
-        return accountNum + "\n" + balance.toString() + "\n" + getCreationDate() + "\n" + creditLimit;
+        return accountNum + "\n" + balance.toString() + "\n" + getCreationDate();
     }
 }
