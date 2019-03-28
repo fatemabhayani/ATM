@@ -3,6 +3,9 @@ package phase2.Transactions;
 import java.util.Calendar;
 import java.util.Comparator;
 
+/**
+ * The type Transaction comparator.
+ */
 public class TransactionComparator implements Comparator<Transaction> {
 
     /**

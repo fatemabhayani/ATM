@@ -16,9 +16,9 @@ public class Deposit extends Transaction {
     /**
      * Instantiates a new Deposit.
      *
-     * @param deposit  file containing information regarding the amount of deposit(s)
-     * @param moneyTo  account to deposit the money to
-     * @param date     the date of creation
+     * @param deposit file containing information regarding the amount of deposit(s)
+     * @param moneyTo account to deposit the money to
+     * @param date    the date of creation
      */
     public Deposit(String deposit, Account moneyTo, Calendar date) {
         super(deposit, date);

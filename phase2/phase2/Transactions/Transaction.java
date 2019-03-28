@@ -81,7 +81,7 @@ public abstract class Transaction {
      *
      * @return the time
      */
-    public Calendar getTimeOfTransaction() { return timeOfTransaction; }
+    Calendar getTimeOfTransaction() { return timeOfTransaction; }
 
     /**
      * Reads .txt file and accumulates amounts deposited
