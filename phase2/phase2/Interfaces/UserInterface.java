@@ -12,6 +12,9 @@ import java.util.ArrayList;
 
 import static phase2.Display.UserDisplay.*;
 
+/**
+ * The type User interface.
+ */
 class UserInterface extends JFrame {
     private JCheckBox changePasswordCheckBox;
     private JPasswordField passwordField1;
@@ -29,9 +32,17 @@ class UserInterface extends JFrame {
     private String verify;
     private ArrayList<Account> account;
     private Account a;
+    /**
+     * The .
+     */
     public int i;
 
-    public UserInterface(User U) {
+    /**
+     * Instantiates a new User interface.
+     *
+     * @param U the user
+     */
+    UserInterface(User U) {
         add(root);
         setSize(500,500);
 
@@ -107,9 +118,7 @@ class UserInterface extends JFrame {
                         break;
                 }
                 for (int i = 0; i < account.size(); i++) {
-                    if (String.valueOf(i)!=null){
-                        comboBox2.addItem(String.valueOf(i));
-                    }
+                    comboBox2.addItem(String.valueOf(i));
 
                 }
             }
@@ -129,12 +138,13 @@ class UserInterface extends JFrame {
         this.dispose();
 
     }
-    public static void main(String args[]) {
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new UserInterface(U).setVisible(true);
-            }
-        });
+
+    /**
+     * Main.
+     *
+     * @param args the args
+     */
+    public static void main(String[] args) {
+        EventQueue.invokeLater(() -> new UserInterface(U).setVisible(true));
     }
 }

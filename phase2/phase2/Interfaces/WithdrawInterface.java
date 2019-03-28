@@ -14,6 +14,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Calendar;
 
+/**
+ * The type Withdraw interface.
+ */
 public class WithdrawInterface extends JFrame {
     private JTextField textField1;
     private JPanel root;
@@ -24,12 +27,18 @@ public class WithdrawInterface extends JFrame {
     private static Account account;
     private static User user;
 
-    public WithdrawInterface(Account a, User U) {
+    /**
+     * Instantiates a new Withdraw interface.
+     *
+     * @param a the account
+     * @param U the user
+     */
+    WithdrawInterface(Account a, User U) {
         add(root);
         setVisible(true);
         setSize(500,500);
-        this.account = a;
-        this.user = U;
+        account = a;
+        user = U;
         textField1.addInputMethodListener(new InputMethodListener() {
             @Override
             public void inputMethodTextChanged(InputMethodEvent event) {
@@ -61,12 +70,12 @@ public class WithdrawInterface extends JFrame {
         this.dispose();
     }
 
-    public static void main(String args[]) {
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new WithdrawInterface(account,user).setVisible(true);
-            }
-        });
+    /**
+     * Main.
+     *
+     * @param args the args
+     */
+    public static void main(String[] args) {
+        EventQueue.invokeLater(() -> new WithdrawInterface(account,user).setVisible(true));
     }
 }
