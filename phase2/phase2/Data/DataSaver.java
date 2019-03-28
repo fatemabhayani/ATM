@@ -65,34 +65,28 @@ public class DataSaver {
                  writer.write("SAVINGS");
                  for (Object o : u.getAccountList("sv")) {
                      Savings a = (Savings) o;
-                     writer.write("ACCOUNT");
                      writer.write(a.toString());
                  }
                  writer.write("CHEQUING");
                  for (Object o : u.getAccountList("cq")) {
                      Chequing a = (Chequing) o;
-                     writer.write("ACCOUNT");
                      writer.write(a.toString());
                  }
                  writer.write("CASH BACK");
                  for (Object o : u.getAccountList("cb")) {
                      CashBackCard a = (CashBackCard) o;
-                     writer.write("ACCOUNT");
                      writer.write(a.toString());
                  }
                  writer.write("CREDIT CARD");
                  for (Object o : u.getAccountList("cc")) {
                      CreditCard a = (CreditCard) o;
-                     writer.write("ACCOUNT");
                      writer.write(a.toString());
                  }
                  writer.write("LINE OF CREDIT");
                  for (Object o : u.getAccountList("lc")) {
                      LineOfCredit a = (LineOfCredit) o;
-                     writer.write("ACCOUNT");
                      writer.write(a.toString());
                  }
-                 writer.write("");
              }
         } catch (Exception e) {
             e.printStackTrace();

@@ -74,10 +74,36 @@ public class DataReader {
             s = reader.readLine(); // USER
             while (s != null) {
                 s = reader.readLine(); // username.password
-                while (!s.equals("USER")) {
+                while (s != null && !s.equals("USER")) {
                     String[] userInfo = s.split(".");
                     User u = new User(userInfo[0], userInfo[1]);
-                    s = reader.readLine();
+                    ATM.bankUsers.add(u);
+                    reader.readLine(); // SAVINGS
+                    s = reader.readLine(); // savings account 1 info
+                    while (!s.equals("CHEQUING")) {
+                        // method to make savings account from string
+                        s = reader.readLine();
+                    }
+                    s = reader.readLine(); // chequing account 1 info
+                    while (!s.equals("CASH BACK")) {
+                        // method to make chequing account from string
+                        s = reader.readLine();
+                    }
+                    s = reader.readLine(); // cash back account 1 info
+                    while (!s.equals("CREDIT CARD")) {
+                        // method to make cash back account from string
+                        s = reader.readLine();
+                    }
+                    s = reader.readLine(); // credit card account 1 info
+                    while (!s.equals("LINE OF CREDIT")) {
+                        // method to make credit card account from string
+                        s = reader.readLine();
+                    }
+                    s = reader.readLine(); // line of credit account 1 info
+                    while (s != null && !s.equals("USER")) {
+                        // method to make line of credit account from string
+                        s = reader.readLine();
+                    }
                 }
             }
 
