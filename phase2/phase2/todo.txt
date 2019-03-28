@@ -34,12 +34,10 @@ Account Manager: 1 constructor isnt used
 Chequing getisPrimary
 Datasaver class is not used
 Write File
-Bank Employee undo transaction
 Bank Mnaager: setdate
 Bank Teller: createuseraccount, getrequest, getrequestsummary, ignore request, complete request
 User: request account, request undo,
 User Manager: isbankmanager, getuseraccount
-Account Request, Undo request: getrequester, get accounttype
 
 Phase 1 Markus comments
 

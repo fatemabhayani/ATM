@@ -38,24 +38,6 @@ public class AccountRequest extends Request {
     }
 
     /**
-     * Returns the user that requested the account
-     *
-     * @return the requester
-     */
-    public User getRequester() {
-        return requester;
-    }
-
-    /**
-     * Returns a string version of the account type.
-     *
-     * @return the account type
-     */
-    public String getAccountType() {
-        return accountType;
-    }
-
-    /**
      * Resolves the request by creating the account.
      */
     public void resolveRequest() {
