@@ -37,4 +37,4 @@ ACCOUNT
 4
 -10000 INR
 2019/3/24 23:9:0
-credit limit
+268432.50
