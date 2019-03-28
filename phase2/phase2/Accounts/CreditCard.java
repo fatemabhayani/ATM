@@ -212,7 +212,7 @@ public class CreditCard implements Account {
      *
      * @param creditLimit the new credit limit
      */
-    void decreaseCreditLimit(ForeignCurrency creditLimit) {
+    public void decreaseCreditLimit(ForeignCurrency creditLimit) {
         this.creditLimit.subtract(creditLimit);
     }
 
@@ -221,7 +221,7 @@ public class CreditCard implements Account {
      *
      * @param creditLimit the new credit limit
      */
-    private void increaseCreditLimit(ForeignCurrency creditLimit) {
+    public void increaseCreditLimit(ForeignCurrency creditLimit) {
         this.creditLimit.add(creditLimit);
     }
 

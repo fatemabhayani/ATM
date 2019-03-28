@@ -1,7 +1,11 @@
 package phase2.Data;
 
 import java.io.*;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 import phase2.Display.ATM;
+import phase2.ForeignCurrency;
 import phase2.People.*;
 import phase2.Accounts.*;
 
@@ -9,14 +13,6 @@ import phase2.Accounts.*;
  * The type Data reader.
  */
 public class DataReader {
-
-    /**
-     * The files that stores the ATM data.
-     */
-    private static String atmdata = "phase2/phase2/atmdata.txt";
-    private static String userdata = "phase2/phase2/userdata.txt";
-    private static String employeedata = "phase2/phase2/employeedata.txt";
-    private static String transactiondata = "phase2/phase2/transactiondata.txt";
 
     /**
      * Initializes an instance of DataSaver.
@@ -42,7 +38,7 @@ public class DataReader {
      */
     private static void readATMData() {
         String s;
-        try (BufferedReader reader = new BufferedReader(new FileReader(atmdata))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("phase2/phase2/Data/atmdata.txt"))) {
             reader.readLine();
             s = reader.readLine();
             String[] time = s.split("\\s|/|:");
@@ -69,7 +65,7 @@ public class DataReader {
      */
     private static void readUserData() {
         String s;
-        try (BufferedReader reader = new BufferedReader(new FileReader(userdata))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("phase2/phase2/Data/userdata.txt"))) {
             reader.readLine(); // ATM BANK USERS
             s = reader.readLine(); // USER
             while (s != null) {
@@ -81,32 +77,36 @@ public class DataReader {
                     reader.readLine(); // SAVINGS
                     s = reader.readLine(); // savings account 1 info
                     while (!s.equals("CHEQUING")) {
-                        // method to make savings account from string
+                        Savings a = makeSavings(s, u);
+                        u.getAccountManager().add(a);
                         s = reader.readLine();
                     }
                     s = reader.readLine(); // chequing account 1 info
                     while (!s.equals("CASH BACK")) {
-                        // method to make chequing account from string
+                        Chequing a = makeChequing(s, u);
+                        u.getAccountManager().add(a);
                         s = reader.readLine();
                     }
                     s = reader.readLine(); // cash back account 1 info
                     while (!s.equals("CREDIT CARD")) {
-                        // method to make cash back account from string
+                        CashBackCard a = makeCashBack(s, u);
+                        u.getAccountManager().add(a);
                         s = reader.readLine();
                     }
                     s = reader.readLine(); // credit card account 1 info
                     while (!s.equals("LINE OF CREDIT")) {
-                        // method to make credit card account from string
+                        CreditCard a = makeCreditCard(s, u);
+                        u.getAccountManager().add(a);
                         s = reader.readLine();
                     }
                     s = reader.readLine(); // line of credit account 1 info
                     while (s != null && !s.equals("USER")) {
-                        // method to make line of credit account from string
+                        LineOfCredit a = makeLineOfCredit(s, u);
+                        u.getAccountManager().add(a);
                         s = reader.readLine();
                     }
                 }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -117,7 +117,7 @@ public class DataReader {
      */
     private static void readTransactionData() {
         String s;
-        try (BufferedReader reader = new BufferedReader(new FileReader(transactiondata))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("phase2/phase2/Data/transactiondata.txt"))) {
             reader.readLine();
             s = reader.readLine();
 
@@ -131,12 +131,146 @@ public class DataReader {
      */
     private static void readEmployeeData() {
         String s;
-        try (BufferedReader reader = new BufferedReader(new FileReader(employeedata))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("phase2/phase2/Data/employeedata.txt"))) {
             reader.readLine();
             s = reader.readLine();
 
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * Returns the Savings account represented by s.
+     *
+     * @param s the string
+     * @param u the user owner
+     * @return a savings account
+     */
+    private static Savings makeSavings(String s, User u) {
+        String[] info = s.split("\\s|/|:");
+        int num = Integer.valueOf(info[0]);
+        if (UserManager.getUserAccount(num) != null) {
+            Account acc = UserManager.getUserAccount(num);
+            acc.setNewOwner(u);
+            return (Savings) acc;
+        } else {
+            Calendar date = new GregorianCalendar(Integer.valueOf(info[3]), Integer.valueOf(info[4]) - 1,
+                    Integer.valueOf(info[5]), Integer.valueOf(info[6]), Integer.valueOf(info[7]), Integer.valueOf(info[8]));
+            Savings acc = new Savings(date, u, info[2], num);
+            acc.setBalance(new ForeignCurrency(info[2], Double.valueOf(info[1])));
+            return acc;
+        }
+    }
+
+    /**
+     * Returns the Chequing account represented by s.
+     *
+     * @param s the string
+     * @param u the user owner
+     * @return a chequing account
+     */
+    private static Chequing makeChequing(String s, User u) {
+        String[] info = s.split("\\s|/|:");
+        int num = Integer.valueOf(info[0]);
+        boolean isPrimary = new Boolean(info[9]);
+        if (UserManager.getUserAccount(num) != null) {
+            Account acc = UserManager.getUserAccount(num);
+            acc.setNewOwner(u);
+            return (Chequing) acc;
+        } else {
+            Calendar date = new GregorianCalendar(Integer.valueOf(info[3]), Integer.valueOf(info[4]) - 1,
+                    Integer.valueOf(info[5]), Integer.valueOf(info[6]), Integer.valueOf(info[7]), Integer.valueOf(info[8]));
+            Chequing acc = new Chequing(isPrimary, date, u, info[2], num);
+            acc.setBalance(new ForeignCurrency(info[2], Double.valueOf(info[1])));
+            return acc;
+        }
+    }
+
+    /**
+     * Returns the Credit Card account represented by s.
+     *
+     * @param s the string
+     * @param u the user owner
+     * @return a credit card account
+     */
+    private static CreditCard makeCreditCard(String s, User u) {
+        String[] info = s.split("\\s|/|:");
+        int num = Integer.valueOf(info[0]);
+        if (UserManager.getUserAccount(num) != null) {
+            Account acc = UserManager.getUserAccount(num);
+            acc.setNewOwner(u);
+            return (CreditCard) acc;
+        } else {
+            Calendar date = new GregorianCalendar(Integer.valueOf(info[3]), Integer.valueOf(info[4]) - 1,
+                    Integer.valueOf(info[5]), Integer.valueOf(info[6]), Integer.valueOf(info[7]), Integer.valueOf(info[8]));
+            CreditCard acc = new CreditCard(date, u, info[2], num);
+            double balance = Double.valueOf(info[1]);
+            acc.setBalance(new ForeignCurrency(info[2], balance));
+            if (balance > 0) {
+                acc.decreaseCreditLimit(new ForeignCurrency(info[2], balance));
+            } else {
+                acc.increaseCreditLimit(new ForeignCurrency(info[2], -balance));
+            }
+            return acc;
+        }
+    }
+
+    /**
+     * Returns the Line of Credit account represented by s.
+     *
+     * @param s the string
+     * @param u the user owner
+     * @return a line of credit account
+     */
+    private static LineOfCredit makeLineOfCredit(String s, User u) {
+        String[] info = s.split("\\s|/|:");
+        int num = Integer.valueOf(info[0]);
+        if (UserManager.getUserAccount(num) != null) {
+            Account acc = UserManager.getUserAccount(num);
+            acc.setNewOwner(u);
+            return (LineOfCredit) acc;
+        } else {
+            Calendar date = new GregorianCalendar(Integer.valueOf(info[3]), Integer.valueOf(info[4]) - 1,
+                    Integer.valueOf(info[5]), Integer.valueOf(info[6]), Integer.valueOf(info[7]), Integer.valueOf(info[8]));
+            LineOfCredit acc = new LineOfCredit(date, u, info[2], num);
+            double balance = Double.valueOf(info[1]);
+            acc.setBalance(new ForeignCurrency(info[2], balance));
+            if (balance > 0) {
+                acc.decreaseCreditLimit(new ForeignCurrency(info[2], balance));
+            } else {
+                acc.increaseCreditLimit(new ForeignCurrency(info[2], -balance));
+            }
+            return acc;
+        }
+    }
+
+    /**
+     * Returns the Cash Back Card account represented by s.
+     *
+     * @param s the string
+     * @param u the user owner
+     * @return a cash back card account
+     */
+    private static CashBackCard makeCashBack(String s, User u) {
+        String[] info = s.split("\\s|/|:");
+        int num = Integer.valueOf(info[0]);
+        if (UserManager.getUserAccount(num) != null) {
+            Account acc = UserManager.getUserAccount(num);
+            acc.setNewOwner(u);
+            return (CashBackCard) acc;
+        } else {
+            Calendar date = new GregorianCalendar(Integer.valueOf(info[3]), Integer.valueOf(info[4]) - 1,
+                    Integer.valueOf(info[5]), Integer.valueOf(info[6]), Integer.valueOf(info[7]), Integer.valueOf(info[8]));
+            CashBackCard acc = new CashBackCard(date, u, info[2], num);
+            double balance = Double.valueOf(info[1]);
+            acc.setBalance(new ForeignCurrency(info[2], balance));
+            if (balance > 0) {
+                acc.decreaseCreditLimit(new ForeignCurrency(info[2], balance));
+            } else {
+                acc.increaseCreditLimit(new ForeignCurrency(info[2], -balance));
+            }
+            return acc;
         }
     }
 
