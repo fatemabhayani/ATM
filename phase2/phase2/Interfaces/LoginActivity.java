@@ -12,6 +12,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 
+/**
+ * The type Login activity.
+ */
 class LoginActivity extends JFrame{
     private JPanel root;
     private JButton clickHereIfYouButton;
@@ -27,7 +30,10 @@ class LoginActivity extends JFrame{
     private String manager;
     private boolean managerlogin = false;
 
-    public LoginActivity() {
+    /**
+     * Instantiates a new Login activity.
+     */
+    LoginActivity() {
         add(root);
         textField1.addInputMethodListener(new InputMethodListener() {
             @Override
@@ -110,6 +116,10 @@ class LoginActivity extends JFrame{
         UI.setLocationRelativeTo(null);
         this.dispose();
     }
+
+    /**
+     * Switch to account.
+     */
     public void switchToAccount() {
       //  AccountInterface acc = new AccountInterface();
         //acc.setVisible(true);
@@ -118,12 +128,13 @@ class LoginActivity extends JFrame{
         this.dispose();
 
     }
+
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new LoginActivity().setVisible(true);
-            }
-        });
+        EventQueue.invokeLater(() -> new LoginActivity().setVisible(true));
     }
 }
