@@ -5,6 +5,9 @@ import phase2.Request.*;
 
 import java.util.ArrayList;
 
+/**
+ * The type Bank teller.
+ */
 public class BankTeller extends BankEmployee {
     // Start with fixed number (10) of BankTellers
     // username: teller1, ..., teller10

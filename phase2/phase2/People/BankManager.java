@@ -25,10 +25,10 @@ public class BankManager extends BankEmployee {
     /**
      * Sets the date for the ATM.
      *
-     * @param year the year
-     * @param month the month
-     * @param date the date
-     * @param hour the hour
+     * @param year   the year
+     * @param month  the month
+     * @param date   the date
+     * @param hour   the hour
      * @param minute the minute
      * @param second the second
      */
