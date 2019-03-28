@@ -51,21 +51,6 @@ public abstract class BankEmployee {
     }
 
     /**
-     * Undoes the ith most recent transaction by a user, where 0 represents
-     * the most recent.
-     *
-     * @param user the user
-     * @param i    the index of the most recent transaction
-     */
-    public void undoTransaction(User user, int i) {
-        Transaction t = user.getTransaction(i);
-        if (t.getClass().isInstance(Bill.class)) {
-            System.out.println("Cannot undo a bill payment!");
-        }
-        t.undoTransaction();
-    }
-
-    /**
      * Restocks the cash machine based on the contents of alerts.txt.
      */
     public void restockCashMachine() {
