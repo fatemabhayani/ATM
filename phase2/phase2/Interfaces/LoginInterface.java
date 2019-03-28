@@ -5,7 +5,10 @@ import java.awt.*;
 import java.awt.event.InputMethodEvent;
 import java.awt.event.InputMethodListener;
 
-public class LoginInteface extends JFrame{
+/**
+ * The type Login interface.
+ */
+public class LoginInterface extends JFrame{
     private JLabel loginPageLabel;
     private JTextField textField1;
     private JPasswordField passwordField1;
@@ -15,7 +18,10 @@ public class LoginInteface extends JFrame{
     private JLabel usernameLabel;
     private JLabel passwordLabel;
 
-    public LoginInteface() {
+    /**
+     * Instantiates a new Login interface.
+     */
+    private LoginInterface() {
         add(root);
         textField1.addInputMethodListener(new InputMethodListener() {
             @Override
@@ -29,11 +35,17 @@ public class LoginInteface extends JFrame{
             }
         });
     }
+
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new LoginInteface().setVisible(true);
+                new LoginInterface().setVisible(true);
             }
         });
     }

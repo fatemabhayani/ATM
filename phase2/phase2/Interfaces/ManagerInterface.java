@@ -6,6 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * The type Manager interface.
+ */
 class ManagerInterface extends JFrame {
     private JComboBox comboBox1;
     private JTextField textField1;
@@ -15,7 +18,10 @@ class ManagerInterface extends JFrame {
     private JPanel root;
     private String option;
 
-    public ManagerInterface() {
+    /**
+     * Instantiates a new Manager interface.
+     */
+    ManagerInterface() {
         add(root);
         setSize(500,500);
 
@@ -54,13 +60,14 @@ class ManagerInterface extends JFrame {
             }
         });
     }
+
+    /**
+     * Main.
+     *
+     * @param arg the arg
+     */
     public static void main(String[] arg){
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new ManagerInterface().setVisible(true);
-            }
-        });
+        EventQueue.invokeLater(() -> new ManagerInterface().setVisible(true));
 
     }
 }
