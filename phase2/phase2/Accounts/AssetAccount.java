@@ -161,6 +161,13 @@ public abstract class AssetAccount implements Account {
         }
     }
 
+    /**
+     * Gets the account number.
+     *
+     * @return the number
+     */
+    public int getNumber() { return accountNum; }
+
     @Override
     public String toString() {
         return "Asset account created on: " + dateOfCreation.toString() + "\n" + "Last transaction: " +

@@ -10,6 +10,11 @@ import java.util.ArrayList;
 public class UserManager {
 
     /**
+     * The number of accounts in the ATM.
+     */
+    public static int accountNum = 0;
+
+    /**
      * Creates a new UserManager.
      * Since this is a utility class, the constructor is private.
      */
@@ -45,8 +50,18 @@ public class UserManager {
      * @param username the username
      * @return true if and only if username belongs to the bank manager.
      */
-    static boolean isBankManager(String username) {
+    public static boolean isBankManager(String username) {
         return username.equals(ATM.b.getUsername());
+    }
+
+    /**
+     * Returns the next account number to be assigned and increases it by 1.
+     *
+     * @return the next account number to be assigned
+     */
+    public static int getNextAccountNum() {
+        accountNum++;
+        return accountNum - 1;
     }
 
     /**
@@ -79,16 +94,17 @@ public class UserManager {
     /**
      * Returns the account of a given ATM user, given the account number.
      *
-     * @param username the username
-     * @param num      the account number
+     * @param num the account number
      * @return the account
      */
-    public static Account getUserAccount(String username, int num) {
-        if (getUser(username) == null) {
-            return null;
-        } else {
-            return getUser(username).getAccount(num);
+    public static Account getUserAccount(int num) {
+        for (User u : ATM.bankUsers) {
+            if (u.getAccount(num) != null) {
+                return u.getAccount(num);
+            }
         }
+        System.out.println("That is not a valid account number!");
+        return null;
     }
 
     /**

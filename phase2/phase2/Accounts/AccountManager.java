@@ -178,7 +178,7 @@ public class AccountManager {
      * @param time        the time of creation
      */
     public void add(String accountType, String curr, Calendar time) {
-        int num = lc.size() + cc.size() + cq.size() + sv.size() + cb.size() + 1;
+        int num = UserManager.getNextAccountNum();
         switch (accountType) {
             case ("lc"): lc.add(new LineOfCredit(time, owner, curr, num)); break;
             case ("cc"): cc.add(new CreditCard(time, owner, curr, num)); break;
@@ -196,7 +196,6 @@ public class AccountManager {
      * @param account the account
      */
     public void add(Account account) {
-        //TODO: make sure accountNum isn't taken
         if (account.getClass() == LineOfCredit.class) {
             lc.add((LineOfCredit) account);
         } else if (account.getClass() == CreditCard.class) {
