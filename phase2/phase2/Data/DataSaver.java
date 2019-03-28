@@ -92,6 +92,7 @@ public class DataSaver {
                      writer.write("ACCOUNT");
                      writer.write(a.toString());
                  }
+                 writer.write("");
              }
         } catch (Exception e) {
             e.printStackTrace();

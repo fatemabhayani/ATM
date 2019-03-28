@@ -1,66 +1,66 @@
 ATM CLOCK
 2019/3/24 23:9:0
-
 ATM CASH MACHINE
 30/30/30/30
+ATM ACCOUNT NUMBER
+5
 
 ATM BANK USERS
-USER: username
-password
+USER
+brittapal.isthebest
 SAVINGS
-- locale
-- balance
-- second owner
-- date of creation
-- list of transactions
-   - amount
-   - account to/from
-   - time of transaction
-   - locale
+ACCOUNT
+0
+500 CAD
+2019/3/24 23:9:0
 CHEQUING
-- locale
-- isPrimary
-- balance
-- second owner
-- date of creation
-- list of transactions
-   - amount
-   - account to/from
-   - time of transaction
-   - locale
+ACCOUNT
+1
+50 USD
+2019/3/24 23:9:0
+true
+CASH BACK
 CREDIT CARD
-- locale
-- credit limit
-- balance
-- second owner
-- date of creation
-- list of transactions
-   - amount
-   - account to/from
-   - time of transaction
-   - locale
+ACCOUNT
+2
+-100 CAD
+2019/3/24 23:9:0
+5100
 LINE OF CREDIT
-- locale
-- credit limit
-- balance
-- second owner
-- date of creation
-- list of transactions
-   - amount
-   - account to/from
-   - time of transaction
-   - locale
+
+USER
+mickeymouse.isamouse
+SAVINGS
+CHEQUING
+CREDIT CARD
+LINE OF CREDIT
+ACCOUNT
+3
+500 CAD
+2019/3/24 23:9:0
+4500
 CASH BACK CARD
-- locale
-- credit limit
-- balance
-- second owner
-- date of creation
+ACCOUNT
+4
+-10000 INR
+2019/3/24 23:9:0
+credit limit
+
+ATM TRANSACTIONS
+USER
+username.password
+SAVINGS
+ACCOUNT
+account number
 - list of transactions
+   - type
    - amount
    - account to/from
    - time of transaction
-   - locale
+CHEQUING
+CREDIT CARD
+LINE OF CREDIT
+CASH BACK CARD
 
 ATM BANK MANAGER
 REQUEST: request type
