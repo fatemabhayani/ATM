@@ -172,6 +172,15 @@ public abstract class AssetAccount implements Account {
                 dateOfCreation.get(Calendar.MINUTE) + ":" + dateOfCreation.get(Calendar.SECOND);
     }
 
+    /**
+     * Returns the string representation of the transactions.
+     *
+     * @return the transaction string
+     */
+    public String transactionString() {
+        return "";
+    }
+
     @Override
     public String toString() {
         return accountNum + "\n" + balance.toString() + "\n" + getCreationDate();

@@ -18,13 +18,9 @@ public class CreditCard implements Account {
     private ForeignCurrency balance;
 
     /**
-     * The first account owner.
+     * The account owners.
      */
     private User owner1;
-
-    /**
-     * The second account owner.
-     */
     private User owner2;
 
     /**
@@ -33,7 +29,7 @@ public class CreditCard implements Account {
     int accountNum;
 
     /**
-     * The account manager.
+     * The account transactions.
      */
     final ArrayList<Transaction> transactions;
 
@@ -231,6 +227,15 @@ public class CreditCard implements Account {
      */
     ForeignCurrency getCreditLimit() {
         return creditLimit;
+    }
+
+    /**
+     * Returns the string representation of the transactions.
+     *
+     * @return the transaction string
+     */
+    public String transactionString() {
+        return "";
     }
 
     @Override

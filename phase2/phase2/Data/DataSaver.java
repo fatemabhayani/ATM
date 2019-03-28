@@ -16,6 +16,7 @@ public class DataSaver {
     private static String atmdata = "phase2/phase2/atmdata.txt";
     private static String userdata = "phase2/phase2/userdata.txt";
     private static String employeedata = "phase2/phase2/employeedata.txt";
+    private static String transactiondata = "phase2/phase2/transactiondata.txt";
 
     /**
      * Initializes an instance of DataSaver.
@@ -29,6 +30,7 @@ public class DataSaver {
         try {
             writeATMData();
             writeUserData();
+            writeTransactionData();
             writeEmployeeData();
         } catch (Exception e) {
             e.printStackTrace();
@@ -89,6 +91,51 @@ public class DataSaver {
                      writer.write(a.toString());
                  }
              }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Writes the transaction information into transactiondata.txt.
+     */
+    private static void writeTransactionData() {
+        try (FileWriter writer = new FileWriter(userdata)) {
+            writer.write("ATM BANK USERS");
+            for (User u: ATM.bankUsers) {
+                writer.write("USER");
+                writer.write(u.toString());
+                writer.write("SAVINGS");
+                for (Object o : u.getAccountList("sv")) {
+                    Savings a = (Savings) o;
+                    writer.write("ACCOUNT");
+                    writer.write(a.transactionString());
+                }
+                writer.write("CHEQUING");
+                for (Object o : u.getAccountList("cq")) {
+                    Chequing a = (Chequing) o;
+                    writer.write("ACCOUNT");
+                    writer.write(a.transactionString());
+                }
+                writer.write("CASH BACK");
+                for (Object o : u.getAccountList("cb")) {
+                    CashBackCard a = (CashBackCard) o;
+                    writer.write("ACCOUNT");
+                    writer.write(a.transactionString());
+                }
+                writer.write("CREDIT CARD");
+                for (Object o : u.getAccountList("cc")) {
+                    CreditCard a = (CreditCard) o;
+                    writer.write("ACCOUNT");
+                    writer.write(a.transactionString());
+                }
+                writer.write("LINE OF CREDIT");
+                for (Object o : u.getAccountList("lc")) {
+                    LineOfCredit a = (LineOfCredit) o;
+                    writer.write("ACCOUNT");
+                    writer.write(a.transactionString());
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
