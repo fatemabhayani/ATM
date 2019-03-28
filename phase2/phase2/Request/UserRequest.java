@@ -20,6 +20,7 @@ public class UserRequest extends Request {
      * Instantiates a new ser request.
      *
      * @param username the username
+     * @param password the password
      */
     public UserRequest(String username, String password) {
         this.password = password;

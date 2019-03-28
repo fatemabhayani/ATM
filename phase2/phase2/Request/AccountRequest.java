@@ -27,8 +27,8 @@ public class AccountRequest extends Request {
     /**
      * Instantiates a new account request.
      *
-     * @param requester the user that requests account creation
-     * @param accountType the account type
+     * @param requester    the user that requests account creation
+     * @param accountType  the account type
      * @param currencyCode the country code
      */
     public AccountRequest(User requester, String accountType, String currencyCode) {
