@@ -229,13 +229,6 @@ public class CreditCard implements Account {
         return creditLimit;
     }
 
-    /**
-     * Gets the account number.
-     *
-     * @return the number
-     */
-    public int getNumber() { return accountNum; }
-
     @Override
     public String toString() {
         return "Debt account created on" + getCreationDate() + "with transactions to date " +

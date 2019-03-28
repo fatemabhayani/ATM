@@ -18,13 +18,6 @@ public interface Account {
     ForeignCurrency getBalance();
 
     /**
-     * Gets the account number.
-     *
-     * @return the number
-     */
-    int getNumber();
-
-    /**
      * Sets the account balance.
      *
      * @param balance the new balance
