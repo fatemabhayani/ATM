@@ -29,13 +29,6 @@ public class Chequing extends AssetAccount {
         this.isPrimary = isPrimary;
     }
 
-    /**
-     * Gets whether the account is primary.
-     *
-     * @return true if primary account, false otherwise
-     */
-    public boolean getIsPrimary() { return this.isPrimary; }
-
     @Override
     public void subtract(Transaction transaction) {
         ForeignCurrency amount = transaction.getAmount();

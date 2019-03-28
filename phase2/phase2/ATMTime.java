@@ -52,18 +52,6 @@ public class ATMTime {
     }
 
     /**
-     * Returns the year.
-     */
-    private int getCurrentYear() { return getCurrentTime().get(Calendar.YEAR); }
-
-    /**
-     * Returns the month.
-     */
-    private int getCurrentMonth() {
-        return getCurrentTime().get(Calendar.MONTH);
-    }
-
-    /**
      * Returns the day.
      */
     private int getCurrentDay() {
