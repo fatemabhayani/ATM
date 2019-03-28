@@ -1,8 +1,11 @@
 ATM TRANSACTIONS
 USER
+username.password
 SAVINGS
 ACCOUNT
+account number
 - list of transactions
+   - type
    - amount
    - account to/from
    - time of transaction
