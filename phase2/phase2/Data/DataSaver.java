@@ -147,7 +147,12 @@ public class DataSaver {
     private static void writeEmployeeData() {
         try (FileWriter writer = new FileWriter(employeedata)) {
             writer.write("ATM BANK MANAGER");
-
+            writer.write(ATM.b.toString());
+            writer.write("ATM BANK TELLERS");
+            for (BankTeller b : ATM.bankEmployees) {
+                writer.write(b.getUsername().toUpperCase());
+                writer.write(b.toString());
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
