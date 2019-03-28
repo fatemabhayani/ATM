@@ -57,4 +57,9 @@ public class CashBackCard extends CreditCard {
             System.out.println("There isn't enough credit on your account to complete this transaction.");
         }
     }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

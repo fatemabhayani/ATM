@@ -161,10 +161,20 @@ public abstract class AssetAccount implements Account {
         }
     }
 
+    /**
+     * Returns the date of creation for this account.
+     *
+     * @return the date of creation
+     */
+    public String getCreationDate() {
+        return dateOfCreation.get(Calendar.YEAR) + "/" + (dateOfCreation.get(Calendar.MONTH) + 1) + "/" +
+                dateOfCreation.get(Calendar.DAY_OF_MONTH) + " " + dateOfCreation.get(Calendar.HOUR_OF_DAY) + ":" +
+                dateOfCreation.get(Calendar.MINUTE) + ":" + dateOfCreation.get(Calendar.SECOND);
+    }
+
     @Override
     public String toString() {
-        return "Asset account created on: " + dateOfCreation.toString() + "\n" + "Last transaction: " +
-                getPastTransaction(0).toString();
+        return accountNum + "\n" + balance.toString() + "\n" + getCreationDate();
     }
 
 }

@@ -3,41 +3,31 @@ USER
 username.password
 SAVINGS
 ACCOUNT
-- account number
-- locale
-- balance
-- second owner
-- date of creation
+account number
+balance locale
+date of creation
 
 CHEQUING
 ACCOUNT
-- account number
-- locale
-- isPrimary
-- balance
-- second owner
-- date of creation
+account number
+balance locale
+date of creation
+isPrimary
 
 CREDIT CARD
-- account number
-- locale
-- credit limit
-- balance
-- second owner
-- date of creation
+account number
+balance locale
+date of creation
+credit limit
 
 LINE OF CREDIT
-- account number
-- locale
-- credit limit
-- balance
-- second owner
-- date of creation
+account number
+balance locale
+date of creation
+credit limit
 
 CASH BACK CARD
-- account number
-- locale
-- credit limit
-- balance
-- second owner
-- date of creation
+account number
+balance locale
+date of creation
+credit limit

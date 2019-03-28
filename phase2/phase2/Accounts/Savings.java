@@ -51,5 +51,9 @@ public class Savings extends AssetAccount {
         }
     }
 
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }
 

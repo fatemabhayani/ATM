@@ -115,7 +115,7 @@ public class ForeignCurrency implements Comparable<ForeignCurrency>{
 
     @Override
     public String toString() {
-        return getAmount() + ", " + currency.getCurrencyCode();
+        return getAmount() + " " + currency.getCurrencyCode();
     }
 }
 

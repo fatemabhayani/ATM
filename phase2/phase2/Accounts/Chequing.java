@@ -64,5 +64,9 @@ public class Chequing extends AssetAccount {
         }
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + "\n" + isPrimary;
+    }
 }
 

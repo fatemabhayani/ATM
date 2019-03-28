@@ -193,7 +193,11 @@ public class CreditCard implements Account {
      *
      * @return the date of creation
      */
-    private String getCreationDate() {return dateOfCreation.toString();}
+    private String getCreationDate() {
+        return dateOfCreation.get(Calendar.YEAR) + "/" + (dateOfCreation.get(Calendar.MONTH) + 1) + "/" +
+                dateOfCreation.get(Calendar.DAY_OF_MONTH) + " " + dateOfCreation.get(Calendar.HOUR_OF_DAY) + ":" +
+                dateOfCreation.get(Calendar.MINUTE) + ":" + dateOfCreation.get(Calendar.SECOND);
+    }
 
     /**
      * Returns the ith most recent transaction.
@@ -231,7 +235,6 @@ public class CreditCard implements Account {
 
     @Override
     public String toString() {
-        return "Debt account created on" + getCreationDate() + "with transactions to date " +
-                transactions.toString() + "with credit limit " + creditLimit;
+        return accountNum + "\n" + balance.toString() + "\n" + getCreationDate() + "\n" + creditLimit;
     }
 }
