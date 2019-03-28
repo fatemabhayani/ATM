@@ -6,6 +6,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.PrintWriter;
 
+/**
+ * The type Bank employee.
+ */
 public abstract class BankEmployee {
 
     /**
@@ -20,6 +23,9 @@ public abstract class BankEmployee {
 
     /**
      * Creates a new bank employee.
+     *
+     * @param username the username
+     * @param password the password
      */
     BankEmployee(String username, String password) {
         this.username = username;
@@ -49,7 +55,7 @@ public abstract class BankEmployee {
      * the most recent.
      *
      * @param user the user
-     * @param i the index of the most recent transaction
+     * @param i    the index of the most recent transaction
      */
     public void undoTransaction(User user, int i) {
         Transaction t = user.getTransaction(i);
