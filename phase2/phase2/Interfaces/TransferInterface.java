@@ -23,6 +23,8 @@ public class TransferInterface extends JFrame{
     private JLabel receiverAccountLabel;
     private JLabel yourAccountNumberLabel;
     private JButton completeTransferButton;
+    private JLabel recieverUsernameLabel;
+    private JLabel recieverAccountLabel;
 
     /**
      * Instantiates a new Transfer interface.
