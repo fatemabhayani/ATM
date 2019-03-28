@@ -26,7 +26,7 @@ public class CreditCard implements Account {
     /**
      * The account number.
      */
-    int accountNum;
+    public int accountNum;
 
     /**
      * The account transactions.
