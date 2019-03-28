@@ -42,6 +42,13 @@ public class Deposit extends Transaction {
     }
 
     /**
+     * Gets the account that has made this transaction.
+     *
+     * @return the account making the transaction
+     */
+    public Account getTransactionAccount() { return moneyTo; }
+
+    /**
      * Undoes a deposit transaction.
      */
     public void undoTransaction() {

@@ -54,6 +54,13 @@ public class Bill extends Transaction {
     }
 
     /**
+     * Gets the account that has made this transaction.
+     *
+     * @return the account making the transaction
+     */
+    public Account getTransactionAccount() { return moneyFrom; }
+
+    /**
      * Undoes the transaction. Bills can't be undone, so this does nothing.
      */
     public void undoTransaction() {

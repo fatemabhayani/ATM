@@ -27,7 +27,6 @@ public class LineOfCredit extends CreditCard {
         if (getCreditLimit().compareTo(transaction.getAmount()) > 0){
             getBalance().add(transaction.getAmount());
             setBalance(getBalance());
-            transactions.add(transaction);
             decreaseCreditLimit(transaction.getAmount());
             System.out.println("Transaction successful!");
         } else {

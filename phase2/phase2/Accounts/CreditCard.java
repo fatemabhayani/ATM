@@ -136,7 +136,6 @@ public class CreditCard implements Account {
     public void subtract(Transaction transaction) {
         if (creditLimit.compareTo(transaction.getAmount()) > 0) {
             balance.add(transaction.getAmount());
-            transactions.add(transaction);
             decreaseCreditLimit(transaction.getAmount());
             System.out.println("Transaction successful!");
         } else {
@@ -167,7 +166,6 @@ public class CreditCard implements Account {
      */
     public void add(Transaction transaction) {
         balance.subtract(transaction.getAmount());
-        transactions.add(transaction);
         increaseCreditLimit(transaction.getAmount());
         System.out.println("Transaction successful!");
     }
@@ -201,6 +199,13 @@ public class CreditCard implements Account {
      * @return the transaction at index i of transactions
      */
     public Transaction getPastTransaction(int i) { return transactions.get(i); }
+
+    /**
+     * Adds a new transaction to the list of this account's transactions.
+     */
+    public void addTransaction(Transaction t){
+        transactions.add(0, t);
+    }
 
     /**
      * Decreases the credit limit.

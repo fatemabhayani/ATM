@@ -44,7 +44,6 @@ public class Chequing extends AssetAccount {
                 System.out.println("Transaction successful!");
             }
         }
-        transactions.add(transaction);
     }
 
     @Override

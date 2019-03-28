@@ -1,7 +1,7 @@
 package phase2.Transactions;
 
 import phase2.ForeignCurrency;
-
+import phase2.Accounts.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -58,6 +58,13 @@ public abstract class Transaction {
      * @return true if approved, false otherwise
      */
     public boolean getIsApproved() { return approved; }
+
+    /**
+     * Gets the account that has made this transaction.
+     *
+     * @return the account making the transaction
+     */
+    public abstract Account getTransactionAccount();
 
     /**
      * Gets amount of transaction.

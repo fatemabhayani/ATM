@@ -56,6 +56,13 @@ public class Withdraw extends Transaction {
     }
 
     /**
+     * Gets the account that has made this transaction.
+     *
+     * @return the account making the transaction
+     */
+    public Account getTransactionAccount() { return moneyFrom; }
+
+    /**
      * Undoes a withdraw transaction.
      */
     public void undoTransaction() {

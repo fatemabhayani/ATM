@@ -106,7 +106,6 @@ public abstract class AssetAccount implements Account {
      * @param transaction the transaction
      */
     public void add(Transaction transaction) {
-        transactions.add(0, transaction);
         balance.add(transaction.getAmount());
         System.out.println("Transaction successful!");
     }
@@ -118,7 +117,7 @@ public abstract class AssetAccount implements Account {
      */
     public void add(String file) {
         ForeignCurrency amount = helpRead(file);
-        this.balance.add(amount);
+        balance.add(amount);
     }
 
     /**
@@ -128,6 +127,13 @@ public abstract class AssetAccount implements Account {
      */
     public ArrayList<Transaction> getTransactions(){
         return transactions;
+    }
+
+    /**
+     * Adds a new transaction to the list of this account's transactions.
+     */
+    public void addTransaction(Transaction t){
+        transactions.add(0, t);
     }
 
     /**

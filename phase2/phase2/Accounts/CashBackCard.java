@@ -38,7 +38,6 @@ public class CashBackCard extends CreditCard {
             getBalance().add(transaction.getAmount().multiply(0.95));
             setBalance(getBalance());
             decreaseCreditLimit(transaction.getAmount().multiply(0.95));
-            transactions.add(transaction);
             System.out.println("Transaction successful!");
         } else {
             System.out.println("There isn't enough credit on your account to complete this transaction.");

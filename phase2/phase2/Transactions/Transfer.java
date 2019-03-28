@@ -61,6 +61,13 @@ public class Transfer extends Transaction {
     }
 
     /**
+     * Gets the account that has made this transaction.
+     *
+     * @return the account making the transaction
+     */
+    public Account getTransactionAccount() { return moneyFrom; }
+
+    /**
      * Undoes a transfer transaction.
      */
     public void undoTransaction() {

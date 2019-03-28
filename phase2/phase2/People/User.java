@@ -108,6 +108,7 @@ public class User {
         if (t.getIsApproved()) {
             System.out.println("Transaction made.");
             t.makeTransaction();
+            t.getTransactionAccount().addTransaction(t);
         } else {
             System.out.println("Transaction failed.");
         }

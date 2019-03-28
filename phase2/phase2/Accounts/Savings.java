@@ -38,7 +38,6 @@ public class Savings extends AssetAccount {
             balance.subtract(amount);
             System.out.println("Transaction successful!");
         }
-        transactions.add(0, transaction);
     }
 
     public void subtract(ForeignCurrency amount) {
