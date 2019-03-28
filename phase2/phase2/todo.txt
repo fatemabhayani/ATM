@@ -29,7 +29,6 @@ Presentation Classes
 - Fatema (Requests, ForeignCurrency)
 
 Unused Methods
-Account Manager: 1 constructor isnt used
 Datasaver class is not used
 Write File
 Bank Mnaager: setdate
