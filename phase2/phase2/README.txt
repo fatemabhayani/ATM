@@ -4,11 +4,65 @@ alerts.txt should have lines that read "The number of (int, describing the denom
  Dollar Bills has fallen below (int, describing the number of bills required in the system,
  we have chosen 20 as the threshold)
 
- ----------------------------------------------------
- HOW TO RUN THE ATM?
- -Please run ATM.java
+ ---------------------ATMDATA.TXT--------------------
+
+
+ --------------------DATA.TXT------------------------
+
+
+--------------------DEPOSITS.TXT---------------------
+
+
+-------------------------EMPLOYEEDATA.TXT---------------
+
+
+-----------------------OUTGOING.TXT---------------------
+
+
+-----------------------SUPERHERO.TXT-------------------
+
+
+----------------------TRANSACTIONDATA.TXT--------------------
+
+
+--------------------USERDATA.TXT------------------------
+
+
+---------------------------------DESCRIPTION OF CLASSES--------------------------
+1. Package Phase2
+
+2. Package Phase2.Accounts
+
+3. Package Phase2.Data
+
+4. Package Phase2.Display
+
+5. Package Phase2.Interfaces
+
+6. Package Phase2.People
+
+7. Package Phase2.Requests
+
+8. Package Phase2.Transactions
+
+------------------------------HOW TO RUN THE PROGRAM?----------------------------
+
+
+-----------------------------HOW TO ACCESS THE BANK MANAGER, BANK TELLER ACCOUNTS?------------------
  -The Bank Manager already has an account. To access the account, username: bankmanager ; password: bestboss
 
- HOW TO CREATE AN USER ACCOUNT?
- -Answer yes and no the questions accordingly.
- -A request will be sent to bank manager to create the account.
+
+-------------------------HOW TO CREATE AN USER ACCOUNT?-----------------------------
+ 1. Individual Account
+
+ 2. Joint Account
+
+ ----------------------FUNCTIONALITY FOR USERS-------------------------------
+ 1. How to create an account?
+
+ 2. How to initiate a transaction?
+
+ 3. How to undo a transaction?
+
+-----------------------FUNCTIONALITY FOR EMPLOYEES--------------------------
+ 1. Complete users' requests
