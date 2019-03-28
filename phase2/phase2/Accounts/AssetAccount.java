@@ -189,7 +189,7 @@ public abstract class AssetAccount implements Account {
 
     @Override
     public String toString() {
-        return accountNum + "\n" + balance.toString() + "\n" + getCreationDate();
+        return accountNum + " " + balance.toString() + " " + getCreationDate();
     }
 
 }
