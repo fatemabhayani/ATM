@@ -6,41 +6,42 @@ Undo / requester / account / transaction number
 
 ATM BANK TELLERS
 TELLER1
-USER: username
-REQUESTS (only undo transaction requests and can restock cash machine)
+username
+REQUESTS (only undo transaction requests)
+Undo / requester / account / transaction number
 
 TELLER2
-USER: username
-REQUESTS (only undo transaction requests and can restock cash machine)
+username
+REQUESTS (only undo transaction requests)
 
 TELLER3
-USER: username
-REQUESTS (only undo transaction requests and can restock cash machine)
+username
+REQUESTS (only undo transaction requests)
 
 TELLER4
-USER: username
-REQUESTS (only undo transaction requests and can restock cash machine)
+username
+REQUESTS (only undo transaction requests)
 
 TELLER5
-USER: username
-REQUESTS (only undo transaction requests and can restock cash machine)
+username
+REQUESTS (only undo transaction requests)
 
 TELLER6
-USER: username
-REQUESTS (only undo transaction requests and can restock cash machine)
+username
+REQUESTS (only undo transaction requests)
 
 TELLER7
-USER: username
-REQUESTS (only undo transaction requests and can restock cash machine)
+username
+REQUESTS (only undo transaction requests)
 
 TELLER8
-USER: username
-REQUESTS (only undo transaction requests and can restock cash machine)
+username
+REQUESTS (only undo transaction requests)
 
 TELLER9
-USER: username
-REQUESTS (only undo transaction requests and can restock cash machine)
+username
+REQUESTS (only undo transaction requests)
 
 TELLER10
-USER: username
-REQUESTS (only undo transaction requests and can restock cash machine)
+username
+REQUESTS (only undo transaction requests)
