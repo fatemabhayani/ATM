@@ -6,29 +6,35 @@ ACCOUNT
 0
 500 CAD
 2019/3/24 23:9:0
-
 CHEQUING
 ACCOUNT
 1
 50 USD
 2019/3/24 23:9:0
 true
-
+CASH BACK
 CREDIT CARD
 ACCOUNT
 2
 -100 CAD
 2019/3/24 23:9:0
-5000
-
+5100
 LINE OF CREDIT
-account number
-balance locale
-date of creation
-credit limit
 
+USER
+mickeymouse.isamouse
+SAVINGS
+CHEQUING
+CREDIT CARD
+LINE OF CREDIT
+ACCOUNT
+3
+500 CAD
+2019/3/24 23:9:0
+4500
 CASH BACK CARD
-account number
-balance locale
-date of creation
+ACCOUNT
+4
+-10000 INR
+2019/3/24 23:9:0
 credit limit
