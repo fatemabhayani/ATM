@@ -1,24 +1,25 @@
 ATM BANK USERS
 USER
-username.password
+brittapal.isthebest
 SAVINGS
 ACCOUNT
-account number
-balance locale
-date of creation
+0
+500 CAD
+2019/3/24 23:9:0
 
 CHEQUING
 ACCOUNT
-account number
-balance locale
-date of creation
-isPrimary
+1
+50 USD
+2019/3/24 23:9:0
+true
 
 CREDIT CARD
-account number
-balance locale
-date of creation
-credit limit
+ACCOUNT
+2
+-100 CAD
+2019/3/24 23:9:0
+5000
 
 LINE OF CREDIT
 account number

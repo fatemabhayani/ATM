@@ -46,6 +46,8 @@ public class DataSaver {
             writer.write(ATM.clock.toString());
             writer.write("ATM CASH MACHINE");
             writer.write(ATM.c.toString());
+            writer.write("ATM ACCOUNT NUMBER");
+            writer.write(UserManager.accountNum);
         } catch (Exception e) {
             e.printStackTrace();
         }

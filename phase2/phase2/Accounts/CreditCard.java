@@ -156,7 +156,7 @@ public class CreditCard implements Account {
             decreaseCreditLimit(amount);
             System.out.println("Transaction successful!");
         } else {
-            System.out.println("There isn't enough credit limit on your account to complete this transaction");
+            System.out.println("There isn't enough credit on your account to complete this transaction");
         }
     }
 
