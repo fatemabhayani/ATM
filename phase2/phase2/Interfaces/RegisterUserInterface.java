@@ -9,12 +9,18 @@ import java.awt.event.InputMethodListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * The type Register user interface.
+ */
 class RegisterUserInterface extends JFrame {
     private JTextField textField1;
     private JButton requestUserButton;
     private JPanel root;
 
-    public RegisterUserInterface() {
+    /**
+     * Instantiates a new Register user interface.
+     */
+    RegisterUserInterface() {
         add(root);
         setSize(500,500);
         requestUserButton.addMouseListener(new MouseAdapter() {
@@ -47,6 +53,12 @@ class RegisterUserInterface extends JFrame {
         LA.setLocationRelativeTo(null);
         this.dispose();
     }
+
+    /**
+     * Main.
+     *
+     * @param args the args
+     */
     public static void main (String args[]) {
         EventQueue.invokeLater(new Runnable() {
             @Override
