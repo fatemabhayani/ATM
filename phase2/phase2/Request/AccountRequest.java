@@ -47,7 +47,7 @@ public class AccountRequest extends Request {
 
     @Override
     public String toString() {
-        return requester.getUsername() + " wants to create a new " + accountType + " account.";
+        return "ACCOUNT " + requester.getUsername() + " " + accountType + " " + currencyCode;
     }
 
 }

@@ -53,7 +53,7 @@ public class UndoRequest extends Request {
 
     @Override
     public String toString() {
-        return requester.getUsername() + " wants to undo their last transaction on " + account.toString();
+        return "UNDO " + requester.getUsername() + " " + account.getAccountNum() + " " + num;
     }
 }
 

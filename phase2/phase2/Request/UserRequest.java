@@ -36,7 +36,7 @@ public class UserRequest extends Request {
 
     @Override
     public String toString() {
-        return "A new user, " + username + " wants to create an account.";
+        return "USER " + username + " " + password;
     }
 }
 
