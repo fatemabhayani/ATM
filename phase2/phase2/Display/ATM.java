@@ -83,9 +83,25 @@ public class ATM {
 
             } else {
                 User user = UserManager.getUser(command);
-                while (user == null){
+                while (user == null) {
                     System.out.println("You did not give a valid username, try again, if you would like to go to the start screen type exit");
                     command = sc.nextLine();
+
+                    if (command.equals("bankmanager")) {
+                        System.out.println("Please input your password");
+                        command = sc.nextLine();
+                        command = command.replaceAll("//s", "");
+
+                        while (!(command.toLowerCase().equals("bestboss"))) {
+                            System.out.println("You did not give a valid password, try again, if you would like to go to the start screen type exit");
+                            command = sc.nextLine();
+                            if (command.toLowerCase().equals("exit")) {
+                                ATM.main(null);
+                            }
+                        }
+                        ManagerDisplay.main(null);
+                    }
+
                     user = UserManager.getUser(command);
                     if(command.toLowerCase().equals("exit")){
                         ATM.main(null);

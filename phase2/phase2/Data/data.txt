@@ -30,51 +30,25 @@ ATM TRANSACTIONS
 USER
 brittapal.isthebest
 ACCOUNT: 0
-T 500 CAD 2019/3/24 23:9:0 0 1
-B 500 CAD 2019/3/24 23:9:0 0
+B 100 CAD 2019/3/24 23:9:0 0
+D 600 CAD 2019/3/24 23:9:0 0
 ACCOUNT: 1
-W 500 CAD 2019/3/24 23:9:0 1
-D 500 CAD 2019/3/24 23:9:0 1
+W 50 USD 2019/3/24 23:9:0 1
+D 100 USD 2019/3/24 23:9:0 1
 
 ATM BANK MANAGER
-REQUEST: request type
-User / username / password
-Account / account type / account owner(s)
-Undo / requester / account / transaction number
-
-ATM BANK MANAGER
-REQUEST: request type
 USER newuser helloworld
 ACCOUNT brittapal cb CAD
 ATM BANK TELLERS
-TELLER1
-username
-REQUESTS
-UNDO brittapal 0 0
-TELLER2
-username
-REQUESTS
-TELLER3
-username
-REQUESTS
-TELLER4
-username
-REQUESTS
-TELLER5
-username
-REQUESTS
-TELLER6
-username
-REQUESTS
-TELLER7
-username
-REQUESTS
-TELLER8
-username
-REQUESTS
-TELLER9
-username
-REQUESTS
-TELLER10
-username
-REQUESTS
+teller1.bestemployee1
+u/n mickeymouse
+UNDO brittapal 1 1
+teller2.bestemployee2
+teller3.bestemployee3
+teller4.bestemployee4
+teller5.bestemployee5
+teller6.bestemployee6
+teller7.bestemployee7
+teller8.bestemployee8
+teller9.bestemployee9
+teller10.bestemployee10

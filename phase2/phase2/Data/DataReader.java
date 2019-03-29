@@ -37,7 +37,7 @@ public class DataReader {
     /**
      * Read atmdata.txt and enters it into the ATM.
      */
-    private static void readATMData() {
+    public static void readATMData() {
         String s;
         try (BufferedReader reader = new BufferedReader(new FileReader("phase2/phase2/Data/atmdata.txt"))) {
             reader.readLine();
