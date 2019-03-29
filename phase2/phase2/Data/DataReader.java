@@ -8,6 +8,7 @@ import phase2.ForeignCurrency;
 import phase2.People.*;
 import phase2.Accounts.*;
 import phase2.Transactions.*;
+import phase2.Request.*;
 
 /**
  * The type Data reader.
@@ -71,7 +72,7 @@ public class DataReader {
             while (s != null) {
                 s = reader.readLine(); // username.password
                 while (s != null && !s.equals("USER")) {
-                    String[] userInfo = s.split(".");
+                    String[] userInfo = s.split("\\.");
                     User u = new User(userInfo[0], userInfo[1]);
                     ATM.bankUsers.add(u);
                     reader.readLine(); // SAVINGS
@@ -145,8 +146,30 @@ public class DataReader {
     private static void readEmployeeData() {
         String s;
         try (BufferedReader reader = new BufferedReader(new FileReader("phase2/phase2/Data/employeedata.txt"))) {
-            reader.readLine();
+            reader.readLine(); // ATM BANK MANAGER
             s = reader.readLine();
+            while (!s.equals("ATM BANK TELLERS")) {
+                Request r = makeRequest(s);
+                ATM.b.addRequest(r);
+                s = reader.readLine();
+            }
+            s = reader.readLine(); // teller1.bestemployee1
+            while (s != null) {
+                String[] info = s.split("\\.");
+                BankTeller b = new BankTeller(info[0], info[1]);
+                ATM.bankEmployees.add(b);
+                s = reader.readLine(); // username or request
+                if (s.substring(0, 3).equals("u/n")) {
+                    info = s.split("\\s");
+                    b.setUser(info[1]);
+                    s = reader.readLine(); // request
+                }
+                while (s != null && !s.substring(0, 6).equals("teller")) {
+                    UndoRequest r = (UndoRequest) makeRequest(s);
+                    b.addRequest(r);
+                    s = reader.readLine();
+                }
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -291,7 +314,7 @@ public class DataReader {
      * Returns the transaction represented by s.
      *
      * @param s the string
-     * @return a savings account
+     * @return the transaction
      */
     private static Transaction makeTransaction(String s) {
         String[] info = s.split("\\s|/|:");
@@ -309,4 +332,20 @@ public class DataReader {
         }
     }
 
+    /**
+     * Returns the request represented by s.
+     *
+     * @param s the string
+     * @return the request
+     */
+    private static Request makeRequest(String s) {
+        String[] info = s.split("\\s|/|:");
+        switch (info[0]) {
+            case("USER"): return new UserRequest(info[1], info[2]);
+            case("ACCOUNT"): return new AccountRequest(UserManager.getUser(info[1]), info[2], info[3]);
+            case("UNDO"): return new UndoRequest(UserManager.getUser(info[1]), UserManager.getUserAccount(Integer.valueOf(info[2])),
+                    Integer.valueOf(info[3]));
+            default: return null;
+        }
+    }
 }
