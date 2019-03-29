@@ -58,7 +58,6 @@ public class ForeignCurrency implements Comparable<ForeignCurrency>{
             amount += d.getAmount();
         }
     }
-
     /**
      * Subtract two instances for foreign currencies.
      *
@@ -110,7 +109,7 @@ public class ForeignCurrency implements Comparable<ForeignCurrency>{
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return null;
+        return new ForeignCurrency("CAD", 777);
     }
 
     @Override
