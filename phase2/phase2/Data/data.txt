@@ -28,7 +28,7 @@ CASH BACK CARD
 
 ATM TRANSACTIONS
 USER
-username.password
+brittapal.isthebest
 ACCOUNT: 0
 T 500 CAD 2019/3/24 23:9:0 0 1
 B 500 CAD 2019/3/24 23:9:0 0
@@ -42,43 +42,39 @@ User / username / password
 Account / account type / account owner(s)
 Undo / requester / account / transaction number
 
+ATM BANK MANAGER
+REQUEST: request type
+USER newuser helloworld
+ACCOUNT brittapal cb CAD
 ATM BANK TELLERS
 TELLER1
-USER: username
-REQUESTS (only undo transaction requests and can restock cash machine)
-
+username
+REQUESTS
+UNDO brittapal 0 0
 TELLER2
-USER: username
-REQUESTS (only undo transaction requests and can restock cash machine)
-
+username
+REQUESTS
 TELLER3
-USER: username
-REQUESTS (only undo transaction requests and can restock cash machine)
-
+username
+REQUESTS
 TELLER4
-USER: username
-REQUESTS (only undo transaction requests and can restock cash machine)
-
+username
+REQUESTS
 TELLER5
-USER: username
-REQUESTS (only undo transaction requests and can restock cash machine)
-
+username
+REQUESTS
 TELLER6
-USER: username
-REQUESTS (only undo transaction requests and can restock cash machine)
-
+username
+REQUESTS
 TELLER7
-USER: username
-REQUESTS (only undo transaction requests and can restock cash machine)
-
+username
+REQUESTS
 TELLER8
-USER: username
-REQUESTS (only undo transaction requests and can restock cash machine)
-
+username
+REQUESTS
 TELLER9
-USER: username
-REQUESTS (only undo transaction requests and can restock cash machine)
-
+username
+REQUESTS
 TELLER10
-USER: username
-REQUESTS (only undo transaction requests and can restock cash machine)
+username
+REQUESTS

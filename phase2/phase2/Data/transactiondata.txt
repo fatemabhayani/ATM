@@ -1,6 +1,6 @@
 ATM TRANSACTIONS
 USER
-username.password
+brittapal.isthebest
 ACCOUNT: 0
 T 500 CAD 2019/3/24 23:9:0 0 1
 B 500 CAD 2019/3/24 23:9:0 0

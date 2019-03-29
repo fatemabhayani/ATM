@@ -1,47 +1,36 @@
 ATM BANK MANAGER
 REQUEST: request type
-User / username / password
-Account / account type / account owner(s)
-Undo / requester / account / transaction number
-
+USER newuser helloworld
+ACCOUNT brittapal cb CAD
 ATM BANK TELLERS
 TELLER1
 username
-REQUESTS (only undo transaction requests)
-Undo / requester / account / transaction number
-
+REQUESTS
+UNDO brittapal 0 0
 TELLER2
 username
-REQUESTS (only undo transaction requests)
-
+REQUESTS
 TELLER3
 username
-REQUESTS (only undo transaction requests)
-
+REQUESTS
 TELLER4
 username
-REQUESTS (only undo transaction requests)
-
+REQUESTS
 TELLER5
 username
-REQUESTS (only undo transaction requests)
-
+REQUESTS
 TELLER6
 username
-REQUESTS (only undo transaction requests)
-
+REQUESTS
 TELLER7
 username
-REQUESTS (only undo transaction requests)
-
+REQUESTS
 TELLER8
 username
-REQUESTS (only undo transaction requests)
-
+REQUESTS
 TELLER9
 username
-REQUESTS (only undo transaction requests)
-
+REQUESTS
 TELLER10
 username
-REQUESTS (only undo transaction requests)
+REQUESTS
