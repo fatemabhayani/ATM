@@ -186,7 +186,7 @@ public abstract class AssetAccount implements Account {
     public String transactionString() {
         StringBuilder s = new StringBuilder();
         for (Transaction t : transactions ) {
-            s.append(t.toString()).append("\n");
+            s.append(t.toString()).append(" ");
         }
         return s.toString();
     }
