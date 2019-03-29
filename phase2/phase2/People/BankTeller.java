@@ -111,4 +111,13 @@ public class BankTeller extends BankEmployee {
         requests.remove(i);
     }
 
+    @Override
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        for (UndoRequest req : requests) {
+            s.append(req.toString()).append("\n");
+        }
+        return s.toString();
+    }
+
 }

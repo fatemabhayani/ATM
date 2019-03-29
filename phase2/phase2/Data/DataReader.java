@@ -306,9 +306,7 @@ public class DataReader {
             case("T"): return new Transfer(amount, UserManager.getUserAccount(Integer.valueOf(info[9])),
                     UserManager.getUserAccount(Integer.valueOf(info[10])), date);
             default: return null;
-
         }
-
     }
 
 }
