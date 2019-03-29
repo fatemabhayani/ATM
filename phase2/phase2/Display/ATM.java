@@ -19,6 +19,11 @@ public class ATM {
     public static ArrayList<User> bankUsers = new ArrayList<>();
 
     /**
+     * The collection of requests.
+     */
+    public static ArrayList<UndoRequest> undoRequests = new ArrayList<>();
+
+    /**
      * The collection of bank employees.
      */
     public static ArrayList<BankTeller> bankEmployees = new ArrayList<>();

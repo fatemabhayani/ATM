@@ -3,25 +3,18 @@ package phase2.People;
 import phase2.Display.ATM;
 import phase2.Request.*;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 /**
  * The type Bank teller.
  */
-public class BankTeller extends BankEmployee {
-    // Start with fixed number (10) of BankTellers
-    // username: teller1, ..., teller10
-    // password: bestemployee1, ..., bestemployee10
-
-    /**
-     * The list of requests for this employee.
-     */
-    private ArrayList<UndoRequest> requests;
-
-    /**
-     * The user account of this teller.
-     */
-    private User u;
+public class BankTeller extends User {
+    // Start with fixed number (5) of BankTellers
+    // username: teller1, ..., teller5
+    // password: bestemployee1, ..., bestemployee5
 
     /**
      * Creates a new bank teller.
@@ -31,19 +24,6 @@ public class BankTeller extends BankEmployee {
      */
     public BankTeller(String username, String password) {
         super(username, password);
-        u = null;
-        requests = new ArrayList<>();
-    }
-
-    /**
-     * Adds a user account for this bank teller.
-     *
-     * @param username the user's username
-     * @param password the user's password
-     */
-    public void createUserAccount(String username, String password) {
-        u = new User(username, password);
-        ATM.bankUsers.add(u);
     }
 
     /**
@@ -53,7 +33,7 @@ public class BankTeller extends BankEmployee {
      * @return the request at index i
      */
     protected UndoRequest getRequest(int i) {
-        return requests.get(i);
+        return ATM.undoRequests.get(i);
     }
 
     /**
@@ -61,7 +41,7 @@ public class BankTeller extends BankEmployee {
      *
      * @return the number of requests
      */
-    private int getNumberOfRequests() { return requests.size(); }
+    private int getNumberOfRequests() { return ATM.undoRequests.size(); }
 
     /**
      * Returns a summary of the bank manager's requests.
@@ -69,13 +49,13 @@ public class BankTeller extends BankEmployee {
      * @return the summary of requests
      */
     public String getRequestSummary() {
-        if (requests.size() == 0) {
+        if (ATM.undoRequests.size() == 0) {
             return "You have no requests.";
         }
 
         StringBuilder summary = new StringBuilder("You have " + getNumberOfRequests() + " requests.");
         int i = 0;
-        for (Request req : requests) {
+        for (UndoRequest req : ATM.undoRequests) {
             String line = i + req.toString() + "\n";
             summary.append(line);
             i++;
@@ -89,7 +69,7 @@ public class BankTeller extends BankEmployee {
      * @param request the request to add
      */
     public void addRequest(UndoRequest request) {
-        requests.add(request);
+        ATM.undoRequests.add(request);
     }
 
     /**
@@ -98,7 +78,7 @@ public class BankTeller extends BankEmployee {
      * @param i the index of requests
      */
     void ignoreRequest(int i) {
-        requests.remove(i);
+        ATM.undoRequests.remove(i);
     }
 
     /**
@@ -107,29 +87,58 @@ public class BankTeller extends BankEmployee {
      * @param i the index of requests
      */
     void completeRequest(int i) {
-        requests.get(i).resolveRequest();
-        requests.remove(i);
+        ATM.undoRequests.get(i).resolveRequest();
+        ATM.undoRequests.remove(i);
     }
 
     /**
-     * Sets the bank teller's user account to the username.
-     *
-     * @param username the username
+     * Restocks the cash machine based on the contents of alerts.txt.
      */
-    public void setUser(String username) {
-        u = UserManager.getUser(username);
+    public void restockCashMachine() {
+        int index;
+        String s;
+        try (BufferedReader reader = new BufferedReader(new FileReader("phase2/phase2/Data/alerts.txt"))) {
+            s = reader.readLine();
+            while (s != null) {
+                System.out.println(s);
+                index = getIndex(s);
+                ATM.c.increaseBills(index, 20);
+                s = reader.readLine();
+            }
+            System.out.println("No more alerts!");
+        } catch (Exception e) {
+            System.out.println("File handling error.");
+        }
+        deleteAlerts();
+        System.out.println("The cash machine has been restocked!");
     }
 
-    @Override
-    public String toString() {
-        StringBuilder s = new StringBuilder();
-        if (u != null) {
-            s.append("u/n ").append(u.getUsername()).append("\n");
+    /**
+     * Deletes the contents of alerts.txt.
+     */
+    private void deleteAlerts() {
+        try (PrintWriter writer = new PrintWriter("phase2/phase2/Data/alerts.txt")) {
+            writer.print("");
+        } catch (Exception ignored) {}
+    }
+
+    /**
+     * Returns the index of the denomination that needs to be restocked
+     * in the cash machine.
+     *
+     * @param s the line from alerts.txt
+     */
+    private int getIndex(String s) {
+        String number = s.substring(14, 16).replaceAll("//s", "");
+        int denom = Integer.valueOf(number);
+        switch (denom) {
+            case 50: return 0;
+            case 20: return 1;
+            case 10: return 2;
+            case 5: return 3;
+            default: System.out.println("Not a valid denomination!");
+                return -1;
         }
-        for (UndoRequest req : requests) {
-            s.append(req.toString()).append("\n");
-        }
-        return s.toString();
     }
 
 }

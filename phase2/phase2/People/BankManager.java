@@ -1,25 +1,65 @@
 package phase2.People;
 
+import phase2.Accounts.Account;
 import phase2.Display.ATM;
 import phase2.Request.*;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 /**
  * A bank manager for the ATM.
  */
-public class BankManager extends BankEmployee {
+public class BankManager {
+
+    /**
+     * The username for this employee.
+     */
+    private String username;
+
+    /**
+     * The password for this employee.
+     */
+    private String password;
 
     /**
      * The list of requests for the manager.
      */
-    private ArrayList<Request> requests;
+    private ArrayList<UserRequest> userRequests;
+
+    /**
+     * The list of requests for the manager.
+     */
+    private ArrayList<AccountRequest> accountRequests;
 
     /**
      * Creates a new bank manager.
      */
     public BankManager() {
-        super("bankmanager", "bestboss");
-        requests = new ArrayList<>();
+        username = "bankmanager";
+        password = "bestboss";
+        userRequests = new ArrayList<>();
+        accountRequests = new ArrayList<>();
+    }
+
+    /**
+     * Returns the username of the bank employee.
+     *
+     * @return the username
+     */
+    public String getUsername() {
+        return username;
+    }
+
+    /**
+     * Returns the password of the bank employee.
+     *
+     * @return the password
+     */
+    public String getPassword() {
+        return password;
     }
 
     /**
@@ -37,13 +77,26 @@ public class BankManager extends BankEmployee {
     }
 
     /**
+     * Returns the list of requests.
+     *
+     * @return the list of requests
+     */
+    public ArrayList<Request> getRequestList() {
+        ArrayList<Request> r = new ArrayList<>();
+        r.addAll(userRequests);
+        r.addAll(accountRequests);
+        r.addAll(ATM.undoRequests);
+        return r;
+    }
+
+    /**
      * Returns the request at a specified index in requests.
      *
      * @param i the index of requests
      * @return the request at index i
      */
     public Request getRequest(int i) {
-        return requests.get(i);
+        return getRequestList().get(i);
     }
 
     /**
@@ -51,7 +104,7 @@ public class BankManager extends BankEmployee {
      *
      * @return the number of requests
      */
-    public int getNumberOfRequests() { return requests.size(); }
+    public int getNumberOfRequests() { return getRequestList().size(); }
 
     /**
      * Returns a summary of the bank manager's requests.
@@ -59,13 +112,13 @@ public class BankManager extends BankEmployee {
      * @return the summary of requests
      */
     public String getRequestSummary() {
-        if (requests.size() == 0) {
+        if (getRequestList().size() == 0) {
             return "You have no requests.";
         }
 
         StringBuilder summary = new StringBuilder("You have " + getNumberOfRequests() + " requests. \n");
         int i = 0;
-        for (Request req : requests) {
+        for (Request req : getRequestList()) {
             String line = i + ". " + req.toString() + "\n";
             summary.append(line);
             i++;
@@ -79,7 +132,13 @@ public class BankManager extends BankEmployee {
      * @param request the request to add
      */
     public void addRequest(Request request) {
-        requests.add(request);
+        if (request.getClass() == UserRequest.class) {
+            userRequests.add((UserRequest) request);
+        } else if (request.getClass() == AccountRequest.class) {
+            accountRequests.add((AccountRequest) request);
+        } else {
+            ATM.undoRequests.add((UndoRequest) request);
+        }
     }
 
     /**
@@ -88,7 +147,14 @@ public class BankManager extends BankEmployee {
      * @param i the index of requests
      */
     public void ignoreRequest(int i) {
-        requests.remove(i);
+        Request request = getRequest(i);
+        if (request.getClass() == UserRequest.class) {
+            userRequests.remove(request);
+        } else if (request.getClass() == AccountRequest.class) {
+            accountRequests.remove(request);
+        } else {
+            ATM.undoRequests.remove(request);
+        }
     }
 
     /**
@@ -97,14 +163,74 @@ public class BankManager extends BankEmployee {
      * @param i the index of requests
      */
     public void completeRequest(int i) {
-        requests.get(i).resolveRequest();
-        requests.remove(i);
+        Request request = getRequest(i);
+        request.resolveRequest();
+        if (request.getClass() == UserRequest.class) {
+            userRequests.remove(request);
+        } else if (request.getClass() == AccountRequest.class) {
+            accountRequests.remove(request);
+        } else {
+            ATM.undoRequests.remove(request);
+        }
+    }
+
+    /**
+     * Restocks the cash machine based on the contents of alerts.txt.
+     */
+    public void restockCashMachine() {
+        int index;
+        String s;
+        try (BufferedReader reader = new BufferedReader(new FileReader("phase2/phase2/Data/alerts.txt"))) {
+            s = reader.readLine();
+            while (s != null) {
+                System.out.println(s);
+                index = getIndex(s);
+                ATM.c.increaseBills(index, 20);
+                s = reader.readLine();
+            }
+            System.out.println("No more alerts!");
+        } catch (Exception e) {
+            System.out.println("File handling error.");
+        }
+        deleteAlerts();
+        System.out.println("The cash machine has been restocked!");
+    }
+
+    /**
+     * Deletes the contents of alerts.txt.
+     */
+    private void deleteAlerts() {
+        try (PrintWriter writer = new PrintWriter("phase2/phase2/Data/alerts.txt")) {
+            writer.print("");
+        } catch (Exception ignored) {}
+    }
+
+    /**
+     * Returns the index of the denomination that needs to be restocked
+     * in the cash machine.
+     *
+     * @param s the line from alerts.txt
+     */
+    private int getIndex(String s) {
+        String number = s.substring(14, 16).replaceAll("//s", "");
+        int denom = Integer.valueOf(number);
+        switch (denom) {
+            case 50: return 0;
+            case 20: return 1;
+            case 10: return 2;
+            case 5: return 3;
+            default: System.out.println("Not a valid denomination!");
+                return -1;
+        }
     }
 
     @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
-        for (Request req : requests) {
+        for (UserRequest req : userRequests) {
+            s.append(req.toString()).append("\n");
+        }
+        for (AccountRequest req : accountRequests) {
             s.append(req.toString()).append("\n");
         }
         return s.toString();
