@@ -10,13 +10,23 @@ import phase2.Accounts.*;
  */
 public class DataSaver {
 
+    public static void main(String[] args) {
+
+        ATM.bankUsers.add(new User("x", "x"));
+        ATM.bankEmployees.add(new BankTeller("yes", "yes"));
+
+        DataSaver d = new DataSaver();
+        d.writeData();
+
+    }
+
     /**
      * The files that stores the ATM data.
      */
-    private static String atmdata = "phase2/phase2/atmdata.txt";
-    private static String userdata = "phase2/phase2/userdata.txt";
-    private static String employeedata = "phase2/phase2/employeedata.txt";
-    private static String transactiondata = "phase2/phase2/transactiondata.txt";
+    private String atmdata = "phase2/phase2/atmdata.txt";
+    private String userdata = "phase2/phase2/Data/userdata.txt";
+    private String employeedata = "phase2/phase2/Data/employeedata.txt";
+    private String transactiondata = "phase2/phase2/Data/transactiondata.txt";
 
     /**
      * Initializes an instance of DataSaver.
@@ -26,7 +36,7 @@ public class DataSaver {
     /**
      * Writes the data from the ATM.
      */
-    public static void writeData() {
+    public void writeData() {
         try {
             writeATMData();
             writeUserData();
@@ -40,14 +50,14 @@ public class DataSaver {
     /**
      * Writes the time and cash machine contents into atmdata.txt.
      */
-    private static void writeATMData() {
-        try (FileWriter writer = new FileWriter(atmdata)) {
-            writer.write("ATM CLOCK");
-            writer.write(ATM.clock.toString());
-            writer.write("ATM CASH MACHINE");
-            writer.write(ATM.c.toString());
-            writer.write("ATM ACCOUNT NUMBER");
-            writer.write(UserManager.accountNum);
+    private void writeATMData() {
+        try (FileWriter writer = new FileWriter("phase2/phase2/Data/atmdata.txt")) {
+            writer.write("ATM CLOCK \n");
+            writer.write(ATM.clock.toString() + "\n");
+            writer.write("ATM CASH MACHINE \n");
+            writer.write(ATM.c.toString()+"\n");
+            writer.write("ATM ACCOUNT NUMBER \n");
+            writer.write(((Integer)UserManager.accountNum).toString() + "\n");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -56,15 +66,15 @@ public class DataSaver {
     /**
      * Writes the bankUsers contents into userdata.txt.
      */
-    private static void writeUserData() {
+    private void writeUserData() {
         try (FileWriter writer = new FileWriter(userdata)) {
              writer.write("ATM BANK USERS");
              for (User u: ATM.bankUsers) {
                  writer.write("USER");
                  writer.write(u.toString());
                  writer.write("SAVINGS");
-                 for (Object o : u.getAccountList("sv")) {
-                     Savings a = (Savings) o;
+                 for (Account account : u.getAccountList("sv")) {
+                     Savings a = (Savings) account;
                      writer.write(a.toString());
                  }
                  writer.write("CHEQUING");
@@ -96,7 +106,7 @@ public class DataSaver {
     /**
      * Writes the transaction information into transactiondata.txt.
      */
-    private static void writeTransactionData() {
+    private void writeTransactionData() {
         try (FileWriter writer = new FileWriter(transactiondata)) {
             writer.write("ATM TRANSACTIONS");
             for (User u: ATM.bankUsers) {
@@ -150,14 +160,14 @@ public class DataSaver {
     /**
      * Writes the employee information into employeedata.txt.
      */
-    private static void writeEmployeeData() {
+    private void writeEmployeeData() {
         try (FileWriter writer = new FileWriter(employeedata)) {
-            writer.write("ATM BANK MANAGER");
-            writer.write(ATM.b.toString());
-            writer.write("ATM BANK TELLERS");
+            writer.write("ATM BANK MANAGER \n");
+            writer.write(ATM.b.toString() + "\n");
+            writer.write("ATM BANK TELLERS \n");
             for (BankTeller b : ATM.bankEmployees) {
-                writer.write(b.getUsername() + "." + b.getPassword());
-                writer.write(b.toString());
+                writer.write(b.getUsername() + "." + b.getPassword() + "\n");
+                writer.write(b.toString() + "\n");
             }
         } catch (Exception e) {
             e.printStackTrace();
