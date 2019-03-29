@@ -240,8 +240,19 @@ public class CreditCard implements Account {
      * @return the transaction string
      */
     public String transactionString() {
-        return "";
+        StringBuilder s = new StringBuilder();
+        for (Transaction t : transactions ) {
+            s.append(t.toString()).append("\n");
+        }
+        return s.toString();
     }
+
+    /**
+     * Returns the account number.
+     *
+     * @return the account number
+     */
+    public int getAccountNum() { return accountNum; }
 
     @Override
     public String toString() {

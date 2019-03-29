@@ -93,4 +93,11 @@ public interface Account {
      * Adds a new transaction to the list of this account's transactions.
      */
     void addTransaction(Transaction t);
+
+    /**
+     * Returns the account number.
+     *
+     * @return the account number
+     */
+    int getAccountNum();
 }

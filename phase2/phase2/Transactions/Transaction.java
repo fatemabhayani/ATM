@@ -81,6 +81,17 @@ public abstract class Transaction {
     Calendar getTimeOfTransaction() { return timeOfTransaction; }
 
     /**
+     * Returns the date of this transaction.
+     *
+     * @return the date of creation
+     */
+    public String getTransactionTimestamp() {
+        return timeOfTransaction.get(Calendar.YEAR) + "/" + (timeOfTransaction.get(Calendar.MONTH) + 1) + "/" +
+                timeOfTransaction.get(Calendar.DAY_OF_MONTH) + " " + timeOfTransaction.get(Calendar.HOUR_OF_DAY) + ":" +
+                timeOfTransaction.get(Calendar.MINUTE) + ":" + timeOfTransaction.get(Calendar.SECOND);
+    }
+
+    /**
      * Reads .txt file and accumulates amounts deposited
      *
      * @return the accumulated amount recorded in the file.

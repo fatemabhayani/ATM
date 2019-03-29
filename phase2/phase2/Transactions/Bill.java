@@ -69,7 +69,7 @@ public class Bill extends Transaction {
 
     @Override
     public String toString() {
-        return "Pay a bill of " + getAmount();
+        return "B " + amount.toString() + " " + moneyFrom.getAccountNum() + " " + getTransactionTimestamp();
     }
 }
 

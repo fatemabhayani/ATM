@@ -71,7 +71,7 @@ public class Withdraw extends Transaction {
 
     @Override
     public String toString() {
-        return "Withdraw " + getAmount();
+        return "W " + amount.toString() + " " + moneyFrom.getAccountNum() + " " + getTransactionTimestamp();
     }
 }
 
