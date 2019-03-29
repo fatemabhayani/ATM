@@ -156,7 +156,7 @@ public class DataSaver {
             writer.write(ATM.b.toString());
             writer.write("ATM BANK TELLERS");
             for (BankTeller b : ATM.bankEmployees) {
-                writer.write(b.getUsername().toUpperCase());
+                writer.write(b.getUsername() + "." + b.getPassword());
                 writer.write(b.toString());
             }
         } catch (Exception e) {

@@ -111,9 +111,21 @@ public class BankTeller extends BankEmployee {
         requests.remove(i);
     }
 
+    /**
+     * Sets the bank teller's user account to the username.
+     *
+     * @param username the username
+     */
+    public void setUser(String username) {
+        u = UserManager.getUser(username);
+    }
+
     @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
+        if (u != null) {
+            s.append("u/n ").append(u.getUsername()).append("\n");
+        }
         for (UndoRequest req : requests) {
             s.append(req.toString()).append("\n");
         }

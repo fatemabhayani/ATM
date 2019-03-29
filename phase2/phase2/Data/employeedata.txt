@@ -1,36 +1,16 @@
 ATM BANK MANAGER
-REQUEST: request type
 USER newuser helloworld
 ACCOUNT brittapal cb CAD
 ATM BANK TELLERS
-TELLER1
-username
-REQUESTS
+teller1.bestemployee1
+u/n mickeymouse
 UNDO brittapal 0 0
-TELLER2
-username
-REQUESTS
-TELLER3
-username
-REQUESTS
-TELLER4
-username
-REQUESTS
-TELLER5
-username
-REQUESTS
-TELLER6
-username
-REQUESTS
-TELLER7
-username
-REQUESTS
-TELLER8
-username
-REQUESTS
-TELLER9
-username
-REQUESTS
-TELLER10
-username
-REQUESTS
+teller2.bestemployee2
+teller3.bestemployee3
+teller4.bestemployee4
+teller5.bestemployee5
+teller6.bestemployee6
+teller7.bestemployee7
+teller8.bestemployee8
+teller9.bestemployee9
+teller10.bestemployee10
