@@ -27,7 +27,7 @@ public class Transfer extends Transaction {
      * @param moneyFrom the account where the money is from
      * @param date      the date of creation
      */
-    public Transfer(ForeignCurrency amount, Account moneyTo, Account moneyFrom, Calendar date) {
+    public Transfer(ForeignCurrency amount, Account moneyFrom, Account moneyTo, Calendar date) {
         super(amount, date);
         this.moneyTo = moneyTo;
         this.moneyFrom = moneyFrom;
@@ -77,7 +77,7 @@ public class Transfer extends Transaction {
 
     @Override
     public String toString() {
-        return "T " + amount.toString() + " " + moneyFrom.getAccountNum() + " " + moneyTo.getAccountNum() + " " +
-                getTransactionTimestamp();
+        return "T " + amount.toString() + " " + getTransactionTimestamp() + " " + moneyFrom.getAccountNum() + " " +
+                moneyTo.getAccountNum();
     }
 }

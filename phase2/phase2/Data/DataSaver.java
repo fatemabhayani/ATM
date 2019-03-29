@@ -98,13 +98,12 @@ public class DataSaver {
      */
     private static void writeTransactionData() {
         try (FileWriter writer = new FileWriter(transactiondata)) {
-            writer.write("ATM BANK USERS");
+            writer.write("ATM TRANSACTIONS");
             for (User u: ATM.bankUsers) {
                 // We only write a user to the file if the user has made any transactions.
                 if (u.getAccountManager().getTransactions().size() > 0) {
                     writer.write("USER");
                     writer.write(u.toString());
-                    writer.write("SAVINGS");
                     for (Object o : u.getAccountList("sv")) {
                         Savings a = (Savings) o;
                         // We only write an account to the file if there are any transactions made on it.
@@ -113,7 +112,6 @@ public class DataSaver {
                             writer.write(a.transactionString());
                         }
                     }
-                    writer.write("CHEQUING");
                     for (Object o : u.getAccountList("cq")) {
                         Chequing a = (Chequing) o;
                         if (a.getTransactions().size() > 0) {
@@ -121,7 +119,6 @@ public class DataSaver {
                             writer.write(a.transactionString());
                         }
                     }
-                    writer.write("CASH BACK");
                     for (Object o : u.getAccountList("cb")) {
                         CashBackCard a = (CashBackCard) o;
                         if (a.getTransactions().size() > 0) {
@@ -129,7 +126,6 @@ public class DataSaver {
                             writer.write(a.transactionString());
                         }
                     }
-                    writer.write("CREDIT CARD");
                     for (Object o : u.getAccountList("cc")) {
                         CreditCard a = (CreditCard) o;
                         if (a.getTransactions().size() > 0) {
@@ -137,7 +133,6 @@ public class DataSaver {
                             writer.write(a.transactionString());
                         }
                     }
-                    writer.write("LINE OF CREDIT");
                     for (Object o : u.getAccountList("lc")) {
                         LineOfCredit a = (LineOfCredit) o;
                         if (a.getTransactions().size() > 0) {

@@ -3,12 +3,11 @@ package phase2.Data;
 import java.io.*;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.Scanner;
-
 import phase2.Display.ATM;
 import phase2.ForeignCurrency;
 import phase2.People.*;
 import phase2.Accounts.*;
+import phase2.Transactions.*;
 
 /**
  * The type Data reader.
@@ -119,9 +118,22 @@ public class DataReader {
     private static void readTransactionData() {
         String s;
         try (BufferedReader reader = new BufferedReader(new FileReader("phase2/phase2/Data/transactiondata.txt"))) {
-            reader.readLine();
-            s = reader.readLine();
-
+            reader.readLine(); // ATM TRANSACTIONS
+            s = reader.readLine(); // USER
+            while (s != null) {
+                reader.readLine(); // username.password
+                s = reader.readLine(); // ACCOUNT: #
+                while (s != null && !s.equals("USER")) {
+                    String[] info = s.split("\\s");
+                    Account a = UserManager.getUserAccount(Integer.valueOf(info[1]));
+                    s = reader.readLine(); // transaction info
+                    while (s != null && !s.substring(0, 7).equals("ACCOUNT:")) {
+                        Transaction t = makeTransaction(s);
+                        a.addTransaction(t);
+                        s = reader.readLine();
+                    }
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -273,6 +285,30 @@ public class DataReader {
             }
             return acc;
         }
+    }
+
+    /**
+     * Returns the transaction represented by s.
+     *
+     * @param s the string
+     * @return a savings account
+     */
+    private static Transaction makeTransaction(String s) {
+        String[] info = s.split("\\s|/|:");
+        String type = info[0];
+        Calendar date = new GregorianCalendar(Integer.valueOf(info[3]), Integer.valueOf(info[4]) - 1,
+                Integer.valueOf(info[5]), Integer.valueOf(info[6]), Integer.valueOf(info[7]), Integer.valueOf(info[8]));
+        ForeignCurrency amount = new ForeignCurrency(info[2], Double.valueOf(info[1]));
+        switch (type) {
+            case("B"): return new Bill(amount, UserManager.getUserAccount(Integer.valueOf(info[9])), date);
+            case("D"): return new Deposit(amount, UserManager.getUserAccount(Integer.valueOf(info[9])), date);
+            case("W"): return new Withdraw(amount, UserManager.getUserAccount(Integer.valueOf(info[9])), date);
+            case("T"): return new Transfer(amount, UserManager.getUserAccount(Integer.valueOf(info[9])),
+                    UserManager.getUserAccount(Integer.valueOf(info[10])), date);
+            default: return null;
+
+        }
+
     }
 
 }

@@ -1,6 +1,8 @@
 package phase2.Transactions;
 
 import phase2.Accounts.*;
+import phase2.ForeignCurrency;
+
 import java.util.Calendar;
 
 /**
@@ -22,6 +24,18 @@ public class Deposit extends Transaction {
      */
     public Deposit(String deposit, Account moneyTo, Calendar date) {
         super(deposit, date);
+        this.moneyTo = moneyTo;
+    }
+
+    /**
+     * Instantiates a new Deposit.
+     *
+     * @param amount  the money being deposited
+     * @param moneyTo account to deposit the money to
+     * @param date    the date of creation
+     */
+    public Deposit(ForeignCurrency amount, Account moneyTo, Calendar date) {
+        super(amount, date);
         this.moneyTo = moneyTo;
     }
 
@@ -57,6 +71,6 @@ public class Deposit extends Transaction {
 
     @Override
     public String toString() {
-        return "D " + amount.toString() + " " + moneyTo.getAccountNum() + " " + getTransactionTimestamp();
+        return "D " + amount.toString() + " " + getTransactionTimestamp() + " " + moneyTo.getAccountNum();
     }
 }
