@@ -8,6 +8,7 @@ import phase2.ForeignCurrency;
 import phase2.People.*;
 import phase2.Accounts.*;
 import phase2.Transactions.*;
+import phase2.Request.*;
 
 /**
  * The type Data saver.
@@ -155,6 +156,38 @@ public class DataSaver {
             CashBackCard c = (CashBackCard) account;
             writeCashBackCardAccount(writer, c);
         }
+    }
+
+    private void writeAllUndoRequests(){
+        try (FileWriter writer = new FileWriter("phase2/phase2/Data/Requests/UndoRequests.txt", true)){
+            for(UndoRequest req: ATM.undoRequests){
+                writer.write(req.toString() + "\n");
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    private void writeAllUserRequests(){
+        try (FileWriter writer = new FileWriter("phase2/phase2/Data/Requests/UserRequests.txt", true)){
+            for(UserRequest req: ATM.b.userRequests){
+                writer.write(req.toString() + "\n");
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    private void writeAllAccountRequests(){
+        try (FileWriter writer = new FileWriter("phase2/phase2/Data/Requests/AccountRequests.txt", true)){
+            for(AccountRequest req: ATM.b.accountRequests){
+                writer.write(req.toString() + "\n");
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
 
