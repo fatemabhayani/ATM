@@ -161,7 +161,6 @@ public class DataReader {
                 s = reader.readLine(); // username or request
                 if (s.substring(0, 3).equals("u/n")) {
                     info = s.split("\\s");
-                    b.setUser(info[1]);
                     s = reader.readLine(); // request
                 }
                 while (s != null && !s.substring(0, 6).equals("teller")) {

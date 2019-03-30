@@ -27,12 +27,12 @@ public class BankManager {
     /**
      * The list of requests for the manager.
      */
-    private ArrayList<UserRequest> userRequests;
+    public ArrayList<UserRequest> userRequests;
 
     /**
      * The list of requests for the manager.
      */
-    private ArrayList<AccountRequest> accountRequests;
+    public ArrayList<AccountRequest> accountRequests;
 
     /**
      * Creates a new bank manager.
