@@ -126,9 +126,7 @@ public class User {
      * @param i the transaction number
      * @return the transaction
      */
-     Transaction getTransaction(int i) {
-        return getTransactions().get(i);
-    }
+     Transaction getTransaction(int i) { return getTransactions().get(i); }
 
     /**
      * Balance summary
