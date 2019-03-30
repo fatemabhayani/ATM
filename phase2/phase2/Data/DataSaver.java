@@ -31,14 +31,6 @@ public class DataSaver {
     }
 
     /**
-     * The files that stores the ATM data.
-     */
-    private String atmdata = "phase2/phase2/atmdata.txt";
-    private String userdata = "phase2/phase2/Data/userdata.txt";
-    private String employeedata = "phase2/phase2/Data/employeedata.txt";
-    private String transactiondata = "phase2/phase2/Data/transactiondata.txt";
-
-    /**
      * Initializes an instance of DataSaver.
      */
     private DataSaver() {}
@@ -70,7 +62,7 @@ public class DataSaver {
     private void writeUserData(User user){
         appendName(user);
         try (FileWriter writer = new FileWriter("phase2/phase2/Data/UserDataFiles/" + user.getUsername() + ".txt")){
-            writeName(writer, user);
+            writer.write(user.toString() +"\n");
             writeAllSavings(writer, user);
             writeAllChequing(writer, user);
             writeAllLineOfCredit(writer, user);
@@ -87,9 +79,7 @@ public class DataSaver {
             e.printStackTrace();
         }
     }
-    private void writeName(FileWriter writer, User user) throws IOException{
-        writer.write(user.toString() +"\n");
-    }
+
 
     private void writeSavingAccount(FileWriter writer, Savings s) throws IOException {
         writer.write(s.toString() +" ");
