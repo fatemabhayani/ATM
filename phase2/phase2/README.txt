@@ -1,34 +1,30 @@
+------------------------ALERTS.TXT------------------------
+alerts.txt should contain lines that read "The number of (integer denoting denomination) dollar bills in the ATM is
+less than 20." The integer denoting the denomination should be either 5, 10, 20, or 50. The CashMachine class checks
+the amount of bills in the machine after bills are withdrawn, and writes to the file if necessary.
 
-------------------------ALERTS.TXT------------------
-alerts.txt should have lines that read "The number of (int, describing the denomination of the bill)
- Dollar Bills has fallen below (int, describing the number of bills required in the system,
- we have chosen 20 as the threshold)
+------------------------DEPOSITS.TXT------------------------
+This text file represents a physical cheque that a user would have to input into the bank machine to make a deposit.
+If you want to make a deposit, you should write the following text into deposits.txt:
+Deposit [amount] dollars into [User.username]'s account [account number].
+In this case, amount is a double representing the number of dollars in CAD. The Deposit class reads deposits.txt and
+extracts the amount.
 
- ---------------------ATMDATA.TXT--------------------
-
-
- --------------------DATA.TXT------------------------
-
-
---------------------DEPOSITS.TXT---------------------
-
-
--------------------------EMPLOYEEDATA.TXT---------------
-
-
------------------------OUTGOING.TXT---------------------
-
+------------------------OUTGOING.TXT------------------------
+This text file holds the information of a bill payment to an account outside of the ATM system. It is written to
+when a user makes a Bill transaction for a specified amount. The Bill class writes the amount payed in the form:
+[double amount] [currency code]
+For example, "500 USD" is a valid line that can be written to outgoing.txt.
 
 -----------------------SUPERHERO.TXT-------------------
+This is a text file containing a list of random superhero names. The ATM display class reads this file to a
+random line every time the display is called and uses this name when greeting new users that are logging in!
+
+------------------------DATA TXT FILES------------------------
 
 
-----------------------TRANSACTIONDATA.TXT--------------------
 
-
---------------------USERDATA.TXT------------------------
-
-
----------------------------------DESCRIPTION OF CLASSES--------------------------
+------------------------DESCRIPTION OF CLASSES------------------------
 1. Package Phase2
 
 2. Package Phase2.Accounts
