@@ -97,7 +97,7 @@ public class ForeignCurrency implements Comparable<ForeignCurrency>{
 
 
     public int compareTo(ForeignCurrency f){
-        return Double.compare(amount, this.convert(f.getCurrencyCode()).amount);
+        return Double.compare(amount, f.convert(this.currencyCode).getAmount());
     }
 
     /**
