@@ -147,7 +147,7 @@ public class ATM {
         }
 
         if (clock.isFirstOfMonth()) {
-            UserManager.updateSavings();
+            UserManager.updateInterest();
         }
 
         //TODO: write data only once per run (before program resets at midnight)

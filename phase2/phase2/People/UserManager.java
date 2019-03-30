@@ -119,9 +119,9 @@ public class UserManager {
     }
 
     /**
-     * Updates the savings accounts of every user.
+     * Updates the savings and cash back accounts of every user.
      */
-    public static void updateSavings() {
+    public static void updateInterest() {
         for (User u: ATM.bankUsers) {
             ArrayList s = u.getAccountList("sv");
             for (Object a : s) {
