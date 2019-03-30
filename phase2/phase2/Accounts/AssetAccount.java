@@ -30,12 +30,12 @@ public abstract class AssetAccount implements Account {
     /**
      * The account number.
      */
-    public int accountNum;
+    int accountNum;
 
     /**
      * The account manager.
      */
-    final ArrayList<Transaction> transactions;
+    private final ArrayList<Transaction> transactions;
 
     /**
      * The date the account was created.
@@ -99,6 +99,13 @@ public abstract class AssetAccount implements Account {
      * @param transaction the transaction being made
      */
     public abstract void subtract(Transaction transaction);
+
+    /**
+     * Decreases the account balance by amount.
+     *
+     * @param amount the amount being subtracted
+     */
+    public abstract void subtract(ForeignCurrency amount);
 
     /**
      * Increases the balance by the amount in transaction.
@@ -172,7 +179,7 @@ public abstract class AssetAccount implements Account {
      *
      * @return the date of creation
      */
-    public String getCreationDate() {
+    private String getCreationDate() {
         return dateOfCreation.get(Calendar.YEAR) + "/" + (dateOfCreation.get(Calendar.MONTH) + 1) + "/" +
                 dateOfCreation.get(Calendar.DAY_OF_MONTH) + " " + dateOfCreation.get(Calendar.HOUR_OF_DAY) + ":" +
                 dateOfCreation.get(Calendar.MINUTE) + ":" + dateOfCreation.get(Calendar.SECOND);

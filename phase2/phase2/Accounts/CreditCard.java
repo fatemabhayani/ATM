@@ -26,12 +26,12 @@ public class CreditCard implements Account {
     /**
      * The account number.
      */
-    public int accountNum;
+    int accountNum;
 
     /**
      * The account transactions.
      */
-    final ArrayList<Transaction> transactions;
+    private final ArrayList<Transaction> transactions;
 
     /**
      * The date the account was created.
