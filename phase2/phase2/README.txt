@@ -32,6 +32,9 @@ alerts.txt should have lines that read "The number of (int, describing the denom
 1. Package Phase2
 
 2. Package Phase2.Accounts
+- includes account interface as well as the different types of accounts (Asset, Credit card,
+ Cashback card, Chequing, Savings, Line of credit) which extend Account, and the AccountManager which
+ stores and has access to all of the account information.
 
 3. Package Phase2.Data
 
@@ -55,11 +58,13 @@ alerts.txt should have lines that read "The number of (int, describing the denom
 -------------------------HOW TO CREATE AN USER ACCOUNT?-----------------------------
  1. Individual Account
 - a request to create an account would be made in the AccountRequest class, with the user, account type, and
-currency code. The account type should be individual.
+currency code. The account type should be individual. The user would have to first be created through a
+UserRequest.
 
  2. Joint Account
 - a request to create an account would be made in the AccountRequest class, with the user, account type, and
-currency code. The account type should be a joint account.
+currency code. The account type should be a joint account. The users would have to first be created through a
+UserRequest.
 
  ----------------------FUNCTIONALITY FOR USERS-------------------------------
  1. How to create an account?
