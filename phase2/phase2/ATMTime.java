@@ -59,27 +59,6 @@ public class ATMTime {
     }
 
     /**
-     * Returns the hour.
-     */
-    private int getCurrentHour() {
-        return getCurrentTime().get(Calendar.HOUR);
-    }
-
-    /**
-     * Returns the minute.
-     */
-    private int getCurrentMinute() {
-        return getCurrentTime().get(Calendar.MINUTE);
-    }
-
-    /**
-     * Returns the second.
-     */
-    private int getCurrentSecond() {
-        return getCurrentTime().get(Calendar.SECOND);
-    }
-
-    /**
      * Returns a calendar timestamp of the current time.
      *
      * @return the timestamp for the current time
@@ -96,21 +75,12 @@ public class ATMTime {
     }
 
     /**
-     * Returns whether or not the time is midnight.
-     *
-     * @return true iff the time is midnight
-     */
-    private boolean isMidnight() {
-        return (getCurrentHour() == 0 && getCurrentMinute() == 0 && getCurrentSecond() == 0);
-    }
-
-    /**
      * Returns whether or not is it the first of the month at midnight.
      *
      * @return true iff it is the first of the month
      */
     public boolean isFirstOfMonth() {
-        return (getCurrentDay() == 1) && isMidnight();
+        return (getCurrentDay() == 1);
     }
 
     /**
