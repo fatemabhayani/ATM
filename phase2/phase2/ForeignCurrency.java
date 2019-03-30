@@ -26,10 +26,6 @@ public class ForeignCurrency implements Comparable<ForeignCurrency>{
     private double amount;
 
     public static void main(String[] args) {
-        ForeignCurrency mine = new ForeignCurrency("CAD", 1000);
-        ForeignCurrency converted = mine.convert("USD");
-        System.out.println(converted);
-
     }
 
     /**
@@ -68,27 +64,19 @@ public class ForeignCurrency implements Comparable<ForeignCurrency>{
      * @param f the second ForeignCurrency
      */
     public void add(ForeignCurrency f){
-        if (f.getCurrencyCode().equals(getCurrencyCode())){
-            amount += f.getAmount();
-        } else {
             ForeignCurrency d = f.convert(getCurrencyCode());
             amount += d.getAmount();
-        }
     }
+
     /**
      * Subtract two instances for foreign currencies.
      *
      * @param f the second ForeignCurrency
      */
     public void subtract(ForeignCurrency f){
-        if (f.getCurrencyCode().equals(getCurrencyCode())){
-            amount -= f.getAmount();
-        } else {
             ForeignCurrency d = f.convert(getCurrencyCode());
             amount -= d.getAmount();
-        }
     }
-
 
     /**
      * Multiply foreign currency.
