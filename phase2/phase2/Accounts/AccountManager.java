@@ -42,12 +42,13 @@ public class AccountManager {
     /**
      * Instantiates a new account manager.
      */
-    public AccountManager() {
+    public AccountManager(User u) {
         lc = new ArrayList<>();
         cc = new ArrayList<>();
         cq = new ArrayList<>();
         sv = new ArrayList<>();
         cb = new ArrayList<>();
+        owner = u;
     }
 
     /**
@@ -92,10 +93,6 @@ public class AccountManager {
      */
     private double getTotalBalance() {
         return getAssetBalance() - getDebtBalance();
-    }
-
-    public void setOwner(User user){
-        this.owner = user;
     }
 
     /**

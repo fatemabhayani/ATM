@@ -40,6 +40,7 @@ public class Savings extends AssetAccount {
         }
     }
 
+    @Override
     public void subtract(ForeignCurrency amount) {
         if (balance.compareTo(amount) < 0) {
             System.out.println("Cannot have a balance below 0!");
