@@ -15,16 +15,22 @@ import org.json.simple.parser.ParseException;
  */
 public class ForeignCurrency implements Comparable<ForeignCurrency>{
 
+    /**
+     * The type of currency.
+     */
     private String currencyCode;
+
+    /**
+     * The amount of currencyCode.
+     */
     private double amount;
 
     public static void main(String[] args) {
         ForeignCurrency mine = new ForeignCurrency("CAD", 1000);
-        ForeignCurrency converted = mine.convert("EUR");
+        ForeignCurrency converted = mine.convert("USD");
         System.out.println(converted);
 
     }
-
 
     /**
      * Instantiates a new Foreign currency.
