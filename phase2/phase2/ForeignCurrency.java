@@ -1,9 +1,14 @@
 package phase2;
 
-import java.util.Currency;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
 import java.net.URL;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 
 /**
  * The type Foreign currency.
@@ -12,7 +17,13 @@ public class ForeignCurrency implements Comparable<ForeignCurrency>{
 
     private String currencyCode;
     private double amount;
-    private Currency currency;
+
+    public static void main(String[] args) {
+        ForeignCurrency mine = new ForeignCurrency("CAD", 1000);
+        ForeignCurrency converted = mine.convert("EUR");
+        System.out.println(converted);
+
+    }
 
 
     /**
@@ -24,7 +35,7 @@ public class ForeignCurrency implements Comparable<ForeignCurrency>{
     public ForeignCurrency(String currencyCode, double amount){
         this.currencyCode = currencyCode;
         this.amount = amount;
-        this.currency = Currency.getInstance(currencyCode);
+
     }
 
     /**
@@ -92,29 +103,63 @@ public class ForeignCurrency implements Comparable<ForeignCurrency>{
     /**
      * Convert foreign currency.
      *
-     * @param cur the currency code
+     * @param currency the currency code
      * @return the foreign currency
      */
-    public ForeignCurrency convert(String cur){
-        Currency curr = Currency.getInstance(cur);
+    public ForeignCurrency convert(String currency){
+        double rate = getRate(this.currencyCode, currency);
+        double newAmount = this.amount * rate;
+        return new ForeignCurrency(currency, newAmount);
+    }
+
+    private double getRate(String from, String to) {
+        if (to.equals(from)){
+            return 1;
+        }
         try {
-            URL url = new URL("https://www.xe.com/currencyconverter/convert/?Amount=1&From=" + currency.getCurrencyCode() + "&To=" + curr.getCurrencyCode());
-            BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
-            String line = reader.readLine();
-            if (line.length() > 0) {
-                double newAmount = Double.parseDouble(line) * getAmount();
-                return new ForeignCurrency(cur, newAmount);
-            }
-            reader.close();
+            URL url = getCorrectUrl(from, to);
+            JSONObject rates = getRatesJSON(url);
+            if (from.equals("EUR")) {
+                return (double) rates.get(to);
+            } else if (to.equals("EUR")) {
+                return 1 / (double) rates.get(from);
+            } else {
+            double fromEuroRate = (double) rates.get(from);
+            double toEuroRate = (double) rates.get(to);
+            return toEuroRate / fromEuroRate;
+        }
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return -1;
         }
-        return new ForeignCurrency("CAD", 777);
+
+    }
+
+    private JSONObject getRatesJSON(URL url) throws IOException, ParseException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
+        String line = reader.readLine();
+        reader.close();
+        JSONParser parser = new JSONParser();
+        JSONObject json = (JSONObject) parser.parse(line);
+        return (JSONObject) json.get("rates");
+    }
+
+    private URL getCorrectUrl(String from, String to) throws MalformedURLException {
+        URL url;
+        if (from.equals("EUR")){
+            url = new URL("https://api.exchangeratesapi.io/latest?symbols=" + to);
+        } else if (to.equals("EUR")){
+            url = new URL("https://api.exchangeratesapi.io/latest?symbols=" + from);
+        } else {
+            url = new URL("https://api.exchangeratesapi.io/latest?symbols=" + from + "," + to);
+        }
+        return url;
+
     }
 
     @Override
     public String toString() {
-        return getAmount() + " " + currency.getCurrencyCode();
+        return getAmount() + " " + currencyCode;
     }
 }
 
