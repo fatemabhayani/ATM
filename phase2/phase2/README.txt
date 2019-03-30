@@ -76,7 +76,13 @@ user as a second owner (owner2), and adds this account to the second user's list
 AccountManager).
 
 ------------------------HOW TO UNDO A TRANSACTION?------------------------
-
+After a user has logged in, they can request to undo a transaction of a specific account. The account stores
+all of its past transactions, so it can request to undo any past transaction (by inputting an integer, where 0
+represents the most recent transaction). They do this by viewing their past transactions and selecting the transaction
+number to undo. An UndoRequest is sent to the bank manager, who can again either complete or ignore the request.
+If the request is completed the transaction is undone, and the balance of the account that made the transaction is
+changed accordingly. If the transaction was a transfer, the balance of the account that received the transfer will
+also be changed. A Bill transaction cannot be undone.
 
 ------------------------FUNCTIONALITY FOR USERS------------------------
  1. How to create an account?
@@ -86,7 +92,15 @@ AccountManager).
  3. How to undo a transaction?
 
 ------------------------FUNCTIONALITY FOR BANK TELLERS------------------------
-1. Complete users' requests
+1. Restocking the cash machine:
+Bank tellers can read alerts.txt and restock the cash machine with bills accordingly.
+2. Completing requests to undo transactions:
+Bank tellers can only complete and ignore an UndoRequest. The bank tellers and bank manager share access of
+a list of UndoRequests.
 
 ------------------------FUNCTIONALITY FOR BANK MANAGER------------------------
-1. Complete users' requests
+1. Restocking the cash machine:
+The bank manager can read alerts.txt and restock the cash machine with bills accordingly.
+2. Completing all types of requests:
+The bank manager can complete and ignore any request type, and they are the only one who can complete requests to
+make new users and accounts.
