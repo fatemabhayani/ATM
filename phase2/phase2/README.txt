@@ -55,20 +55,25 @@ be created in the ATM.
 ------------------------HOW TO CREATE AN USER?------------------------
 Before logging in, the ATM will ask if the user has a pre-existing account or not. If "no" is typed, the
 new user can input their desired username and password, and a UserRequest will be sent to the bank manager.
-To create this account, the bank manager first must log in and complete the request. Of course the bank manager
-may also ignore the request, and decline to make an account for this new user.
+To create this account with the specified username and password, the bank manager first must log in and
+complete the request. Of course the bank manager may also ignore the request, and decline to make an account
+for this new user. After the bank manager has accepted the request the user can log in with their chosen username
+and password. The ATM will not allow a new user to request a username that has already been taken.
 
 ------------------------HOW TO CREATE AN USER ACCOUNT?------------------------
 1. Individual Account
-After a user has logged in, they can request to create an account of a specific type
-- a request to create an account would be made in the AccountRequest class, with the user, account type, and
-currency code. The account type should be individual. The user would have to first be created through a
-UserRequest.
+After a user has logged in, they can request to create an account of a specific type ("sv": Savings, "cq": Chequing,
+"cc": CreditCard, "cb": CashBackCard, "lc": LineOfCredit) with a primary currency type (denoted by a 3 letter
+currency code, e.g. "USD", "CAD", "INR"). An AccountRequest is sent to the bank manager, who can again complete the
+request, by creating and adding the specified account to the user's list of accounts, or ignoring the request.
+After the bank manager completes the request, the user will see this account when they log in next and will be able to
+make transactions from it.
 
 2. Joint Account
-- a request to create an account would be made in the AccountRequest class, with the user, account type, and
-currency code. The account type should be a joint account. The users would have to first be created through a
-UserRequest.
+After creating an account, a user can choose to add a second user to this account (by specifying their username),
+which allows this user to view the balance and make transactions from this account. This is done by adding this
+user as a second owner (owner2), and adds this account to the second user's list of accounts (stored in
+AccountManager).
 
 ------------------------HOW TO UNDO A TRANSACTION?------------------------
 
