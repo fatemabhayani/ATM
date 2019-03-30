@@ -16,58 +16,72 @@ when a user makes a Bill transaction for a specified amount. The Bill class writ
 [double amount] [currency code]
 For example, "500 USD" is a valid line that can be written to outgoing.txt.
 
------------------------SUPERHERO.TXT-------------------
+------------------------SUPERHERO.TXT------------------------
 This is a text file containing a list of random superhero names. The ATM display class reads this file to a
 random line every time the display is called and uses this name when greeting new users that are logging in!
 
 ------------------------DATA TXT FILES------------------------
-
+There are several files created that store the ATM data. A file called [username].txt is created to write the
+data of every user in the ATM at the time the program exits. We also have a file called
 
 
 ------------------------DESCRIPTION OF CLASSES------------------------
-1. Package Phase2
+1. package phase2
 
-2. Package Phase2.Accounts
+2. package phase2.Accounts
 - includes account interface as well as the different types of accounts (Asset, Credit card,
  Cashback card, Chequing, Savings, Line of credit) which extend Account, and the AccountManager which
  stores and has access to all of the account information.
 
-3. Package Phase2.Data
+3. package phase2.Data
 
-4. Package Phase2.Display
+4. package phase2.Display
 
-5. Package Phase2.Interfaces
+5. package phase2.People
 
-6. Package Phase2.People
+6. package phase2.Requests
 
-7. Package Phase2.Requests
+7. package phase2.Transactions
 
-8. Package Phase2.Transactions
+------------------------HOW TO RUN THE PROGRAM?----------------------------
+Run ATM.java to run the entire program.
 
-------------------------------HOW TO RUN THE PROGRAM?----------------------------
+------------------------HOW TO ACCESS THE BANK EMPLOYEE ACCOUNTS?------------------------
+The bank manager and 5 bank tellers already have accounts set up. To access the bank manager, enter
+username: bankmanager, password: bestboss. To access the bank tellers, enter username: teller[i],
+password: bestemployee[i], where i is an integer from 1 to 5. New bank tellers and bank managers cannot
+be created in the ATM.
 
+------------------------HOW TO CREATE AN USER?------------------------
+Before logging in, the ATM will ask if the user has a pre-existing account or not. If "no" is typed, the
+new user can input their desired username and password, and a UserRequest will be sent to the bank manager.
+To create this account, the bank manager first must log in and complete the request. Of course the bank manager
+may also ignore the request, and decline to make an account for this new user.
 
------------------------------HOW TO ACCESS THE BANK MANAGER, BANK TELLER ACCOUNTS?------------------
- -The Bank Manager already has an account. To access the account, username: bankmanager ; password: bestboss
-
-
--------------------------HOW TO CREATE AN USER ACCOUNT?-----------------------------
- 1. Individual Account
+------------------------HOW TO CREATE AN USER ACCOUNT?------------------------
+1. Individual Account
+After a user has logged in, they can request to create an account of a specific type
 - a request to create an account would be made in the AccountRequest class, with the user, account type, and
 currency code. The account type should be individual. The user would have to first be created through a
 UserRequest.
 
- 2. Joint Account
+2. Joint Account
 - a request to create an account would be made in the AccountRequest class, with the user, account type, and
 currency code. The account type should be a joint account. The users would have to first be created through a
 UserRequest.
 
- ----------------------FUNCTIONALITY FOR USERS-------------------------------
+------------------------HOW TO UNDO A TRANSACTION?------------------------
+
+
+------------------------FUNCTIONALITY FOR USERS------------------------
  1. How to create an account?
 
  2. How to initiate a transaction?
 
  3. How to undo a transaction?
 
------------------------FUNCTIONALITY FOR EMPLOYEES--------------------------
- 1. Complete users' requests
+------------------------FUNCTIONALITY FOR BANK TELLERS------------------------
+1. Complete users' requests
+
+------------------------FUNCTIONALITY FOR BANK MANAGER------------------------
+1. Complete users' requests
