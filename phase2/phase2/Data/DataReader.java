@@ -3,8 +3,8 @@ package phase2.Data;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
-import phase2.Accounts.Account;
-import phase2.Accounts.Savings;
+
+import phase2.Accounts.*;
 import phase2.Display.ATM;
 import phase2.Tradable.*;
 import phase2.People.*;
@@ -25,12 +25,25 @@ public class DataReader {
        for (User user: ATM.bankUsers){
            System.out.println(user);
            for (Account account: user.getAccountList("sv")){
-               Savings s = (Savings) account;
-               System.out.println(s.toString() + s.transactionString());
+               System.out.println(account.toString() + account.transactionString());
+           }
+           for (Account account: user.getAccountList("cq")){
+               System.out.println(account.toString() + account.transactionString());
+           }
+           for (Account account: user.getAccountList("lc")){
+               System.out.println(account.toString() + account.transactionString());
+           }
+           for (Account account: user.getAccountList("cc")){
+               System.out.println(account.toString() + account.transactionString());
+           }
+           for (Account account: user.getAccountList("cb")){
+               System.out.println(account.toString() + account.transactionString());
            }
        }
 
     }
+
+    private final String[] types = {"SAVINGS", "CHEQUING","LINE OF CREDIT", "CREDIT CARD", "CASH BACK CARD" };
 
 
     /**
@@ -55,12 +68,7 @@ public class DataReader {
             User user = initializeUser(line);
             reader.readLine();
             line = reader.readLine();
-            while(!line.equals("CHEQUING ")){
-                Savings s = initializeSavings(line, user);
-                addAllTransactions(line, s);
-                user.getAccountManager().add(s);
-                line = reader.readLine();
-            }
+            addAllAccounts(line, user, reader);
             ATM.bankUsers.add(user);
         } catch (Exception e) {
             e.printStackTrace();
@@ -72,11 +80,41 @@ public class DataReader {
         return new User(info[0], info[1]);
     }
 
-    private Savings initializeSavings(String line, User user){
-        String[] info = line.split(" ");
-        return new Savings(getCorrectCalendar(info), user, info[2], info[0], info[1]);
+    private void addAccounts(String line, User user, int typeNum, BufferedReader reader) throws IOException {
+        while(!line.equals(types[typeNum + 1])){
+            Account account = initializeAccount(line, user, types[typeNum]);
+            addAllTransactions(line, account);
+            user.getAccountManager().add(account);
+            line = reader.readLine();
+        }
     }
 
+    private void addAllAccounts(String line, User user, BufferedReader reader) throws IOException {
+        for(int i = 0; i < 4; i++){
+            addAccounts(line, user, i, reader);
+            line = reader.readLine();
+        }
+    }
+
+
+
+    private Account initializeAccount(String line, User user, String type){
+        String[] info = line.split(" ");
+        switch(type){
+            case "SAVINGS":
+                return new Savings(getCorrectCalendar(info), user, info[2], info[0], info[1]);
+            case "CREDIT CARD":
+                return new CreditCard(getCorrectCalendar(info), user, info[2], info[0], info[1]);
+            case "LINE OF CREDIT":
+                return new LineOfCredit(getCorrectCalendar(info), user, info[2], info[0], info[1]);
+            case "CASH BACK CARD":
+                return new CashBackCard(getCorrectCalendar(info), user, info[2], info[0], info[1]);
+            case "CHEQUING":
+                return new Chequing(Boolean.valueOf(info[5]), getCorrectCalendar(info), user, info[2], info[0], info[1]);
+            default:
+                return new Savings(getCorrectCalendar(info), user, info[2], info[0], info[1]);
+        }
+    }
     private GregorianCalendar getCorrectCalendar(String[] info){
         String[] date = info[3].split("/");
         String[] time = info[4].split(":");
