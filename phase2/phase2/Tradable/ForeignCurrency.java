@@ -18,12 +18,12 @@ public class ForeignCurrency implements Comparable<Tradable>, Tradable {
     /**
      * The type of currency.
      */
-    private String currencyCode;
+    String currencyCode;
 
     /**
      * The amount of currencyCode.
      */
-    private double amount;
+    double amount;
 
     /**
      * Instantiates a new Foreign currency.
