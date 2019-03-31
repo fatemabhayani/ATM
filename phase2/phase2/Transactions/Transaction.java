@@ -1,6 +1,6 @@
 package phase2.Transactions;
 
-import phase2.ForeignCurrency;
+import ForeignCurrency;
 import phase2.Accounts.*;
 import java.io.BufferedReader;
 import java.io.FileReader;

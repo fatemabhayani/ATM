@@ -1,6 +1,6 @@
 package phase2.Accounts;
 
-import phase2.ForeignCurrency;
+import ForeignCurrency;
 import phase2.People.User;
 import phase2.Transactions.Transaction;
 import java.util.Calendar;

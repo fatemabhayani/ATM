@@ -1,4 +1,4 @@
-package phase2;
+package phase2.Tradable;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,7 +13,7 @@ import org.json.simple.parser.ParseException;
 /**
  * The type Foreign currency.
  */
-public class ForeignCurrency implements Comparable<ForeignCurrency>, Tradable{
+public class ForeignCurrency implements Comparable<ForeignCurrency>, Tradable {
 
     /**
      * The type of currency.

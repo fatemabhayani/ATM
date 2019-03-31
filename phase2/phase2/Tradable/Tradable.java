@@ -1,4 +1,4 @@
-package phase2;
+package phase2.Tradable;
 
 /**
  * The interface Tradable, object that can be traded in the ATM.

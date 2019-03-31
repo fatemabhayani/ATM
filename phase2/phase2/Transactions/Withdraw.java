@@ -2,7 +2,7 @@ package phase2.Transactions;
 
 import phase2.Display.ATM;
 import phase2.Accounts.*;
-import phase2.ForeignCurrency;
+import ForeignCurrency;
 import java.util.Calendar;
 
 /**
