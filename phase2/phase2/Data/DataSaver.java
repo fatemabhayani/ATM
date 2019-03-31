@@ -1,6 +1,7 @@
 package phase2.Data;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 import phase2.Display.ATM;
@@ -18,14 +19,30 @@ public class DataSaver {
     public static void main(String[] args) {
 
         User user = new User("yes", "yes");
-        ATM.bankEmployees.add(new BankTeller("yes", "yes"));
-        Savings s = new Savings(new GregorianCalendar(), user, "CAD", 0);
-        user.getAccountManager().add(s);
-        Deposit b = new Deposit(new ForeignCurrency("CAD", 50), s, new GregorianCalendar());
+        Savings sv = new Savings(new GregorianCalendar(), user, "CAD", 0);
+        Chequing cq = new Chequing(true,new GregorianCalendar(), user, "CAD", 1);
+        CreditCard cc = new CreditCard(new GregorianCalendar(), user, "CAD", 2);
+        LineOfCredit lc = new LineOfCredit(new GregorianCalendar(), user, "CAD", 3);
+        CashBackCard cb = new CashBackCard(new GregorianCalendar(), user, "CAD", 4);
+        user.getAccountManager().add(sv);
+        user.getAccountManager().add(cq);
+        user.getAccountManager().add(cc);
+        user.getAccountManager().add(lc);
+        user.getAccountManager().add(cb);
+        Deposit b = new Deposit(new ForeignCurrency("CAD", 50), sv, new GregorianCalendar());
         user.makeTransaction(b);
-
+        Deposit b1 = new Deposit(new ForeignCurrency("CAD", 50), cq, new GregorianCalendar());
+        user.makeTransaction(b1);
+        Deposit b2 = new Deposit(new ForeignCurrency("CAD", 50), cc, new GregorianCalendar());
+        user.makeTransaction(b2);
+        Deposit b3 = new Deposit(new ForeignCurrency("CAD", 50), lc, new GregorianCalendar());
+        user.makeTransaction(b3);
+        Deposit b4 = new Deposit(new ForeignCurrency("CAD", 50), cb, new GregorianCalendar());
+        user.makeTransaction(b4);
         DataSaver d = new DataSaver();
-        d.writeUserData(user);
+        ATM.bankUsers = new ArrayList<>();
+        ATM.bankUsers.add(user);
+        d.writeAllUsers();
 
 
     }
@@ -47,6 +64,12 @@ public class DataSaver {
     }
 
     private void writeAllUsers(){
+        try{
+            FileWriter writer = new FileWriter("phase2/phase2/Data/UserDataFiles/ListOfNames.txt");
+            writer.close();
+        } catch (Exception e){
+            e.getStackTrace();
+        }
         for(User user: ATM.bankUsers){
             writeUserData(user);
         }
