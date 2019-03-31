@@ -1,5 +1,6 @@
 package phase2.Tradable;
 
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -108,8 +109,10 @@ public class ForeignCurrency implements Comparable<ForeignCurrency> {
             return this;
         }else {
             double rate = getRate(this.currencyCode, currency);
-            double newAmount = this.amount * rate;
-            return new ForeignCurrency(currency, newAmount);
+            double newAmount = (this.amount * rate);
+            // for fiat currencies the lowest denomination is the 2nd decimal place, ex 1 cent
+            double correctNewAmount = (double) Math.round(newAmount * 100) / 100;
+            return new ForeignCurrency(currency, correctNewAmount);
         }
     }
 
