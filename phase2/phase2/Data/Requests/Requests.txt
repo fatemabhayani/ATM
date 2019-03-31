@@ -1,0 +1,3 @@
+ACCOUNT yes cc USD
+UNDO yes 0 0
+USER newperson secretpw
