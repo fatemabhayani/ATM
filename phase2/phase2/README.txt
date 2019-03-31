@@ -93,7 +93,9 @@ also be changed. A Bill transaction cannot be undone.
 
 ------------------------HOW TO INITIATE A TRANSACTION?------------------------
 
-
+After a user has logged in, they can complete a transaction by first choosing the category of the account
+ie. "sv": Savings, "cq": Chequing, "cc": CreditCard, "cb": CashBackCard, "lc": LineOfCredit and then
+make a transaction associated with the account. 
 
 ------------------------FUNCTIONALITY FOR BANK TELLERS------------------------
 1. Restocking the cash machine:
