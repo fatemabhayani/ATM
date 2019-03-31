@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 import phase2.Display.ATM;
-import ForeignCurrency;
+import phase2.Tradable.*;
 import phase2.People.*;
 
 /**

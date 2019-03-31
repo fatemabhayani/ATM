@@ -1,6 +1,6 @@
 package phase2.Transactions;
 
-import ForeignCurrency;
+import phase2.Tradable.*;
 import phase2.Accounts.*;
 import phase2.Tradable.Tradable;
 
@@ -17,7 +17,7 @@ public abstract class Transaction implements Comparable<Transaction> {
     /**
      * The amount of the transaction.
      */
-    ForeignCurrency amount;
+    Tradable amount;
 
     /**
      * The date of the transaction.
@@ -35,7 +35,7 @@ public abstract class Transaction implements Comparable<Transaction> {
      * @param amount            the amount
      * @param timeOfTransaction the time of transaction
      */
-    Transaction(ForeignCurrency amount, Calendar timeOfTransaction) {
+    Transaction(Tradable amount, Calendar timeOfTransaction) {
         this.amount = amount;
         this.timeOfTransaction = timeOfTransaction;
         this.approved = transactionApproved();
@@ -98,7 +98,7 @@ public abstract class Transaction implements Comparable<Transaction> {
      *
      * @return the accumulated amount recorded in the file.
      */
-    private ForeignCurrency readFile(String textFile) {
+    private Tradable readFile(String textFile) {
         // Rep invariant:
         //      .txt file must be formatted as follows:
         //      Deposit [amount] dollars into [User.username]'s account [account ID].

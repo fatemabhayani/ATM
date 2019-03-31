@@ -1,7 +1,7 @@
 package phase2.Display;
 
 import phase2.Accounts.Account;
-import ForeignCurrency;
+import phase2.Tradable.ForeignCurrency;
 import phase2.Transactions.Bill;
 import phase2.People.User;
 
