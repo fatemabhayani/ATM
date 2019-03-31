@@ -46,7 +46,7 @@ public class User {
      */
     public void requestAccount(String accountType, String currencyCode) {
         Request req = new AccountRequest(this, accountType, currencyCode);
-        ATM.b.addRequest(req);
+        BankManager.getInstance().addRequest(req);
     }
 
     /**
@@ -57,7 +57,7 @@ public class User {
      */
     public void requestUndo(Account account, int num) {
         Request req = new UndoRequest(this, account, num);
-        ATM.b.addRequest(req);
+        BankManager.getInstance().addRequest(req);
     }
 
     /**

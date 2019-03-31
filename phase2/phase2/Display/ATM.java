@@ -29,16 +29,6 @@ public class ATM {
     public static ArrayList<UndoRequest> undoRequests = new ArrayList<>();
 
     /**
-     * The collection of bank employees.
-     */
-    public static ArrayList<BankTeller> bankEmployees = new ArrayList<>();
-
-    /**
-     * The cash machine associated with the ATM.
-     */
-    public static CashMachine c = new CashMachine(new int[4]);
-
-    /**
      * The time recorded by the ATM.
      */
     public static ATMTime clock = new ATMTime(2019, 0, 1, 0, 0, 0);
@@ -47,10 +37,6 @@ public class ATM {
      * The username.
      */
     public static String username;
-    /**
-     * The bank manager
-     */
-    public static BankManager b = new BankManager();
 
     /**
      * Creates the ATM interface,
@@ -152,7 +138,7 @@ public class ATM {
             command = sc.nextLine().replaceAll("//s", "");
             System.out.println("Your request to create an account has been sent to the bank manager");
             UserRequest r = new UserRequest(username, command);
-            ATM.b.addRequest(r);
+            BankManager.getInstance().addRequest(r);
             ATM.main(null);
         }
 

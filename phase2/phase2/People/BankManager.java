@@ -1,5 +1,6 @@
 package phase2.People;
 
+import phase2.CashMachine;
 import phase2.Display.ATM;
 import phase2.Request.*;
 
@@ -12,6 +13,11 @@ import java.util.ArrayList;
  * A bank manager for the ATM.
  */
 public class BankManager {
+
+    /**
+     * The single bank manager for the ATM.
+     */
+    private static BankManager manager = null;
 
     /**
      * The username for this employee.
@@ -36,11 +42,21 @@ public class BankManager {
     /**
      * Creates a new bank manager.
      */
-    public BankManager() {
+    private BankManager() {
         username = "bankmanager";
         password = "bestboss";
         userRequests = new ArrayList<>();
         accountRequests = new ArrayList<>();
+    }
+
+    /**
+     * Returns the single bank manager.
+     */
+    public static BankManager getInstance() {
+        if (manager == null) {
+            manager = new BankManager();
+        }
+        return manager;
     }
 
     /**
@@ -184,7 +200,7 @@ public class BankManager {
             while (s != null) {
                 System.out.println(s);
                 index = getIndex(s);
-                ATM.c.increaseBills(index, 20);
+                CashMachine.getInstance().increaseBills(index, 20);
                 s = reader.readLine();
             }
             System.out.println("No more alerts!");

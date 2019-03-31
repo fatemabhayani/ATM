@@ -1,5 +1,6 @@
 package phase2.People;
 
+import phase2.CashMachine;
 import phase2.Display.ATM;
 import phase2.Request.*;
 
@@ -101,7 +102,7 @@ public class BankTeller extends User {
             while (s != null) {
                 System.out.println(s);
                 index = getIndex(s);
-                ATM.c.increaseBills(index, 20);
+                CashMachine.getInstance().increaseBills(index, 20);
                 s = reader.readLine();
             }
             System.out.println("No more alerts!");
