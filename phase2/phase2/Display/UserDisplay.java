@@ -17,7 +17,7 @@ class UserDisplay {
     /**
      * The User.
      */
-    public static final User U = UserManager.getUser(ATM.username);
+    public static final User U = UserManager.getUser(a);
     /**
      * The Account.
      */
@@ -33,7 +33,9 @@ class UserDisplay {
      * @param args the input arguments
      */
     public static void main(String[] args) {
+        User u = UserManager.getUser(args[0]);
         ATMController controller = new ATMController();
+
         System.out.println("Type '0' if you would like to change your password" + "\n"
                 + "Type '1' if you would like to interact with your accounts" + "\n"
                 + "Type '2' if you would like to log out" + "\n" +
