@@ -10,7 +10,9 @@ import phase2.Transactions.Withdraw;
 import java.util.Calendar;
 import java.util.Scanner;
 
-public abstract class ATMController {
+public class ATMController {
+
+    public ATMController(){}
 
     public void incorrectAns(Scanner scanner, String inUse){
         while (!(inUse.toLowerCase().equals("no") ||inUse.toLowerCase().equals("yes"))){
