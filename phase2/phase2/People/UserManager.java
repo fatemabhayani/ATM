@@ -37,12 +37,7 @@ public class UserManager {
                 authenticated = true;
             }
         }
-        for (BankTeller t: ATM.bankEmployees) {
-            if (username.equals(t.getUsername())) {
-                authenticated = true;
-            }
-        }
-        if (username.equals(ATM.b.getUsername())) {
+        if (username.equals(BankManager.getInstance().getUsername())) {
             authenticated = true;
         }
         return authenticated;
@@ -55,7 +50,7 @@ public class UserManager {
      * @return true if and only if username belongs to the bank manager.
      */
     public static boolean isBankManager(String username) {
-        return username.equals(ATM.b.getUsername());
+        return username.equals(BankManager.getInstance().getUsername());
     }
 
     /**

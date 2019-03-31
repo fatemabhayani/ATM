@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
+import phase2.CashMachine;
 import phase2.Display.ATM;
 import phase2.Tradable.*;
 import phase2.People.*;
@@ -45,9 +46,9 @@ public class DataSaver {
         d.writeAllUsers();
 
         UserRequest r1 = new UserRequest("newperson", "secretpw");
-        ATM.b.userRequests.add(r1);
+        BankManager.getInstance().userRequests.add(r1);
         AccountRequest r2 = new AccountRequest(user, "cc", "USD");
-        ATM.b.accountRequests.add(r2);
+        BankManager.getInstance().accountRequests.add(r2);
         UndoRequest r3 = new UndoRequest(user, sv, 0);
         ATM.undoRequests.add(r3);
 
@@ -61,7 +62,7 @@ public class DataSaver {
      */
     public void writeATMData() {
         try (FileWriter writer = new FileWriter("phase2/phase2/Data/atmdata.txt")) {
-            writer.write(ATM.c.toString()+"\n");
+            writer.write(CashMachine.getInstance().toString()+"\n");
             writer.write(((Integer)UserManager.accountNum).toString() + "\n");
         } catch (Exception e) {
             e.printStackTrace();
@@ -195,19 +196,15 @@ public class DataSaver {
 
 
     private void writeAllUserRequests(FileWriter writer)throws IOException{
-        for(UserRequest req: ATM.b.userRequests){
+        for(UserRequest req: BankManager.getInstance().userRequests){
             writer.write(req.toString() + "\n");
         }
     }
 
     private void writeAllAccountRequests(FileWriter writer)throws IOException{
-        for(AccountRequest req: ATM.b.accountRequests){
+        for(AccountRequest req: BankManager.getInstance().accountRequests){
             writer.write(req.toString() + "\n");
         }
     }
-
-
-
-
 
 }

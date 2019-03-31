@@ -1,6 +1,7 @@
 package phase2.Interfaces;
 
 import phase2.Display.ATM;
+import phase2.People.BankManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,8 +26,8 @@ class ManagerInterface extends JFrame {
         add(root);
         setSize(500,500);
 
-        for (int i = 0; i <  ATM.b.getNumberOfRequests(); i++) {
-            comboBox1.addItem(ATM.b.getRequest(i).toString()+"\n");
+        for (int i = 0; i <  BankManager.getInstance().getNumberOfRequests(); i++) {
+            comboBox1.addItem(BankManager.getInstance().getRequest(i).toString()+"\n");
         }
 
         comboBox1.addActionListener(new ActionListener() {

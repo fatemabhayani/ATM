@@ -16,11 +16,33 @@ public class CashMachine {
     private int[] bills;
 
     /**
+     * The single cash machine for the ATN
+     */
+    private static CashMachine c = null;
+
+    /**
      * Instantiates a new Cash machine.
+     */
+    private CashMachine() {
+        this.bills = new int[4];
+    }
+
+    /**
+     * Returns the single cash machine.
+     */
+    public static CashMachine getInstance() {
+        if (c == null) {
+            c = new CashMachine();
+        }
+        return c;
+    }
+
+    /**
+     * Sets the bills for the cash machine.
      *
      * @param bills the list of bills in the machine
      */
-    public CashMachine(int[] bills) {
+    public void setBills(int[] bills) {
         this.bills = bills;
     }
 
