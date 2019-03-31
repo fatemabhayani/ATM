@@ -57,10 +57,10 @@ public class ForeignCurrency implements Comparable<ForeignCurrency> {
     /**
      * Add two instances for foreign currencies.
      *
-     * @param t the second Tradable object
+     * @param f the second Tradable object
      */
-    public void add(ForeignCurrency t){
-        ForeignCurrency d = t.convert(getCurrencyCode());
+    public void add(ForeignCurrency f){
+        ForeignCurrency d =  f.convert(getCurrencyCode());
         amount += d.getAmount();
     }
 
@@ -70,10 +70,10 @@ public class ForeignCurrency implements Comparable<ForeignCurrency> {
     /**
      * Subtract two instances for foreign currencies.
      *
-     * @param t the second Tradable object.
+     * @param f the second Tradable object.
      */
-    public void subtract(ForeignCurrency t){
-        ForeignCurrency d = (ForeignCurrency) t.convert(getCurrencyCode());
+    public void subtract(ForeignCurrency f){
+        ForeignCurrency d =  f.convert(getCurrencyCode());
         amount -= d.getAmount();
     }
 
@@ -93,8 +93,8 @@ public class ForeignCurrency implements Comparable<ForeignCurrency> {
     }
 
 
-    public int compareTo(ForeignCurrency t){
-        return Double.compare(amount, t.convert(this.currencyCode).getAmount());
+    public int compareTo(ForeignCurrency f){
+        return Double.compare(amount, f.convert(this.currencyCode).getAmount());
     }
 
     /**
