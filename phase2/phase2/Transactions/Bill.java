@@ -21,7 +21,7 @@ public class Bill extends Transaction {
      * @param moneyFrom the account the money originates from
      * @param date      date of transaction
      */
-    public Bill(Tradable amount, Account moneyFrom, Calendar date) {
+    public Bill(ForeignCurrency amount, Account moneyFrom, Calendar date) {
         super(amount, date);
         this.moneyFrom = moneyFrom;
     }

@@ -35,7 +35,7 @@ public class Savings extends AssetAccount {
 
     @Override
     public void subtract(Transaction transaction) {
-        Tradable amount = transaction.getAmount();
+        ForeignCurrency amount = transaction.getAmount();
         if (balance.compareTo(amount) < 0) {
             System.out.println("Cannot have a balance below 0!");
         } else {
@@ -45,7 +45,7 @@ public class Savings extends AssetAccount {
     }
 
     @Override
-    public void subtract(Tradable amount) {
+    public void subtract(ForeignCurrency amount) {
         if (balance.compareTo(amount) < 0) {
             System.out.println("Cannot have a balance below 0!");
         } else {

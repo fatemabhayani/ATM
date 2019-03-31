@@ -1,7 +1,6 @@
 package phase2.Accounts;
 
 import phase2.Tradable.ForeignCurrency;
-import phase2.Tradable.Tradable;
 import phase2.Transactions.Transaction;
 import phase2.People.User;
 import java.io.*;
@@ -16,7 +15,7 @@ public class CreditCard implements Account {
     /**
      * The account balance.
      */
-    private Tradable balance;
+    private ForeignCurrency balance;
 
     /**
      * The account owners.
@@ -42,7 +41,7 @@ public class CreditCard implements Account {
     /**
      * The credit limit for this account.
      */
-    private Tradable creditLimit;
+    private ForeignCurrency creditLimit;
 
     /**
      * Instantiates a new credit card account.
@@ -73,14 +72,14 @@ public class CreditCard implements Account {
      *
      * @return the balance
      */
-    public Tradable getBalance() { return this.balance; }
+    public ForeignCurrency getBalance() { return this.balance; }
 
     /**
      * Sets this account's balance.
      *
      * @param balance the new balance
      */
-    public void setBalance(Tradable balance) { this.balance = balance; }
+    public void setBalance(ForeignCurrency balance) { this.balance = balance; }
 
     /**
      * Returns the list of this account's transactions.
@@ -97,7 +96,7 @@ public class CreditCard implements Account {
      * @param file the file
      * @return the amount value
      */
-    public Tradable helpRead(String file) {
+    public ForeignCurrency helpRead(String file) {
         try(BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String info = reader.readLine();
             char value = info.charAt(0);
@@ -117,7 +116,7 @@ public class CreditCard implements Account {
      *
      * @param amount the amount
      */
-    public void helpWrite(Tradable amount) {
+    public void helpWrite(ForeignCurrency amount) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("phase2/phase2/Data/outgoing.txt"))) {
             writer.write(Double.toString(amount.getAmount()));
         } catch(Exception e){
@@ -154,7 +153,7 @@ public class CreditCard implements Account {
      *
      * @param amount the amount
      */
-    public void subtract(Tradable amount) {
+    public void subtract(ForeignCurrency amount) {
         if (creditLimit.compareTo(amount) > 0) {
             balance.add(amount);
             helpWrite(amount);
@@ -182,7 +181,7 @@ public class CreditCard implements Account {
      * @param file name of the file that contains the amount
      */
     public void add(String file) {
-        Tradable amount = helpRead(file);
+        ForeignCurrency amount = helpRead(file);
         balance.subtract(amount);
         increaseCreditLimit(amount);
         System.out.println("Transaction successful!");
@@ -218,7 +217,7 @@ public class CreditCard implements Account {
      *
      * @param creditLimit the new credit limit
      */
-    public void decreaseCreditLimit(Tradable creditLimit) {
+    public void decreaseCreditLimit(ForeignCurrency creditLimit) {
         this.creditLimit.subtract(creditLimit);
     }
 
@@ -227,7 +226,7 @@ public class CreditCard implements Account {
      *
      * @param creditLimit the new credit limit
      */
-    public void increaseCreditLimit(Tradable creditLimit) {
+    public void increaseCreditLimit(ForeignCurrency creditLimit) {
         this.creditLimit.add(creditLimit);
     }
 
@@ -236,7 +235,7 @@ public class CreditCard implements Account {
      *
      * @return the new credit limit
      */
-    Tradable getCreditLimit() {
+    ForeignCurrency getCreditLimit() {
         return creditLimit;
     }
 
