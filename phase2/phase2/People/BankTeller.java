@@ -2,11 +2,10 @@ package phase2.People;
 
 import phase2.Display.ATM;
 import phase2.Request.*;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+
 
 /**
  * The type Bank teller.
