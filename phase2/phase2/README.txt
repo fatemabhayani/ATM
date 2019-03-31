@@ -38,10 +38,17 @@ data of every user in the ATM at the time the program exits. We also have a file
 4. package phase2.Display
 
 5. package phase2.People
+- includes classes for bank manager, user, bank teller and a user manager class that manages the
+collection of users for the bank manager.
 
 6. package phase2.Requests
+- the user can request to undo a transaction, create an account or to create an user
+- the bank manager and bank teller can review the requests and decide whether they want to complete
+ignore the request
 
 7. package phase2.Transactions
+- includes the abstract class transaction, and the types of transactions, such as, bill, deposit, transfer
+and withdraw
 
 ------------------------HOW TO RUN THE PROGRAM?----------------------------
 Run ATM.java to run the entire program.
@@ -84,12 +91,9 @@ If the request is completed the transaction is undone, and the balance of the ac
 changed accordingly. If the transaction was a transfer, the balance of the account that received the transfer will
 also be changed. A Bill transaction cannot be undone.
 
-------------------------FUNCTIONALITY FOR USERS------------------------
- 1. How to create an account?
+------------------------HOW TO INITIATE A TRANSACTION?------------------------
 
- 2. How to initiate a transaction?
 
- 3. How to undo a transaction?
 
 ------------------------FUNCTIONALITY FOR BANK TELLERS------------------------
 1. Restocking the cash machine:
