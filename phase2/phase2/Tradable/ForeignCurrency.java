@@ -77,6 +77,10 @@ public class ForeignCurrency implements Comparable<Tradable>, Tradable {
         amount -= d.getAmount();
     }
 
+    public void subtract(double amount){
+        this.amount -= amount;
+    }
+
     /**
      * Multiply foreign currency.
      *

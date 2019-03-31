@@ -38,6 +38,14 @@ public interface Tradable{
     void subtract(Tradable t);
 
     /**
+     * Subtract a double to a tradable object.
+     *
+     * @param amount the amount to add
+     */
+    void subtract(double amount);
+
+
+    /**
      * Multiply tradable.
      *
      * @param constant the constant to be multiplied
