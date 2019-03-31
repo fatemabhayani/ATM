@@ -11,7 +11,7 @@ import java.io.PrintWriter;
 /**
  * The type Bank teller.
  */
-class BankTeller extends User {
+public class BankTeller extends User {
     // Start with fixed number (5) of BankTellers
     // username: teller1, ..., teller5
     // password: bestemployee1, ..., bestemployee5
