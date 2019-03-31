@@ -11,7 +11,7 @@ import phase2.Transactions.Withdraw;
 import java.util.Calendar;
 import java.util.Scanner;
 
-public class ATMController {
+class ATMController {
 
     public ATMController(){}
 

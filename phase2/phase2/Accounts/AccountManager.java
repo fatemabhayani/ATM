@@ -39,7 +39,7 @@ public class AccountManager {
     /**
      * AccountManager owner.
      */
-    private User owner;
+    private final User owner;
 
     /**
      * Instantiates a new account manager.

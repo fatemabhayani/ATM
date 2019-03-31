@@ -13,7 +13,7 @@ public class Withdraw extends Transaction {
     /**
      * The account making the withdrawal.
      */
-    private Account moneyFrom;
+    private final Account moneyFrom;
 
     /**
      * Instantiates a new withdrawal.

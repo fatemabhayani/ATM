@@ -13,7 +13,7 @@ public class Deposit extends Transaction {
     /**
      * The account making the deposit.
      */
-    private Account moneyTo;
+    private final Account moneyTo;
 
     /**
      * Instantiates a new Deposit.

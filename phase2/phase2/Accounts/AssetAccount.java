@@ -20,7 +20,7 @@ public abstract class AssetAccount implements Account {
     /**
      * The first account owner.
      */
-    private User owner1;
+    private final User owner1;
 
     /**
      * The second account owner.
@@ -30,7 +30,7 @@ public abstract class AssetAccount implements Account {
     /**
      * The account number.
      */
-    int accountNum;
+    final int accountNum;
 
     /**
      * The account manager.
@@ -50,7 +50,7 @@ public abstract class AssetAccount implements Account {
      * @param identifier   the 3 digit identifier for the object
      * @param num          the account number
      */
-    public AssetAccount(Calendar date, User owner1, String identifier, int num) {
+    AssetAccount(Calendar date, User owner1, String identifier, int num) {
         dateOfCreation = date;
         transactions = new ArrayList<>();
         this.owner1 = owner1;
@@ -59,7 +59,7 @@ public abstract class AssetAccount implements Account {
         accountNum = num;
     }
 
-    public AssetAccount(Calendar date, User owner1, String currencyCode, String num, String amount) {
+    AssetAccount(Calendar date, User owner1, String currencyCode, String num, String amount) {
         this(date, owner1, currencyCode, Integer.valueOf(num));
         this.balance.add(Double.parseDouble(amount));
     }

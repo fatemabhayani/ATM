@@ -5,30 +5,28 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-public class Stock {
+class Stock {
 
     public static void main(String[] args) {
         Stock apple = new Stock("AAPL", 700);
         System.out.println(apple.getTotalValue());
     }
 
-    private int amount;
-    private String name;
+    private final int amount;
+    private final String name;
 
-    public Stock(String name, int amount) {
+    private Stock(String name, int amount) {
         this.name = name;
         this.amount = amount;
 
     }
 
-    public double getTotalValue(){
+    private double getTotalValue(){
         return getPrice() * amount;
     }
 
@@ -40,7 +38,7 @@ public class Stock {
         return this.name;
     }
 
-    public double getPrice() {
+    private double getPrice() {
         try {
             JSONObject json = getStockJSON();
             int x = 0;

@@ -19,7 +19,7 @@ public class ForeignCurrency implements Comparable<ForeignCurrency> {
     /**
      * The type of currency.
      */
-    String currencyCode;
+    final String currencyCode;
 
     /**
      * The amount of currencyCode.

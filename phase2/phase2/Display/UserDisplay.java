@@ -2,10 +2,8 @@ package phase2.Display;
 
 import phase2.Accounts.Account;
 import phase2.Accounts.AccountManager;
-import phase2.People.BankManager;
 import phase2.People.User;
 import phase2.People.UserManager;
-import phase2.Request.AccountRequest;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -13,13 +11,13 @@ import java.util.Scanner;
 /**
  * The type User display.
  */
-public class UserDisplay {
+class UserDisplay {
 
 
     /**
      * The User.
      */
-    public static User U = UserManager.getUser(ATM.username);
+    public static final User U = UserManager.getUser(ATM.username);
     /**
      * The Account.
      */

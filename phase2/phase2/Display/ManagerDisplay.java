@@ -11,7 +11,7 @@ import java.util.Scanner;
  */
 class ManagerDisplay {
 
-    private static ATMController controller = new ATMController();
+    private static final ATMController controller = new ATMController();
 
     /**
      * The entry point of application.

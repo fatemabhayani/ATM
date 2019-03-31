@@ -16,7 +16,7 @@ import phase2.Request.*;
 /**
  * The type Data saver.
  */
-public class DataSaver {
+class DataSaver {
 
     public static void main(String[] args) {
 
@@ -237,7 +237,7 @@ public class DataSaver {
     /**
      * keeps track of all the requests that are made
      */
-    public void writeAllRequests(){
+    private void writeAllRequests(){
         try {FileWriter writer = new FileWriter("phase2/phase2/Data/Requests/Requests.txt");
             writer.close();
         } catch (Exception e){
