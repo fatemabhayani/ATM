@@ -60,6 +60,11 @@ public abstract class AssetAccount implements Account {
         accountNum = num;
     }
 
+    public AssetAccount(Calendar date, User owner1, String currencyCode, String num, String amount) {
+        this(date, owner1, currencyCode, Integer.valueOf(num));
+        this.balance.add(Double.parseDouble(amount));
+    }
+
 
     /**
      * Returns the account balance.

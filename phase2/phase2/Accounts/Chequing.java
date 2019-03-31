@@ -29,6 +29,11 @@ public class Chequing extends AssetAccount {
         this.isPrimary = isPrimary;
     }
 
+    public Chequing(boolean isPrimary,Calendar date, User owner1, String currencyCode, String num, String amount) {
+        super(date, owner1, currencyCode, num, amount);
+        this.isPrimary = isPrimary;
+    }
+
     @Override
     public void subtract(Transaction transaction) {
         Tradable amount = transaction.getAmount();
