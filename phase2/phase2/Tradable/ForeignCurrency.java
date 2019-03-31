@@ -37,6 +37,8 @@ public class ForeignCurrency implements Comparable<ForeignCurrency> {
         this.amount = amount;
     }
 
+
+
     /**
      * Get amount double.
      *
