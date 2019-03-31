@@ -45,6 +45,12 @@ class ManagerDisplay {
             command = sc.nextLine();
             command = command.replaceAll("//s", "");
             int number = Integer.valueOf(command);
+            while (number>b.getNumberOfRequests()){
+                System.out.println("This index is not assigned to a request. Please Try again");
+                command = sc.nextLine();
+                command = command.replaceAll("//s", "");
+                number = Integer.valueOf(command);
+            }
             Request request = b.getRequest(number);
             System.out.println(request.toString());
             System.out.println("Do you want to accept this request");
