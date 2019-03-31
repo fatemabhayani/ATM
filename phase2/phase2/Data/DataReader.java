@@ -23,6 +23,7 @@ public class DataReader {
        DataReader read = new DataReader();
        read.readAllUserData();
        for (User user: ATM.bankUsers){
+           int x = 0;
            System.out.println(user);
            for (Account account: user.getAccountList("sv")){
                System.out.println(account.toString() + account.transactionString());
@@ -80,18 +81,30 @@ public class DataReader {
         return new User(info[0], info[1]);
     }
 
-    private void addAccounts(String line, User user, int typeNum, BufferedReader reader) throws IOException {
-        while(!line.equals(types[typeNum + 1])){
-            Account account = initializeAccount(line, user, types[typeNum]);
-            addAllTransactions(line, account);
-            user.getAccountManager().add(account);
-            line = reader.readLine();
+    private void addAccount(String line, User user, String type){
+        Account account = initializeAccount(line, user, type);
+        addAllTransactions(line, account);
+        user.getAccountManager().add(account);
+    }
+
+    private void addSameTypeAccounts(String line, User user, int typeNum, BufferedReader reader) throws IOException {
+        if (typeNum < 4){
+            while(!line.equals(types[typeNum + 1])){
+                addAccount(line, user, types[typeNum]);
+                line = reader.readLine();
+            }
+        } else {
+            while(line != null){
+                addAccount(line, user, types[typeNum]);
+                line = reader.readLine();
+            }
         }
+
     }
 
     private void addAllAccounts(String line, User user, BufferedReader reader) throws IOException {
-        for(int i = 0; i < 4; i++){
-            addAccounts(line, user, i, reader);
+        for(int i = 0; i < 5; i++){
+            addSameTypeAccounts(line, user, i, reader);
             line = reader.readLine();
         }
     }
