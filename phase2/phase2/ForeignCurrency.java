@@ -114,9 +114,9 @@ public class ForeignCurrency implements Comparable<ForeignCurrency>{
         try {
             URL url = getCorrectUrl(from, to);
             JSONObject rates = getRatesJSON(url);
-            if (from.equals("EUR")) {
+            if (from.equalsIgnoreCase("EUR")) {
                 return (double) rates.get(to);
-            } else if (to.equals("EUR")) {
+            } else if (to.equalsIgnoreCase("EUR")) {
                 return 1 / (double) rates.get(from);
             } else {
             double fromEuroRate = (double) rates.get(from);
