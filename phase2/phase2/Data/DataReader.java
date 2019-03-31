@@ -70,6 +70,9 @@ public class DataReader {
         readAllRequests();
     }
 
+    /** reads the atmdata.txt file
+     *
+     */
     private void readATMData() {
         try (BufferedReader reader = new BufferedReader(new FileReader("phase2/phase2/Data/atmdata.txt"))) {
             loadCash(reader.readLine());
@@ -90,6 +93,10 @@ public class DataReader {
         CashMachine.getInstance().setBills(bills);
     }
 
+    /**
+     * sets the time for the ATM
+     * @param line
+     */
     private void setTime(String line) {
         String[] info = line.split(" ");
         int[] factors = new int[6];
@@ -99,6 +106,9 @@ public class DataReader {
         ATMTime.getInstance().setFactors(factors);
     }
 
+    /**
+     * reads the user data files
+     */
     private void readAllUserData() {
         try (BufferedReader reader = new BufferedReader(new FileReader("phase2/phase2/Data/UserDataFiles/ListOfNames.txt"))) {
             String line = reader.readLine();
@@ -111,6 +121,10 @@ public class DataReader {
         }
     }
 
+    /**
+     * reads a specific user's data
+     * @param name user's name
+     */
     private void readUserData(String name) {
         try (BufferedReader reader = new BufferedReader(new FileReader("phase2/phase2/Data/UserDataFiles/" + name + ".txt"))) {
             String line = reader.readLine();
@@ -124,17 +138,36 @@ public class DataReader {
         }
     }
 
+    /**
+     * intializes a new user
+     * @param line
+     * @return a new user
+     */
     private User initializeUser(String line) {
         String[] info = line.split("\\.", 2);
         return new User(info[0], info[1]);
     }
 
+    /**
+     * adds a new account
+     * @param line
+     * @param user the user that the account is under
+     * @param type type of account
+     */
     private void addAccount(String line, User user, String type) {
         Account account = initializeAccount(line, user, type);
         addAllTransactions(line, account);
         user.getAccountManager().add(account);
     }
 
+    /**
+     * adds the balances of the same types of accounts together
+     * @param line
+     * @param user
+     * @param typeNum
+     * @param reader
+     * @throws IOException
+     */
     private void addSameTypeAccounts(String line, User user, int typeNum, BufferedReader reader) throws IOException {
         if (typeNum < 4) {
             while (!line.equals(types[typeNum + 1])) {
@@ -157,6 +190,13 @@ public class DataReader {
         }
     }
 
+    /**
+     * initialize a new account
+     * @param line
+     * @param user
+     * @param type
+     * @return
+     */
 
     private Account initializeAccount(String line, User user, String type) {
         String[] info = line.split(" ");
@@ -176,6 +216,11 @@ public class DataReader {
         }
     }
 
+    /**
+     * create a calendar
+     * @param info
+     * @return correct calendar
+     */
     private GregorianCalendar getCorrectCalendar(String[] info) {
         String[] date = info[3].split("/");
         String[] time = info[3 + 1].split(":");
@@ -219,6 +264,9 @@ public class DataReader {
         }
     }
 
+    /**
+     * reads the Requests.txt file
+     */
     private void readAllRequests() {
         try (BufferedReader reader = new BufferedReader(new FileReader("phase2/phase2/Data/Requests/Requests.txt"))) {
             String line = reader.readLine();
@@ -231,6 +279,10 @@ public class DataReader {
         }
     }
 
+    /**
+     * reads a specific request
+     * @param line a line in the file
+     */
     private void readRequest(String line) {
         String[] info = line.split(" ");
         switch (info[0]) {
@@ -245,15 +297,27 @@ public class DataReader {
         }
     }
 
+    /**
+     * add a user request
+     * @param info
+     */
     private void addUserRequest(String[] info) {
         BankManager.getInstance().userRequests.add(new UserRequest(info[1], info[2]));
     }
 
+    /**
+     * add account request
+     * @param info
+     */
     private void addAccountRequest(String[] info) {
         User user = UserManager.getUser(info[1]);
         BankManager.getInstance().accountRequests.add(new AccountRequest(user, info[2], info[3]));
     }
 
+    /**
+     * add an undo request
+     * @param info
+     */
     private void addUndoRequest(String[] info) {
         User user = UserManager.getUser(info[1]);
         Account account = UserManager.getUserAccount(Integer.valueOf(info[2]));
