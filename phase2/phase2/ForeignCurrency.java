@@ -25,9 +25,6 @@ public class ForeignCurrency implements Comparable<ForeignCurrency>{
      */
     private double amount;
 
-    public static void main(String[] args) {
-    }
-
     /**
      * Instantiates a new Foreign currency.
      *
@@ -101,9 +98,13 @@ public class ForeignCurrency implements Comparable<ForeignCurrency>{
      * @return the foreign currency
      */
     public ForeignCurrency convert(String currency){
-        double rate = getRate(this.currencyCode, currency);
-        double newAmount = this.amount * rate;
-        return new ForeignCurrency(currency, newAmount);
+        if (currency.equalsIgnoreCase(this.getCurrencyCode())){
+            return this;
+        }else {
+            double rate = getRate(this.currencyCode, currency);
+            double newAmount = this.amount * rate;
+            return new ForeignCurrency(currency, newAmount);
+        }
     }
 
     private double getRate(String from, String to) {
