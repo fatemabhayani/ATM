@@ -22,6 +22,10 @@ public class LineOfCredit extends CreditCard {
         super(date, owner1, currencyCode, num);
     }
 
+    public LineOfCredit(Calendar date, User owner1, String currencyCode, String num, String amount) {
+        super(date, owner1, currencyCode, num, amount);
+    }
+
     @Override
     public void subtract(Transaction transaction) {
         if (getCreditLimit().compareTo(transaction.getAmount()) > 0){

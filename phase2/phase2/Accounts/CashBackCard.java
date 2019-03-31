@@ -23,6 +23,10 @@ public class CashBackCard extends CreditCard {
         super(date, owner1, currencyCode, num);
     }
 
+    public CashBackCard(Calendar date, User owner1, String currencyCode, String num, String amount) {
+        super(date, owner1, currencyCode, num, amount);
+    }
+
     /**
      * Increases the account balance based on the amount of cash back.
      */

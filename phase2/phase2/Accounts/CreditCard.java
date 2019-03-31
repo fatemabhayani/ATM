@@ -63,6 +63,11 @@ public class CreditCard implements Account {
         accountNum = num;
     }
 
+    public CreditCard(Calendar date, User owner1, String currencyCode, String num, String amount) {
+        this(date, owner1, currencyCode, Integer.valueOf(num));
+        this.balance.subtract(Double.parseDouble(amount));
+    }
+
     /**
      * Returns this account's balance.
      *
