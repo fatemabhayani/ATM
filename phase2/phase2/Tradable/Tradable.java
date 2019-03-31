@@ -19,6 +19,10 @@ public interface Tradable{
      */
     void add(Tradable t);
 
+    String getCurrencyCode();
+
+    int compareTo(Tradable t);
+
     /**
      * Subtract two tradable objects.
      *

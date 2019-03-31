@@ -2,6 +2,8 @@ package phase2.Transactions;
 
 import ForeignCurrency;
 import phase2.Accounts.*;
+import phase2.Tradable.Tradable;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -71,7 +73,7 @@ public abstract class Transaction implements Comparable<Transaction> {
      *
      * @return the amount
      */
-    public ForeignCurrency getAmount() { return amount; }
+    public Tradable getAmount() { return amount; }
 
     /**
      * Gets time of transaction.
