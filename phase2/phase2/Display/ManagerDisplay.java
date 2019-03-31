@@ -120,7 +120,7 @@ class ManagerDisplay {
                     command = sc.nextLine();
                     seconds = Integer.valueOf(command);
                 }
-                ATM.clock.setDate(year,month,day,hour,minutes,seconds);
+                ATMTime.getInstance().setDate(year,month,day,hour,minutes,seconds);
             }else {b.restockCashMachine();}
 
 
