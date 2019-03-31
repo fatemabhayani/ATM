@@ -27,6 +27,8 @@ data of every user in the ATM at the time the program exits. We also have a file
 
 ------------------------DESCRIPTION OF CLASSES------------------------
 1. package phase2
+- inlcudes the main parent classes Account, Data, Display, Interfaces, Peoples, Request, Transaction.
+Also includes classes ATMTime, CashMachine, and ForeignCurrency
 
 2. package phase2.Accounts
 - includes account interface as well as the different types of accounts (Asset, Credit card,
@@ -34,8 +36,12 @@ data of every user in the ATM at the time the program exits. We also have a file
  stores and has access to all of the account information.
 
 3. package phase2.Data
+- includes all the data inlcuding .txt files like  alerts.txt, deposits.txt, etc. Also includes UserDataFiles
+and DataReader, DataSaver, and WriteFile classes
 
 4. package phase2.Display
+- inlcudes all the Display classes including AccountDisplay, ATM, BillDisplay, DepositDisplay, ManagerDisplay,
+Transfer Display, UserDisplay, WithdrawDisplay.
 
 5. package phase2.People
 - includes classes for bank manager, user, bank teller and a user manager class that manages the
