@@ -169,6 +169,8 @@ public class User {
         if (u != null) {
             u.getAccountManager().add(a);
             a.setNewOwner(u);
+        } else {
+            System.out.println("That user does not exist!");
         }
     }
 
