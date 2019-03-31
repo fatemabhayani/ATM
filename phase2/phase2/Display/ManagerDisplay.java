@@ -25,7 +25,6 @@ class ManagerDisplay {
 
         Scanner sc = new Scanner(System.in);
         String command;
-        b.restockCashMachine();
 
         System.out.println("Type '0' to view requests. Type '1' to set date. Type '2' to view Cash Machine alerts");
         command = sc.nextLine();
