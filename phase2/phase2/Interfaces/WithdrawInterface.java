@@ -1,10 +1,7 @@
 package phase2.Interfaces;
 
 import phase2.Accounts.Account;
-import phase2.Display.ATM;
-import phase2.Tradable.*;
 import phase2.People.User;
-import phase2.Transactions.Withdraw;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +9,6 @@ import java.awt.event.InputMethodEvent;
 import java.awt.event.InputMethodListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Calendar;
 
 /**
  * The type Withdraw interface.

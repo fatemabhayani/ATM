@@ -1,6 +1,5 @@
 package phase2.Interfaces;
 
-import phase2.Display.ATM;
 import phase2.People.BankManager;
 
 import javax.swing.*;
