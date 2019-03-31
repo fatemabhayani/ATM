@@ -2,7 +2,7 @@ package phase2.Transactions;
 
 import phase2.Tradable.*;
 import phase2.Accounts.*;
-import phase2.Tradable.Tradable;
+import phase2.Tradable.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -17,7 +17,7 @@ public abstract class Transaction implements Comparable<Transaction> {
     /**
      * The amount of the transaction.
      */
-    Tradable amount;
+    ForeignCurrency amount;
 
     /**
      * The date of the transaction.
@@ -35,7 +35,7 @@ public abstract class Transaction implements Comparable<Transaction> {
      * @param amount            the amount
      * @param timeOfTransaction the time of transaction
      */
-    Transaction(Tradable amount, Calendar timeOfTransaction) {
+    Transaction(ForeignCurrency amount, Calendar timeOfTransaction) {
         this.amount = amount;
         this.timeOfTransaction = timeOfTransaction;
         this.approved = transactionApproved();
@@ -73,7 +73,7 @@ public abstract class Transaction implements Comparable<Transaction> {
      *
      * @return the amount
      */
-    public Tradable getAmount() { return amount; }
+    public ForeignCurrency getAmount() { return amount; }
 
     /**
      * Gets time of transaction.
@@ -98,7 +98,7 @@ public abstract class Transaction implements Comparable<Transaction> {
      *
      * @return the accumulated amount recorded in the file.
      */
-    private Tradable readFile(String textFile) {
+    private ForeignCurrency readFile(String textFile) {
         // Rep invariant:
         //      .txt file must be formatted as follows:
         //      Deposit [amount] dollars into [User.username]'s account [account ID].

@@ -51,7 +51,7 @@ public interface Tradable{
      * @param constant the constant to be multiplied
      * @return the tradable object
      */
-    Tradable multiply(double constant);
+    ForeignCurrency multiply(double constant);
 
     /**
      * Convert tradable.
@@ -59,7 +59,7 @@ public interface Tradable{
      * @param identifier the 3 digit identifier of the tradable object
      * @return the tradable
      */
-    Tradable convert(String identifier);
+    ForeignCurrency convert(String identifier);
 
     String toString();
 }

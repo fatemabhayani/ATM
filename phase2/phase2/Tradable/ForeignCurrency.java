@@ -13,7 +13,7 @@ import org.json.simple.parser.ParseException;
 /**
  * The type Foreign currency.
  */
-public class ForeignCurrency implements Comparable<Tradable>, Tradable {
+public class ForeignCurrency implements Comparable<ForeignCurrency> {
 
     /**
      * The type of currency.
@@ -59,8 +59,8 @@ public class ForeignCurrency implements Comparable<Tradable>, Tradable {
      *
      * @param t the second Tradable object
      */
-    public void add(Tradable t){
-        ForeignCurrency d = (ForeignCurrency) t.convert(getCurrencyCode());
+    public void add(ForeignCurrency t){
+        ForeignCurrency d = t.convert(getCurrencyCode());
         amount += d.getAmount();
     }
 
@@ -72,7 +72,7 @@ public class ForeignCurrency implements Comparable<Tradable>, Tradable {
      *
      * @param t the second Tradable object.
      */
-    public void subtract(Tradable t){
+    public void subtract(ForeignCurrency t){
         ForeignCurrency d = (ForeignCurrency) t.convert(getCurrencyCode());
         amount -= d.getAmount();
     }
@@ -93,7 +93,7 @@ public class ForeignCurrency implements Comparable<Tradable>, Tradable {
     }
 
 
-    public int compareTo(Tradable t){
+    public int compareTo(ForeignCurrency t){
         return Double.compare(amount, t.convert(this.currencyCode).getAmount());
     }
 
