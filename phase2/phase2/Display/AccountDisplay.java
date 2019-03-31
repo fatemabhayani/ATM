@@ -31,7 +31,8 @@ class AccountDisplay {
      */
     public static void main(String[] args) {
         System.out.println(a.toString());
-        System.out.println("Do you want to request an account (1), make a transaction (2), or exit (3)?");
+        System.out.println("Do you want to request an account (1), make a transaction (2), undo a transaction (3)," +
+                " View most recent transaction (4) or exit (5)?");
         Scanner tmp = new Scanner(System.in);
         String command = tmp.nextLine();
         command = command.replaceAll("//s","");
@@ -80,7 +81,18 @@ class AccountDisplay {
             }
 
 
-        } else {
+        }else if (command.equals("4")){
+            if (a.getTransactions().size()>0) {
+                a.getPastTransaction(0);
+                AccountDisplay.main(null);
+            }else {
+                System.out.println("There are no transactions to show");
+                AccountDisplay.main(null);
+            }
+
+
+        }
+        else {
             UserDisplay.main(null);
         }
     }
