@@ -1,12 +1,12 @@
 package phase2.Tradable;
 
-public class Cryptocurrency implements Comparable<Tradable>, Tradable {
+public class CryptoCurrency implements Comparable<Tradable>, Tradable {
 
     private String currencyCode;
 
     private double amount;
 
-    public Cryptocurrency(String currencyCode, double amount){
+    public CryptoCurrency(String currencyCode, double amount){
         this.currencyCode = currencyCode;
         this.amount = amount;
     }
@@ -19,7 +19,7 @@ public class Cryptocurrency implements Comparable<Tradable>, Tradable {
 
     @Override
     public void add(Tradable t) {
-        Cryptocurrency d = (Cryptocurrency) t.convert(getCurrencyCode());
+        CryptoCurrency d = (CryptoCurrency) t.convert(getCurrencyCode());
         amount += d.getAmount();
     }
 
@@ -40,7 +40,7 @@ public class Cryptocurrency implements Comparable<Tradable>, Tradable {
 
     @Override
     public void subtract(Tradable t) {
-        Cryptocurrency d = (Cryptocurrency) t.convert(getCurrencyCode());
+        CryptoCurrency d = (CryptoCurrency) t.convert(getCurrencyCode());
         amount -= d.getAmount();
     }
 
