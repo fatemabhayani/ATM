@@ -24,7 +24,7 @@ public class Savings extends AssetAccount {
 
     public Savings(Calendar date, User owner1, String currencyCode, String num, String amount) {
         super(date, owner1, currencyCode, Integer.valueOf(num));
-        this.balance.add(Double.valueOf(amount));
+        this.balance.add(Double.parseDouble(amount));
     }
 
     /**

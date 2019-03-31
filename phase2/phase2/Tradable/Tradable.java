@@ -19,6 +19,13 @@ public interface Tradable{
      */
     void add(Tradable t);
 
+    /**
+     * Add a double to a tradable object.
+     *
+     * @param amount the amount to add
+     */
+    void add(double amount);
+
     String getCurrencyCode();
 
     int compareTo(Tradable t);
