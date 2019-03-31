@@ -32,7 +32,7 @@ Write File
 Bank Mnaager: setdate
 Bank Teller: createuseraccount, getrequest, getrequestsummary, ignore request, complete request
 User: request account, request undo,
-User Manager: isbankmanager, getuseraccount
+UserManager: isbankmanager, getuseraccount
 
 Phase 1 Markus comments
 
