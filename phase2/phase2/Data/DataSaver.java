@@ -52,6 +52,7 @@ public class DataSaver {
         ATM.undoRequests.add(r3);
 
         d.writeAllRequests();
+        d.writeATMData();
 
     }
 
@@ -60,11 +61,7 @@ public class DataSaver {
      */
     private void writeATMData() {
         try (FileWriter writer = new FileWriter("phase2/phase2/Data/atmdata.txt")) {
-            writer.write("ATM CLOCK \n");
-            writer.write(ATM.clock.toString() + "\n");
-            writer.write("ATM CASH MACHINE \n");
             writer.write(ATM.c.toString()+"\n");
-            writer.write("ATM ACCOUNT NUMBER \n");
             writer.write(((Integer)UserManager.accountNum).toString() + "\n");
         } catch (Exception e) {
             e.printStackTrace();
