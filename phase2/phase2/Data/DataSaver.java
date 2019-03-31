@@ -31,12 +31,6 @@ public class DataSaver {
     }
 
     /**
-     * Initializes an instance of DataSaver.
-     */
-    private DataSaver() {}
-
-
-    /**
      * Writes the time and cash machine contents into atmdata.txt.
      */
     private void writeATMData() {
