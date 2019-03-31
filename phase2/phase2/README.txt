@@ -1,3 +1,10 @@
+------------------------BEFORE RUNNING------------------------
+Before running the program, you will need to download the .jar at the following address:
+http://www.java2s.com/Code/JarDownload/json-simple/json-simple-1.1.jar.zip
+After this, you will need to go to Project Structure -> Project Settings -> Modules -> select the + sign and
+choose "JARs or Directories", and open the .jar file you get from the link above. This is so that the convert
+method in ForeignCurrency runs, since we used an API to get conversion rates between currency types.
+
 ------------------------ALERTS.TXT------------------------
 alerts.txt should contain lines that read "The number of (integer denoting denomination) dollar bills in the ATM is
 less than 20." The integer denoting the denomination should be either 5, 10, 20, or 50. The CashMachine class checks
