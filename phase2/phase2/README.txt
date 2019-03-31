@@ -67,9 +67,9 @@ the username of every user in the ATM, so that when reading the data, we can acc
   Bill, Deposit, Transfer, and Withdraw.
 
 8. package phase2.Tradable
-- Includes the Tradable interface and the ForeignCurrency class that represents different types of currency that
-  users can make transactions with, which implements Tradable. This includes a convert method which converts to
-  other types of currency.
+- Includes the Tradable interface and the ForeignCurrency and CryptoCurrency classes that represents different types of
+  currency that users can make transactions with, which implements Tradable. This includes a convert method which
+  converts to other types of currency.
 
 ------------------------HOW TO RUN THE PROGRAM?----------------------------
 Run ATM.java to run the entire program.
