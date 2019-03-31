@@ -1,6 +1,5 @@
 package phase2.Display;
 
-import phase2.*;
 import phase2.Accounts.Account;
 import phase2.People.User;
 import phase2.People.UserManager;

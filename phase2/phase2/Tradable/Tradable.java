@@ -1,4 +1,4 @@
-package phase2;
+package phase2.Tradable;
 
 /**
  * The interface Tradable, object that can be traded in the ATM.
@@ -18,6 +18,10 @@ public interface Tradable{
      * @param t the tradable obejct
      */
     void add(Tradable t);
+
+    String getCurrencyCode();
+
+    int compareTo(Tradable t);
 
     /**
      * Subtract two tradable objects.
