@@ -44,6 +44,16 @@ public class DataSaver {
         ATM.bankUsers.add(user);
         d.writeAllUsers();
 
+        UserRequest r1 = new UserRequest("newperson", "secretpw");
+        ATM.b.userRequests.add(r1);
+        AccountRequest r2 = new AccountRequest(user, "cc", "USD");
+        ATM.b.accountRequests.add(r2);
+        UndoRequest r3 = new UndoRequest(user, sv, 0);
+        ATM.undoRequests.add(r3);
+
+        d.writeAllAccountRequests();
+        d.writeAllUndoRequests();
+        d.writeAllUserRequests();
 
     }
 
