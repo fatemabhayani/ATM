@@ -10,37 +10,33 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-class Stock {
+public class Stock {
 
-    public static void main(String[] args) {
-        Stock apple = new Stock("AAPL", 700);
-        System.out.println(apple.getTotalValue());
-    }
 
-    private final int amount;
     private final String name;
+    private final double buyPrice;
 
-    private Stock(String name, int amount) {
+    public Stock(String name, int amount) {
         this.name = name;
-        this.amount = amount;
-
+        this.buyPrice = getPrice(name);
     }
 
-    private double getTotalValue(){
-        return getPrice() * amount;
+    public double getBuyPrice(){
+        return this.buyPrice;
     }
 
-    public int getAmount() {
-        return this.amount;
-    }
 
     public String getName() {
         return this.name;
     }
 
-    private double getPrice() {
+    public double getPrice() {
+        return getPrice(this.name);
+    }
+
+    public static double getPrice(String name) {
         try {
-            JSONObject json = getStockJSON();
+            JSONObject json = getStockJSON(name);
             int x = 0;
             String price = (String) json.get("1. open");
             return Double.valueOf(price);
@@ -51,14 +47,15 @@ class Stock {
         }
     }
 
-    private URL getUrl() throws MalformedURLException {
+
+    private static URL getUrl(String name) throws MalformedURLException {
         String api_key = "BJV700X2EJXM80NP";
-        String urlString = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" + this.name + "&interval=5min&apikey=" + api_key;
+        String urlString = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" + name + "&interval=5min&apikey=" + api_key;
         return new URL(urlString);
     }
 
-    private JSONObject getStockJSON() throws ParseException, IOException {
-            URL url = getUrl();
+    private static JSONObject getStockJSON(String name) throws ParseException, IOException {
+            URL url = getUrl(name);
             BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
             String stringJSON = makeJSONString(reader);
             JSONParser parser = new JSONParser();
@@ -70,7 +67,7 @@ class Stock {
             return (JSONObject) json1.get(mostRecent);
     }
 
-    private String makeJSONString(BufferedReader reader) throws IOException {
+    private static String makeJSONString(BufferedReader reader) throws IOException {
         StringBuilder s = new StringBuilder();
         String line = reader.readLine();
         while (line != null) {
@@ -83,6 +80,6 @@ class Stock {
 
     @Override
     public String toString() {
-        return name + amount;
+        return name ;
     }
 }

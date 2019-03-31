@@ -33,22 +33,21 @@ public class InvestmentAccount extends AssetAccount {
         if (balance.compareTo(f) >= 0){
             balance.subtract(f);
         } else {
-            System.out.println("You dont have enough money in your account to do this");
+            System.out.println("You don't have enough money in your account to do this");
         }
     }
 
     public double getStockPrice(String name){
-        Stock s = new Stock(name, 1);
-        return s.getPrice();
+        return Stock.getPrice(name);
     }
 
-    public void buyStock(String name, int volume){
-        Stock s = new Stock(name, volume);
-        if (balance.getAmount() > s.getTotalValue()){
-            balance.subtract(s.getTotalValue());
-            stocks.add(s);
-        }
-    }
+//    public void buyStock(String name, int volume){
+//        Stock s = new Stock(name, volume);
+//        if (balance.getAmount() > s.getTotalValue()){
+//            balance.subtract(s.getTotalValue());
+//            stocks.add(s);
+//        }
+//    }
 
 
 
