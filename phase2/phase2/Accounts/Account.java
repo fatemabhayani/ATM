@@ -100,4 +100,6 @@ public interface Account {
      * @return the account number
      */
     int getAccountNum();
+
+    String transactionString();
 }

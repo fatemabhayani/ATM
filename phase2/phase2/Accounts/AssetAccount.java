@@ -133,7 +133,7 @@ public abstract class AssetAccount implements Account {
      * Adds a new transaction to the list of this account's transactions.
      */
     public void addTransaction(Transaction t){
-        transactions.add(0, t);
+        transactions.add(t);
     }
 
     /**
@@ -183,6 +183,7 @@ public abstract class AssetAccount implements Account {
      *
      * @return the transaction string
      */
+    @Override
     public String transactionString() {
         StringBuilder s = new StringBuilder();
         for (Transaction t : transactions ) {
