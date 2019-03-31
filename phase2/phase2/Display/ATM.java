@@ -1,13 +1,10 @@
 package phase2.Display;
 
 import phase2.*;
-import phase2.Accounts.*;
 import phase2.Data.DataReader;
 import phase2.Data.DataSaver;
 import phase2.People.*;
 import phase2.Request.*;
-import phase2.Tradable.ForeignCurrency;
-import phase2.Transactions.Deposit;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -27,11 +24,6 @@ public class ATM {
      * The collection of requests.
      */
     public static ArrayList<UndoRequest> undoRequests = new ArrayList<>();
-
-    /**
-     * The time recorded by the ATM.
-     */
-    public static ATMTime clock = new ATMTime(2019, 0, 1, 0, 0, 0);
 
     /**
      * The username.
@@ -142,7 +134,7 @@ public class ATM {
             ATM.main(null);
         }
 
-        if (clock.isFirstOfMonth()) {
+        if (ATMTime.getInstance().isFirstOfMonth()) {
             UserManager.updateInterest();
         }
 

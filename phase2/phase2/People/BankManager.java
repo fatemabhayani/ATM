@@ -1,5 +1,6 @@
 package phase2.People;
 
+import phase2.ATMTime;
 import phase2.CashMachine;
 import phase2.Display.ATM;
 import phase2.Request.*;
@@ -88,7 +89,7 @@ public class BankManager {
      * @param second the second
      */
     public void setDate(int year, int month, int date, int hour, int minute, int second) {
-        ATM.clock.setDate(year, month, date, hour, minute, second);
+        ATMTime.getInstance().setDate(year, month, date, hour, minute, second);
     }
 
     /**

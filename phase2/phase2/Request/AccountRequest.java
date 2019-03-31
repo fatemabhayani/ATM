@@ -1,6 +1,6 @@
 package phase2.Request;
 
-import phase2.Display.ATM;
+import phase2.ATMTime;
 import phase2.People.User;
 import java.util.Calendar;
 
@@ -41,7 +41,7 @@ public class AccountRequest extends Request {
      * Resolves the request by creating the account.
      */
     public void resolveRequest() {
-        Calendar time = ATM.clock.getCurrentTime();
+        Calendar time = ATMTime.getInstance().getCurrentTime();
         requester.getAccountManager().add(accountType, currencyCode, time);
     }
 
