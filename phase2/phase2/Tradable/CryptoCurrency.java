@@ -20,7 +20,7 @@ public class CryptoCurrency extends ForeignCurrency{
      * @param currencyCode Capital three digit currency code
      * @param amount       the amount
      */
-    public CryptoCurrency(String currencyCode, double amount){
+    private CryptoCurrency(String currencyCode, double amount){
         super(currencyCode, amount);
     }
 

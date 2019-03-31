@@ -8,9 +8,9 @@ import phase2.People.User;
  * The Undo Transaction request, type of Request
  */
 public class UndoRequest extends Request {
-    private User requester;
-    private Account account;
-    private int num;
+    private final User requester;
+    private final Account account;
+    private final int num;
 
     /**
      * Instantiates a new undo request.

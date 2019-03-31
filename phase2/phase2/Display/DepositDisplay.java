@@ -12,8 +12,8 @@ import java.util.Calendar;
  */
 class DepositDisplay {
 
-    private static User U = AccountDisplay.U;
-    private static Account a = AccountDisplay.a;
+    private static final User U = AccountDisplay.U;
+    private static final Account a = AccountDisplay.a;
 
     /**
      * The entry point of Deposit Display, access from ATM

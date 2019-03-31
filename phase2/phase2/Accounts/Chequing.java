@@ -13,7 +13,7 @@ public class Chequing extends AssetAccount {
     /**
      * Whether the account is primary.
      */
-    private boolean isPrimary;
+    private final boolean isPrimary;
 
     /**
      * Instantiates a new chequing account.

@@ -5,9 +5,9 @@ import java.io.*;
 /**
  * The type Write file.
  */
-public class WriteFile  {
+class WriteFile  {
 
-    private File path;
+    private final File path;
     private boolean appendFile = true;
 
     /**

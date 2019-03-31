@@ -16,8 +16,8 @@ import java.util.Scanner;
  */
 class TransferDisplay {
 
-    private static User U = AccountDisplay.U;
-    private static Account a = AccountDisplay.a;
+    private static final User U = AccountDisplay.U;
+    private static final Account a = AccountDisplay.a;
 
     /**
      * The entry point of Transfer display, access from ATM

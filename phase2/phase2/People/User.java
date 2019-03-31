@@ -13,7 +13,7 @@ public class User {
     /**
      * The username for this user.
      */
-    private String username;
+    private final String username;
 
     /**
      * The password for this user.
@@ -23,7 +23,7 @@ public class User {
     /**
      * The account manager for this user's accounts.
      */
-    private AccountManager accounts;
+    private final AccountManager accounts;
 
     /**
      * Creates a new User.

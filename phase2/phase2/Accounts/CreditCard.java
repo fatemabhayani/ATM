@@ -20,13 +20,13 @@ public class CreditCard implements Account {
     /**
      * The account owners.
      */
-    private User owner1;
+    private final User owner1;
     private User owner2;
 
     /**
      * The account number.
      */
-    int accountNum;
+    final int accountNum;
 
     /**
      * The account transactions.
@@ -41,7 +41,7 @@ public class CreditCard implements Account {
     /**
      * The credit limit for this account.
      */
-    private ForeignCurrency creditLimit;
+    private final ForeignCurrency creditLimit;
 
     /**
      * Instantiates a new credit card account.
@@ -217,7 +217,7 @@ public class CreditCard implements Account {
      *
      * @param creditLimit the new credit limit
      */
-    public void decreaseCreditLimit(ForeignCurrency creditLimit) {
+    void decreaseCreditLimit(ForeignCurrency creditLimit) {
         this.creditLimit.subtract(creditLimit);
     }
 
@@ -226,7 +226,7 @@ public class CreditCard implements Account {
      *
      * @param creditLimit the new credit limit
      */
-    public void increaseCreditLimit(ForeignCurrency creditLimit) {
+    private void increaseCreditLimit(ForeignCurrency creditLimit) {
         this.creditLimit.add(creditLimit);
     }
 

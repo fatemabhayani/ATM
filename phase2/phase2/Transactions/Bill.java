@@ -12,7 +12,7 @@ public class Bill extends Transaction {
     /**
      * The account paying the bill.
      */
-    private Account moneyFrom;
+    private final Account moneyFrom;
 
     /**
      * Instantiates a new bill.

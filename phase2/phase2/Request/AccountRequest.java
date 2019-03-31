@@ -12,17 +12,17 @@ public class AccountRequest extends Request {
     /**
      * The user making the request.
      */
-    private User requester;
+    private final User requester;
 
     /**
      * The type of account being requested.
      */
-    private String accountType;
+    private final String accountType;
 
     /**
      * The currency code for the account.
      */
-    private String currencyCode;
+    private final String currencyCode;
 
     /**
      * Instantiates a new account request.
