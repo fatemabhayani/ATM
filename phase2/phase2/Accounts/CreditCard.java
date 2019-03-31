@@ -240,10 +240,11 @@ public class CreditCard implements Account {
      *
      * @return the transaction string
      */
+    @Override
     public String transactionString() {
         StringBuilder s = new StringBuilder();
         for (Transaction t : transactions ) {
-            s.append(t.toString()).append("\n");
+            s.append("\t").append(t.toString());
         }
         return s.toString();
     }

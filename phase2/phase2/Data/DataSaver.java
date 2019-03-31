@@ -31,12 +31,6 @@ public class DataSaver {
     }
 
     /**
-     * Initializes an instance of DataSaver.
-     */
-    private DataSaver() {}
-
-
-    /**
      * Writes the time and cash machine contents into atmdata.txt.
      */
     private void writeATMData() {
@@ -87,7 +81,7 @@ public class DataSaver {
     }
 
     private void writeAllSavings(FileWriter writer, User user) throws IOException{
-        writer.write("SAVINGS \n");
+        writer.write("SAVINGS\n");
         for(Account account: user.getAccountList("sv")){
             Savings s = (Savings) account;
             writeSavingAccount(writer, s);
@@ -100,7 +94,7 @@ public class DataSaver {
     }
 
     private void writeAllChequing(FileWriter writer, User user) throws IOException{
-        writer.write("CHEQUING \n");
+        writer.write("CHEQUING\n");
         for(Account account: user.getAccountList("cq")){
             Chequing c = (Chequing) account;
             writeChequingAccount(writer, c);
@@ -113,7 +107,7 @@ public class DataSaver {
     }
 
     private void writeAllCreditCard(FileWriter writer, User user) throws IOException{
-        writer.write("CREDIT CARD \n");
+        writer.write("CREDIT CARD\n");
         for(Account account: user.getAccountList("cc")){
             CreditCard c = (CreditCard) account;
             writeCreditCardAccount(writer, c);
@@ -127,7 +121,7 @@ public class DataSaver {
 
 
     private void writeAllLineOfCredit(FileWriter writer, User user) throws IOException{
-        writer.write("LINE OF CREDIT \n");
+        writer.write("LINE OF CREDIT\n");
         for(Account account: user.getAccountList("lc")){
             LineOfCredit c = (LineOfCredit) account;
             writeLineOfCreditAccount(writer, c);
@@ -141,7 +135,7 @@ public class DataSaver {
 
 
     private void writeAllCashBackCard(FileWriter writer, User user) throws IOException{
-        writer.write("CASH BACK CARD \n");
+        writer.write("CASH BACK CARD\n");
         for(Account account: user.getAccountList("cb")){
             CashBackCard c = (CashBackCard) account;
             writeCashBackCardAccount(writer, c);

@@ -34,7 +34,6 @@ public class ForeignCurrency implements Comparable<Tradable>, Tradable {
     public ForeignCurrency(String currencyCode, double amount){
         this.currencyCode = currencyCode;
         this.amount = amount;
-
     }
 
     /**
@@ -61,18 +60,21 @@ public class ForeignCurrency implements Comparable<Tradable>, Tradable {
      * @param t the second Tradable object
      */
     public void add(Tradable t){
-            ForeignCurrency d = (ForeignCurrency) t.convert(getCurrencyCode());
-            amount += d.getAmount();
+        ForeignCurrency d = (ForeignCurrency) t.convert(getCurrencyCode());
+        amount += d.getAmount();
     }
 
+    public void add(double amount){
+        this.amount += amount;
+    }
     /**
      * Subtract two instances for foreign currencies.
      *
      * @param t the second Tradable object.
      */
     public void subtract(Tradable t){
-            ForeignCurrency d = (ForeignCurrency) t.convert(getCurrencyCode());
-            amount -= d.getAmount();
+        ForeignCurrency d = (ForeignCurrency) t.convert(getCurrencyCode());
+        amount -= d.getAmount();
     }
 
     /**

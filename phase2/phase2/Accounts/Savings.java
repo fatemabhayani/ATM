@@ -22,6 +22,11 @@ public class Savings extends AssetAccount {
         super(date, owner1, currencyCode, num);
     }
 
+    public Savings(Calendar date, User owner1, String currencyCode, String num, String amount) {
+        super(date, owner1, currencyCode, Integer.valueOf(num));
+        this.balance.add(Double.valueOf(amount));
+    }
+
     /**
      * Increase balance by the interest rate of 1%.
      */
