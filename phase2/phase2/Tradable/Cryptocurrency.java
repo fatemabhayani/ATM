@@ -11,6 +11,9 @@ public class Cryptocurrency implements Comparable<Tradable>, Tradable {
         this.amount = amount;
     }
 
+    public void subtract(double d){
+    }
+
 
     @Override
     public double getAmount() {
