@@ -1,6 +1,6 @@
 package phase2.Accounts;
 
-import ForeignCurrency;
+import phase2.Tradable.*;
 import phase2.People.User;
 import phase2.Transactions.Transaction;
 import java.util.Calendar;
@@ -31,7 +31,7 @@ public class Chequing extends AssetAccount {
 
     @Override
     public void subtract(Transaction transaction) {
-        ForeignCurrency amount = transaction.getAmount();
+        Tradable amount = transaction.getAmount();
         if (balance.getAmount() < 0) {
             System.out.println("Cannot transfer out of an account with a negative balance!");
         } else {
@@ -47,7 +47,7 @@ public class Chequing extends AssetAccount {
     }
 
     @Override
-    public void subtract(ForeignCurrency amount) {
+    public void subtract(Tradable amount) {
         if (balance.getAmount() < 0) {
             System.out.println("Cannot transfer out of an account with a negative balance!");
         } else {

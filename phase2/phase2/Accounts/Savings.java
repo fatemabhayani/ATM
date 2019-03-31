@@ -1,6 +1,6 @@
 package phase2.Accounts;
 
-import ForeignCurrency;
+import phase2.Tradable.*;
 import phase2.People.User;
 import phase2.Transactions.Transaction;
 import java.util.Calendar;
@@ -31,7 +31,7 @@ public class Savings extends AssetAccount {
 
     @Override
     public void subtract(Transaction transaction) {
-        ForeignCurrency amount = transaction.getAmount();
+        Tradable amount = transaction.getAmount();
         if (balance.compareTo(amount) < 0) {
             System.out.println("Cannot have a balance below 0!");
         } else {
@@ -41,7 +41,7 @@ public class Savings extends AssetAccount {
     }
 
     @Override
-    public void subtract(ForeignCurrency amount) {
+    public void subtract(Tradable amount) {
         if (balance.compareTo(amount) < 0) {
             System.out.println("Cannot have a balance below 0!");
         } else {
