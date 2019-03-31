@@ -24,12 +24,12 @@ public class CryptoCurrency extends ForeignCurrency{
 
 
     @Override
-    public ForeignCurrency convert(String identifier) {
+    public CryptoCurrency convert(String identifier) {
         double rate = getRate(this.currencyCode, identifier);
         // CryptoCurrencies have different divisibility, so I will take the least divisible which is 8 decimal places
         double amount = this.amount * rate;
         double correctAmount = (double) Math.round(amount * 100000000) / 100000000;
-        return new ForeignCurrency(identifier, correctAmount);
+        return new CryptoCurrency(identifier, correctAmount);
     }
 
 
