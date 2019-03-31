@@ -116,6 +116,12 @@ public class ForeignCurrency implements Comparable<ForeignCurrency> {
         }
     }
 
+    /**
+     *
+     * @param from the currency we are converting
+     * @param to the currency we will convert it into
+     * @return the new value
+     */
     private double getRate(String from, String to) {
         if (to.equalsIgnoreCase(from)){
             return 1;
@@ -139,6 +145,11 @@ public class ForeignCurrency implements Comparable<ForeignCurrency> {
 
     }
 
+    /**
+     *
+     * @param url is a url
+     * @return the exchange rate
+     */
     private JSONObject getRatesJSON(URL url) throws IOException, ParseException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
         String line = reader.readLine();
@@ -148,6 +159,12 @@ public class ForeignCurrency implements Comparable<ForeignCurrency> {
         return (JSONObject) json.get("rates");
     }
 
+    /**
+     *
+     * @param from the currency we are converting
+     * @param to the currency we will convert it into
+     * @return the correct url
+     */
     private URL getCorrectUrl(String from, String to) throws MalformedURLException {
         URL url;
         if (from.equals("EUR")){

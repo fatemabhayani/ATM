@@ -3,6 +3,8 @@ package phase2.Data;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+
+import phase2.ATMTime;
 import phase2.Accounts.*;
 import phase2.CashMachine;
 import phase2.Display.ATM;
@@ -64,9 +66,10 @@ public class DataReader {
 
     public void readATMData() {
         try (BufferedReader reader = new BufferedReader(new FileReader("phase2/phase2/Data/atmdata.txt"))) {
-            String line = reader.readLine();
-            loadCash(line);
+            loadCash(reader.readLine());
             UserManager.accountNum = Integer.valueOf(reader.readLine());
+            setTime(reader.readLine());
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -79,6 +82,15 @@ public class DataReader {
             bills[i] = Integer.valueOf(cash[i]);
         }
         CashMachine.getInstance().setBills(bills);
+    }
+
+    private void setTime(String line) {
+        String[] info = line.split(" ");
+        int[] factors = new int[6];
+        for (int i = 0; i < 6; i++) {
+            factors[i] = Integer.valueOf(info[i]);
+        }
+        ATMTime.getInstance().setFactors(factors);
     }
 
     public void readAllUserData() {

@@ -1,13 +1,11 @@
 package phase2.Tradable;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 public class CryptoCurrency extends ForeignCurrency{
 
@@ -16,7 +14,12 @@ public class CryptoCurrency extends ForeignCurrency{
         System.out.println(cur.getRate("BTC", "USD"));
     }
 
-
+    /**
+     * Instantiates a new Cryptocurrency.
+     *
+     * @param currencyCode Capital three digit currency code
+     * @param amount       the amount
+     */
     public CryptoCurrency(String currencyCode, double amount){
         super(currencyCode, amount);
     }
@@ -32,7 +35,12 @@ public class CryptoCurrency extends ForeignCurrency{
         return new CryptoCurrency(identifier, correctAmount);
     }
 
-
+    /**
+     *
+     * @param from the currency we are converting
+     * @param to the currency we will convert it into
+     * @return the new value
+     */
     private double getRate(String from, String to){
         try {
             URL url = getCorrectUrl(from, to);
@@ -48,7 +56,12 @@ public class CryptoCurrency extends ForeignCurrency{
         }
 
     }
-
+    /**
+     *
+     * @param from the currency we are converting
+     * @param to the currency we will convert it into
+     * @return the correct url
+     */
     private URL getCorrectUrl(String from, String to) throws MalformedURLException{
         String api_key = "&api_key={bb90d297eba6964b0644e3c38644e1c99b7c6b0e237bd31de47477619857acd2}";
         String urlString = "https://min-api.cryptocompare.com/data/price?fsym=" + from + "&tsyms=" + to + api_key;

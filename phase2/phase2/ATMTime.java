@@ -8,6 +8,11 @@ import java.util.GregorianCalendar;
  */
 public class ATMTime {
     /**
+     * The single ATM clock.
+     */
+    private static ATMTime clock;
+
+    /**
      * The factor added to the year.
      */
     private int yearFactor;
@@ -47,8 +52,15 @@ public class ATMTime {
      * @param minute the minute
      * @param second the second
      */
-    public ATMTime(int year, int month, int day, int hour, int minute, int second) {
+    private ATMTime(int year, int month, int day, int hour, int minute, int second) {
         setDate(year, month, day, hour, minute, second);
+    }
+
+    public static ATMTime getInstance() {
+        if (clock == null) {
+            clock = new ATMTime(2019, 0, 1, 0, 0, 0);
+        }
+        return clock;
     }
 
     /**
@@ -107,20 +119,15 @@ public class ATMTime {
     /**
      * Sets the date and time.
      *
-     * @param yearFactor the year
-     * @param monthFactor the month
-     * @param dayFactor the day
-     * @param hourFactor the hour
-     * @param minuteFactor the minute
-     * @param secondFactor the second
+     * @param factors the list of factors
      */
-    public void setFactors(int yearFactor, int monthFactor, int dayFactor, int hourFactor, int minuteFactor, int secondFactor) {
-        this.yearFactor = yearFactor;
-        this.monthFactor = monthFactor;
-        this.dayFactor = dayFactor;
-        this.hourFactor = hourFactor;
-        this.minuteFactor = minuteFactor;
-        this.secondFactor = secondFactor;
+    public void setFactors(int[] factors) {
+        this.yearFactor = factors[0];
+        this.monthFactor = factors[1];
+        this.dayFactor = factors[2];
+        this.hourFactor = factors[3];
+        this.minuteFactor = factors[4];
+        this.secondFactor = factors[5];
     }
 
     @Override

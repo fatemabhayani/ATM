@@ -1,5 +1,6 @@
 package phase2.Display;
 
+import phase2.ATMTime;
 import phase2.Accounts.Account;
 import phase2.Transactions.Deposit;
 import phase2.People.User;
@@ -20,7 +21,7 @@ class DepositDisplay {
      * @param args the input arguments
      */
     public static void main(String[] args) {
-        Calendar time = ATM.clock.getCurrentTime();
+        Calendar time = ATMTime.getInstance().getCurrentTime();
         Deposit t = new Deposit("deposits.txt", a, time);
         U.makeTransaction(t);
         AccountDisplay.main(null);

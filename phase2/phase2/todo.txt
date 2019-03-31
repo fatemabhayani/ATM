@@ -1,41 +1,29 @@
 Phase 2
 
 1. refactor
-2. write unit tests
-3. only push code that runs! (check that the main method in ATM doesn't crash)
-
-
-Refactor (and add Phase 2 functionality)
-
-BankManager
-- make BankManager a singleton class
-Display classes
-ERRORS - ARJUN
-- Bank Manager is not asked to set a default password for the user
-- When user tries to change their password, the code crashes
-- After creating an account, the program crashes when the user tries accessing their new account
-
-Note
-
-1. before deleting greyed-out methods in classes you're refactoring,
+2. only push code that runs! (check that the main method in ATM doesn't crash)
+3. before deleting greyed-out methods in classes you're refactoring,
    check that these methods don't need to be used before deleting (i.e. if
    the method should be called in the main method but isn't yet, don't delete it!)
 
 
+Refactor (and add Phase 2 functionality)
+- Display classes
 
-Presentation Classes
-- Brittany (Data & People)
+Presentation
+- Brittany (People, CashMachine)
 - Anna (Transactions)
-- Shourya (Interfaces)
-- Fatema (Requests, ForeignCurrency)
+- Shourya (Display)
+- Fatema (Request, ForeignCurrency)
+- Dani (Accounts)
+- Arjun (Data)
 
 Unused Methods
-Datasaver class is not used
-Write File
-Bank Manager: setdate
-Bank Teller: createuseraccount, getrequest, getrequestsummary, ignore request, complete request
-User: request account, request undo,
-UserManager: isbankmanager, getuseraccount
+WriteFile
+BankManager: setDate
+BankTeller: getRequest, getRequestSummary, ignoreRequest, completeRequest
+User: requestAccount, requestUndo,
+UserManager: isBankManager
 
 Phase 1 Markus comments
 
