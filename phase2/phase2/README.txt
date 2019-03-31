@@ -34,8 +34,8 @@ data of every user in the ATM at the time the program exits. We also have a file
 
 ------------------------DESCRIPTION OF CLASSES------------------------
 1. package phase2
-- Includes the packages Accounts, Data, Display, Interfaces, People, Request, Transactions.
-- Also includes general classes ATMTime, CashMachine, and ForeignCurrency. These are the classes that do not
+- Includes the packages Accounts, Data, Display, Interfaces, People, Request, Transactions, and Tradable.
+- Also includes general classes ATMTime and CashMachine. These are the classes that do not
   inherit from or relate to other packages.
 
 2. package phase2.Accounts
@@ -57,13 +57,18 @@ data of every user in the ATM at the time the program exits. We also have a file
   users of the ATM.
 
 6. package phase2.Requests
-- the user can request to undo a transaction, create an account or to create an user
-- the bank manager and bank teller can review the requests and decide whether they want to complete
-ignore the request
+- Includes an abstract Request class and its subclasses for UndoRequest, AccountRequest, and UserRequest.
+  The requests are sent to the BankManager and BankTellers for them to perform actions such as creating new
+  accounts and undoing past transactions.
 
 7. package phase2.Transactions
-- includes the abstract class transaction, and the types of transactions, such as, bill, deposit, transfer
-and withdraw
+- Includes an abstract Transaction class and its subclasses for the types of transactions a user can make,
+  Bill, Deposit, Transfer, and Withdraw.
+
+8. package phase2.Tradable
+- Includes the Tradable interface and the ForeignCurrency class that represents different types of currency that
+  users can make transactions with, which implements Tradable. This includes a convert method which converts to
+  other types of currency.
 
 ------------------------HOW TO RUN THE PROGRAM?----------------------------
 Run ATM.java to run the entire program.
