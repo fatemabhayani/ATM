@@ -2,7 +2,7 @@ package phase2.Interfaces;
 
 import phase2.Accounts.Account;
 import phase2.Display.ATM;
-import phase2.ForeignCurrency;
+import phase2.Tradable.*;
 import phase2.People.User;
 import phase2.People.UserManager;
 import phase2.Transactions.Transfer;

@@ -2,7 +2,11 @@ package phase2.People;
 
 import phase2.Accounts.*;
 import phase2.Display.ATM;
+import phase2.Tradable.ForeignCurrency;
+import phase2.Transactions.Deposit;
+
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
 /**
  * Manages the collection of bank users for the ATM.
@@ -119,9 +123,9 @@ public class UserManager {
     }
 
     /**
-     * Updates the savings accounts of every user.
+     * Updates the savings and cash back accounts of every user.
      */
-    public static void updateSavings() {
+    public static void updateInterest() {
         for (User u: ATM.bankUsers) {
             ArrayList s = u.getAccountList("sv");
             for (Object a : s) {

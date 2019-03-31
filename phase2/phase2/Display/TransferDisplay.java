@@ -1,9 +1,9 @@
 package phase2.Display;
 
-import phase2.*;
 import phase2.Accounts.Account;
 import phase2.People.User;
 import phase2.People.UserManager;
+import phase2.Tradable.ForeignCurrency;
 import phase2.Transactions.Transfer;
 
 import java.util.ArrayList;

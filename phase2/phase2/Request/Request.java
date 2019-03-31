@@ -8,5 +8,5 @@ public abstract class Request {
     /**
      * Resolves the request.
      */
-    public void resolveRequest() {}
+    public abstract void resolveRequest();
 }

@@ -1,7 +1,7 @@
 package phase2.Transactions;
 
 import phase2.Accounts.*;
-import phase2.ForeignCurrency;
+import phase2.Tradable.*;
 import java.util.Calendar;
 
 /**
@@ -21,7 +21,7 @@ public class Bill extends Transaction {
      * @param moneyFrom the account the money originates from
      * @param date      date of transaction
      */
-    public Bill(ForeignCurrency amount, Account moneyFrom, Calendar date) {
+    public Bill(Tradable amount, Account moneyFrom, Calendar date) {
         super(amount, date);
         this.moneyFrom = moneyFrom;
     }

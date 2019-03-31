@@ -2,14 +2,10 @@ package phase2.Data;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+
 import phase2.Display.ATM;
-import phase2.ForeignCurrency;
+import phase2.Tradable.*;
 import phase2.People.*;
-import phase2.Accounts.*;
-import phase2.Transactions.*;
-import phase2.Request.*;
 
 /**
  * The type Data reader.

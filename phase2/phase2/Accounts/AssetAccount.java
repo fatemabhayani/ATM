@@ -1,6 +1,7 @@
 package phase2.Accounts;
 
-import phase2.ForeignCurrency;
+import phase2.Tradable.ForeignCurrency;
+import phase2.Tradable.Tradable;
 import phase2.Transactions.Transaction;
 import phase2.People.User;
 import java.io.*;
@@ -15,7 +16,7 @@ public abstract class AssetAccount implements Account {
     /**
      * The account balance.
      */
-    ForeignCurrency balance;
+    Tradable balance;
 
     /**
      * The first account owner.
@@ -30,12 +31,12 @@ public abstract class AssetAccount implements Account {
     /**
      * The account number.
      */
-    public int accountNum;
+    int accountNum;
 
     /**
      * The account manager.
      */
-    final ArrayList<Transaction> transactions;
+    private final ArrayList<Transaction> transactions;
 
     /**
      * The date the account was created.
@@ -47,24 +48,25 @@ public abstract class AssetAccount implements Account {
      *
      * @param date         the date of creation
      * @param owner1       the first owner
-     * @param currencyCode the currency code
+     * @param identifier   the 3 digit identifier for the object
      * @param num          the account number
      */
-    public AssetAccount(Calendar date, User owner1, String currencyCode, int num) {
+    public AssetAccount(Calendar date, User owner1, String identifier, int num) {
         dateOfCreation = date;
         transactions = new ArrayList<>();
         this.owner1 = owner1;
         this.owner2 = null;
-        balance = new ForeignCurrency(currencyCode, 0);
+        balance = new ForeignCurrency(identifier, 0);
         accountNum = num;
     }
+
 
     /**
      * Returns the account balance.
      *
      * @return the balance
      */
-    public ForeignCurrency getBalance() {
+    public Tradable getBalance() {
         return balance;
     }
 
@@ -73,7 +75,7 @@ public abstract class AssetAccount implements Account {
      *
      * @param balance the new balance
      */
-    public void setBalance(ForeignCurrency balance){
+    public void setBalance(Tradable balance){
         this.balance = balance;
     }
 
@@ -101,6 +103,13 @@ public abstract class AssetAccount implements Account {
     public abstract void subtract(Transaction transaction);
 
     /**
+     * Decreases the account balance by amount.
+     *
+     * @param amount the amount being subtracted
+     */
+    public abstract void subtract(Tradable amount);
+
+    /**
      * Increases the balance by the amount in transaction.
      *
      * @param transaction the transaction
@@ -116,7 +125,7 @@ public abstract class AssetAccount implements Account {
      * @param file name of the file that contains the amount
      */
     public void add(String file) {
-        ForeignCurrency amount = helpRead(file);
+        Tradable amount = helpRead(file);
         balance.add(amount);
     }
 
@@ -142,7 +151,7 @@ public abstract class AssetAccount implements Account {
      * @param file the file
      * @return the amount value
      */
-    public ForeignCurrency helpRead(String file) {
+    public Tradable helpRead(String file) {
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String s = reader.readLine();
             int denomination = Character.getNumericValue(s.charAt(0));
@@ -159,7 +168,7 @@ public abstract class AssetAccount implements Account {
      *
      * @param amount the amount
      */
-    public void helpWrite(ForeignCurrency amount) {
+    public void helpWrite(Tradable amount) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("phase2/phase2/Data/outgoing.txt"))) {
             writer.write(Double.toString(amount.convert("CAD").getAmount()));
         } catch(Exception e) {
@@ -172,7 +181,7 @@ public abstract class AssetAccount implements Account {
      *
      * @return the date of creation
      */
-    public String getCreationDate() {
+    private String getCreationDate() {
         return dateOfCreation.get(Calendar.YEAR) + "/" + (dateOfCreation.get(Calendar.MONTH) + 1) + "/" +
                 dateOfCreation.get(Calendar.DAY_OF_MONTH) + " " + dateOfCreation.get(Calendar.HOUR_OF_DAY) + ":" +
                 dateOfCreation.get(Calendar.MINUTE) + ":" + dateOfCreation.get(Calendar.SECOND);

@@ -1,6 +1,7 @@
 package phase2.Accounts;
 
-import phase2.ForeignCurrency;
+import phase2.Tradable.ForeignCurrency;
+import phase2.Tradable.Tradable;
 import phase2.Transactions.Transaction;
 import phase2.People.User;
 import java.util.Calendar;
@@ -26,7 +27,7 @@ public class CashBackCard extends CreditCard {
      * Increases the account balance based on the amount of cash back.
      */
     public void increase() {
-        ForeignCurrency balance = getBalance();
+        Tradable balance = getBalance();
         if (balance.compareTo(new ForeignCurrency(balance.getCurrencyCode(),0)) >= 1){
             setBalance(balance.multiply(1.25));
         }
@@ -45,7 +46,7 @@ public class CashBackCard extends CreditCard {
     }
 
     @Override
-    public void subtract(ForeignCurrency amount) {
+    public void subtract(Tradable amount) {
         if (getCreditLimit().compareTo(amount.multiply(0.95)) > 0) {
             getBalance().add(amount.multiply(0.95));
             setBalance(getBalance());

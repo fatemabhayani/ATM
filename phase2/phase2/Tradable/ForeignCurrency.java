@@ -1,4 +1,4 @@
-package phase2;
+package phase2.Tradable;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,7 +13,7 @@ import org.json.simple.parser.ParseException;
 /**
  * The type Foreign currency.
  */
-public class ForeignCurrency implements Comparable<ForeignCurrency>{
+public class ForeignCurrency implements Comparable<Tradable>, Tradable {
 
     /**
      * The type of currency.
@@ -24,9 +24,6 @@ public class ForeignCurrency implements Comparable<ForeignCurrency>{
      * The amount of currencyCode.
      */
     private double amount;
-
-    public static void main(String[] args) {
-    }
 
     /**
      * Instantiates a new Foreign currency.
@@ -61,10 +58,10 @@ public class ForeignCurrency implements Comparable<ForeignCurrency>{
     /**
      * Add two instances for foreign currencies.
      *
-     * @param f the second ForeignCurrency
+     * @param t the second Tradable object
      */
-    public void add(ForeignCurrency f){
-            ForeignCurrency d = f.convert(getCurrencyCode());
+    public void add(Tradable t){
+            ForeignCurrency d = (ForeignCurrency) t.convert(getCurrencyCode());
             amount += d.getAmount();
     }
 
@@ -74,10 +71,10 @@ public class ForeignCurrency implements Comparable<ForeignCurrency>{
     /**
      * Subtract two instances for foreign currencies.
      *
-     * @param f the second ForeignCurrency
+     * @param t the second Tradable object.
      */
-    public void subtract(ForeignCurrency f){
-            ForeignCurrency d = f.convert(getCurrencyCode());
+    public void subtract(Tradable t){
+            ForeignCurrency d = (ForeignCurrency) t.convert(getCurrencyCode());
             amount -= d.getAmount();
     }
 
@@ -93,8 +90,8 @@ public class ForeignCurrency implements Comparable<ForeignCurrency>{
     }
 
 
-    public int compareTo(ForeignCurrency f){
-        return Double.compare(amount, f.convert(this.currencyCode).getAmount());
+    public int compareTo(Tradable t){
+        return Double.compare(amount, t.convert(this.currencyCode).getAmount());
     }
 
     /**
@@ -104,21 +101,25 @@ public class ForeignCurrency implements Comparable<ForeignCurrency>{
      * @return the foreign currency
      */
     public ForeignCurrency convert(String currency){
-        double rate = getRate(this.currencyCode, currency);
-        double newAmount = this.amount * rate;
-        return new ForeignCurrency(currency, newAmount);
+        if (currency.equalsIgnoreCase(this.getCurrencyCode())){
+            return this;
+        }else {
+            double rate = getRate(this.currencyCode, currency);
+            double newAmount = this.amount * rate;
+            return new ForeignCurrency(currency, newAmount);
+        }
     }
 
     private double getRate(String from, String to) {
-        if (to.equals(from)){
+        if (to.equalsIgnoreCase(from)){
             return 1;
         }
         try {
             URL url = getCorrectUrl(from, to);
             JSONObject rates = getRatesJSON(url);
-            if (from.equals("EUR")) {
+            if (from.equalsIgnoreCase("EUR")) {
                 return (double) rates.get(to);
-            } else if (to.equals("EUR")) {
+            } else if (to.equalsIgnoreCase("EUR")) {
                 return 1 / (double) rates.get(from);
             } else {
             double fromEuroRate = (double) rates.get(from);

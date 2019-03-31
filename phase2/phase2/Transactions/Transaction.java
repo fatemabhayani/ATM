@@ -1,7 +1,9 @@
 package phase2.Transactions;
 
-import phase2.ForeignCurrency;
+import phase2.Tradable.*;
 import phase2.Accounts.*;
+import phase2.Tradable.Tradable;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -10,12 +12,12 @@ import java.util.Calendar;
 /**
  * An abstract transaction.
  */
-public abstract class Transaction {
+public abstract class Transaction implements Comparable<Transaction> {
 
     /**
      * The amount of the transaction.
      */
-    ForeignCurrency amount;
+    Tradable amount;
 
     /**
      * The date of the transaction.
@@ -33,7 +35,7 @@ public abstract class Transaction {
      * @param amount            the amount
      * @param timeOfTransaction the time of transaction
      */
-    Transaction(ForeignCurrency amount, Calendar timeOfTransaction) {
+    Transaction(Tradable amount, Calendar timeOfTransaction) {
         this.amount = amount;
         this.timeOfTransaction = timeOfTransaction;
         this.approved = transactionApproved();
@@ -71,7 +73,7 @@ public abstract class Transaction {
      *
      * @return the amount
      */
-    public ForeignCurrency getAmount() { return amount; }
+    public Tradable getAmount() { return amount; }
 
     /**
      * Gets time of transaction.
@@ -96,7 +98,7 @@ public abstract class Transaction {
      *
      * @return the accumulated amount recorded in the file.
      */
-    private ForeignCurrency readFile(String textFile) {
+    private Tradable readFile(String textFile) {
         // Rep invariant:
         //      .txt file must be formatted as follows:
         //      Deposit [amount] dollars into [User.username]'s account [account ID].
@@ -138,5 +140,18 @@ public abstract class Transaction {
      * @return true if transaction approved, false otherwise
      */
     protected abstract boolean transactionApproved();
+
+    /**
+     * Compares the date of two transactions.
+     *
+     * @param t the second transaction
+     * @return a negative value if t was made more recently, a positive value if t was made earlier,
+     * and 0 if t was made at the same date
+     */
+    public int compareTo(Transaction t) {
+        Calendar time1 = getTimeOfTransaction();
+        Calendar time2 = t.getTimeOfTransaction();
+        return time1.compareTo(time2);
+    }
 }
 
