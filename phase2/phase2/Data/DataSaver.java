@@ -51,9 +51,8 @@ public class DataSaver {
         UndoRequest r3 = new UndoRequest(user, sv, 0);
         ATM.undoRequests.add(r3);
 
-        d.writeAllAccountRequests();
-        d.writeAllUndoRequests();
-        d.writeAllUserRequests();
+        d.writeAllRequests();
+        d.writeATMData();
 
     }
 
@@ -62,11 +61,7 @@ public class DataSaver {
      */
     private void writeATMData() {
         try (FileWriter writer = new FileWriter("phase2/phase2/Data/atmdata.txt")) {
-            writer.write("ATM CLOCK \n");
-            writer.write(ATM.clock.toString() + "\n");
-            writer.write("ATM CASH MACHINE \n");
             writer.write(ATM.c.toString()+"\n");
-            writer.write("ATM ACCOUNT NUMBER \n");
             writer.write(((Integer)UserManager.accountNum).toString() + "\n");
         } catch (Exception e) {
             e.printStackTrace();
@@ -175,37 +170,43 @@ public class DataSaver {
         }
     }
 
-    private void writeAllUndoRequests(){
-        try (FileWriter writer = new FileWriter("phase2/phase2/Data/Requests/UndoRequests.txt", true)){
-            for(UndoRequest req: ATM.undoRequests){
-                writer.write(req.toString() + "\n");
-            }
+    private void writeAllRequests(){
+        try {FileWriter writer = new FileWriter("phase2/phase2/Data/Requests/Requests.txt");
+            writer.close();
         } catch (Exception e){
             e.printStackTrace();
         }
 
-    }
+        try(FileWriter writer = new FileWriter("phase2/phase2/Data/Requests/Requests.txt", true)){
+            writeAllAccountRequests(writer);
+            writeAllUndoRequests(writer);
+            writeAllUserRequests(writer);
 
-    private void writeAllUserRequests(){
-        try (FileWriter writer = new FileWriter("phase2/phase2/Data/Requests/UserRequests.txt", true)){
-            for(UserRequest req: ATM.b.userRequests){
-                writer.write(req.toString() + "\n");
-            }
-        } catch (Exception e){
+        } catch(Exception e){
             e.printStackTrace();
         }
     }
 
-    private void writeAllAccountRequests(){
-        try (FileWriter writer = new FileWriter("phase2/phase2/Data/Requests/AccountRequests.txt", true)){
-            for(AccountRequest req: ATM.b.accountRequests){
-                writer.write(req.toString() + "\n");
-            }
-        } catch (Exception e){
-            e.printStackTrace();
+    private void writeAllUndoRequests(FileWriter writer) throws IOException{
+        for(UndoRequest req: ATM.undoRequests){
+            writer.write(req.toString() + "\n");
         }
-
     }
+
+
+    private void writeAllUserRequests(FileWriter writer)throws IOException{
+        for(UserRequest req: ATM.b.userRequests){
+            writer.write(req.toString() + "\n");
+        }
+    }
+
+    private void writeAllAccountRequests(FileWriter writer)throws IOException{
+        for(AccountRequest req: ATM.b.accountRequests){
+            writer.write(req.toString() + "\n");
+        }
+    }
+
+
 
 
 
