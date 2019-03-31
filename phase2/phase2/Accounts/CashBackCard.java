@@ -1,6 +1,5 @@
 package phase2.Accounts;
 
-import phase2.Tradable.ForeignCurrency;
 import phase2.Tradable.*;
 import phase2.Transactions.Transaction;
 import phase2.People.User;

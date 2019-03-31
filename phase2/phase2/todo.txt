@@ -15,8 +15,8 @@ Presentation
 - Anna (Transactions)
 - Shourya (Display)
 - Fatema (Request, ForeignCurrency)
-- Dani (Accounts)
-- Arjun (Data)
+- Dani (Asset and Debt Accounts)
+- Arjun (Data, Investment Accounts)
 
 Unused Methods
 WriteFile

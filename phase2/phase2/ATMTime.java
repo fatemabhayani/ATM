@@ -45,20 +45,14 @@ public class ATMTime {
     /**
      * Creates a new clock for the ATM.
      *
-     * @param year the year
-     * @param month the month
-     * @param day the day
-     * @param hour the hour
-     * @param minute the minute
-     * @param second the second
      */
-    private ATMTime(int year, int month, int day, int hour, int minute, int second) {
-        setDate(year, month, day, hour, minute, second);
+    private ATMTime() {
+        setDate(2019, 0, 1, 0, 0, 0);
     }
 
     public static ATMTime getInstance() {
         if (clock == null) {
-            clock = new ATMTime(2019, 0, 1, 0, 0, 0);
+            clock = new ATMTime();
         }
         return clock;
     }
@@ -80,7 +74,7 @@ public class ATMTime {
         date.add(Calendar.YEAR, yearFactor);
         date.add(Calendar.MONTH, monthFactor);
         date.add(Calendar.DAY_OF_MONTH, dayFactor);
-        date.add(Calendar.HOUR, hourFactor);
+        date.add(Calendar.HOUR_OF_DAY, hourFactor);
         date.add(Calendar.MINUTE, minuteFactor);
         date.add(Calendar.SECOND, secondFactor);
         return date;
@@ -111,7 +105,7 @@ public class ATMTime {
         yearFactor = year - date.get(Calendar.YEAR);
         monthFactor = month - date.get(Calendar.MONTH);
         dayFactor = day - date.get(Calendar.DAY_OF_MONTH);
-        hourFactor = hour - date.get(Calendar.HOUR);
+        hourFactor = hour - date.get(Calendar.HOUR_OF_DAY);
         minuteFactor = minute - date.get(Calendar.MINUTE);
         secondFactor = second - date.get(Calendar.SECOND);
     }

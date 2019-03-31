@@ -2,7 +2,6 @@ package phase2.Display;
 
 import phase2.*;
 import phase2.Data.DataReader;
-import phase2.Data.DataSaver;
 import phase2.People.*;
 import phase2.Request.*;
 
@@ -40,9 +39,7 @@ public class ATM {
      */
     public static void main(String[] args){
         DataReader d = new DataReader();
-        d.readATMData();
-        d.readAllUserData();
-        d.readAllRequests();
+        d.readAll();
 
         String command;
 

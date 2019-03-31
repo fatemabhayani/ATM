@@ -1,7 +1,6 @@
 package phase2.People;
 
 import phase2.Accounts.*;
-import phase2.Display.ATM;
 import phase2.Request.*;
 import phase2.Transactions.*;
 import java.util.ArrayList;
@@ -169,6 +168,8 @@ public class User {
         if (u != null) {
             u.getAccountManager().add(a);
             a.setNewOwner(u);
+        } else {
+            System.out.println("That user does not exist!");
         }
     }
 

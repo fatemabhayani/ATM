@@ -59,9 +59,18 @@ public class DataSaver {
     }
 
     /**
+     * Writes all the data.
+     */
+    public void writeAll() {
+        writeATMData();
+        writeAllUsers();
+        writeAllRequests();
+    }
+
+    /**
      * Writes the time and cash machine contents into atmdata.txt.
      */
-    public void writeATMData() {
+    private void writeATMData() {
         try (FileWriter writer = new FileWriter("phase2/phase2/Data/atmdata.txt")) {
             writer.write(CashMachine.getInstance().toString()+"\n");
             writer.write(((Integer)UserManager.accountNum).toString() + "\n");
@@ -74,7 +83,7 @@ public class DataSaver {
     /**
      * Writes a list of all of the users
      */
-    public void writeAllUsers(){
+    private void writeAllUsers(){
         try{
             FileWriter writer = new FileWriter("phase2/phase2/Data/UserDataFiles/ListOfNames.txt");
             writer.close();
