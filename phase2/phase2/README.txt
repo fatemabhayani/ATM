@@ -92,7 +92,10 @@ changed accordingly. If the transaction was a transfer, the balance of the accou
 also be changed. A Bill transaction cannot be undone.
 
 ------------------------HOW TO INITIATE A TRANSACTION?------------------------
-
+Within the Transaction class, there are different subclasses for the different types of possible
+transactions including Bill, Deposit, Transfer, Withdraw. To initiate the Transaction, use the specific
+transaction's makeTransaction() method. It takes in a currency and moneyFrom and/or moneyTo account depending
+on the specific transaction.
 
 
 ------------------------FUNCTIONALITY FOR BANK TELLERS------------------------
