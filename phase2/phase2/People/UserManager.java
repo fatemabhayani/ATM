@@ -2,7 +2,7 @@ package phase2.People;
 
 import phase2.Accounts.*;
 import phase2.Display.ATM;
-import phase2.ForeignCurrency;
+import phase2.Tradable.ForeignCurrency;
 import phase2.Transactions.Deposit;
 
 import java.util.ArrayList;
