@@ -1,6 +1,7 @@
 package phase2.Display;
 
 import phase2.Accounts.Account;
+import phase2.Accounts.AccountManager;
 import phase2.People.BankManager;
 import phase2.People.User;
 import phase2.People.UserManager;
@@ -34,9 +35,11 @@ public class UserDisplay {
      * @param args the input arguments
      */
     public static void main(String[] args) {
+        ATMController controller = new ATMController();
         System.out.println("Type '0' if you would like to change your password" + "\n"
                 + "Type '1' if you would like to interact with your accounts" + "\n"
-                + "Type '2' if you would like to log out");
+                + "Type '2' if you would like to log out" + "\n" +
+                " Type '3' to merge accounts with another user");
         Scanner tmp = new Scanner(System.in);
         String command = tmp.nextLine();
         command = command.replaceAll("//s","");
@@ -78,14 +81,14 @@ public class UserDisplay {
                     System.out.println("There are no accounts to choose from here! Do you want to request an account?");
                     command = tmp.nextLine();
                     command = command.replaceAll("//s", "");
+                    controller.incorrectAns(tmp,command);
                     if (command.equals("yes")) {
                         System.out.println("Enter the three digit currency code of the currency you want");
                         command = tmp.nextLine();
                         command = command.replaceAll("//s", "");
-                        AccountRequest r = new AccountRequest(U, accountType, command);
-                        BankManager.getInstance().addRequest(r);
+                        U.requestAccount(accountType,command);
                         System.out.println("Your request has been made!");
-                    }
+                    }else{UserDisplay.main(null);}
                     UserDisplay.main(null);
                 } else if (account.size() == 1) {
                     a = account.get(0);
@@ -94,6 +97,12 @@ public class UserDisplay {
                     System.out.println("Enter the number of the account you wish to access: ");
                     command = tmp.nextLine();
                     int number = Integer.valueOf(command.replaceAll("//s", ""));
+                    while (number > account.size()) {
+                        System.out.println("There is no account relative to this index. " +
+                                "Please input an appropriate index");
+                        command = tmp.nextLine();
+                        number = Integer.valueOf(command.replaceAll("//s", ""));
+                    }
                     a = account.get(number);
                     AccountDisplay.main(null);
                 }
@@ -101,6 +110,25 @@ public class UserDisplay {
             case "2":
                 ATM.main(null);
                 break;
+            case "3":
+                System.out.println("Type the username of the User you wish to join accounts with");
+                command = tmp.nextLine();
+                User merger = UserManager.getUser(command);
+                while(merger == null) {
+                    System.out.println("There is no user with such a username. Please try again");
+                    command = tmp.nextLine();
+                    merger = UserManager.getUser(command);
+                }
+                System.out.println("Input the account number for the account you wish to share");
+                int number = Integer.valueOf(tmp.nextLine().replaceAll("//s",""));
+                AccountManager AM = new AccountManager(U);
+                Account a = AM.getAccount(number);
+                while (a==null) {
+                    System.out.print("There is no account relative to this index, Please select a valid account number");
+                    number = Integer.valueOf(tmp.nextLine().replaceAll("//s",""));
+                    a = AM.getAccount(number);
+                }
+                U.addAccountOwner(command, number);
         }
     }
 
