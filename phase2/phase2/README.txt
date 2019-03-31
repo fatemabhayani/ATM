@@ -30,16 +30,18 @@ data of every user in the ATM at the time the program exits. We also have a file
 
 2. package phase2.Accounts
 - includes account interface as well as the different types of accounts (Asset, Credit card,
- Cashback card, Chequing, Savings, Line of credit) which extend Account, and the AccountManager which
+ CashBackCard, Chequing, Savings, Line of credit) which extend Account, and the AccountManager which
  stores and has access to all of the account information.
 
 3. package phase2.Data
+- includes all data mostly .txt files like alerts.txt, atmdata.txt, userdata.txt, etc. also includes
+DataReader, DataSaver, and WriteFile classes.
 
 4. package phase2.Display
-
+-
 5. package phase2.People
-- includes classes for bank manager, user, bank teller and a user manager class that manages the
-collection of users for the bank manager.
+- includes classes for BankManager, User, BankTeller and a UserManager class that manages the
+collection of users for the BankManager.
 
 6. package phase2.Requests
 - the user can request to undo a transaction, create an account or to create an user
