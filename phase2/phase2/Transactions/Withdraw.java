@@ -1,7 +1,6 @@
 package phase2.Transactions;
 
 import phase2.CashMachine;
-import phase2.Display.ATM;
 import phase2.Accounts.*;
 import phase2.Tradable.*;
 import java.util.Calendar;
@@ -14,7 +13,7 @@ public class Withdraw extends Transaction {
     /**
      * The account making the withdrawal.
      */
-    private Account moneyFrom;
+    private final Account moneyFrom;
 
     /**
      * Instantiates a new withdrawal.

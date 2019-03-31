@@ -1,6 +1,5 @@
 package phase2.Transactions;
 
-import phase2.Tradable.*;
 import phase2.Accounts.*;
 import phase2.Tradable.*;
 
@@ -17,17 +16,17 @@ public abstract class Transaction implements Comparable<Transaction> {
     /**
      * The amount of the transaction.
      */
-    ForeignCurrency amount;
+    final ForeignCurrency amount;
 
     /**
      * The date of the transaction.
      */
-    private Calendar timeOfTransaction;
+    private final Calendar timeOfTransaction;
 
     /**
      * Records whether or not the transaction is valid.
      */
-    private boolean approved;
+    private final boolean approved;
 
     /**
      * Instantiates a new transaction.
@@ -80,14 +79,14 @@ public abstract class Transaction implements Comparable<Transaction> {
      *
      * @return the time
      */
-    Calendar getTimeOfTransaction() { return timeOfTransaction; }
+    private Calendar getTimeOfTransaction() { return timeOfTransaction; }
 
     /**
      * Returns the date of this transaction.
      *
      * @return the date of creation
      */
-    public String getTransactionTimestamp() {
+    String getTransactionTimestamp() {
         return timeOfTransaction.get(Calendar.YEAR) + "/" + (timeOfTransaction.get(Calendar.MONTH) + 1) + "/" +
                 timeOfTransaction.get(Calendar.DAY_OF_MONTH) + " " + timeOfTransaction.get(Calendar.HOUR_OF_DAY) + ":" +
                 timeOfTransaction.get(Calendar.MINUTE) + ":" + timeOfTransaction.get(Calendar.SECOND);

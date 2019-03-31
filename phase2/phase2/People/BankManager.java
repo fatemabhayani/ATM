@@ -23,22 +23,22 @@ public class BankManager {
     /**
      * The username for this employee.
      */
-    private String username;
+    private final String username;
 
     /**
      * The password for this employee.
      */
-    private String password;
+    private final String password;
 
     /**
      * The list of requests for the manager.
      */
-    public ArrayList<UserRequest> userRequests;
+    public final ArrayList<UserRequest> userRequests;
 
     /**
      * The list of requests for the manager.
      */
-    public ArrayList<AccountRequest> accountRequests;
+    public final ArrayList<AccountRequest> accountRequests;
 
     /**
      * Creates a new bank manager.
@@ -97,7 +97,7 @@ public class BankManager {
      *
      * @return the list of requests
      */
-    public ArrayList<Request> getRequestList() {
+    private ArrayList<Request> getRequestList() {
         ArrayList<Request> r = new ArrayList<>();
         r.addAll(userRequests);
         r.addAll(accountRequests);

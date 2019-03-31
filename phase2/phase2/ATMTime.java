@@ -45,20 +45,14 @@ public class ATMTime {
     /**
      * Creates a new clock for the ATM.
      *
-     * @param year the year
-     * @param month the month
-     * @param day the day
-     * @param hour the hour
-     * @param minute the minute
-     * @param second the second
      */
-    private ATMTime(int year, int month, int day, int hour, int minute, int second) {
-        setDate(year, month, day, hour, minute, second);
+    private ATMTime() {
+        setDate(2019, 0, 1, 0, 0, 0);
     }
 
     public static ATMTime getInstance() {
         if (clock == null) {
-            clock = new ATMTime(2019, 0, 1, 0, 0, 0);
+            clock = new ATMTime();
         }
         return clock;
     }

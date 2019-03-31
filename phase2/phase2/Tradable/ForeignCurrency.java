@@ -19,7 +19,7 @@ public class ForeignCurrency implements Comparable<ForeignCurrency> {
     /**
      * The type of currency.
      */
-    String currencyCode;
+    final String currencyCode;
 
     /**
      * The amount of currencyCode.
@@ -36,6 +36,8 @@ public class ForeignCurrency implements Comparable<ForeignCurrency> {
         this.currencyCode = currencyCode;
         this.amount = amount;
     }
+
+
 
     /**
      * Get amount double.

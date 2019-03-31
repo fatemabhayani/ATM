@@ -20,19 +20,19 @@ public class CryptoCurrency extends ForeignCurrency{
      * @param currencyCode Capital three digit currency code
      * @param amount       the amount
      */
-    public CryptoCurrency(String currencyCode, double amount){
+    private CryptoCurrency(String currencyCode, double amount){
         super(currencyCode, amount);
     }
 
 
 
     @Override
-    public ForeignCurrency convert(String identifier) {
+    public CryptoCurrency convert(String identifier) {
         double rate = getRate(this.currencyCode, identifier);
         // CryptoCurrencies have different divisibility, so I will take the least divisible which is 8 decimal places
         double amount = this.amount * rate;
         double correctAmount = (double) Math.round(amount * 100000000) / 100000000;
-        return new ForeignCurrency(identifier, correctAmount);
+        return new CryptoCurrency(identifier, correctAmount);
     }
 
     /**

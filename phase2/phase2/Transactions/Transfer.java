@@ -12,12 +12,12 @@ public class Transfer extends Transaction {
     /**
      * The account receiving the transfer.
      */
-    private Account moneyTo;
+    private final Account moneyTo;
 
     /**
      * The account transferring money.
      */
-    private Account moneyFrom;
+    private final Account moneyFrom;
 
     /**
      * Instantiates a new Transfer.

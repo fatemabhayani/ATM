@@ -64,7 +64,13 @@ public class DataReader {
      * Initializes an instance of DataSaver.
      */
 
-    public void readATMData() {
+    public void readAll() {
+        readATMData();
+        readAllUserData();
+        readAllRequests();
+    }
+
+    private void readATMData() {
         try (BufferedReader reader = new BufferedReader(new FileReader("phase2/phase2/Data/atmdata.txt"))) {
             loadCash(reader.readLine());
             UserManager.accountNum = Integer.valueOf(reader.readLine());
@@ -93,7 +99,7 @@ public class DataReader {
         ATMTime.getInstance().setFactors(factors);
     }
 
-    public void readAllUserData() {
+    private void readAllUserData() {
         try (BufferedReader reader = new BufferedReader(new FileReader("phase2/phase2/Data/UserDataFiles/ListOfNames.txt"))) {
             String line = reader.readLine();
             while (line != null) {
@@ -156,23 +162,23 @@ public class DataReader {
         String[] info = line.split(" ");
         switch (type) {
             case "SAVINGS":
-                return new Savings(getCorrectCalendar(info, 3), user, info[2], info[0], info[1]);
+                return new Savings(getCorrectCalendar(info), user, info[2], info[0], info[1]);
             case "CREDIT CARD":
-                return new CreditCard(getCorrectCalendar(info,3), user, info[2], info[0], info[1]);
+                return new CreditCard(getCorrectCalendar(info), user, info[2], info[0], info[1]);
             case "LINE OF CREDIT":
-                return new LineOfCredit(getCorrectCalendar(info,3), user, info[2], info[0], info[1]);
+                return new LineOfCredit(getCorrectCalendar(info), user, info[2], info[0], info[1]);
             case "CASH BACK CARD":
-                return new CashBackCard(getCorrectCalendar(info,3), user, info[2], info[0], info[1]);
+                return new CashBackCard(getCorrectCalendar(info), user, info[2], info[0], info[1]);
             case "CHEQUING":
-                return new Chequing(Boolean.valueOf(info[5]), getCorrectCalendar(info,3), user, info[2], info[0], info[1]);
+                return new Chequing(Boolean.valueOf(info[5]), getCorrectCalendar(info), user, info[2], info[0], info[1]);
             default:
-                return new Savings(getCorrectCalendar(info,3), user, info[2], info[0], info[1]);
+                return new Savings(getCorrectCalendar(info), user, info[2], info[0], info[1]);
         }
     }
 
-    private GregorianCalendar getCorrectCalendar(String[] info, int index) {
-        String[] date = info[index].split("/");
-        String[] time = info[index + 1].split(":");
+    private GregorianCalendar getCorrectCalendar(String[] info) {
+        String[] date = info[3].split("/");
+        String[] time = info[3 + 1].split(":");
         return new GregorianCalendar(Integer.valueOf(date[0]), Integer.valueOf(date[1]) - 1, Integer.valueOf(date[2]),
                 Integer.valueOf(time[0]), Integer.valueOf(time[1]), Integer.valueOf(time[2]));
     }
@@ -196,24 +202,24 @@ public class DataReader {
         ForeignCurrency cur = new ForeignCurrency(info[2], Double.valueOf(info[1]));
         Account from = UserManager.getUserAccount(Integer.valueOf(info[5]));
         Account to = UserManager.getUserAccount(Integer.valueOf(info[6]));
-        account.addTransaction(new Transfer(cur, from, to, getCorrectCalendar(info,3)));
+        account.addTransaction(new Transfer(cur, from, to, getCorrectCalendar(info)));
     }
 
     private void readOtherTransaction(String[] info, Account account) {
         ForeignCurrency cur = new ForeignCurrency(info[2], Double.valueOf(info[1]));
         switch (info[0]) {
             case "D":
-                account.addTransaction(new Deposit(cur, account, getCorrectCalendar(info,3)));
+                account.addTransaction(new Deposit(cur, account, getCorrectCalendar(info)));
                 break;
             case "W":
-                account.addTransaction(new Withdraw(cur, account, getCorrectCalendar(info,3)));
+                account.addTransaction(new Withdraw(cur, account, getCorrectCalendar(info)));
                 break;
             case "B":
-                account.addTransaction(new Bill(cur, account, getCorrectCalendar(info,3)));
+                account.addTransaction(new Bill(cur, account, getCorrectCalendar(info)));
         }
     }
 
-    public void readAllRequests() {
+    private void readAllRequests() {
         try (BufferedReader reader = new BufferedReader(new FileReader("phase2/phase2/Data/Requests/Requests.txt"))) {
             String line = reader.readLine();
             while (line != null) {

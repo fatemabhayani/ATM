@@ -17,12 +17,12 @@ class AccountDisplay {
     /**
      * The User.
      */
-    public static User U = UserDisplay.U;
+    public static final User U = UserDisplay.U;
     /**
      * The Account.
      */
-    public static Account a = UserDisplay.a;
-    private static String accountType = UserDisplay.accountType;
+    public static final Account a = UserDisplay.a;
+    private static final String accountType = UserDisplay.accountType;
 
     /**
      * The entry point of Account Display.

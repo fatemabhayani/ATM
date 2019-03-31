@@ -32,7 +32,7 @@ public class BankTeller extends User {
      * @param i the index of requests
      * @return the request at index i
      */
-    protected UndoRequest getRequest(int i) {
+    public UndoRequest getRequest(int i) {
         return ATM.undoRequests.get(i);
     }
 
@@ -41,7 +41,7 @@ public class BankTeller extends User {
      *
      * @return the number of requests
      */
-    private int getNumberOfRequests() { return ATM.undoRequests.size(); }
+    public int getNumberOfRequests() { return ATM.undoRequests.size(); }
 
     /**
      * Returns a summary of the bank manager's requests.

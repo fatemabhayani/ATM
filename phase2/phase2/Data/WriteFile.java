@@ -5,9 +5,9 @@ import java.io.*;
 /**
  * The type Write file.
  */
-public class WriteFile  {
+class WriteFile  {
 
-    private File path;
+    private final File path;
     private boolean appendFile = true;
 
     /**
@@ -33,9 +33,8 @@ public class WriteFile  {
      * Write to file.
      *
      * @param outgoingText the outgoing text
-     * @throws IOException the io exception
      */
-    public void writeToFile( String outgoingText ) throws IOException {
+    public void writeToFile( String outgoingText ) {
         try {
             FileWriter fw = new FileWriter(this.path, appendFile);
             PrintWriter pw = new PrintWriter(fw);

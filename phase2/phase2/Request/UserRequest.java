@@ -9,12 +9,12 @@ public class UserRequest extends Request {
     /**
      * The username for the new user.
      */
-    private String username;
+    private final String username;
 
     /**
      * The username for the new user.
      */
-    private String password;
+    private final String password;
 
     /**
      * Instantiates a new ser request.

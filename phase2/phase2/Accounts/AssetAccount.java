@@ -1,6 +1,5 @@
 package phase2.Accounts;
 
-import phase2.Tradable.ForeignCurrency;
 import phase2.Tradable.*;
 import phase2.Transactions.Transaction;
 import phase2.People.User;
@@ -52,11 +51,15 @@ public abstract class AssetAccount implements Account {
      * @param num          the account number
      */
     public AssetAccount(Calendar date, User owner1, String identifier, int num) {
+        this(date, owner1, num);
+        balance = new ForeignCurrency(identifier, 0);
+    }
+
+    public AssetAccount(Calendar date, User owner1, int num){
         dateOfCreation = date;
         transactions = new ArrayList<>();
         this.owner1 = owner1;
         this.owner2 = null;
-        balance = new ForeignCurrency(identifier, 0);
         accountNum = num;
     }
 
