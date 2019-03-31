@@ -64,7 +64,13 @@ public class DataReader {
      * Initializes an instance of DataSaver.
      */
 
-    public void readATMData() {
+    public void readAll() {
+        readATMData();
+        readAllUserData();
+        readAllRequests();
+    }
+
+    private void readATMData() {
         try (BufferedReader reader = new BufferedReader(new FileReader("phase2/phase2/Data/atmdata.txt"))) {
             loadCash(reader.readLine());
             UserManager.accountNum = Integer.valueOf(reader.readLine());
@@ -93,7 +99,7 @@ public class DataReader {
         ATMTime.getInstance().setFactors(factors);
     }
 
-    public void readAllUserData() {
+    private void readAllUserData() {
         try (BufferedReader reader = new BufferedReader(new FileReader("phase2/phase2/Data/UserDataFiles/ListOfNames.txt"))) {
             String line = reader.readLine();
             while (line != null) {
@@ -213,7 +219,7 @@ public class DataReader {
         }
     }
 
-    public void readAllRequests() {
+    private void readAllRequests() {
         try (BufferedReader reader = new BufferedReader(new FileReader("phase2/phase2/Data/Requests/Requests.txt"))) {
             String line = reader.readLine();
             while (line != null) {

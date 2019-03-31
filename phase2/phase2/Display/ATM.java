@@ -39,9 +39,7 @@ public class ATM {
      */
     public static void main(String[] args){
         DataReader d = new DataReader();
-        d.readATMData();
-        d.readAllUserData();
-        d.readAllRequests();
+        d.readAll();
 
         String command;
 
