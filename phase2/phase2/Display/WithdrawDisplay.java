@@ -1,5 +1,6 @@
 package phase2.Display;
 
+import phase2.ATMTime;
 import phase2.Accounts.Account;
 import phase2.Tradable.ForeignCurrency;
 import phase2.Transactions.Withdraw;
@@ -26,7 +27,7 @@ class WithdrawDisplay {
         System.out.println("Enter the sum of money you wish to withdraw.");
         String command = tmp.nextLine();
         int amt = Integer.valueOf(command.replaceAll("//s", ""));
-        Calendar time = ATM.clock.getCurrentTime();
+        Calendar time = ATMTime.getInstance().getCurrentTime();
         Withdraw t = new Withdraw(new ForeignCurrency("CAD", amt), a, time);
         U.makeTransaction(t);
 

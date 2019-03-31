@@ -54,8 +54,8 @@ public class TransferInterface extends JFrame{
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                Transfer t = new Transfer(new ForeignCurrency(currency,amount),A,ac.get(number), ATM.clock.getCurrentTime());
-                u.makeTransaction(t);
+                // Transfer t = new Transfer(new ForeignCurrency(currency,amount),A,ac.get(number), ATM.clock.getCurrentTime());
+                // u.makeTransaction(t);
 
 
             }
