@@ -1,5 +1,6 @@
 package phase2.Tradable;
 
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -13,17 +14,17 @@ import org.json.simple.parser.ParseException;
 /**
  * The type Foreign currency.
  */
-public class ForeignCurrency implements Comparable<Tradable>, Tradable {
+public class ForeignCurrency implements Comparable<ForeignCurrency> {
 
     /**
      * The type of currency.
      */
-    private String currencyCode;
+    String currencyCode;
 
     /**
      * The amount of currencyCode.
      */
-    private double amount;
+    double amount;
 
     /**
      * Instantiates a new Foreign currency.
@@ -57,10 +58,10 @@ public class ForeignCurrency implements Comparable<Tradable>, Tradable {
     /**
      * Add two instances for foreign currencies.
      *
-     * @param t the second Tradable object
+     * @param f the second currency object
      */
-    public void add(Tradable t){
-        ForeignCurrency d = (ForeignCurrency) t.convert(getCurrencyCode());
+    public void add(ForeignCurrency f){
+        ForeignCurrency d =  f.convert(getCurrencyCode());
         amount += d.getAmount();
     }
 
@@ -70,10 +71,10 @@ public class ForeignCurrency implements Comparable<Tradable>, Tradable {
     /**
      * Subtract two instances for foreign currencies.
      *
-     * @param t the second Tradable object.
+     * @param f the second currency object.
      */
-    public void subtract(Tradable t){
-        ForeignCurrency d = (ForeignCurrency) t.convert(getCurrencyCode());
+    public void subtract(ForeignCurrency f){
+        ForeignCurrency d =  f.convert(getCurrencyCode());
         amount -= d.getAmount();
     }
 
@@ -93,8 +94,8 @@ public class ForeignCurrency implements Comparable<Tradable>, Tradable {
     }
 
 
-    public int compareTo(Tradable t){
-        return Double.compare(amount, t.convert(this.currencyCode).getAmount());
+    public int compareTo(ForeignCurrency f){
+        return Double.compare(amount, f.convert(this.currencyCode).getAmount());
     }
 
     /**
@@ -108,8 +109,10 @@ public class ForeignCurrency implements Comparable<Tradable>, Tradable {
             return this;
         }else {
             double rate = getRate(this.currencyCode, currency);
-            double newAmount = this.amount * rate;
-            return new ForeignCurrency(currency, newAmount);
+            double newAmount = (this.amount * rate);
+            // for fiat currencies the lowest denomination is the 2nd decimal place, ex 1 cent
+            double correctNewAmount = (double) Math.round(newAmount * 100) / 100;
+            return new ForeignCurrency(currency, correctNewAmount);
         }
     }
 

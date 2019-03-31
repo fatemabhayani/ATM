@@ -1,5 +1,6 @@
 package phase2.Display;
 
+import phase2.People.BankManager;
 import phase2.Request.AccountRequest;
 import phase2.Accounts.Account;
 import phase2.People.User;
@@ -38,7 +39,7 @@ class AccountDisplay {
             command = tmp.nextLine();
             command = command.replaceAll("//s","");
             AccountRequest r = new AccountRequest(U, accountType, command.toUpperCase());
-            ATM.b.addRequest(r);
+            BankManager.getInstance().addRequest(r);
             System.out.println("Your request has been made!");
             AccountDisplay.main(null);
         } else if (command.equals("2")) {

@@ -36,7 +36,7 @@ public class Chequing extends AssetAccount {
 
     @Override
     public void subtract(Transaction transaction) {
-        Tradable amount = transaction.getAmount();
+        ForeignCurrency amount = transaction.getAmount();
         if (balance.getAmount() < 0) {
             System.out.println("Cannot transfer out of an account with a negative balance!");
         } else {
@@ -52,7 +52,7 @@ public class Chequing extends AssetAccount {
     }
 
     @Override
-    public void subtract(Tradable amount) {
+    public void subtract(ForeignCurrency amount) {
         if (balance.getAmount() < 0) {
             System.out.println("Cannot transfer out of an account with a negative balance!");
         } else {

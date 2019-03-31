@@ -2,21 +2,14 @@ package phase2.Data;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.GregorianCalendar;
-
 import phase2.Accounts.*;
 import phase2.CashMachine;
 import phase2.Display.ATM;
-import phase2.Request.AccountRequest;
-import phase2.Request.UndoRequest;
-import phase2.Request.UserRequest;
+import phase2.Request.*;
 import phase2.Tradable.*;
 import phase2.People.*;
-import phase2.Transactions.Bill;
-import phase2.Transactions.Deposit;
-import phase2.Transactions.Transfer;
-import phase2.Transactions.Withdraw;
+import phase2.Transactions.*;
 
 /**
  * The type Data reader.
@@ -25,14 +18,11 @@ public class DataReader {
 
     public static void main(String[] args) {
         ATM.bankUsers = new ArrayList<>();
-        ATM.b.userRequests = new ArrayList<>();
-        ATM.b.accountRequests = new ArrayList<>();
         ATM.undoRequests = new ArrayList<>();
         DataReader read = new DataReader();
         read.readAllUserData();
         read.readAllRequests();
         read.readATMData();
-        int x = 0;
 
 
         for (User user : ATM.bankUsers) {
@@ -53,10 +43,10 @@ public class DataReader {
                 System.out.println(account.toString() + account.transactionString());
             }
         }
-        for (UserRequest req: ATM.b.userRequests){
+        for (UserRequest req: BankManager.getInstance().userRequests){
             System.out.println(req);
         }
-        for (AccountRequest req: ATM.b.accountRequests){
+        for (AccountRequest req: BankManager.getInstance().accountRequests){
             System.out.println(req);
         }
         for (UndoRequest req: ATM.undoRequests){
@@ -72,7 +62,7 @@ public class DataReader {
      * Initializes an instance of DataSaver.
      */
 
-    private void readATMData() {
+    public void readATMData() {
         try (BufferedReader reader = new BufferedReader(new FileReader("phase2/phase2/Data/atmdata.txt"))) {
             String line = reader.readLine();
             loadCash(line);
@@ -82,16 +72,16 @@ public class DataReader {
         }
     }
 
-    private void loadCash(String line){
+    private void loadCash(String line) {
         String[] cash = line.split("/");
         int[] bills = new int[4];
         for (int i = 0; i < 4; i++) {
             bills[i] = Integer.valueOf(cash[i]);
         }
-        ATM.c = new CashMachine(bills);
+        CashMachine.getInstance().setBills(bills);
     }
 
-    private void readAllUserData() {
+    public void readAllUserData() {
         try (BufferedReader reader = new BufferedReader(new FileReader("phase2/phase2/Data/UserDataFiles/ListOfNames.txt"))) {
             String line = reader.readLine();
             while (line != null) {
@@ -211,7 +201,7 @@ public class DataReader {
         }
     }
 
-    private void readAllRequests() {
+    public void readAllRequests() {
         try (BufferedReader reader = new BufferedReader(new FileReader("phase2/phase2/Data/Requests/Requests.txt"))) {
             String line = reader.readLine();
             while (line != null) {
@@ -238,12 +228,12 @@ public class DataReader {
     }
 
     private void addUserRequest(String[] info) {
-        ATM.b.userRequests.add(new UserRequest(info[1], info[2]));
+        BankManager.getInstance().userRequests.add(new UserRequest(info[1], info[2]));
     }
 
     private void addAccountRequest(String[] info) {
         User user = UserManager.getUser(info[1]);
-        ATM.b.accountRequests.add(new AccountRequest(user, info[2], info[3]));
+        BankManager.getInstance().accountRequests.add(new AccountRequest(user, info[2], info[3]));
     }
 
     private void addUndoRequest(String[] info) {

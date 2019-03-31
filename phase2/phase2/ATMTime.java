@@ -104,12 +104,28 @@ public class ATMTime {
         secondFactor = second - date.get(Calendar.SECOND);
     }
 
+    /**
+     * Sets the date and time.
+     *
+     * @param yearFactor the year
+     * @param monthFactor the month
+     * @param dayFactor the day
+     * @param hourFactor the hour
+     * @param minuteFactor the minute
+     * @param secondFactor the second
+     */
+    public void setFactors(int yearFactor, int monthFactor, int dayFactor, int hourFactor, int minuteFactor, int secondFactor) {
+        this.yearFactor = yearFactor;
+        this.monthFactor = monthFactor;
+        this.dayFactor = dayFactor;
+        this.hourFactor = hourFactor;
+        this.minuteFactor = minuteFactor;
+        this.secondFactor = secondFactor;
+    }
+
     @Override
     public String toString() {
-        Calendar date = getCurrentTime();
-        return date.get(Calendar.YEAR) + "/" + (date.get(Calendar.MONTH) + 1) + "/" + date.get(Calendar.DAY_OF_MONTH) +
-                " " + date.get(Calendar.HOUR_OF_DAY) + ":" + date.get(Calendar.MINUTE) + ":" +
-                date.get(Calendar.SECOND);
+        return yearFactor + " " + monthFactor + " " + dayFactor + " " + hourFactor + " " + minuteFactor + " " + secondFactor;
     }
 
 }

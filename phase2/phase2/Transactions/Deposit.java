@@ -34,7 +34,7 @@ public class Deposit extends Transaction {
      * @param moneyTo account to deposit the money to
      * @param date    the date of creation
      */
-    public Deposit(Tradable amount, Account moneyTo, Calendar date) {
+    public Deposit(ForeignCurrency amount, Account moneyTo, Calendar date) {
         super(amount, date);
         this.moneyTo = moneyTo;
     }

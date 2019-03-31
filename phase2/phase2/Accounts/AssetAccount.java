@@ -1,7 +1,7 @@
 package phase2.Accounts;
 
 import phase2.Tradable.ForeignCurrency;
-import phase2.Tradable.Tradable;
+import phase2.Tradable.*;
 import phase2.Transactions.Transaction;
 import phase2.People.User;
 import java.io.*;
@@ -16,7 +16,7 @@ public abstract class AssetAccount implements Account {
     /**
      * The account balance.
      */
-    Tradable balance;
+    ForeignCurrency balance;
 
     /**
      * The first account owner.
@@ -71,7 +71,7 @@ public abstract class AssetAccount implements Account {
      *
      * @return the balance
      */
-    public Tradable getBalance() {
+    public ForeignCurrency getBalance() {
         return balance;
     }
 
@@ -80,7 +80,7 @@ public abstract class AssetAccount implements Account {
      *
      * @param balance the new balance
      */
-    public void setBalance(Tradable balance){
+    public void setBalance(ForeignCurrency balance){
         this.balance = balance;
     }
 
@@ -112,7 +112,7 @@ public abstract class AssetAccount implements Account {
      *
      * @param amount the amount being subtracted
      */
-    public abstract void subtract(Tradable amount);
+    public abstract void subtract(ForeignCurrency amount);
 
     /**
      * Increases the balance by the amount in transaction.
@@ -130,7 +130,7 @@ public abstract class AssetAccount implements Account {
      * @param file name of the file that contains the amount
      */
     public void add(String file) {
-        Tradable amount = helpRead(file);
+        ForeignCurrency amount = helpRead(file);
         balance.add(amount);
     }
 
@@ -156,7 +156,7 @@ public abstract class AssetAccount implements Account {
      * @param file the file
      * @return the amount value
      */
-    public Tradable helpRead(String file) {
+    public ForeignCurrency helpRead(String file) {
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String s = reader.readLine();
             int denomination = Character.getNumericValue(s.charAt(0));
@@ -173,7 +173,7 @@ public abstract class AssetAccount implements Account {
      *
      * @param amount the amount
      */
-    public void helpWrite(Tradable amount) {
+    public void helpWrite(ForeignCurrency amount) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("phase2/phase2/Data/outgoing.txt"))) {
             writer.write(Double.toString(amount.convert("CAD").getAmount()));
         } catch(Exception e) {

@@ -17,7 +17,7 @@ class ManagerDisplay {
      */
     public static void main(String[] args) {
 
-        BankManager b = ATM.b;
+        BankManager b = BankManager.getInstance();
         System.out.println("Hello bank manager, let's check the ATM alerts first!");
 
         Scanner sc = new Scanner(System.in);

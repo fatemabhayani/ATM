@@ -1,5 +1,6 @@
 package phase2.Transactions;
 
+import phase2.CashMachine;
 import phase2.Display.ATM;
 import phase2.Accounts.*;
 import phase2.Tradable.*;
@@ -33,7 +34,7 @@ public class Withdraw extends Transaction {
      * @return true unless account is credit card account.
      */
     public boolean transactionApproved() {
-        boolean isEnoughBills = (getAmount().convert("CAD").getAmount() > ATM.c.totalBalance());
+        boolean isEnoughBills = (getAmount().convert("CAD").getAmount() > CashMachine.getInstance().totalBalance());
         boolean isValidAmount = (getAmount().convert("CAD").getAmount() % 5 == 0);
 
         boolean isEnoughFunds = true;
@@ -52,7 +53,7 @@ public class Withdraw extends Transaction {
      */
     public void makeTransaction() {
         moneyFrom.subtract(this);
-        ATM.c.withdrawBills(getAmount().convert("CAD").getAmount());
+        CashMachine.getInstance().withdrawBills(getAmount().convert("CAD").getAmount());
     }
 
     /**

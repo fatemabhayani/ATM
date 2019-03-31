@@ -1,6 +1,6 @@
 package phase2.Accounts;
 
-import phase2.Tradable.Tradable;
+import phase2.Tradable.*;
 import phase2.Transactions.Transaction;
 import phase2.People.User;
 import java.util.ArrayList;
@@ -15,14 +15,14 @@ public interface Account {
      *
      * @return the balance
      */
-    Tradable getBalance();
+    ForeignCurrency getBalance();
 
     /**
      * Sets the account balance.
      *
      * @param balance the new balance
      */
-    void setBalance(Tradable balance);
+    void setBalance(ForeignCurrency balance);
 
     /**
      * Decreases the balance by the amount in transaction.
@@ -36,7 +36,7 @@ public interface Account {
      *
      * @param amount the amount
      */
-    void subtract(Tradable amount);
+    void subtract(ForeignCurrency amount);
 
     /**
      * Increases the balance by the amount in transaction.
@@ -73,14 +73,14 @@ public interface Account {
      * @param file the file
      * @return the amount
      */
-    Tradable helpRead(String file);
+    ForeignCurrency helpRead(String file);
 
     /**
      * Writes an amount into the file.
      *
      * @param amount the amount
      */
-    void helpWrite(Tradable amount);
+    void helpWrite(ForeignCurrency amount);
 
     /**
      * Adds a second owner to the account.

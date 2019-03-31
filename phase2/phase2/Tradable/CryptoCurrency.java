@@ -1,65 +1,59 @@
 package phase2.Tradable;
 
-public class CryptoCurrency implements Comparable<Tradable>, Tradable {
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
-    private String currencyCode;
+public class CryptoCurrency extends ForeignCurrency{
 
-    private double amount;
+    public static void main(String[] args) {
+        CryptoCurrency cur = new CryptoCurrency("BTC", 2);
+        System.out.println(cur.getRate("BTC", "USD"));
+    }
+
 
     public CryptoCurrency(String currencyCode, double amount){
-        this.currencyCode = currencyCode;
-        this.amount = amount;
+        super(currencyCode, amount);
     }
 
-    public void subtract(double d){
-    }
 
 
     @Override
-    public double getAmount() {
-        return amount;
+    public ForeignCurrency convert(String identifier) {
+        double rate = getRate(this.currencyCode, identifier);
+        // CryptoCurrencies have different divisibility, so I will take the least divisible which is 8 decimal places
+        double amount = this.amount * rate;
+        double correctAmount = (double) Math.round(amount * 100000000) / 100000000;
+        return new ForeignCurrency(identifier, correctAmount);
     }
 
-    @Override
-    public void add(Tradable t) {
-        CryptoCurrency d = (CryptoCurrency) t.convert(getCurrencyCode());
-        amount += d.getAmount();
+
+    private double getRate(String from, String to){
+        try {
+            URL url = getCorrectUrl(from, to);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
+            String line = reader.readLine();
+            reader.close();
+            JSONParser parser = new JSONParser();
+            JSONObject json = (JSONObject) parser.parse(line);
+            return (double) json.get(to);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+
     }
 
-    @Override
-    public void add(double amount){
-        this.amount += amount;
+    private URL getCorrectUrl(String from, String to) throws MalformedURLException{
+        String api_key = "&api_key={bb90d297eba6964b0644e3c38644e1c99b7c6b0e237bd31de47477619857acd2}";
+        String urlString = "https://min-api.cryptocompare.com/data/price?fsym=" + from + "&tsyms=" + to + api_key;
+        return new URL(urlString);
     }
 
-    @Override
-    public String getCurrencyCode() {
-        return currencyCode;
-    }
 
-    @Override
-    public int compareTo(Tradable o) {
-        return Double.compare(amount, o.convert(this.currencyCode).getAmount());
-    }
-
-    @Override
-    public void subtract(Tradable t) {
-        CryptoCurrency d = (CryptoCurrency) t.convert(getCurrencyCode());
-        amount -= d.getAmount();
-    }
-
-    @Override
-    public Tradable multiply(double constant) {
-        amount = amount * constant;
-        return this;
-    }
-
-    @Override
-    public Tradable convert(String identifier) {
-        return this;
-        //TODO: implement this
-    }
-
-    public String toString() {
-        return getAmount() + " " + currencyCode;
-    }
 }
