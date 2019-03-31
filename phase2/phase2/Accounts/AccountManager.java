@@ -2,6 +2,8 @@ package phase2.Accounts;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+
 import phase2.People.*;
 import phase2.Transactions.*;
 
@@ -137,7 +139,7 @@ public class AccountManager {
             t.addAll(a.getTransactions());
         }
 
-        t.sort(new TransactionComparator());
+        Collections.sort(t);
         return t;
     }
 
