@@ -64,6 +64,9 @@ public class ForeignCurrency implements Comparable<Tradable>, Tradable {
         amount += d.getAmount();
     }
 
+    public void add(double amount){
+        this.amount += amount;
+    }
     /**
      * Subtract two instances for foreign currencies.
      *

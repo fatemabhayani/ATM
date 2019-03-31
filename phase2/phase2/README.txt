@@ -1,3 +1,10 @@
+------------------------BEFORE RUNNING------------------------
+Before running the program, you will need to download the .jar at the following address:
+http://www.java2s.com/Code/JarDownload/json-simple/json-simple-1.1.jar.zip
+After this, you will need to go to Project Structure -> Project Settings -> Modules -> select the + sign and
+choose "JARs or Directories", and open the .jar file you get from the link above. This is so that the convert
+method in ForeignCurrency runs, since we used an API to get conversion rates between currency types.
+
 ------------------------ALERTS.TXT------------------------
 alerts.txt should contain lines that read "The number of (integer denoting denomination) dollar bills in the ATM is
 less than 20." The integer denoting the denomination should be either 5, 10, 20, or 50. The CashMachine class checks
@@ -27,25 +34,27 @@ data of every user in the ATM at the time the program exits. We also have a file
 
 ------------------------DESCRIPTION OF CLASSES------------------------
 1. package phase2
-- inlcudes the main parent classes Account, Data, Display, Interfaces, Peoples, Request, Transaction.
-Also includes classes ATMTime, CashMachine, and ForeignCurrency
+- Includes the packages Accounts, Data, Display, Interfaces, People, Request, Transactions.
+- Also includes general classes ATMTime, CashMachine, and ForeignCurrency. These are the classes that do not
+  inherit from or relate to other packages.
 
 2. package phase2.Accounts
-- includes account interface as well as the different types of accounts (Asset, Credit card,
- Cashback card, Chequing, Savings, Line of credit) which extend Account, and the AccountManager which
- stores and has access to all of the account information.
+- Includes Account interface as well as the different types of accounts (AssetAccount, Savings, Chequing, CreditCard,
+  CashBackCard, and LineOfCredit) which extend Account.
+- Also includes the AccountManager which stores and has access to the collection of one User's accounts.
 
 3. package phase2.Data
-- includes all the data inlcuding .txt files like  alerts.txt, deposits.txt, etc. Also includes UserDataFiles
-and DataReader, DataSaver, and WriteFile classes
+- Includes all the program's output and input files, including alerts.txt, deposits.txt, outgoing.txt, and all
+  .txt files that save the ATM data after each program run.
+- Also includes DataReader, DataSaver, and WriteFile classes, which assist in reading and writing to these files.
 
 4. package phase2.Display
-- inlcudes all the Display classes including AccountDisplay, ATM, BillDisplay, DepositDisplay, ManagerDisplay,
-Transfer Display, UserDisplay, WithdrawDisplay.
+- Includes all the classes with main methods that assist in the running of our program, including ATM,
+  ManagerDisplay, UserDisplay, AccountDisplay, BillDisplay, DepositDisplay, Transfer Display, WithdrawDisplay.
 
 5. package phase2.People
-- includes classes for bank manager, user, bank teller and a user manager class that manages the
-collection of users for the bank manager.
+- Includes classes for BankManager, User, BankTeller, and the UserManager class that manages the collection of
+  users of the ATM.
 
 6. package phase2.Requests
 - the user can request to undo a transaction, create an account or to create an user
@@ -98,10 +107,12 @@ changed accordingly. If the transaction was a transfer, the balance of the accou
 also be changed. A Bill transaction cannot be undone.
 
 ------------------------HOW TO INITIATE A TRANSACTION?------------------------
-
-After a user has logged in, they can complete a transaction by first choosing the category of the account
-ie. "sv": Savings, "cq": Chequing, "cc": CreditCard, "cb": CashBackCard, "lc": LineOfCredit and then
-make a transaction associated with the account. 
+After a user has logged in, they can make a transaction by first choosing the category of the account (i.e.
+"sv": Savings, "cq": Chequing, "cc": CreditCard, "cb": CashBackCard, "lc": LineOfCredit), choosing a specific
+account of that type, and then making a transaction from the account. The user can choose which type of transaction
+they would like to make, Bill, Withdraw, Deposit, or Transfer. To make a transfer the user will need the account
+number of the account they would like to transfer to. To make a deposit, deposits.txt will need to have a line of
+text of the correct format.
 
 ------------------------FUNCTIONALITY FOR BANK TELLERS------------------------
 1. Restocking the cash machine:
