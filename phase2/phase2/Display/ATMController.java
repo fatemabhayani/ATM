@@ -1,5 +1,6 @@
 package phase2.Display;
 
+import phase2.ATMTime;
 import phase2.Accounts.Account;
 import phase2.People.User;
 import phase2.Tradable.ForeignCurrency;
@@ -42,7 +43,7 @@ public class ATMController {
         System.out.println("Enter the sum of money you wish to withdraw.");
         String command = tmp.nextLine();
         int amt = Integer.valueOf(command.replaceAll("//s", ""));
-        Calendar time = ATM.clock.getCurrentTime();
+        Calendar time = ATMTime.getInstance().getCurrentTime();
         if (t instanceof Withdraw){
             t = new Withdraw(new ForeignCurrency("CAD", amt), a, time);
         }else if (t instanceof Bill) {

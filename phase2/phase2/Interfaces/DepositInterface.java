@@ -28,9 +28,9 @@ public class DepositInterface extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                Calendar time = ATM.clock.getCurrentTime();
-                Deposit t = new Deposit("deposits.txt", a, time);
-                U.makeTransaction(t);
+                // Calendar time = ATM.clock.getCurrentTime();
+                // Deposit t = new Deposit("deposits.txt", a, time);
+                // U.makeTransaction(t);
                 switchToLogin();
             }
         });

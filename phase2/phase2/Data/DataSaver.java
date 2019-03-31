@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
+import phase2.ATMTime;
 import phase2.CashMachine;
 import phase2.Display.ATM;
 import phase2.Tradable.*;
@@ -64,6 +65,7 @@ public class DataSaver {
         try (FileWriter writer = new FileWriter("phase2/phase2/Data/atmdata.txt")) {
             writer.write(CashMachine.getInstance().toString()+"\n");
             writer.write(((Integer)UserManager.accountNum).toString() + "\n");
+            writer.write(ATMTime.getInstance().toString());
         } catch (Exception e) {
             e.printStackTrace();
         }

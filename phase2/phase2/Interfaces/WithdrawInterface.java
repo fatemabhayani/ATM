@@ -54,9 +54,9 @@ public class WithdrawInterface extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                Calendar time = ATM.clock.getCurrentTime();
-                Withdraw t = new Withdraw(new ForeignCurrency("CAD", amount), a, time);
-                U.makeTransaction(t);
+                //Calendar time = ATM.clock.getCurrentTime();
+                //Withdraw t = new Withdraw(new ForeignCurrency("CAD", amount), a, time);
+                //U.makeTransaction(t);
                 switchToLogin();
             }
         });

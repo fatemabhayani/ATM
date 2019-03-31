@@ -52,8 +52,8 @@ public class BillInterface extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                Bill bill = new Bill(new ForeignCurrency("CAD",amount),account, ATM.clock.getCurrentTime());
-                user.makeTransaction(bill);
+                // Bill bill = new Bill(new ForeignCurrency("CAD",amount),account, ATM.clock.getCurrentTime());
+                //user.makeTransaction(bill);
                 switchToLogin();
 
             }

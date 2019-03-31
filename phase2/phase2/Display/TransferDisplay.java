@@ -1,5 +1,6 @@
 package phase2.Display;
 
+import phase2.ATMTime;
 import phase2.Accounts.Account;
 import phase2.People.User;
 import phase2.People.UserManager;
@@ -54,7 +55,7 @@ class TransferDisplay {
             System.out.println("Enter the three digit currency code of the currency you wish to transfer");
             command = tmp.nextLine();
             command = command.replaceAll("//s", "");
-            Calendar time = ATM.clock.getCurrentTime();
+            Calendar time = ATMTime.getInstance().getCurrentTime();
             Transfer t = new Transfer(new ForeignCurrency(command, amount), da, a, time);
             U.makeTransaction(t);
 
@@ -105,7 +106,7 @@ class TransferDisplay {
             System.out.println("Enter the three digit currency code of the currency you wish to transfer");
             command = tmp.nextLine();
             command = command.replaceAll("//s", "");
-            Calendar time = ATM.clock.getCurrentTime();
+            Calendar time = ATMTime.getInstance().getCurrentTime();
             Transfer t = new Transfer(new ForeignCurrency(command, amt), da, a, time);
             U.makeTransaction(t);
         }

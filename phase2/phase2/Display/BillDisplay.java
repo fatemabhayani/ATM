@@ -1,5 +1,6 @@
 package phase2.Display;
 
+import phase2.ATMTime;
 import phase2.Accounts.Account;
 import phase2.Tradable.ForeignCurrency;
 import phase2.Transactions.Bill;
@@ -28,7 +29,7 @@ class BillDisplay {
         System.out.println("Enter the three digit currency code of the currency you wish to pay the bill in");
         command = tmp.nextLine();
         command = command.replaceAll("//s", "");
-        Bill t = new Bill(new ForeignCurrency(command, amt), a, ATM.clock.getCurrentTime());
+        Bill t = new Bill(new ForeignCurrency(command, amt), a, ATMTime.getInstance().getCurrentTime());
         U.makeTransaction(t);
 
         AccountDisplay.main(null);
