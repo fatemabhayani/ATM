@@ -4,6 +4,7 @@ import phase2.People.BankManager;
 import phase2.Request.AccountRequest;
 import phase2.Accounts.Account;
 import phase2.People.User;
+import phase2.Transactions.Bill;
 
 import java.util.Scanner;
 
@@ -60,6 +61,25 @@ class AccountDisplay {
                     BillDisplay.main(null);
                     break;
             }
+        } else if (command.equals("3")) {
+            if (a.getTransactions().size()>0) {
+                System.out.println("Select the index of Transaction yu wish to undo");
+                int number = Integer.valueOf(tmp.nextLine().replaceAll("//s",""));
+                while (a.getTransactions().size() < number) {
+                    System.out.println("The selected index does not relate to any transaction, Please try again");
+                    number = Integer.valueOf(tmp.nextLine().replaceAll("//s",""));
+                }
+                if (a.getPastTransaction(number) instanceof Bill) {
+                    System.out.println("You are not allowed to undo a bill payment");
+                } else {
+                    U.requestUndo(a, number);
+                }
+            } else {
+                System.out.println("There are no transactions to be undone");
+                AccountDisplay.main(null);
+            }
+
+
         } else {
             UserDisplay.main(null);
         }
