@@ -59,7 +59,7 @@ public class DataSaver {
     /**
      * Writes the time and cash machine contents into atmdata.txt.
      */
-    private void writeATMData() {
+    public void writeATMData() {
         try (FileWriter writer = new FileWriter("phase2/phase2/Data/atmdata.txt")) {
             writer.write(ATM.c.toString()+"\n");
             writer.write(((Integer)UserManager.accountNum).toString() + "\n");
@@ -68,7 +68,7 @@ public class DataSaver {
         }
     }
 
-    private void writeAllUsers(){
+    public void writeAllUsers(){
         try{
             FileWriter writer = new FileWriter("phase2/phase2/Data/UserDataFiles/ListOfNames.txt");
             writer.close();
@@ -170,7 +170,7 @@ public class DataSaver {
         }
     }
 
-    private void writeAllRequests(){
+    public void writeAllRequests(){
         try {FileWriter writer = new FileWriter("phase2/phase2/Data/Requests/Requests.txt");
             writer.close();
         } catch (Exception e){

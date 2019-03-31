@@ -1,8 +1,13 @@
 package phase2.Display;
 
 import phase2.*;
+import phase2.Accounts.*;
+import phase2.Data.DataReader;
+import phase2.Data.DataSaver;
 import phase2.People.*;
 import phase2.Request.*;
+import phase2.Tradable.ForeignCurrency;
+import phase2.Transactions.Deposit;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -56,6 +61,11 @@ public class ATM {
      * @param args the args
      */
     public static void main(String[] args){
+        DataReader d = new DataReader();
+        d.readATMData();
+        d.readAllUserData();
+        d.readAllRequests();
+
         String command;
 
         System.out.println("Welcome to the ATM, I am an incredibly well known superhero, my name is " + generateRandomSuperhero() +
