@@ -108,7 +108,7 @@ public class ForeignCurrency implements Comparable<ForeignCurrency>{
     }
 
     private double getRate(String from, String to) {
-        if (to.equals(from)){
+        if (to.equalsIgnoreCase(from)){
             return 1;
         }
         try {
