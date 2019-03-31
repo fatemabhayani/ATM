@@ -12,22 +12,18 @@ public class WriteFile  {
 
     /**
      * Instantiates a new Write file.
-     *
+     * if not specified info is appended to file
      * @param filePath the file path
      */
-// if not specified info is appended to file
     public WriteFile(File filePath){
         this.path = filePath;
     }
-
     /**
      * Instantiates a new Write file.
      *
      * @param filePath   the file path
-     * @param appendFile the append file
+     * @param appendFile whether the data is appended or overwritten
      */
-//User can choose to overwrite file with new info
-    //*wipes file then writes it*
     public WriteFile(File filePath, boolean appendFile){
         this.path = filePath;
         this.appendFile = appendFile;
@@ -44,7 +40,6 @@ public class WriteFile  {
             FileWriter fw = new FileWriter(this.path, appendFile);
             PrintWriter pw = new PrintWriter(fw);
             pw.println(outgoingText);
-            pw.println("hi");
             pw.close();
         }
         catch(IOException ioException) { ioException.printStackTrace();}

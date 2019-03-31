@@ -2,11 +2,9 @@ package phase2.People;
 
 import phase2.Accounts.*;
 import phase2.Display.ATM;
-import phase2.ForeignCurrency;
 import phase2.Request.*;
 import phase2.Transactions.*;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 /**
  * A user of the ATM.
@@ -37,8 +35,7 @@ public class User {
     public User(String user, String password) {
         username = user;
         this.password = password;
-        accounts = new AccountManager();
-        accounts.setOwner(this);
+        accounts = new AccountManager(this);
     }
 
     /**
@@ -129,9 +126,7 @@ public class User {
      * @param i the transaction number
      * @return the transaction
      */
-     Transaction getTransaction(int i) {
-        return getTransactions().get(i);
-    }
+     Transaction getTransaction(int i) { return getTransactions().get(i); }
 
     /**
      * Balance summary

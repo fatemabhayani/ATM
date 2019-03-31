@@ -6,7 +6,6 @@ import phase2.Request.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 
 /**
  * The type Bank teller.
@@ -77,7 +76,7 @@ public class BankTeller extends User {
      *
      * @param i the index of requests
      */
-    void ignoreRequest(int i) {
+    public void ignoreRequest(int i) {
         ATM.undoRequests.remove(i);
     }
 
@@ -86,7 +85,7 @@ public class BankTeller extends User {
      *
      * @param i the index of requests
      */
-    void completeRequest(int i) {
+    public void completeRequest(int i) {
         ATM.undoRequests.get(i).resolveRequest();
         ATM.undoRequests.remove(i);
     }

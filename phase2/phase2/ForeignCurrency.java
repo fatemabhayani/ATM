@@ -25,9 +25,6 @@ public class ForeignCurrency implements Comparable<ForeignCurrency>{
      */
     private double amount;
 
-    public static void main(String[] args) {
-    }
-
     /**
      * Instantiates a new Foreign currency.
      *
@@ -101,21 +98,25 @@ public class ForeignCurrency implements Comparable<ForeignCurrency>{
      * @return the foreign currency
      */
     public ForeignCurrency convert(String currency){
-        double rate = getRate(this.currencyCode, currency);
-        double newAmount = this.amount * rate;
-        return new ForeignCurrency(currency, newAmount);
+        if (currency.equalsIgnoreCase(this.getCurrencyCode())){
+            return this;
+        }else {
+            double rate = getRate(this.currencyCode, currency);
+            double newAmount = this.amount * rate;
+            return new ForeignCurrency(currency, newAmount);
+        }
     }
 
     private double getRate(String from, String to) {
-        if (to.equals(from)){
+        if (to.equalsIgnoreCase(from)){
             return 1;
         }
         try {
             URL url = getCorrectUrl(from, to);
             JSONObject rates = getRatesJSON(url);
-            if (from.equals("EUR")) {
+            if (from.equalsIgnoreCase("EUR")) {
                 return (double) rates.get(to);
-            } else if (to.equals("EUR")) {
+            } else if (to.equalsIgnoreCase("EUR")) {
                 return 1 / (double) rates.get(from);
             } else {
             double fromEuroRate = (double) rates.get(from);

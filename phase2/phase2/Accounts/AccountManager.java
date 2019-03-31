@@ -2,6 +2,8 @@ package phase2.Accounts;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+
 import phase2.People.*;
 import phase2.Transactions.*;
 
@@ -42,12 +44,13 @@ public class AccountManager {
     /**
      * Instantiates a new account manager.
      */
-    public AccountManager() {
+    public AccountManager(User u) {
         lc = new ArrayList<>();
         cc = new ArrayList<>();
         cq = new ArrayList<>();
         sv = new ArrayList<>();
         cb = new ArrayList<>();
+        owner = u;
     }
 
     /**
@@ -94,10 +97,6 @@ public class AccountManager {
         return getAssetBalance() - getDebtBalance();
     }
 
-    public void setOwner(User user){
-        this.owner = user;
-    }
-
     /**
      * Gets the list of accounts of type s.
      *
@@ -140,7 +139,7 @@ public class AccountManager {
             t.addAll(a.getTransactions());
         }
 
-        t.sort(new TransactionComparator());
+        Collections.sort(t);
         return t;
     }
 

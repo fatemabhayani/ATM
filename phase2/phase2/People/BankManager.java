@@ -1,6 +1,5 @@
 package phase2.People;
 
-import phase2.Accounts.Account;
 import phase2.Display.ATM;
 import phase2.Request.*;
 

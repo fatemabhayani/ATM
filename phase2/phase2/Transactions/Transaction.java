@@ -10,7 +10,7 @@ import java.util.Calendar;
 /**
  * An abstract transaction.
  */
-public abstract class Transaction {
+public abstract class Transaction implements Comparable<Transaction> {
 
     /**
      * The amount of the transaction.
@@ -138,5 +138,18 @@ public abstract class Transaction {
      * @return true if transaction approved, false otherwise
      */
     protected abstract boolean transactionApproved();
+
+    /**
+     * Compares the date of two transactions.
+     *
+     * @param t the second transaction
+     * @return a negative value if t was made more recently, a positive value if t was made earlier,
+     * and 0 if t was made at the same date
+     */
+    public int compareTo(Transaction t) {
+        Calendar time1 = getTimeOfTransaction();
+        Calendar time2 = t.getTimeOfTransaction();
+        return time1.compareTo(time2);
+    }
 }
 
