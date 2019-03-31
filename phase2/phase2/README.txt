@@ -29,7 +29,8 @@ random line every time the display is called and uses this name when greeting ne
 
 ------------------------DATA TXT FILES------------------------
 There are several files created that store the ATM data. A file called [username].txt is created to write the
-data of every user in the ATM at the time the program exits. We also have a file called
+data of every user in the ATM at the time the program exits. We also have a file called ListOfNames.txt which lists
+the username of every user in the ATM, so that when reading the data, we can access the file for every user.
 
 
 ------------------------DESCRIPTION OF CLASSES------------------------
@@ -132,3 +133,4 @@ The bank manager can read alerts.txt and restock the cash machine with bills acc
 2. Completing all types of requests:
 The bank manager can complete and ignore any request type, and they are the only one who can complete requests to
 make new users and accounts.
+3. The bank manager can set the date of the ATM, specifying the year, month, day, hour, minute, and second.
