@@ -33,10 +33,12 @@ alerts.txt should have lines that read "The number of (int, describing the denom
 
 2. Package Phase2.Accounts
 - includes account interface as well as the different types of accounts (Asset, Credit card,
- Cashback card, Chequing, Savings, Line of credit) which extend Account, and the AccountManager which
+ CashBackCard, Chequing, Savings, Line of credit) which extend Account, and the AccountManager which
  stores and has access to all of the account information.
 
 3. Package Phase2.Data
+- where all the data is stored. mostly text files like alerts.txt, userdata.text, etc. Also includes
+DataReader, DataSaver, and  WriteFile classes.
 
 4. Package Phase2.Display
 
