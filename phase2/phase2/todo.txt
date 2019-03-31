@@ -7,7 +7,9 @@ Phase 2
 
 Refactor (and add Phase 2 functionality)
 
-10. Display classes
+BankManager
+- make BankManager a singleton class
+Display classes
 ERRORS - ARJUN
 - Bank Manager is not asked to set a default password for the user
 - When user tries to change their password, the code crashes
@@ -20,6 +22,7 @@ Note
    the method should be called in the main method but isn't yet, don't delete it!)
 
 
+
 Presentation Classes
 - Brittany (Data & People)
 - Anna (Transactions)
@@ -29,7 +32,7 @@ Presentation Classes
 Unused Methods
 Datasaver class is not used
 Write File
-Bank Mnaager: setdate
+Bank Manager: setdate
 Bank Teller: createuseraccount, getrequest, getrequestsummary, ignore request, complete request
 User: request account, request undo,
 UserManager: isbankmanager, getuseraccount
