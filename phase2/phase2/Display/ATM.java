@@ -38,9 +38,6 @@ public class ATM {
      * @param args the args
      */
     public static void main(String[] args){
-        DataReader d = new DataReader();
-        d.readAll();
-
         ATMController con = new ATMController();
 
         if (ATMTime.getInstance().isFirstOfMonth()) { UserManager.updateInterest(); }
