@@ -62,6 +62,18 @@ public class ATM {
             command = sc.nextLine().replaceAll("//s", "");
             if (UserManager.isBankManager(command)) {
                 con.verifyBankManager(sc);
+            } else if (command.contains("teller")) {
+                System.out.println("Welcome Mr.Teller. Please enter your password");
+                command = sc.nextLine();
+                while (!(command.contains("bestemployee"))) {
+                    System.out.println("This is an incorrect password. please try again");
+                    command = sc.nextLine();
+                }
+                args = new String[1];
+                args[0] = "teller";
+                TellerDisplay.main(args);
+
+
             } else {
                 while (!UserManager.authenticateUsername(command)) {
                     System.out.println("You did not give a valid username, try again! If you would like to go back to " +
