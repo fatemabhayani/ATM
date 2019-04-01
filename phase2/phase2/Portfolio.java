@@ -12,7 +12,7 @@ public class Portfolio {
     private HashMap<String, Stock> stockTable;
     private HashMap<String, Stock> shortTable;
 
-    Portfolio(){
+    public Portfolio(){
 
         this.stockTable = new HashMap<>();
         this.shortTable = new HashMap<>();
@@ -26,6 +26,14 @@ public class Portfolio {
             stockTable.put(s.getName(), s);
         }
 
+    }
+
+    public double sellStock(String name){
+        double value = getValue(name);
+        if (value > 0){
+            stockTable.remove(name);
+        }
+        return value;
     }
 
     public double getValue(String name){
