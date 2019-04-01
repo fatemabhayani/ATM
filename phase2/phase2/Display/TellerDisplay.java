@@ -1,6 +1,5 @@
 package phase2.Display;
 
-import phase2.ATMTime;
 import phase2.Accounts.Account;
 import phase2.Accounts.AccountManager;
 import phase2.People.*;
