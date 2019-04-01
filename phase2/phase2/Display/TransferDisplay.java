@@ -30,6 +30,7 @@ class TransferDisplay {
         int number = Integer.valueOf(tmp.nextLine().replaceAll("//s", ""));
         while (number >= UserManager.accountNum) {
             System.out.println("There is no such account with this number. Try again.");
+            number = Integer.valueOf(tmp.nextLine().replaceAll("//s", ""));
         }
         Account a2 = UserManager.getUserAccount(number);
         System.out.println("Enter the sum of money you wish to transfer");
