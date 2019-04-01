@@ -54,7 +54,7 @@ public class Stock {
     }
 
     public static double getValue(Stock s){
-        return getPrice(s.name) * s.amount;
+        return s.getPrice() * s.amount;
     }
 
 
@@ -66,7 +66,7 @@ public class Stock {
         return getPrice(this.name);
     }
 
-    public static double getPrice(String name) {
+    public double getPrice(String name) {
         try {
             JSONObject json = getStockJSON(name);
             int x = 0;
@@ -80,13 +80,13 @@ public class Stock {
     }
 
 
-    private static URL getUrl(String name) throws MalformedURLException {
+    private URL getUrl(String name) throws MalformedURLException {
         String api_key = "BJV700X2EJXM80NP";
         String urlString = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" + name + "&interval=5min&apikey=" + api_key;
         return new URL(urlString);
     }
 
-    private static JSONObject getStockJSON(String name) throws ParseException, IOException {
+    private JSONObject getStockJSON(String name) throws ParseException, IOException {
             URL url = getUrl(name);
             BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
             String stringJSON = makeJSONString(reader);
@@ -99,7 +99,7 @@ public class Stock {
             return (JSONObject) json1.get(mostRecent);
     }
 
-    private static String makeJSONString(BufferedReader reader) throws IOException {
+    private String makeJSONString(BufferedReader reader) throws IOException {
         StringBuilder s = new StringBuilder();
         String line = reader.readLine();
         while (line != null) {

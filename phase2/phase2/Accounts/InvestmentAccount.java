@@ -40,7 +40,8 @@ public class InvestmentAccount extends AssetAccount {
     }
 
     public double getStockPrice(String name){
-        return Stock.getPrice(name);
+        Stock s = new Stock(name, 1);
+        return s.getPrice();
     }
 
 
@@ -67,6 +68,10 @@ public class InvestmentAccount extends AssetAccount {
     public void endShort(String name){
         double diff = portfolio.endShort(name);
         balance.add(diff);
+    }
+
+    public String portfolioString(){
+        return portfolio.toString();
     }
 
 
