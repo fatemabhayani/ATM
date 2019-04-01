@@ -110,6 +110,7 @@ public class DataSaver {
             writeAllLineOfCredit(writer, user);
             writeAllCreditCard(writer, user);
             writeAllCashBackCard(writer, user);
+            writeAllInvestment(writer, user);
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -168,6 +169,29 @@ public class DataSaver {
             Chequing c = (Chequing) account;
             writeChequingAccount(writer, c);
         }
+    }
+
+    /**
+     * writes all the Investment account information for one specific user
+     * @param writer the FileWriter that is being added to
+     * @param user the user whose Investment accounts are being added to the list
+     */
+    private void writeAllInvestment(FileWriter writer, User user) throws IOException {
+        writer.write("INVESTMENT\n");
+        for (Account account : user.getAccountList("in")) {
+            InvestmentAccount invest = (InvestmentAccount) account;
+            writeInvestmentAccount(writer, invest);
+        }
+    }
+
+    /**
+     * adds a Ine√stmentAccount to the user's data
+     * @param writer the FileWriter that is being added to
+     * @param invest investment account
+     */
+    private void writeInvestmentAccount(FileWriter writer, InvestmentAccount invest) throws IOException {
+        writer.write(invest.toString() + "\n");
+        writer.write(invest.portfolioString() + "\n");
     }
     /**
      * adds a credit card account to the user's data

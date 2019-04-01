@@ -7,7 +7,11 @@ import java.util.HashMap;
 public class Portfolio {
 
     public static void main(String[] args) {
-
+        Portfolio p = new Portfolio();
+        p.addStock(new Stock("AAPL", 100));
+        p.addStock(new Stock("MSFT", 100));
+        p.addStock(new Stock("GOOGL", 100));
+        System.out.println(p);
     }
     private HashMap<String, Stock> stockTable;
     private HashMap<String, Stock> shortTable;
@@ -72,6 +76,11 @@ public class Portfolio {
             return 0;
         }
     }
+    @Override
+    public String toString(){
+        return stockTable.toString() + "\t" +shortTable.toString();
+    }
+
 
 
 }
