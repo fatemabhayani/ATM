@@ -37,9 +37,9 @@ public class Withdraw extends Transaction {
         boolean isValidAmount = (getAmount().convert("CAD").getAmount() % 5 == 0);
 
         boolean isEnoughFunds = true;
-        if (moneyFrom.getClass() == Savings.class) {
+        if (moneyFrom instanceof Savings) {
             isEnoughFunds = (moneyFrom.getBalance().compareTo(getAmount()) >= 0);
-        } else if (moneyFrom.getClass() == Chequing.class) {
+        } else if (moneyFrom instanceof Chequing) {
             isEnoughFunds = (moneyFrom.getBalance().getAmount() >= 0 && moneyFrom.getBalance().compareTo
                     (new ForeignCurrency("CAD", getAmount().convert("CAD").getAmount() -100))
                     < 0);

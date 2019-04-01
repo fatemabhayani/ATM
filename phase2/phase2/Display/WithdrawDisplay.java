@@ -35,5 +35,4 @@ class WithdrawDisplay {
 
         AccountDisplay.main(args);
     }
-
 }

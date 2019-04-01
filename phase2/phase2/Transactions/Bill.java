@@ -32,11 +32,11 @@ public class Bill extends Transaction {
      * @return true iff the transaction is approved
      */
     public boolean transactionApproved() {
-        if (moneyFrom.getClass().isInstance(CreditCard.class)) {
+        if (moneyFrom instanceof CreditCard) {
             return false;
-        } else if (moneyFrom.getClass().isInstance(LineOfCredit.class)) {
+        } else if (moneyFrom instanceof LineOfCredit) {
             return true;
-        } else if (moneyFrom.getClass().isInstance(Savings.class)) {
+        } else if (moneyFrom instanceof Savings) {
             return moneyFrom.getBalance().compareTo(getAmount()) > 0;
         } else {
             return moneyFrom.getBalance().compareTo(getAmount()) >= 0 &&
