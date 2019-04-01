@@ -28,7 +28,7 @@ class TransferDisplay {
         System.out.println("Please enter the account number of the account you would like to transfer to.");
         Scanner tmp = new Scanner(System.in);
         int number = Integer.valueOf(tmp.nextLine().replaceAll("//s", ""));
-        while (number >= UserManager.accountNum) {
+        while (UserManager.getUserAccount(number) == null) {
             System.out.println("There is no such account with this number. Try again.");
             number = Integer.valueOf(tmp.nextLine().replaceAll("//s", ""));
         }

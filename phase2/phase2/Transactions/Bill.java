@@ -12,7 +12,7 @@ public class Bill extends Transaction {
     /**
      * The account paying the bill.
      */
-    private final Account moneyFrom;
+    private Account moneyFrom;
 
     /**
      * Instantiates a new bill.
@@ -34,14 +34,12 @@ public class Bill extends Transaction {
     public boolean transactionApproved() {
         if (moneyFrom instanceof CreditCard) {
             return false;
-        } else if (moneyFrom instanceof LineOfCredit) {
-            return true;
         } else if (moneyFrom instanceof Savings) {
             return moneyFrom.getBalance().compareTo(getAmount()) > 0;
         } else {
-            return moneyFrom.getBalance().compareTo(getAmount()) >= 0 &&
+            return (moneyFrom.getBalance().compareTo(getAmount()) >= 0 &&
                     moneyFrom.getBalance().compareTo(new ForeignCurrency("CAD", getAmount().
-                            convert("CAD").getAmount() - 100)) >= 0;
+                            convert("CAD").getAmount() - 100)) >= 0);
         }
     }
 

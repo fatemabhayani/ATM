@@ -2,6 +2,8 @@ package phase2.Transactions;
 
 import phase2.Accounts.*;
 import phase2.Tradable.*;
+
+import javax.sound.sampled.Line;
 import java.util.Calendar;
 
 /**
@@ -39,11 +41,11 @@ public class Transfer extends Transaction {
      * @return true unless account is credit card account.
      */
     public boolean transactionApproved() {
-        if (moneyFrom.getClass().isInstance(CreditCard.class)) {
-            return false;
-        } else if (moneyFrom.getClass().isInstance(LineOfCredit.class)) {
+        if (moneyFrom instanceof LineOfCredit) {
             return true;
-        } else if (moneyFrom.getClass().isInstance(Savings.class)) {
+        } else if (moneyFrom instanceof CreditCard) {
+            return false;
+        } else if (moneyFrom instanceof Savings) {
             return moneyFrom.getBalance().compareTo(getAmount()) >= 0;
         } else {
             return (moneyFrom.getBalance().getAmount() >= 0 && moneyFrom.getBalance().compareTo(
