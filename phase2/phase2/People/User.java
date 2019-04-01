@@ -137,6 +137,15 @@ public class User {
     }
 
     /**
+     * Account summary
+     *
+     * @return the string that summarizes the accounts of user
+     */
+    public String accountSummary(String type) {
+        return accounts.accountSummary(type);
+    }
+
+    /**
      * Gets all the accounts of a user of a particular type
      *
      * @param s the type of accounts
@@ -171,6 +180,15 @@ public class User {
         } else {
             System.out.println("That user does not exist!");
         }
+    }
+
+    /**
+     * Checks whether the user has an account with num.
+     *
+     * @param num the account number
+     */
+    public boolean hasAccount(int num) {
+        return accounts.hasAccount(num);
     }
 
     @Override
