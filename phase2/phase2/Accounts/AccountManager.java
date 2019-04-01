@@ -14,27 +14,27 @@ public class AccountManager {
     /**
      * Line of credit accounts.
      */
-    private final ArrayList<LineOfCredit> lc;
+    private ArrayList<LineOfCredit> lc;
 
     /**
      * Credit card accounts.
      */
-    private final ArrayList<CreditCard> cc;
+    private ArrayList<CreditCard> cc;
 
     /**
      * Chequing accounts.
      */
-    private final ArrayList<Chequing> cq;
+    private ArrayList<Chequing> cq;
 
     /**
      * Savings accounts.
      */
-    private final ArrayList<Savings> sv;
+    private ArrayList<Savings> sv;
 
     /**
      * Cash back card accounts.
      */
-    private final ArrayList<CashBackCard> cb;
+    private ArrayList<CashBackCard> cb;
 
     /**
      * AccountManager owner.
