@@ -1,6 +1,7 @@
 package phase2.Accounts;
 
 import phase2.People.User;
+import phase2.Portfolio;
 import phase2.Tradable.ForeignCurrency;
 import phase2.Tradable.Stock;
 import phase2.Transactions.Transaction;
@@ -15,7 +16,8 @@ import java.util.Calendar;
 public class InvestmentAccount extends AssetAccount {
 
 
-    private ArrayList<Stock> stocks = new ArrayList<>();
+
+    private Portfolio portfolio = new Portfolio();
 
     public InvestmentAccount(Calendar date, User owner1, int num ){
         super(date, owner1, num);
@@ -41,13 +43,32 @@ public class InvestmentAccount extends AssetAccount {
         return Stock.getPrice(name);
     }
 
-//    public void buyStock(String name, int volume){
-//        Stock s = new Stock(name, volume);
-//        if (balance.getAmount() > s.getTotalValue()){
-//            balance.subtract(s.getTotalValue());
-//            stocks.add(s);
-//        }
-//    }
+
+    public void buyStock(String name, int volume){
+        Stock s = new Stock(name, volume);
+        if (balance.getAmount() > s.getTotalValue()){
+            balance.subtract(s.getTotalValue());
+            portfolio.addStock(s);
+        } else {
+            System.out.println("You did not have enough money to buy this stock");
+        }
+    }
+
+    public void sellStock(String name){
+        double value = portfolio.sellStock(name);
+        this.balance.add(value);
+    }
+
+    public void startShort(String name, int amount){
+        Stock s = new Stock(name, amount);
+        portfolio.startShort(s);
+    }
+
+    public void endShort(String name){
+        double diff = portfolio.endShort(name);
+        balance.add(diff);
+    }
+
 
 
 
