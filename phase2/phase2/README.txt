@@ -36,8 +36,8 @@ the username of every user in the ATM, so that when reading the data, we can acc
 ------------------------DESCRIPTION OF CLASSES------------------------
 1. package phase2
 - Includes the packages Accounts, Data, Display, Interfaces, People, Request, Transactions, and Tradable.
-- Also includes general classes ATMTime and CashMachine. These are the classes that do not
-  inherit from or relate to other packages.
+- Also includes general classes ATMTime, Portfolio, and CashMachine. These are the classes that do not
+  inherit from or relate to other packages. Portfolio is used to buy and sell stocks.
 
 2. package phase2.Accounts
 - Includes Account interface as well as the different types of accounts (AssetAccount, Savings, Chequing, CreditCard,
@@ -47,7 +47,7 @@ the username of every user in the ATM, so that when reading the data, we can acc
 3. package phase2.Data
 - Includes all the program's output and input files, including alerts.txt, deposits.txt, outgoing.txt, and all
   .txt files that save the ATM data after each program run.
-- Also includes DataReader, DataSaver, and WriteFile classes, which assist in reading and writing to these files.
+- Also includes DataReader and DataSaver classes, which assist in reading and writing to these files.
 
 4. package phase2.Display
 - Includes all the classes with main methods that assist in the running of our program, including ATM,
@@ -67,11 +67,13 @@ the username of every user in the ATM, so that when reading the data, we can acc
   Bill, Deposit, Transfer, and Withdraw.
 
 8. package phase2.Tradable
-- Includes the ForeignCurrency and CryptoCurrency classes that represents different types of currency that users
+- Includes the ForeignCurrency, CryptoCurrency, and Stock classes that represents different types of objects that users
   can make transactions with. This includes a convert method which converts to other types of currency.
 
 ------------------------HOW TO RUN THE PROGRAM?----------------------------
-Run EntryDisplay.java to run the entire program.
+Run EntryDisplay.java to run the entire program. To load the program with tellers and a few users, run the main method
+in DataSaver.java before running EntryDisplay. To view the functionality of Investments, run the demo in the main
+method of InvestmentAccount.java.
 
 ------------------------HOW TO ACCESS THE BANK EMPLOYEE ACCOUNTS?------------------------
 The bank manager and 5 bank tellers already have accounts set up. To access the bank manager, enter
@@ -102,6 +104,11 @@ which allows this user to view the balance and make transactions from this accou
 user as a second owner (owner2), and adds this account to the second user's list of accounts (stored in
 AccountManager).
 
+------------------------HOW TO SELECT AN ACCOUNT?------------------------
+Every account is given a unique number by the UserManager class, and this is what the User inputs to select accounts.
+The Display will show the account numbers when the User selects an account type to view, and you must enter the digit
+of the account number.
+
 ------------------------HOW TO UNDO A TRANSACTION?------------------------
 After a user has logged in, they can request to undo a transaction of a specific account. The account stores
 all of its past transactions, so it can request to undo any past transaction (by inputting an integer, where 0
@@ -125,6 +132,7 @@ Bank tellers can read alerts.txt and restock the cash machine with bills accordi
 2. Completing requests to undo transactions:
 Bank tellers can only complete and ignore an UndoRequest. The bank tellers and bank manager share access of
 a list of UndoRequests.
+3. They have all the same functionality as a User.
 
 ------------------------FUNCTIONALITY FOR BANK MANAGER------------------------
 1. Restocking the cash machine:
@@ -133,3 +141,8 @@ The bank manager can read alerts.txt and restock the cash machine with bills acc
 The bank manager can complete and ignore any request type, and they are the only one who can complete requests to
 make new users and accounts.
 3. The bank manager can set the date of the ATM, specifying the year, month, day, hour, minute, and second.
+
+------------------------DESIGN PATTERNS------------------------
+- Singleton classes (ATMTime, BankManager, CashMachine)
+- Command (Request)
+- Mediator (AccountManager)
