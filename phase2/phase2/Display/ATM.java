@@ -1,7 +1,7 @@
 package phase2.Display;
 
 import phase2.*;
-import phase2.Data.DataReader;
+import phase2.Data.*;
 import phase2.People.*;
 import phase2.Request.*;
 
@@ -41,102 +41,79 @@ public class ATM {
         DataReader d = new DataReader();
         d.readAll();
 
+        ATMController con = new ATMController();
+
+        if (ATMTime.getInstance().isFirstOfMonth()) { UserManager.updateInterest(); }
+
         String command;
 
-        System.out.println("Welcome to the ATM, I am an incredibly well known superhero, my name is " + generateRandomSuperhero() +
-                " and I will be helping you today.");
+        System.out.println("Welcome to the ATM, I am an incredibly well known superhero, my name is " +
+                generateRandomSuperhero() + " and I will be helping you today.");
         System.out.println("Do you have an account?");
 
         Scanner sc = new Scanner(System.in);
-        String isUser = sc.nextLine();
-        while (!(isUser.toLowerCase().equals("no") ||isUser.toLowerCase().equals("yes"))){
-            System.out.println("You did not give a valid answer, try again");
-            isUser = sc.nextLine();
+        String isUser = sc.nextLine().toLowerCase();
+        while (!(isUser.equals("no") || isUser.equals("yes"))) {
+            System.out.println("You did not give a valid answer, try again.");
+            isUser = sc.nextLine().toLowerCase();
         }
-        if (isUser.toLowerCase().equals("yes")){
-            System.out.println("Please input your username");
-            command = sc.nextLine();
-            command = command.replaceAll("//s", "");
-            if (command.equals("bankmanager")){
-                System.out.println("Please input your password");
-                command = sc.nextLine();
-                command = command.replaceAll("//s", "");
-
-                while (!(command.toLowerCase().equals("bestboss"))){
-                    System.out.println("You did not give a valid password, try again, if you would like to go to the start screen type exit");
-                    command = sc.nextLine();
-                    if(command.toLowerCase().equals("exit")){
-                        ATM.main(null);
-                    }
-                }
-                ManagerDisplay.main(null);
-
+        if (isUser.equals("yes")) {
+            System.out.println("Glad you're back! Please input your username.");
+            command = sc.nextLine().replaceAll("//s", "");
+            if (UserManager.isBankManager(command)) {
+                con.verifyBankManager(sc);
             } else {
-                User user = UserManager.getUser(command);
-                while (user == null) {
-                    System.out.println("You did not give a valid username, try again, if you would like to go to the start screen type exit");
+                while (!UserManager.authenticateUsername(command)) {
+                    System.out.println("You did not give a valid username, try again! If you would like to go back to " +
+                            "the login screen, type 'exit'.");
                     command = sc.nextLine();
 
-                    if (command.equals("bankmanager")) {
-                        System.out.println("Please input your password");
-                        command = sc.nextLine();
-                        command = command.replaceAll("//s", "");
-
-                        while (!(command.toLowerCase().equals("bestboss"))) {
-                            System.out.println("You did not give a valid password, try again, if you would like to go to the start screen type exit");
-                            command = sc.nextLine();
-                            if (command.toLowerCase().equals("exit")) {
-                                ATM.main(null);
-                            }
-                        }
-                        ManagerDisplay.main(null);
-                    }
-
-                    user = UserManager.getUser(command);
-                    if(command.toLowerCase().equals("exit")){
+                    if (UserManager.isBankManager(command)) {
+                        con.verifyBankManager(sc);
+                    } else if (command.toLowerCase().equals("exit")) {
                         ATM.main(null);
                     }
                 }
-                username = command;
-                System.out.println("Enter your password.");
-                command = sc.nextLine();
-                command = command.replaceAll("//s", "");
-                while(! UserManager.authenticatePassword(command, user)) {
-                    System.out.println("You did not give a valid password, try again, if you would like to go to the start screen type exit");
-                    command = sc.nextLine();
-                    command = command.replaceAll("//s", "");
-                    if(command.toLowerCase().equals("exit")){
+                User u = UserManager.getUser(command);
+
+                System.out.println("Please enter your password.");
+                command = sc.nextLine().replaceAll("//s", "");
+
+                while(!UserManager.authenticatePassword(command, u)) {
+                    System.out.println("You did not give a valid password, try again! If you would like to go back to " +
+                            "the start screen, type 'exit'.");
+                    command = sc.nextLine().replaceAll("//s", "");
+                    if (command.toLowerCase().equals("exit")) {
                         ATM.main(null);
                     }
                 }
-                UserDisplay.main(null);
+                args = new String[1];
+                args[0] = u.getUsername();
+                UserDisplay.main(args);
             }
-
-        } else if (isUser.toLowerCase().equals("no")){
-            System.out.println("Please choose a username");
-            command = sc.nextLine();
-            command = command.replaceAll("//s", "");
-            while(UserManager.authenticateUsername(command)){
-                System.out.println("The username you have chosen is already taken, try another username or type exit to leave");
-                command = sc.nextLine();
-                command = command.replaceAll("//s", "");
+        } else {
+            System.out.println("Welcome to the ATM! Please choose a username.");
+            command = sc.nextLine().replaceAll("//s", "");
+            while (UserManager.authenticateUsername(command)) {
+                System.out.println("The username you have chosen is already taken. Try another username or type 'exit'" +
+                        " to leave.");
+                command = sc.nextLine().replaceAll("//s", "");
             }
-            System.out.println("You have chosen a valid username");
+            System.out.println("You have chosen a valid username.");
             String username = command;
             System.out.println("Now choose your initial password.");
             command = sc.nextLine().replaceAll("//s", "");
-            System.out.println("Your request to create an account has been sent to the bank manager");
-            UserRequest r = new UserRequest(username, command);
-            BankManager.getInstance().addRequest(r);
+            BankManager.getInstance().addRequest(new UserRequest(username, command));
+            System.out.println("Your request to create an account has been sent to the bank manager. You will be " +
+                    "sent back to login page now.");
             ATM.main(null);
         }
 
-        if (ATMTime.getInstance().isFirstOfMonth()) {
-            UserManager.updateInterest();
+        if (true) { // make method to check if user has typed "Exit program"
+            DataSaver s = new DataSaver();
+            s.writeAll();
+            System.exit(0);
         }
-
-        //TODO: write data only once per run (before program resets at midnight)
-
 
     }
 
@@ -147,15 +124,10 @@ public class ATM {
         try(BufferedReader reader = new BufferedReader(new FileReader("phase2/phase2/Data/superhero.txt"))){
             for(int i = 0; i < number; i++){
                 name = reader.readLine();
-
             }
-
         } catch (Exception e){
             name = "Error, the superhero left!".toUpperCase();
         }
-
         return name;
-
     }
 }
-

@@ -70,6 +70,40 @@ public class AccountManager {
     }
 
     /**
+     * Gets whether or not the account number belongs to an account in this AccountManager.
+     *
+     * @return whether the account with num is in this AccountManager
+     */
+    public boolean hasAccount(int num) {
+        for (LineOfCredit a : lc) {
+            if (a.getAccountNum() == num) {
+                return true;
+            }
+        }
+        for (CreditCard a : cc) {
+            if (a.getAccountNum() == num) {
+                return true;
+            }
+        }
+        for (Chequing a : cq) {
+            if (a.getAccountNum() == num) {
+                return true;
+            }
+        }
+        for (Savings a : sv) {
+            if (a.getAccountNum() == num) {
+                return true;
+            }
+        }
+        for (CashBackCard a : cb) {
+            if (a.getAccountNum() == num) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Gets net balance of all debt accounts of a user in CAD.
      *
      * @return the net balance
@@ -167,6 +201,42 @@ public class AccountManager {
         String s = sb.toString();
         s = s + ("Total balance in Canadian dollars: " + getTotalBalance());
         return s;
+    }
+
+    /**
+     * Returns the account summary.
+     *
+     * @return the string that summarizes the accounts of user.
+     */
+    public String accountSummary(String type) {
+        StringBuilder sb = new StringBuilder();
+        switch (type) {
+            case("lc"):
+                for (LineOfCredit a : lc) {
+                    sb.append("Line of Credit account: ").append(a.accountNum).append("\n");
+                }
+                return sb.toString();
+            case("cc"):
+                for (CreditCard a : cc) {
+                    sb.append("Credit Card account: ").append(a.accountNum).append("\n");
+                }
+                return sb.toString();
+            case("cq"):
+                for (Chequing a : cq) {
+                    sb.append("Chequing account: ").append(a.accountNum).append("\n");
+                }
+                return sb.toString();
+            case("cb"):
+                for (CashBackCard a : cb)
+                    sb.append("Cash Back Card account: ").append(a.accountNum).append("\n");
+                return sb.toString();
+            case("sv"):
+                for (Savings a : sv) {
+                    sb.append("Savings account: ").append(a.accountNum).append("\n");
+                }
+                return sb.toString();
+        }
+        return "";
     }
 
     /**

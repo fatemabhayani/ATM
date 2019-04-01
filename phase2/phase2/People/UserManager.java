@@ -34,9 +34,6 @@ public class UserManager {
                 authenticated = true;
             }
         }
-        if (username.equals(BankManager.getInstance().getUsername())) {
-            authenticated = true;
-        }
         return authenticated;
     }
 

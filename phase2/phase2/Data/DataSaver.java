@@ -16,7 +16,7 @@ import phase2.Request.*;
 /**
  * The type Data saver.
  */
-class DataSaver {
+public class DataSaver {
 
     public static void main(String[] args) {
 
