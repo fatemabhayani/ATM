@@ -16,7 +16,8 @@ public class TellerDisplay {
      */
     public static void main(String[] args) {
         ATMController controller = new ATMController();
-        BankTeller u = (BankTeller) UserManager.getUser(args[0]);
+        User b = UserManager.getUser(args[0]);
+        BankTeller u = (BankTeller) b;
         String[] args1 = new String[3];
         args1[0] = args[0];
 

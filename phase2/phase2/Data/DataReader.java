@@ -145,7 +145,11 @@ public class DataReader {
      */
     private User initializeUser(String line) {
         String[] info = line.split("\\.", 2);
-        return new User(info[0], info[1]);
+        if (info[0].length() >= 6 && info[0].substring(0, 6).equals("teller")) {
+            return new BankTeller(info[0], info[1]);
+        } else {
+            return new User(info[0], info[1]);
+        }
     }
 
     /**

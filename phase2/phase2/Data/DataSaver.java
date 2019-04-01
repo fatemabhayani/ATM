@@ -44,7 +44,6 @@ public class DataSaver {
         DataSaver d = new DataSaver();
         ATM.bankUsers = new ArrayList<>();
         ATM.bankUsers.add(user);
-        d.writeAllUsers();
 
         UserRequest r1 = new UserRequest("newperson", "secretpw");
         BankManager.getInstance().userRequests.add(r1);
@@ -53,8 +52,11 @@ public class DataSaver {
         UndoRequest r3 = new UndoRequest(user, sv, 0);
         ATM.undoRequests.add(r3);
 
-        d.writeAllRequests();
-        d.writeATMData();
+        for (int i = 1; i <=5; i++) {
+            ATM.bankUsers.add(new BankTeller("teller" + i, "bestemployee" + i));
+        }
+
+        d.writeAll();
 
     }
 
