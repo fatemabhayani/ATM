@@ -21,12 +21,21 @@ public class DataSaver {
     public static void main(String[] args) {
 
         User user = new User("yes", "yes");
+        InvestmentAccount in = new InvestmentAccount(new GregorianCalendar(), user, 1);
+        user.getAccountManager().add(in);
+        Deposit b5 = new Deposit(new ForeignCurrency("CAD", 50000), in, new GregorianCalendar());
+        user.makeTransaction(b5);
+        in.buyStock("AAPL", 100);
+        in.buyStock("GOOGL", 100);
+        in.buyStock("MSFT", 100);
+        in.startShort("INTC", 100);
         Savings sv = new Savings(new GregorianCalendar(), user, "CAD", 0);
         Chequing cq = new Chequing(true,new GregorianCalendar(), user, "CAD", 1);
         CreditCard cc = new CreditCard(new GregorianCalendar(), user, "CAD", 2);
         LineOfCredit lc = new LineOfCredit(new GregorianCalendar(), user, "CAD", 3);
         CashBackCard cb = new CashBackCard(new GregorianCalendar(), user, "CAD", 4);
         user.getAccountManager().add(sv);
+
         user.getAccountManager().add(cq);
         user.getAccountManager().add(cc);
         user.getAccountManager().add(lc);
@@ -41,6 +50,7 @@ public class DataSaver {
         user.makeTransaction(b3);
         Deposit b4 = new Deposit(new ForeignCurrency("CAD", 50), cb, new GregorianCalendar());
         user.makeTransaction(b4);
+
         DataSaver d = new DataSaver();
         ATM.bankUsers = new ArrayList<>();
         ATM.bankUsers.add(user);
@@ -190,7 +200,8 @@ public class DataSaver {
      * @param invest investment account
      */
     private void writeInvestmentAccount(FileWriter writer, InvestmentAccount invest) throws IOException {
-        writer.write(invest.toString() + "\n");
+        writer.write(invest.toString() + " ");
+        writer.write(invest.transactionString() + "\n");
         writer.write(invest.portfolioString() + "\n");
     }
     /**
