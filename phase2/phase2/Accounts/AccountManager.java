@@ -16,6 +16,8 @@ public class AccountManager {
      */
     private ArrayList<LineOfCredit> lc;
 
+    private ArrayList<InvestmentAccount> in;
+
     /**
      * Credit card accounts.
      */
@@ -50,6 +52,7 @@ public class AccountManager {
         cq = new ArrayList<>();
         sv = new ArrayList<>();
         cb = new ArrayList<>();
+        in = new ArrayList<>();
         owner = u;
     }
 
@@ -76,6 +79,11 @@ public class AccountManager {
      */
     public boolean hasAccount(int num) {
         for (LineOfCredit a : lc) {
+            if (a.getAccountNum() == num) {
+                return true;
+            }
+        }
+        for (InvestmentAccount a : in) {
             if (a.getAccountNum() == num) {
                 return true;
             }
@@ -140,6 +148,7 @@ public class AccountManager {
     public ArrayList getAccountList(String s) {
         switch (s) {
             case "lc": return lc;
+            case "in": return in;
             case "cc": return cc;
             case "cq": return cq;
             case "sv": return sv;
@@ -163,6 +172,9 @@ public class AccountManager {
         for (CreditCard a : cc) {
             t.addAll(a.getTransactions());
         }
+        for (InvestmentAccount a : in) {
+            t.addAll(a.getTransactions());
+        }
         for (Chequing a : cq) {
             t.addAll(a.getTransactions());
         }
@@ -172,7 +184,6 @@ public class AccountManager {
         for (CashBackCard a : cb) {
             t.addAll(a.getTransactions());
         }
-
         Collections.sort(t);
         return t;
     }
@@ -269,7 +280,9 @@ public class AccountManager {
             lc.add((LineOfCredit) account);
         } else if (account.getClass() == CreditCard.class) {
             cc.add((CreditCard) account);
-        } else if (account.getClass() == Savings.class) {
+        } else if (account.getClass() == InvestmentAccount.class) {
+            in.add((InvestmentAccount) account);
+        }else if (account.getClass() == Savings.class) {
             sv.add((Savings) account);
         } else if (account.getClass() == Chequing.class) {
             cq.add((Chequing) account);
@@ -286,6 +299,9 @@ public class AccountManager {
      */
     public Account getAccount(int num) {
         for (LineOfCredit a : lc) {
+            if (a.accountNum == num) { return a; }
+        }
+        for (InvestmentAccount a : in) {
             if (a.accountNum == num) { return a; }
         }
         for (CreditCard a : cc) {

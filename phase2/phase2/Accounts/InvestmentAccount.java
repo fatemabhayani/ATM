@@ -4,16 +4,31 @@ import phase2.People.User;
 import phase2.Portfolio;
 import phase2.Tradable.ForeignCurrency;
 import phase2.Tradable.Stock;
+import phase2.Transactions.Deposit;
 import phase2.Transactions.Transaction;
 import phase2.Transactions.Withdraw;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  * Account for buying and selling stocks (bought and sold in USD by nature of the api used in Stock class)
  */
 public class InvestmentAccount extends AssetAccount {
+
+    public static void main(String[] args) {
+        User user = new User("yes", "yes");
+        InvestmentAccount in = new InvestmentAccount(new GregorianCalendar(), user, 1);
+        user.getAccountManager().add(in);
+        Deposit b5 = new Deposit(new ForeignCurrency("CAD", 50000000), in, new GregorianCalendar());
+        user.makeTransaction(b5);
+        in.buyStock("AAPL", 100);
+        in.buyStock("GOOGL", 100);
+        in.buyStock("MSFT", 100);
+        in.startShort("INTC", 100);
+        System.out.println(in.toString() + in.portfolioString());
+    }
 
 
 
