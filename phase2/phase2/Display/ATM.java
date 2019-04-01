@@ -89,7 +89,11 @@ public class ATM {
                 }
                 args = new String[1];
                 args[0] = u.getUsername();
-                UserDisplay.main(args);
+                if (u.getUsername().length() > 6 && u.getUsername().substring(0, 6).equals("teller")) {
+                    TellerDisplay.main(args);
+                } else {
+                    UserDisplay.main(args);
+                }
             }
         } else {
             System.out.println("Welcome to the ATM! Please choose a username.");
