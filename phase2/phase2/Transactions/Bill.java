@@ -67,6 +67,11 @@ public class Bill extends Transaction {
         System.out.println("Bill payments cannot be undone!");
     }
 
+    public String summary() {
+        return "Bill: " + amount.toString() + " at " + getTransactionTimestamp() + " from account number " +
+                moneyFrom.getAccountNum();
+    }
+
     @Override
     public String toString() {
         return "B " + amount.toString() + " " + getTransactionTimestamp() + " " + moneyFrom.getAccountNum();

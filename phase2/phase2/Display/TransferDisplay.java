@@ -16,101 +16,32 @@ import java.util.Scanner;
  */
 class TransferDisplay {
 
-    private static final User U = AccountDisplay.U;
-    private static final Account a = AccountDisplay.a;
-
     /**
      * The entry point of Transfer display, access from ATM
      *
      * @param args the input arguments
      */
     public static void main(String[] args) {
-        System.out.println("Is this an internal transaction?");
+        User u = UserManager.getUser(args[0]);
+        Account a = UserManager.getUserAccount(Integer.valueOf(args[2]));
+
+        System.out.println("Please enter the account number of the account you would like to transfer to.");
         Scanner tmp = new Scanner(System.in);
-
-        String command = tmp.nextLine();
-        command = command.replaceAll("//s", "");
-
-        if (command.equals("yes")) {
-            Account da = null;
-            System.out.println("Select the account you want to transfer money to");
-            command = tmp.nextLine();
-            command = command.replaceAll("//s", "");
-            ArrayList<Account> d = U.getAccountList(command);
-            if (d.size() == 0) {
-                System.out.println("There are no accounts to choose from here! Please try again.");
-                AccountDisplay.main(null);
-            } else if (d.size() == 1) {
-                da = d.get(0);
-            } else {
-                System.out.println("Enter the number of the account you wish to deposit to: ");
-                command = tmp.nextLine();
-                int number = Integer.valueOf(command.replaceAll("//s", ""));
-                da = d.get(number);
-            }
-
-            System.out.println("Enter the sum of money you wish to transfer");
-            command = tmp.nextLine();
-            int amount = Integer.valueOf(command.replaceAll("//s", ""));
-            System.out.println("Enter the three digit currency code of the currency you wish to transfer");
-            command = tmp.nextLine();
-            command = command.replaceAll("//s", "");
-            Calendar time = ATMTime.getInstance().getCurrentTime();
-            Transfer t = new Transfer(new ForeignCurrency(command, amount), da, a, time);
-            U.makeTransaction(t);
-
-        } else {
-            System.out.println("Type the username of the user who will receive this transaction.");
-            command = tmp.nextLine();
-            command = command.replaceAll("//s","");
-            User r = UserManager.getUser(command);
-
-            Account da = null;
-            ArrayList<Account> account = new ArrayList<>();
-            System.out.println("Please select the type of account you want to access");
-            System.out.println("Type 'lc' for line of credit account" + "\n" + "Type 'cc' for credit card" +"\n"
-                    + "Type 'c' for chequing" +"\n"+"Type 's' for savings");
-            command = tmp.nextLine();
-            switch(command) {
-                case ("lc"):
-                    if (r != null) {
-                        account = r.getAccountList("lc");
-                    }
-                    break;
-                case ("cc"):
-                    if (r != null) {
-                        account = r.getAccountList("cc");
-                    }
-                    break;
-                case ("s"):
-                    if (r != null) {
-                        account = r.getAccountList("s");
-                    }
-                    break;
-                case ("c"):
-                    if (r != null) {
-                        account = r.getAccountList("c");
-                    }
-                    break;
-            }
-            if (account.size() == 0) {
-                System.out.println("There are no such accounts. Try again");
-                TransferDisplay.main(null);
-            } else {
-                da = account.get(0);
-            }
-
-            System.out.println("Enter the sum of money you wish to transfer");
-            command = tmp.nextLine();
-            int amt = Integer.valueOf(command.replaceAll("//s", ""));
-            System.out.println("Enter the three digit currency code of the currency you wish to transfer");
-            command = tmp.nextLine();
-            command = command.replaceAll("//s", "");
-            Calendar time = ATMTime.getInstance().getCurrentTime();
-            Transfer t = new Transfer(new ForeignCurrency(command, amt), da, a, time);
-            U.makeTransaction(t);
+        int number = Integer.valueOf(tmp.nextLine().replaceAll("//s", ""));
+        while (number >= UserManager.accountNum) {
+            System.out.println("There is no such account with this number. Try again.");
         }
-        AccountDisplay.main(null);
+        Account a2 = UserManager.getUserAccount(number);
+        System.out.println("Enter the sum of money you wish to transfer");
+        String command = tmp.nextLine();
+        double amt = Double.valueOf(command.replaceAll("//s", ""));
+        System.out.println("Enter the three digit currency code of the currency you wish to transfer. Please enter a " +
+                "valid currency code.");
+        command = tmp.nextLine().replaceAll("//s", "");
+        Transfer t = new Transfer(new ForeignCurrency(command, amt), a, a2, ATMTime.getInstance().getCurrentTime());
+        u.makeTransaction(t);
+
+        AccountDisplay.main(args);
     }
 
 }

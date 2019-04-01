@@ -69,6 +69,11 @@ public class Withdraw extends Transaction {
         moneyFrom.add(this);
     }
 
+    public String summary() {
+        return "Withdraw: " + amount.toString() + " at " + getTransactionTimestamp() + " from account number " +
+                moneyFrom.getAccountNum();
+    }
+
     @Override
     public String toString() {
         return "W " + amount.toString() + " " + getTransactionTimestamp() + " " + moneyFrom.getAccountNum();

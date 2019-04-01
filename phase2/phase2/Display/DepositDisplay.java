@@ -2,18 +2,19 @@ package phase2.Display;
 
 import phase2.ATMTime;
 import phase2.Accounts.Account;
+import phase2.People.UserManager;
+import phase2.Tradable.ForeignCurrency;
+import phase2.Transactions.Bill;
 import phase2.Transactions.Deposit;
 import phase2.People.User;
 
 import java.util.Calendar;
+import java.util.Scanner;
 
 /**
  * The type Deposit display.
  */
 class DepositDisplay {
-
-    private static final User U = AccountDisplay.U;
-    private static final Account a = AccountDisplay.a;
 
     /**
      * The entry point of Deposit Display, access from ATM
@@ -21,10 +22,14 @@ class DepositDisplay {
      * @param args the input arguments
      */
     public static void main(String[] args) {
-        Calendar time = ATMTime.getInstance().getCurrentTime();
-        Deposit t = new Deposit("deposits.txt", a, time);
-        U.makeTransaction(t);
-        AccountDisplay.main(null);
+        System.out.println("Make sure you enter a valid cheque!");
+
+        User u = UserManager.getUser(args[0]);
+        Account a = UserManager.getUserAccount(Integer.valueOf(args[2]));
+        Deposit t = new Deposit("deposits.txt", a, ATMTime.getInstance().getCurrentTime());
+        u.makeTransaction(t);
+
+        AccountDisplay.main(args);
     }
 
 }
