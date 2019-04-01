@@ -38,9 +38,6 @@ public class ATM {
      * @param args the args
      */
     public static void main(String[] args){
-        DataReader d = new DataReader();
-        d.readAll();
-
         ATMController con = new ATMController();
 
         if (ATMTime.getInstance().isFirstOfMonth()) { UserManager.updateInterest(); }
@@ -49,10 +46,15 @@ public class ATM {
 
         System.out.println("Welcome to the ATM, I am an incredibly well known superhero, my name is " +
                 generateRandomSuperhero() + " and I will be helping you today.");
+        System.out.println("Type 'exit program' to log out. Otherwise type 'yes' or 'no'.");
         System.out.println("Do you have an account?");
 
         Scanner sc = new Scanner(System.in);
         String isUser = sc.nextLine().toLowerCase();
+        if (isUser.equals("exit program")) {
+            con.logOut();
+        }
+
         while (!(isUser.equals("no") || isUser.equals("yes"))) {
             System.out.println("You did not give a valid answer, try again.");
             isUser = sc.nextLine().toLowerCase();
@@ -89,7 +91,11 @@ public class ATM {
                 }
                 args = new String[1];
                 args[0] = u.getUsername();
-                UserDisplay.main(args);
+                if (u.getUsername().length() > 6 && u.getUsername().substring(0, 6).equals("teller")) {
+                    TellerDisplay.main(args);
+                } else {
+                    UserDisplay.main(args);
+                }
             }
         } else {
             System.out.println("Welcome to the ATM! Please choose a username.");
@@ -107,12 +113,6 @@ public class ATM {
             System.out.println("Your request to create an account has been sent to the bank manager. You will be " +
                     "sent back to login page now.");
             ATM.main(null);
-        }
-
-        if (true) { // make method to check if user has typed "Exit program"
-            DataSaver s = new DataSaver();
-            s.writeAll();
-            System.exit(0);
         }
 
     }

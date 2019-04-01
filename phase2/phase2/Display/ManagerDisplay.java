@@ -11,123 +11,113 @@ import java.util.Scanner;
  */
 class ManagerDisplay {
 
-    private static final ATMController controller = new ATMController();
-
     /**
      * The entry point of application.
      *
      * @param args the input arguments
      */
     public static void main(String[] args) {
-
         BankManager b = BankManager.getInstance();
-        System.out.println("Hello bank manager, let's check the ATM alerts first!");
-
         Scanner sc = new Scanner(System.in);
         String command;
+        ATMController controller = new ATMController();
 
-        System.out.println("Type '0' to view requests. Type '1' to set date. Type '2' to view Cash Machine alerts");
-        command = sc.nextLine();
-        command = command.replaceAll("//s", "");
-        while (!(command.toLowerCase().equals("0")||command.toLowerCase().equals("1")
-                ||command.toLowerCase().equals("2"))) {
-            System.out.println("Wrong answer, try again");
-            System.out.println("Type '0' to view requests. Type '1' to set date. Type '2' to view Cash Machine alerts");
-            command = sc.nextLine();
-            command = command.replaceAll("//s", "");
-        }
-        System.out.println(b.getRequestSummary());
-        if (b.getRequestSummary().equals("You have no requests.")) {
-            ATM.main(null);
+        System.out.println("Type '0' if you would like to view requests." + "\n"
+                + "Type '1' to set the date." + "\n"
+                + "Type '2' to restock the cash machine." + "\n" +
+                " Type '3' to log out.");
+        command = sc.nextLine().replaceAll("//s", "");
+        while (!(command.equals("0")|| command.equals("1") || command.equals("2") || command.equals("3"))) {
+            System.out.println("That is not a valid action, try again.");
+            command = sc.nextLine().replaceAll("//s", "");
         }
 
-        boolean exited = false;
-        while (!exited) {
-            if (command.toLowerCase().equals("0")) {
+        switch(command) {
+            case("0"):
+                System.out.println(b.getRequestSummary());
+                if (b.getRequestSummary().equals("You have no requests.")) {
+                    ManagerDisplay.main(null);
+                }
                 System.out.println("Which request do you want to address? Put in the appropriate number only." + "\n" +
-                        "Type '0' for the oldest request");
-                command = sc.nextLine();
-                command = command.replaceAll("//s", "");
+                        "Type '0' for the oldest request.");
+                command = sc.nextLine().replaceAll("//s", "");
                 int number = Integer.valueOf(command);
                 while (number > b.getNumberOfRequests()){
-                    System.out.println("This index is not assigned to a request. Please Try again");
-                    command = sc.nextLine();
-                    command = command.replaceAll("//s", "");
+                    System.out.println("This index is not assigned to a request. Please try again.");
+                    command = sc.nextLine().replaceAll("//s", "");
                     number = Integer.valueOf(command);
                 }
                 Request request = b.getRequest(number);
                 System.out.println(request.toString());
-                System.out.println("Do you want to accept this request");
-                command = sc.nextLine();
-                command = command.replaceAll("//s", "");
+                System.out.println("Do you want to accept this request?");
+                command = sc.nextLine().replaceAll("//s", "");
                 controller.incorrectAns(sc,command);
-                if (command.equals("yes")) {
+                if (command.toLowerCase().equals("yes")) {
                     b.completeRequest(number);
                 } else {
                     b.ignoreRequest(number);
                 }
-                System.out.println("Would you like to exit?");
-                command = sc.nextLine();
-                command = command.replaceAll("//s", "");
-                if (command.toLowerCase().equals("yes")) { exited = true; }
-            }else if (command.toLowerCase().equals("1")){
-                System.out.println("Please type the year for the new Date");
+                ManagerDisplay.main(null);
+
+            case("1"):
+                System.out.println("Please type the year for the new date:");
                 command = sc.nextLine();
                 int year = Integer.valueOf(command);
-                System.out.println("Please type the month for the new Date");
+                System.out.println("Please type the month for the new date");
                 command = sc.nextLine();
                 int month = Integer.valueOf(command);
-                while(!((0<=month)&&(month<=11))){
+                while(!((0 <= month) && (month <= 11))) {
                     System.out.println("This is an invalid month." +
                             " Please input something between and including 0 to 11");
                     command = sc.nextLine();
                     month = Integer.valueOf(command);
                 }
-                System.out.println("Please type the day for the new Date");
+                System.out.println("Please type the day for the new date");
                 command = sc.nextLine();
                 int day = Integer.valueOf(command);
-                while(!((1<=day)&&(day<=30))){
+                while(!((1<=day)&&(day<=31))){
                     System.out.println("This is an invalid day." +
-                            " Please input something between and including 1 to 30");
+                            " Please input something between and including 1 to 31.");
                     command = sc.nextLine();
                     day = Integer.valueOf(command);
                 }
-                System.out.println("Please type the hour for the new Date");
+                System.out.println("Please type the hour for the new date");
                 command = sc.nextLine();
                 int hour = Integer.valueOf(command);
-                while(!((1<=hour)&&(hour<=24))){
+                while(!((1<=hour)&&(hour<=23))){
                     System.out.println("This is an invalid hour." +
-                            " Please input something between and including 1 to 24");
+                            " Please input something between and including 1 to 23.");
                     command = sc.nextLine();
                     hour = Integer.valueOf(command);
                 }
-                System.out.println("Please type the minutes for the new Date");
+                System.out.println("Please type the minutes for the new date");
                 command = sc.nextLine();
                 int minutes = Integer.valueOf(command);
-                while(!((0<=minutes)&&(minutes<=60))){
-                    System.out.println("This is an invalid month." +
-                            " Please input something between and including 0 to 11");
+                while(!((0<=minutes)&&(minutes<=59))){
+                    System.out.println("This is an invalid minute." +
+                            " Please input something between and including 0 to 59.");
                     command = sc.nextLine();
                     minutes = Integer.valueOf(command);
                 }
-                System.out.println("Please type the seconds for the new Date");
+                System.out.println("Please type the seconds for the new date");
                 command = sc.nextLine();
                 int seconds = Integer.valueOf(command);
-                while(!((0<=seconds)&&(seconds<=60))){
-                    System.out.println("This is an invalid month." +
-                            " Please input something between and including 0 to 11");
+                while(!((0<=seconds)&&(seconds<=59))){
+                    System.out.println("This is an invalid second." +
+                            " Please input something between and including 0 to 59");
                     command = sc.nextLine();
                     seconds = Integer.valueOf(command);
                 }
                 ATMTime.getInstance().setDate(year,month,day,hour,minutes,seconds);
-            }else {b.restockCashMachine();}
-
-
+                ManagerDisplay.main(null);
+                break;
+            case("2"):
+                b.restockCashMachine();
+                ManagerDisplay.main(null);
+                break;
+            case("3"):
+                ATM.main(null);
+                break;
         }
-        ATM.main(null);
-
     }
-
-
-
 }

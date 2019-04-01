@@ -24,6 +24,7 @@ class WithdrawDisplay {
     public static void main(String[] args) {
         User u = UserManager.getUser(args[0]);
         Account a = UserManager.getUserAccount(Integer.valueOf(args[2]));
+        System.out.println(a == null);
 
         Scanner tmp = new Scanner(System.in);
         System.out.println("Enter the sum of money you wish to withdraw:");

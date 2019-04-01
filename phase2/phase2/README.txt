@@ -71,7 +71,7 @@ the username of every user in the ATM, so that when reading the data, we can acc
   can make transactions with. This includes a convert method which converts to other types of currency.
 
 ------------------------HOW TO RUN THE PROGRAM?----------------------------
-Run ATM.java to run the entire program.
+Run EntryDisplay.java to run the entire program.
 
 ------------------------HOW TO ACCESS THE BANK EMPLOYEE ACCOUNTS?------------------------
 The bank manager and 5 bank tellers already have accounts set up. To access the bank manager, enter

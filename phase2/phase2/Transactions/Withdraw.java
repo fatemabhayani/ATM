@@ -13,7 +13,7 @@ public class Withdraw extends Transaction {
     /**
      * The account making the withdrawal.
      */
-    private final Account moneyFrom;
+    private Account moneyFrom;
 
     /**
      * Instantiates a new withdrawal.
@@ -37,9 +37,9 @@ public class Withdraw extends Transaction {
         boolean isValidAmount = (getAmount().convert("CAD").getAmount() % 5 == 0);
 
         boolean isEnoughFunds = true;
-        if (moneyFrom.getClass().isInstance(Savings.class)) {
+        if (moneyFrom.getClass() == Savings.class) {
             isEnoughFunds = (moneyFrom.getBalance().compareTo(getAmount()) >= 0);
-        } else if (moneyFrom.getClass().isInstance(Chequing.class)) {
+        } else if (moneyFrom.getClass() == Chequing.class) {
             isEnoughFunds = (moneyFrom.getBalance().getAmount() >= 0 && moneyFrom.getBalance().compareTo
                     (new ForeignCurrency("CAD", getAmount().convert("CAD").getAmount() -100))
                     < 0);

@@ -76,7 +76,7 @@ class UserDisplay {
                     System.out.println(u.accountSummary(accountType));
                     System.out.println("Enter the number of the account you wish to access: ");
                     int number = Integer.valueOf(tmp.nextLine().replaceAll("//s",""));
-                    while (u.hasAccount(number)) {
+                    while (!u.hasAccount(number)) {
                         System.out.println("You do not have an account with this number. Try again.");
                         number = Integer.valueOf(tmp.nextLine().replaceAll("//s",""));
                     }
@@ -85,7 +85,7 @@ class UserDisplay {
                 }
                 break;
             case "2":
-                con.logOut();
+                ATM.main(null);
                 break;
             case "3":
                 System.out.println("Type the username of the user you wish to join accounts with.");
