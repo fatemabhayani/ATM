@@ -2,6 +2,7 @@ package phase2.Display;
 
 import phase2.ATMTime;
 import phase2.Accounts.Account;
+import phase2.Data.DataSaver;
 import phase2.People.BankManager;
 import phase2.People.User;
 import phase2.Tradable.ForeignCurrency;
@@ -14,12 +15,13 @@ class ATMController {
 
     ATMController() {}
 
-    public void incorrectAns(Scanner scanner, String inUse){
-        while (!(inUse.toLowerCase().equals("no") ||inUse.toLowerCase().equals("yes"))){
-            System.out.println("You did not give a valid answer, try again");
+    void incorrectAns(Scanner scanner, String inUse) {
+        while (!(inUse.toLowerCase().equals("no") || inUse.toLowerCase().equals("yes"))) {
+            System.out.println("You did not give a valid answer, try again.");
             inUse = scanner.nextLine();
         }
     }
+
     public void managerUse(Scanner sc, String command){
         if (command.equals("bankmanager")){
             System.out.println("Please input your password");
@@ -70,6 +72,12 @@ class ATMController {
             }
         }
         ManagerDisplay.main(null);
+    }
+
+    void logOut() {
+        DataSaver s = new DataSaver();
+        s.writeAll();
+        System.exit(0);
     }
 
 }

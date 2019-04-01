@@ -15,10 +15,6 @@ class UserDisplay {
 
 
     /**
-     * The User.
-     */
-    public static final User U = UserManager.getUser(a);
-    /**
      * The Account.
      */
     public static Account a;
@@ -34,104 +30,91 @@ class UserDisplay {
      */
     public static void main(String[] args) {
         User u = UserManager.getUser(args[0]);
-        ATMController controller = new ATMController();
+        ATMController con = new ATMController();
+        String[] args1 = new String[3];
+        args1[0] = args[0];
 
-        System.out.println("Type '0' if you would like to change your password" + "\n"
-                + "Type '1' if you would like to interact with your accounts" + "\n"
-                + "Type '2' if you would like to log out" + "\n" +
-                " Type '3' to merge accounts with another user");
+        System.out.println("Type '0' if you would like to change your password." + "\n"
+                + "Type '1' if you would like to interact with your accounts." + "\n"
+                + "Type '2' if you would like to log out." + "\n" +
+                " Type '3' to merge accounts with another user.");
         Scanner tmp = new Scanner(System.in);
-        String command = tmp.nextLine();
-        command = command.replaceAll("//s","");
+        String command = tmp.nextLine().replaceAll("//s","");
+        while (!(command.equals("0") || command.equals("1") || command.equals("2") || command.equals("3"))) {
+            System.out.println("You have not selected a valid action. Try again.");
+            command = tmp.nextLine().replaceAll("//s","");
+        }
         switch (command) {
             case "0":
-                System.out.println("Enter new password:");
-                command = tmp.nextLine();
-                command = command.replaceAll("//s", "");
-                U.setPassword(command);
-                UserDisplay.main(null);
+                System.out.println("Enter your new password:");
+                command = tmp.nextLine().replaceAll("//s", "");
+                u.setPassword(command);
+                System.out.println("Your password has been changed.");
+                UserDisplay.main(args);
                 break;
             case "1":
-                System.out.println(U.balanceSummary());
-                ArrayList<Account> account = new ArrayList<>();
-                System.out.println("Please select the type of account you want to access");
-                System.out.println("Type 'lc' for line of credit account" + "\n" + "Type 'cc' for credit card" + "\n"
-                        + "Type 'c' for chequing" + "\n" + "Type 's' for savings");
-                command = tmp.nextLine();
-                switch (command) {
-                    case ("lc"):
-                        account = U.getAccountList("lc");
-                        break;
-                    case ("cc"):
-                        account = U.getAccountList("cc");
-                        break;
-                    case ("sv"):
-                        account = U.getAccountList("sv");
-                        break;
-                    case ("cq"):
-                        account = U.getAccountList("cq");
-                        break;
-                    case ("cb"):
-                        account = U.getAccountList("cb");
-                        break;
+                System.out.println("This is the summary of your account balances.");
+                System.out.println(u.balanceSummary());
+                System.out.println("Please select the type of account you want to access.");
+                System.out.println("Type 'lc' for line of credit account." + "\n" + "Type 'cc' for credit card account." + "\n"
+                        + "Type 'cq' for chequing account." + "\n" + "Type 'sv' for savings account." + "\n" +
+                        "Type 'cb' for cash back card account.");
+                command = tmp.nextLine().toLowerCase();
+                while (!(command.equals("lc") || command.equals("cc") || command.equals("cb") || command.equals("cq") ||
+                        command.equals("sv"))) {
+                    System.out.println("You have not selected a valid account type. Try again.");
+                    command = tmp.nextLine().toLowerCase();
                 }
-                accountType = command;
-                a = null;
+                String accountType = command;
+                args1[1] = accountType;
+                ArrayList<Account> account = u.getAccountList(accountType);
+
                 if (account.size() == 0) {
                     System.out.println("There are no accounts to choose from here! Do you want to request an account?");
-                    command = tmp.nextLine();
-                    command = command.replaceAll("//s", "");
-                    controller.incorrectAns(tmp,command);
+                    command = tmp.nextLine().replaceAll("//s", "").toLowerCase();
+                    con.incorrectAns(tmp, command);
                     if (command.equals("yes")) {
-                        System.out.println("Enter the three digit currency code of the currency you want");
-                        command = tmp.nextLine();
-                        command = command.replaceAll("//s", "");
-                        U.requestAccount(accountType,command);
+                        System.out.println("Enter the three digit currency code of the currency you want. Please " +
+                                "enter a valid currency code.");
+                        command = tmp.nextLine().replaceAll("//s", "");
+                        u.requestAccount(accountType, command);
                         System.out.println("Your request has been made!");
-                    }else{UserDisplay.main(null);}
-                    UserDisplay.main(null);
-                } else if (account.size() == 1) {
-                    a = account.get(0);
-                    AccountDisplay.main(null);
+                    } else { UserDisplay.main(args); }
+                    UserDisplay.main(args);
+
                 } else {
+                    System.out.println(u.accountSummary(accountType));
                     System.out.println("Enter the number of the account you wish to access: ");
-                    command = tmp.nextLine();
-                    int number = Integer.valueOf(command.replaceAll("//s", ""));
-                    while (number > account.size()) {
-                        System.out.println("There is no account relative to this index. " +
-                                "Please input an appropriate index");
-                        command = tmp.nextLine();
-                        number = Integer.valueOf(command.replaceAll("//s", ""));
+                    int number = Integer.valueOf(tmp.nextLine().replaceAll("//s",""));
+                    while (u.hasAccount(number)) {
+                        System.out.println("You do not have an account with this number. Try again.");
+                        number = Integer.valueOf(tmp.nextLine().replaceAll("//s",""));
                     }
-                    a = account.get(number);
-                    AccountDisplay.main(null);
+                    args1[2] = String.valueOf(number);
+                    AccountDisplay.main(args1);
                 }
                 break;
             case "2":
-                ATM.main(null);
+                con.logOut();
                 break;
             case "3":
-                System.out.println("Type the username of the User you wish to join accounts with");
+                System.out.println("Type the username of the user you wish to join accounts with.");
                 command = tmp.nextLine();
                 User merger = UserManager.getUser(command);
-                while(merger == null) {
-                    System.out.println("There is no user with such a username. Please try again");
+                while (merger == null) {
+                    System.out.println("There is no user with such a username. Please try again.");
                     command = tmp.nextLine();
                     merger = UserManager.getUser(command);
                 }
-                System.out.println("Input the account number for the account you wish to share");
+                System.out.println("Input the account number for the account you wish to share.");
                 int number = Integer.valueOf(tmp.nextLine().replaceAll("//s",""));
-                AccountManager AM = new AccountManager(U);
-                Account a = AM.getAccount(number);
-                while (a==null) {
-                    System.out.print("There is no account relative to this index, Please select a valid account number");
+                while (u.hasAccount(number)) {
+                    System.out.println("You do not have an account with this number. Try again.");
                     number = Integer.valueOf(tmp.nextLine().replaceAll("//s",""));
-                    a = AM.getAccount(number);
                 }
-                U.addAccountOwner(command, number);
+                u.addAccountOwner(command, number);
+                break;
         }
     }
 
-
 }
-
