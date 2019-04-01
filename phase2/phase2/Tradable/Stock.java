@@ -14,15 +14,47 @@ public class Stock {
 
 
     private final String name;
-    private final double buyPrice;
+    private final double initPrice;
+    private int amount;
+    private boolean isShort = false;
+
 
     public Stock(String name, int amount) {
         this.name = name;
-        this.buyPrice = getPrice(name);
+        this.amount = amount;
+        this.initPrice = getPrice(name);
     }
 
-    public double getBuyPrice(){
-        return this.buyPrice;
+    public void setShort(){
+        this.isShort = true;
+    }
+
+    public double getInitPrice(){
+        return this.initPrice;
+    }
+
+    public double getTotalValue(){
+        return this.getPrice() * amount;
+    }
+
+    public void add(int amount){
+        if (!isShort){
+            this.amount += amount;
+        }
+    }
+
+    public int getAmount(){
+        return this.amount;
+    }
+
+    public void subtract(int amount){
+        if (!isShort){
+            this.amount -= amount;
+        }
+    }
+
+    public static double getValue(Stock s){
+        return getPrice(s.name) * s.amount;
     }
 
 
@@ -80,6 +112,6 @@ public class Stock {
 
     @Override
     public String toString() {
-        return name ;
+        return name + " " + amount ;
     }
 }

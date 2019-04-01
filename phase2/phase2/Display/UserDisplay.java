@@ -85,7 +85,7 @@ class UserDisplay {
                 }
                 break;
             case "2":
-                con.logOut();
+                ATM.main(null);
                 break;
             case "3":
                 System.out.println("Type the username of the user you wish to join accounts with.");
