@@ -75,6 +75,11 @@ public class Transfer extends Transaction {
         moneyTo.subtract(this);
     }
 
+    public String summary() {
+        return "Transfer: " + amount.toString() + " at " + getTransactionTimestamp() + " from account number " +
+                moneyFrom.getAccountNum() + " to account number " + moneyTo.getAccountNum();
+    }
+
     @Override
     public String toString() {
         return "T " + amount.toString() + " " + getTransactionTimestamp() + " " + moneyFrom.getAccountNum() + " " +

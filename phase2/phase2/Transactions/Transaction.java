@@ -152,5 +152,7 @@ public abstract class Transaction implements Comparable<Transaction> {
         Calendar time2 = t.getTimeOfTransaction();
         return time1.compareTo(time2);
     }
+
+    public abstract String summary();
 }
 

@@ -69,6 +69,11 @@ public class Deposit extends Transaction {
         moneyTo.subtract(this);
     }
 
+    public String summary() {
+        return "Deposit: " + amount.toString() + " at " + getTransactionTimestamp() + " to account number " +
+                moneyTo.getAccountNum();
+    }
+
     @Override
     public String toString() {
         return "D " + amount.toString() + " " + getTransactionTimestamp() + " " + moneyTo.getAccountNum();
