@@ -13,16 +13,6 @@ import java.util.Scanner;
  */
 class UserDisplay {
 
-
-    /**
-     * The Account.
-     */
-    public static Account a;
-    /**
-     * The accountType.
-     */
-    static String accountType;
-
     /**
      * The entry point of User Display, access through ATM.
      *

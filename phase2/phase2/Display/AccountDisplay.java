@@ -1,6 +1,7 @@
 package phase2.Display;
 
 import phase2.People.BankManager;
+import phase2.People.UserManager;
 import phase2.Request.AccountRequest;
 import phase2.Accounts.Account;
 import phase2.People.User;
@@ -13,23 +14,19 @@ import java.util.Scanner;
  */
 class AccountDisplay {
 
-
-    /**
-     * The User.
-     */
-    public static final User U = UserDisplay.U;
-    /**
-     * The Account.
-     */
-    public static final Account a = UserDisplay.a;
-    private static final String accountType = UserDisplay.accountType;
-
     /**
      * The entry point of Account Display.
      *
      * @param args the input arguments
      */
     public static void main(String[] args) {
+        User u = UserManager.getUser(args[0]);
+        ATMController con = new ATMController();
+        String accountType = args[1];
+        Account a = UserManager.getUserAccount(Integer.valueOf(args[2]));
+
+        String[] args1 = new String[3];
+
         System.out.println(a.toString());
         System.out.println("Do you want to request an account (1), make a transaction (2), undo a transaction (3)," +
                 " View most recent transaction (4) or exit (5)?");
@@ -40,7 +37,7 @@ class AccountDisplay {
             System.out.println("Enter the currency code for the account?");
             command = tmp.nextLine();
             command = command.replaceAll("//s","");
-            AccountRequest r = new AccountRequest(U, accountType, command.toUpperCase());
+            AccountRequest r = new AccountRequest(u, accountType, command.toUpperCase());
             BankManager.getInstance().addRequest(r);
             System.out.println("Your request has been made!");
             AccountDisplay.main(null);
@@ -73,7 +70,7 @@ class AccountDisplay {
                 if (a.getPastTransaction(number) instanceof Bill) {
                     System.out.println("You are not allowed to undo a bill payment");
                 } else {
-                    U.requestUndo(a, number);
+                    u.requestUndo(a, number);
                 }
             } else {
                 System.out.println("There are no transactions to be undone");
