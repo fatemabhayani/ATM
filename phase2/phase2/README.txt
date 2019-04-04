@@ -72,8 +72,15 @@ the username of every user in the ATM, so that when reading the data, we can acc
 
 ------------------------HOW TO RUN THE PROGRAM?----------------------------
 Run EntryDisplay.java to run the entire program. To load the program with tellers and a few users, run the main method
-in DataSaver.java before running EntryDisplay. To view the functionality of Investments, run the demo in the main
-method of InvestmentAccount.java.
+in DataSaver.java before running EntryDisplay. When running this, comment out the lines 24-31 and 123 in DataSaver to
+avoid writing Investment account information. If you would like to see the functionality of investments, there is a
+demo in the main method of InvestmentAccount.java.
+
+The main method in DataSaver loads the ATM with user "yes" (with password "yes") who has one of each account type. The
+savings account has account number 0, the chequing account has account number 1, and so on. These are the account numbers
+used in making transactions. Before making a deposit ensure that deposits.txt has the correct text in the file.
+This also loads the ATM with 5 bank tellers.
+You will also have to change the file location in DepositDisplay.java (line 29) to "phase2/phase2/Data/deposits.txt".
 
 ------------------------HOW TO ACCESS THE BANK EMPLOYEE ACCOUNTS?------------------------
 The bank manager and 5 bank tellers already have accounts set up. To access the bank manager, enter
