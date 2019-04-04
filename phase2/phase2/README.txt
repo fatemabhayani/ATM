@@ -81,6 +81,8 @@ savings account has account number 0, the chequing account has account number 1,
 used in making transactions. Before making a deposit ensure that deposits.txt has the correct text in the file.
 This also loads the ATM with 5 bank tellers.
 You will also have to change the file location in DepositDisplay.java (line 29) to "phase2/phase2/Data/deposits.txt".
+To add an owner to another user's account you should also change line 101 of UserDisplay.java to:
+while (!u.hasAccount(number)) {
 
 ------------------------HOW TO ACCESS THE BANK EMPLOYEE ACCOUNTS?------------------------
 The bank manager and 5 bank tellers already have accounts set up. To access the bank manager, enter
